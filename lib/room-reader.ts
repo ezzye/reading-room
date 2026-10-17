@@ -1,0 +1,34 @@
+import {parseHTML} from 'linkedom';
+import {pageResponse} from './page-renderer.ts';
+import {withRoomDiscussion} from './room-discussion-view.mjs';
+import {requireRoom,accessiblePage,roomCookie} from './rooms.ts';
+import {loadPage} from './education-service.ts';
+import type {Config} from './education-service.ts';
+
+export async function roomReader(r:Request,c:Config){
+ try{
+  const room=await requireRoom(r,c),id=new URL(r.url).pathname.split('/').at(-1)||'';
+  if(!/^[a-f0-9]{48}$/.test(id)||!await accessiblePage(r,c,id))return new Response('Article not found in this room.',{status:404});
+  const page=await loadPage(c.DB,id);if(!page)return new Response('Article not found.',{status:404});
+  const original=pageResponse(page,false),parsed=parseHTML(await original.text()),d:any=parsed.document;
+  d.querySelectorAll('.ai-disclosure[open]').forEach((x:any)=>x.removeAttribute('open'));
+  const style=d.createElement('style');style.textContent=`.ret-bar,.edition-bar,.reading-tools,.edition-intro,.edition-footer,.controls,.source-credit,.fidelity,.ret-tools,.owner-controls,.your-note,.comment-slot,.font-check,.source-credits,.media-help,.shared-comment,footer{display:none!important}.ad-slot{display:none!important}.rr-read-nav{position:sticky;top:0;z-index:100;background:#132b39;color:white;display:flex;align-items:center;flex-wrap:wrap;gap:12px;padding:12px 20px;font:16px/1.4 system-ui,sans-serif}.rr-read-nav a{color:white;text-decoration:none;font-weight:700}.rr-read-nav .rr-room-name{flex:1;font-size:14px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.rr-read-nav button{background:transparent;border:1px solid #ffffff80;border-radius:5px;padding:8px 12px;color:white;font:600 14px system-ui;cursor:pointer}.rr-read-status{font:14px/1.5 system-ui;background:#eaf1f5;color:#132b39;padding:12px 20px;overflow-wrap:anywhere}.rr-read-status:empty{display:none}.rr-source-details{max-width:1000px;margin:16px auto;padding:0 20px;font:14px/1.5 system-ui}.rr-source-details summary{cursor:pointer}.rr-source-details a{color:#005a8d}#ret-discussion,#ret-discussion-script{display:none!important}#ret-room-discussion{scroll-margin-top:90px}@media(max-width:600px){.rr-read-nav{padding:10px 12px;gap:10px}.rr-read-nav .rr-room-name{flex-basis:calc(100% - 100px)}.rr-read-nav button{padding:7px 10px}}`;
+  d.head.append(style);
+  const nav=d.createElement('nav');nav.className='rr-read-nav';nav.setAttribute('aria-label','Reading Room');
+  const back=d.createElement('a');back.href='/study?room='+room.id;back.textContent='‹ Shelf';
+  const name=d.createElement('span');name.className='rr-room-name';name.textContent=room.name;
+  const discuss=d.createElement('a');discuss.href='#ret-room-discussion';discuss.textContent='Discuss';
+  const share=d.createElement('button');share.id='rr-share-article';share.textContent='Share';
+  nav.append(back,name,discuss,share);
+  if(room.role==='owner'){const invite=d.createElement('button');invite.id='rr-invite-article';invite.textContent='Invite';nav.append(invite);}
+  const status=d.createElement('div');status.id='rr-read-status';status.className='rr-read-status';status.setAttribute('role','status');
+  d.body.prepend(nav,status);
+  const details=d.createElement('details');details.className='rr-source-details';const summary=d.createElement('summary');summary.textContent='Source & presentation';
+  const info=d.createElement('p');info.textContent=page.document?.capture?.presentation?.method==='library-text'?'Camden library text with approximate newspaper styling. Images and video are included only when supplied by a readable source.':'Independent study edition. Source reporting and media remain credited to the publisher; AI critique is separate. Typography and layout may differ from the original.';
+  const originalLink=d.createElement('a');originalLink.href=page.sourceURL;originalLink.target='_blank';originalLink.rel='noreferrer';originalLink.textContent='Open original article ↗';details.append(summary,info,originalLink);if(room.role==='owner'){const remove=d.createElement('button');remove.id='rr-remove-article';remove.textContent='Remove from room';remove.style.cssText='display:block;margin-top:18px;background:#fff;color:#9b1b27;border:1px solid #9b1b27;border-radius:5px;padding:8px 12px';details.append(remove);}d.body.append(details);
+  const config=JSON.stringify({roomId:room.id,pageId:id}).replace(/</g,'\\u003c');
+  const script=d.createElement('script');script.textContent=`(()=>{const c=${config},out=document.getElementById('rr-read-status');async function share(url,title){try{if(navigator.share){await navigator.share({url,title});return;}await navigator.clipboard.writeText(url);out.textContent='Link copied.';}catch(e){if(e.name!=='AbortError')out.textContent=url;}}document.getElementById('rr-share-article').onclick=()=>share(new URL('/read/'+c.pageId+'?room='+c.roomId,location.origin).href,document.title);const remove=document.getElementById('rr-remove-article');let removing=false;if(remove)remove.onclick=async()=>{if(!removing){removing=true;remove.textContent='Confirm remove';return;}remove.disabled=true;try{const r=await fetch('/api/room-articles?room='+c.roomId,{method:'POST',headers:{'Content-Type':'application/json','X-Reading-Room':'1'},body:JSON.stringify({action:'remove',id:c.pageId})});const d=await r.json();if(!r.ok)throw Error(d.error||'Could not remove article');location.assign('/study?room='+c.roomId);}catch(e){out.textContent=e.message;remove.disabled=false;}};const invite=document.getElementById('rr-invite-article');if(invite)invite.onclick=async()=>{invite.disabled=true;try{const r=await fetch('/api/member-auth?action=invite&room='+c.roomId,{method:'POST',headers:{'Content-Type':'application/json','X-Reading-Room':'1'},body:JSON.stringify({purpose:'member',articleId:c.pageId})});const d=await r.json();if(!r.ok)throw Error(d.error||'Invitation unavailable');await share(d.url,'Join '+document.title);}catch(e){out.textContent=e.message;}finally{invite.disabled=false;}}})();`;
+  script.id='rr-room-reader-script';d.body.append(script);
+  const headers=new Headers(original.headers);headers.append('Set-Cookie',roomCookie(room.id));return new Response(withRoomDiscussion('<!doctype html>'+d.documentElement.outerHTML,page,{roomId:room.id}),{headers});
+ }catch(error){if(error instanceof Response)return error;return new Response('This article is unavailable. Return to your room and try again.',{status:503,headers:{'Cache-Control':'private, no-store'}});}
+}

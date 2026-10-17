@@ -1,0 +1,24 @@
+{
+  "id": "/study",
+  "name": "Reading Room",
+  "short_name": "Reading Room",
+  "description": "A private place to read and discuss articles together.",
+  "start_url": "/study",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#f5f1e8",
+  "theme_color": "#f5f1e8",
+  "icons": [
+    { "src": "/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any maskable" }
+  ],
+  "share_target": {
+    "action": "/capture",
+    "method": "GET",
+    "params": { "title": "title", "text": "text", "url": "url" }
+  },
+  "shortcuts": [
+    { "name": "Open Reading Room", "url": "/study" },
+    { "name": "Add an article", "url": "/study?action=add" }
+  ]
+}

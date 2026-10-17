@@ -1,0 +1,42 @@
+import {roomId,roomMemberId,DEFAULT_ROOM_ID} from './rooms.ts';
+import {publicHTML,extractNewspaper,publisherFor} from './newspaper-core.mjs';
+import {readerSession,randomToken,sameOrigin,grantEdition} from './edition-access.ts';
+import {captureAPI} from './capture-service.ts';
+import {isOwner} from './education-service.ts';
+import type {Config} from './education-service.ts';
+import {resourceLookupAPI} from './resource-service.ts';
+import {libraryServerConfigured,lookupNewsBankSource} from './library-server.ts';
+import {buildLibraryCapture} from './library-capture.mjs';
+import {addLibraryPreview} from './library-preview.mjs';
+const json=(data:unknown,status=200,headers={})=>Response.json(data,{status,headers:{'Cache-Control':'private, no-store','X-Content-Type-Options':'nosniff',...headers}});
+export async function articleAPI(r:Request,c:Config,fetcher:typeof fetch=fetch){
+ if(roomId(r))c={...c,RR_ACTIVE_ROOM_ID:roomId(r)};
+ if(r.method!=='POST')return json({error:'Use the article form.'},405);
+ if(!sameOrigin(r))return json({error:'Use the RET article controls.'},403);
+ let data:any;try{if(Number(r.headers.get('content-length'))>3_000_000)return json({error:'Use an HTML file smaller than 3 MB, or Page Lens.'},413);const rd=r.body?.getReader();if(!rd)return json({error:'Paste an article URL.'},400);let size=0,raw='';const decoder=new TextDecoder();try{for(;;){const x=await rd.read();if(x.done)break;size+=x.value.byteLength;if(size>3_000_000)return json({error:'Use an HTML file smaller than 3 MB, or Page Lens.'},413);raw+=decoder.decode(x.value,{stream:true});}raw+=decoder.decode();}finally{await rd.cancel();}data=JSON.parse(raw);}catch{return json({error:'The article request could not be read.'},400);}
+ if(data.action==='session'){const existing=readerSession(r),token=existing||randomToken();return json({ready:Boolean(c.DEEPSEEK_API_KEY||c['DEEPSEEK-API-KEY']),reader:true},200,existing?{}:{'Set-Cookie':'ret_reader='+token+'; Path=/; HttpOnly; Secure; SameSite=Strict; Max-Age=2592000'});}
+ if(!readerSession(r)&&!isOwner(r,c)&&!roomMemberId(r))return json({error:'Reload RET to start your private reader session. Allow cookies for this site.'},401);
+ try{
+  const p=publisherFor(data.url);
+  const libraryRefresh=data.action==='library-refresh';
+  if(libraryRefresh&&!isOwner(r,c))return json({error:'Only the room owner can refresh a library edition.'},403);
+  if(!data.html&&!libraryRefresh){const lookup=await resourceLookupAPI(new Request(new URL('/api/resources/lookup',r.url),{method:'POST',headers:r.headers,body:JSON.stringify({url:p.url})}),c);if(lookup.ok){const found=await lookup.json() as any;if(found.found)return json({href:found.href,cached:true});}}
+  if(!/^[0-9a-f-]{36}$/i.test(data.requestId||''))return json({error:'Reload the page and try again.'},400);
+  // Reserve network fetches too, preventing anonymous URL import from becoming an unrestricted fetch service.
+  const day=new Date().toISOString().slice(0,10);const attempt=await c.DB.prepare('INSERT INTO education_counters (key,n) VALUES (?,1) ON CONFLICT(key) DO UPDATE SET n=n+1 WHERE n<? RETURNING n').bind('url-fetch:'+day,30).first();if(!attempt)return json({error:'Today’s thirty URL/import attempts have been used. Saved shared editions still open.'},429);
+  let capture,publisherPreview;
+  try{
+   if(libraryRefresh)throw Error('Refresh the matched library edition.');
+   let source;if(typeof data.html==='string'){if(data.html.length>2_800_000)return json({error:'Use an HTML file smaller than 2.8 MB.'},413);source={html:data.html,url:p.url};}else source=await publicHTML(p.url,fetcher);
+   if(!data.html)publisherPreview=source;
+   capture=extractNewspaper(source.html,source.url,{method:data.html?'saved-html':'public-url'});
+  }catch(error){
+   if(data.html||!/(^|\.)thetimes\.com$/.test(new URL(p.url).hostname))throw error;
+   if(!await libraryServerConfigured(c))throw Error(isOwner(r,c)?'Connect Camden Library from the room menu, then try this article again.':'Ask this room’s owner to connect Camden Library, then try again.');
+   const source=await lookupNewsBankSource(p.url,c,fetcher);
+   capture=addLibraryPreview(buildLibraryCapture(source),publisherPreview);
+  }
+  const headers=new Headers(r.headers);headers.delete('content-length');const create=new Request(new URL('/api/capture',r.url),{method:'POST',headers,body:JSON.stringify({capture,requestId:data.requestId})});
+  return await captureAPI(create,c,fetcher);
+ }catch(e){return json({error:e instanceof Error?e.message:'The source page could not be prepared.',needsCapture:true},422);}
+}
