@@ -17,7 +17,10 @@ export function shelfMetadata(row:any){
  let doc:any={};try{doc=typeof row.document==='string'?JSON.parse(row.document):row.document||{};}catch{}
  const capture=doc.capture;const image=mediaURL(capture?.blocks?.find((b:any)=>b.type==='figure')?.url||capture?.blocks?.find((b:any)=>b.type==='video')?.poster||'');
  let publisher=capture?.publisher||'';try{publisher||=new URL(row.source_url||row.sourceURL).hostname.replace(/^www\./,'');}catch{}
- return {id:row.id,title:row.title,sourceURL:row.source_url||row.sourceURL,publisher,image,createdAt:row.addedAt||row.created_at,commentCount:Number(row.commentCount||0)};
+ publisher=publisher.replace(/\s*(?:\([^)]*Camden[^)]*\)|·\s*Camden.*)/gi,'').trim();if(publisher==='thetimes.com')publisher='The Times';
+ const library=capture?.presentation?.method==='library-text'||capture?.diagnostics?.libraryTextEdition;
+ const title=library?String(row.title).split(/\s+-\s+/)[0]:row.title;
+ return {id:row.id,title,sourceURL:row.source_url||row.sourceURL,publisher,image,createdAt:row.addedAt||row.created_at,commentCount:Number(row.commentCount||0)};
 }
 export async function roomArticlesAPI(r:Request,c:Config,fetcher:typeof fetch=fetch){
  try{
@@ -26,7 +29,8 @@ export async function roomArticlesAPI(r:Request,c:Config,fetcher:typeof fetch=fe
    const rows=await c.DB.prepare(`SELECT p.id,p.title,p.source_url,p.document,a.created_at AS addedAt,
     (SELECT COUNT(*) FROM rr_room_comments m WHERE m.room_id=a.room_id AND m.page_id=p.id AND (m.status='approved' OR m.member_id=? OR ?='owner')) AS commentCount
     FROM rr_room_articles a JOIN education_pages p ON p.id=a.page_id WHERE a.room_id=? ORDER BY a.created_at DESC,p.id LIMIT 100`).bind(room.member_id,room.role,room.id).all();
-   return json({articles:(rows.results||[]).map(shelfMetadata),room:{id:room.id,name:room.name,role:room.role}});
+   const seen=new Set<string>();const articles=(rows.results||[]).map(shelfMetadata).filter(article=>{let key=article.sourceURL;try{key=resourceURL(key);}catch{}if(seen.has(key))return false;seen.add(key);return true;});
+   return json({articles,room:{id:room.id,name:room.name,role:room.role}});
   }
   if(r.method!=='POST')return json({error:'Method not allowed.'},405);
   if(!sameOrigin(r))return json({error:'Use Reading Room to add an article.'},403);
