@@ -1,4 +1,4 @@
-import {sqliteTable,text,integer,uniqueIndex,index,check,primaryKey} from 'drizzle-orm/sqlite-core';
+import {sqliteTable,text,integer,uniqueIndex,index,check,primaryKey,foreignKey} from 'drizzle-orm/sqlite-core';
 import {sql} from 'drizzle-orm';
 export const educationPages=sqliteTable('education_pages',{id:text('id').primaryKey(),sourceHash:text('source_hash').notNull().unique(),sourceUrl:text('source_url').notNull(),title:text('title').notNull(),document:text('document').notNull(),comment:text('comment').notNull().default(''),createdAt:text('created_at').notNull()});
 export const educationCounters=sqliteTable('education_counters',{key:text('key').primaryKey(),n:integer('n').notNull()});
@@ -17,3 +17,6 @@ export const readingRoomMembers=sqliteTable('rr_room_members',{roomId:text('room
 export const readingRoomArticles=sqliteTable('rr_room_articles',{roomId:text('room_id').notNull().references(()=>readingRooms.id),pageId:text('page_id').notNull().references(()=>educationPages.id),addedBy:text('added_by').notNull().references(()=>roomMembers.id),createdAt:text('created_at').notNull()},t=>[primaryKey({columns:[t.roomId,t.pageId]})]);
 export const readingRoomMigrations=sqliteTable('rr_room_migrations',{id:text('id').primaryKey()});
 export const readingRoomComments=sqliteTable('rr_room_comments',{id:text('id').primaryKey(),roomId:text('room_id').notNull().references(()=>readingRooms.id),pageId:text('page_id').notNull().references(()=>educationPages.id),memberId:text('member_id').notNull().references(()=>roomMembers.id),parentId:text('parent_id'),requestId:text('request_id').notNull(),body:text('body').notNull(),status:text('status').notNull(),createdAt:text('created_at').notNull(),updatedAt:text('updated_at').notNull()},t=>[check('rr_comment_status',sql`${t.status} IN ('pending','approved','hidden')`),uniqueIndex('rr_comment_request').on(t.roomId,t.memberId,t.requestId),index('rr_comments_page').on(t.roomId,t.pageId,t.createdAt),index('rr_comments_parent').on(t.roomId,t.pageId,t.parentId)]);
+
+// Short paths retain room boundaries; removing an article deletes its locator.
+export const readingRoomArticleLinks=sqliteTable('rr_article_links',{code:text('code').primaryKey(),roomId:text('room_id').notNull(),pageId:text('page_id').notNull(),createdAt:text('created_at').notNull()},t=>[uniqueIndex('rr_article_link_target').on(t.roomId,t.pageId),foreignKey({columns:[t.roomId,t.pageId],foreignColumns:[readingRoomArticles.roomId,readingRoomArticles.pageId]}).onDelete('cascade')]);

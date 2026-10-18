@@ -4,11 +4,13 @@ import type { ConnectorBinding } from "../lib/connector-contract.mjs";
 import {memberAuthAPI,memberAuthGate,isPublicMemberAuthPath} from '../lib/member-auth';
 import type {MemberAuthEnv} from '../lib/member-auth';
 import {roomId,DEFAULT_ROOM_ID} from '../lib/rooms';
+import {resolveRoomLink} from '../lib/short-links';
 
 export default {
   async fetch(request: Request, env: Cloudflare.Env, ctx: ExecutionContext<{ CONNECTORS?: ConnectorBinding }>) {
     const roomEnv=env as unknown as MemberAuthEnv & {RR_MEMBER_AUTH_MODE?:string,ASSETS?:Fetcher};
     const path=new URL(request.url).pathname;
+    if(path.startsWith('/r/'))return resolveRoomLink(request,roomEnv);
     if(path==='/api/member-auth')return memberAuthAPI(request,roomEnv);
     if(roomEnv.RR_MEMBER_AUTH_MODE==='enforced'&&!isPublicMemberAuthPath(path)){
       const gated=await memberAuthGate(request,roomEnv);

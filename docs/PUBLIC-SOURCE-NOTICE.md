@@ -1,6 +1,6 @@
 # Public source notice
 
-This repository is a source-code package. It has a fresh Git history and excludes the working site's runtime state, credentials, private database, captured articles, research snapshots, and user-supplied newspaper page. The included critical edition is a fictional community-garden example made for testing the renderer. No newspaper article corpus is supplied.
+This repository is a source-code package. It has a fresh Git history and excludes the working site's runtime state, credentials, private database, captured article bodies, private research snapshots, and user-supplied newspaper page. Dated public audit reports under `docs/` contain source URLs, short titles, capability inventories and extraction measurements; they contain no article corpus or private access records. The included critical edition is a fictional community-garden example made for testing the renderer. No newspaper article corpus is supplied.
 
 The bundled tests use fictional article text, example addresses, and mock credentials. Their newspaper domains exercise URL filtering; they do not supply article bodies or prove access to a publisher.
 

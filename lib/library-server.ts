@@ -3,8 +3,9 @@ import {parseHTML} from 'linkedom';
 import {runtimeLibraryClient} from './library-transport.mjs';
 import {normalizeNewsBankDate} from './newsbank-http.mjs';
 import {sealLibrary,openLibrary} from './library-vault.mjs';
-import {timesURL,headline} from '../extension-library/library-core.mjs';
+import {timesURL,headline,terms} from '../extension-library/library-core.mjs';
 import {publicHTML} from './newspaper-core.mjs';
+import {libraryArticle} from './library-article-url.mjs';
 import {providerCall,isOwner} from './education-service.ts';
 import type {Config} from './education-service.ts';
 import {sameOrigin} from './edition-access.ts';
@@ -48,9 +49,17 @@ export async function librarySettingsAPI(r:Request,c:Config,fetcher:typeof fetch
   return json({error:'The library connection could not be updated. '+(safe||'Try again or reconnect. Your card was not exposed.')},502);
  }
 }
-function usableTitle(raw:unknown){if(typeof raw!=='string')return '';const value=headline(raw.replace(/<[^>]*>/g,' ')).trim();return value.length>=15&&value.length<=400&&!/^(?:verifying|verify |just a moment|access denied|sign.?in|subscribe|error|not found)/i.test(value)?value:'';}
-export async function timesMetadata(url:string,c:Config,fetcher:typeof fetch){
- url=timesURL(url);const other=new URL(url);other.hostname='www.thetimes.com';
+function usableTitle(raw:unknown){if(typeof raw!=='string')return '';const value=headline(raw.replace(/<[^>]*>/g,' ')).replace(/\s+[|–—-]\s+(?:The\s+)?(?:(?:Daily|Sunday)\s+)?Telegraph(?:\s+.*)?$/i,'').trim();return value.length>=15&&value.length<=400&&!/^(?:verifying|verify |just a moment|access (?:denied|issue|error)|sign.?in|subscribe|error|not found|payment required|robot check|enable javascript)/i.test(value)?value:'';}
+function metadataIdentity(raw:unknown){try{return libraryArticle(String(raw)).url.replace(/\/$/,'');}catch{return '';}}
+export function libraryMetadataQueries(raw:string){
+ const publisher=libraryArticle(raw),url=new URL(publisher.url),slug=url.pathname.split('/').filter(Boolean).at(-1)!.replace(/-[a-z0-9]{9}$/i,publisher.key==='times'?'':'$&').replaceAll('-',' '),prefix='site:'+publisher.host+' ',available=128-prefix.length;
+ const words=slug.split(/\s+/),date=url.pathname.match(/\/(\d{4}\/\d{2}\/\d{2})\//)?.[1].replaceAll('/','-')||'';
+ const fit=(phrase:string)=>{if(phrase.length<=available)return prefix+phrase;const head=phrase.slice(0,Math.floor(available/2)).replace(/\s+\S*$/,''),tail=phrase.slice(-(available-head.length-1)).replace(/^\S*\s+/,'');return prefix+head+' '+tail;};
+ return [...new Set([fit(slug),fit([date,...words.slice(-6)].filter(Boolean).join(' '))])];
+}
+export async function timesMetadata(url:string,c:Config,fetcher:typeof fetch){return libraryMetadata(timesURL(url),c,fetcher);}
+export async function libraryMetadata(url:string,c:Config,fetcher:typeof fetch,headlineHint=''){
+ const publisher=libraryArticle(url);url=publisher.url;const pathDate=publisher.key==='telegraph'?new URL(url).pathname.match(/\/(\d{4}\/\d{2}\/\d{2})\//)?.[1].replaceAll('/','-')||'':'';const other=new URL(url);other.hostname='www.'+publisher.host;
  // The page title may be an AI synthesis. Only stored source metadata can
  // identify reporting; do not send an educational page's title to NewsBank.
  const saved=await c.DB.prepare(`SELECT
@@ -58,31 +67,44 @@ export async function timesMetadata(url:string,c:Config,fetcher:typeof fetch){
   CASE WHEN json_extract(document,'$.kind')='rendered-capture-v1' THEN json_extract(document,'$.capture.url') ELSE json_extract(document,'$.source.originalURL') END AS sourceURL,
   CASE WHEN json_extract(document,'$.kind')='rendered-capture-v1' THEN json_extract(document,'$.capture.title') ELSE json_extract(document,'$.source.title') END AS sourceTitle,
   CASE WHEN json_extract(document,'$.kind')='rendered-capture-v1' THEN json_extract(document,'$.capture.date') ELSE json_extract(document,'$.source.date') END AS sourceDate,
+  json_extract(document,'$.capture.diagnostics.readerHeadlineHint') AS readerHeadlineHint,
   CASE WHEN json_extract(document,'$.kind')='library-study-v1' OR json_extract(document,'$.capture.presentation.method')='library-text' OR json_extract(document,'$.capture.diagnostics.libraryTextEdition')=1 THEN 1 ELSE 0 END AS libraryEdition,
   CASE WHEN json_extract(document,'$.kind')='rendered-capture-v1' THEN json_extract(document,'$.capture.diagnostics.libraryURL') ELSE json_extract(document,'$.source.url') END AS libraryURL
   FROM education_pages p ${c.RR_ACTIVE_ROOM_ID?'JOIN rr_room_articles a ON a.page_id=p.id':''} WHERE source_url IN (?,?) ${c.RR_ACTIVE_ROOM_ID?'AND a.room_id=?':''} AND json_extract(document,'$.kind') IN ('rendered-capture-v1','library-study-v1') ORDER BY p.created_at DESC LIMIT 5`).bind(...(c.RR_ACTIVE_ROOM_ID?[url,other.href,c.RR_ACTIVE_ROOM_ID]:[url,other.href])).all();
  for(const source of (saved.results||[]) as any[]){
   try{
-   if(timesURL(source.sourceURL)!==url)continue;
+   if(metadataIdentity(source.sourceURL)!==metadataIdentity(url))continue;
    if(source.libraryEdition){const record=new URL(source.libraryURL);if(record.origin!=='https://infoweb.newsbank.com'||record.pathname!=='/apps/news/document-view'||record.searchParams.get('p')!=='UKNB'||!/^news\/[A-F0-9]+$/.test(record.searchParams.get('docref')||''))continue;}
    // NewsBank puts the standfirst after a spaced hyphen. Apply the same
    // headline boundary used for candidates, only to a verified library source.
    const title=usableTitle(source.libraryEdition&&typeof source.sourceTitle==='string'?source.sourceTitle.split(/\s+-\s+/)[0]:source.sourceTitle);
-   if(title)return {title,date:normalizeNewsBankDate(source.sourceDate),basis:'previously matched edition'};
+   if(title)return {title,date:normalizeNewsBankDate(source.sourceDate),basis:source.readerHeadlineHint?'reader-supplied headline; previously matched library record':'previously matched edition'};
   }catch{/* Invalid stored source identity cannot replace publisher metadata. */}
  }
- try{const page=await publicHTML(url,fetcher);const {document:d}=parseHTML(page.html);const title=usableTitle(d.querySelector('h1')?.textContent)||usableTitle(d.querySelector('meta[property="og:title"]')?.getAttribute('content'))||usableTitle(d.title);if(title)return {title,date:d.querySelector('meta[property="article:published_time"]')?.getAttribute('content')?.slice(0,10)||'',basis:'publisher headline'};}catch{/* A challenge or access error is never bypassed. Public search metadata can still identify the URL. */}
- const key=c.DEEPSEEK_API_KEY||c['DEEPSEEK-API-KEY'];if(typeof key==='string'&&key.trim()){
-  const result=await providerCall(key.trim(),'/v1/tools/search',{query:('site:thetimes.com '+new URL(url).pathname.split('/').at(-1)!.replace(/-[a-z0-9]{9}$/i,'').replace(/-/g,' ')).slice(0,128),count:5,need_content:false},fetcher);
-  for(const candidate of Array.isArray(result.results)?result.results:[]){try{if(timesURL(candidate.url)===url&&usableTitle(candidate.title))return {title:usableTitle(candidate.title),date:'',basis:'exact-URL public search headline'};}catch{}}
- }
- throw Error('The Times headline could not be verified for this URL. No library article was substituted.');
+ const hint=typeof headlineHint==='string'&&headlineHint.length<=400&&!/[<>]|https?:\/\//i.test(headlineHint)?usableTitle(headlineHint):'';
+ if(hint&&terms(hint).length>=3)return {title:hint,date:pathDate,basis:'reader-supplied headline; library match required'};
+ try{const page=await publicHTML(url,fetcher);const {document:d}=parseHTML(page.html);const title=metadataIdentity(page.url)===metadataIdentity(url)&&(usableTitle(d.querySelector('h1')?.textContent)||usableTitle(d.querySelector('meta[property="og:title"]')?.getAttribute('content'))||usableTitle(d.title));if(title)return {title,date:d.querySelector('meta[property="article:published_time"]')?.getAttribute('content')?.slice(0,10)||pathDate,basis:'publisher headline'};}catch{/* A challenge or access error is never bypassed. Public search metadata can still identify the URL. */}
+ const key=c.DEEPSEEK_API_KEY||c['DEEPSEEK-API-KEY'],attempts:string[]=[];
+ if(typeof key==='string'&&key.trim()){
+  // Metadata only: no fetched content/body is read, retained or sent to NewsBank.
+  try{const result:any=await providerCall(key.trim(),'/v1/tools/fetch',{url},fetcher);const title=usableTitle(result?.title);
+   if(metadataIdentity(result?.url)===metadataIdentity(url)&&title)return {title,date:pathDate,basis:'exact-URL public fetch headline'};
+   attempts.push('public fetch did not return a usable title with the exact source URL');
+  }catch{attempts.push('public metadata fetch unavailable');}
+  for(const query of libraryMetadataQueries(url)){
+   try{const result:any=await providerCall(key.trim(),'/v1/tools/search',{query,count:5,need_content:false},fetcher);
+    for(const candidate of Array.isArray(result?.results)?result.results:[]){if(metadataIdentity(candidate?.url)===metadataIdentity(url)){const title=usableTitle(candidate?.title);if(title)return {title,date:pathDate,basis:'exact-URL public search headline'};}}
+    attempts.push('public index returned no usable exact-URL title');
+   }catch{attempts.push('public index unavailable');}
+  }
+ }else attempts.push('public metadata provider is not configured');
+ throw Object.assign(Error(publisher.name+' headline could not be verified for this URL. Supply the original headline for review. No library article was substituted.'),{code:'headline_unverified',needsHeadline:true,metadataAttempts:attempts});
 }
-export async function lookupNewsBankSource(rawURL:string,c:Config,fetcher:typeof fetch=fetch){
- const originalURL=timesURL(rawURL),row=await stored(c);if(!row)throw Error('The room owner has not connected Camden for server lookup yet.');
+export async function lookupNewsBankSource(rawURL:string,c:Config,fetcher:typeof fetch=fetch,headlineHint=''){
+ const publisher=libraryArticle(rawURL),originalURL=publisher.url,row=await stored(c);if(!row)throw Error('The room owner has not connected Camden for server lookup yet.');
  if(row.state==='needs-attention'&&Date.now()-Date.parse(row.checkedAt)<90000)throw Error('The library connection needs the owner’s attention. Open Library connection.');
  if(!await slot(c,'library-lookup:'+connectionId(c),30))throw Error('Today’s thirty library lookups have been used. Saved editions remain available.');
- const meta=await timesMetadata(originalURL,c,fetcher),account=accountValue(await openLibrary(c.RR_LIBRARY_VAULT_KEY,row.encrypted));
+ const metadata=await libraryMetadata(originalURL,c,fetcher,headlineHint),meta={...metadata,publisher:publisher.key},account=accountValue(await openLibrary(c.RR_LIBRARY_VAULT_KEY,row.encrypted));
  const client=runtimeLibraryClient(c,fetcher,account);if(account.session)client.restoreSession(account.session);
  let result=await client.lookup(meta);
  if(result.status==='login_required'){
@@ -93,5 +115,5 @@ export async function lookupNewsBankSource(rawURL:string,c:Config,fetcher:typeof
  account.session=client.serializeSession();
  if(result.status!=='found'){const error=result.reason||'No matching library article was found.';await save(c,account,result.status==='not_found'?'connected':'needs-attention',error);throw Error(error);}
  await save(c,account);
- return {...result.article,originalURL,originalTitle:meta.title};
+ return {...result.article,originalURL,originalTitle:meta.title,readerHeadlineHint:metadata.basis.startsWith('reader-supplied headline')};
 }

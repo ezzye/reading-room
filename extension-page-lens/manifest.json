@@ -1,0 +1,35 @@
+{
+  "manifest_version": 3,
+  "name": "RET Page Lens",
+  "version": "0.1.3",
+  "description": "Review and export readable rendered article content for RET.",
+  "permissions": [
+    "activeTab",
+    "scripting",
+    "storage"
+  ],
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "Capture this article"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "https://reader.example.org/capture*",
+        "https://dayofflondon.com/capture*",
+        "https://www.dayofflondon.com/capture*",
+        "http://127.0.0.1/capture*",
+        "http://localhost/capture*",
+        "https://reader.example.org/capture-review*",
+        "https://dayofflondon.com/capture-review*",
+        "https://www.dayofflondon.com/capture-review*",
+        "http://127.0.0.1/capture-review*",
+        "http://localhost/capture-review*"
+      ],
+      "js": [
+        "handoff.js"
+      ],
+      "run_at": "document_idle"
+    }
+  ]
+}

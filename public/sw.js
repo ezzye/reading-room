@@ -1,5 +1,5 @@
-const CACHE = 'reading-room-static-v1';
-const STATIC = ['/manifest.webmanifest', '/icon-192.png', '/icon-512.png', '/favicon.svg'];
+const CACHE = 'reading-room-static-v2';
+const STATIC = ['/manifest.webmanifest', '/icon-192.png', '/icon-512.png', '/favicon.svg', '/reading-room-logo.svg'];
 
 self.addEventListener('install', event => {
   event.waitUntil(caches.open(CACHE).then(cache => cache.addAll(STATIC)).then(() => self.skipWaiting()));

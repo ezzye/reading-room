@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 430 88" role="img" aria-labelledby="title desc">
+  <title id="title">Reading Room</title>
+  <desc id="desc">An open book with a red spine beside the words Reading Room.</desc>
+  <g transform="translate(4 4)">
+    <rect width="80" height="80" rx="20" fill="#132b39"/>
+    <path d="M15 22c10-3.5 18.3-2.2 25 2.8v36c-6.7-5-15-6.3-25-2.8z" fill="#f5f2e9"/>
+    <path d="M65 22c-10-3.5-18.3-2.2-25 2.8v36c6.7-5 15-6.3 25-2.8z" fill="#f5f2e9"/>
+    <path d="M40 25v36" stroke="#9d3038" stroke-width="4" stroke-linecap="round"/>
+    <path d="M21 30c6-1.4 10.6-.8 14 1.6M21 39c6-1.4 10.6-.8 14 1.6M59 30c-6-1.4-10.6-.8-14 1.6M59 39c-6-1.4-10.6-.8-14 1.6" fill="none" stroke="#132b39" stroke-width="2.5" stroke-linecap="round"/>
+  </g>
+  <text x="104" y="57" fill="#132b39" font-family="Georgia, 'Times New Roman', serif" font-size="43" font-weight="700" letter-spacing="-1.7">Reading <tspan fill="#9d3038">Room</tspan></text>
+</svg>

@@ -31,12 +31,12 @@ export async function articleAPI(r:Request,c:Config,fetcher:typeof fetch=fetch){
    if(!data.html)publisherPreview=source;
    capture=extractNewspaper(source.html,source.url,{method:data.html?'saved-html':'public-url'});
   }catch(error){
-   if(data.html||!/(^|\.)thetimes\.com$/.test(new URL(p.url).hostname))throw error;
+   if(data.html||!['thetimes.com','telegraph.co.uk'].includes(p.host))throw error;
    if(!await libraryServerConfigured(c))throw Error(isOwner(r,c)?'Connect Camden Library from the room menu, then try this article again.':'Ask this room’s owner to connect Camden Library, then try again.');
-   const source=await lookupNewsBankSource(p.url,c,fetcher);
+   const source=await lookupNewsBankSource(p.url,c,fetcher,data.sourceHeadline);
    capture=addLibraryPreview(buildLibraryCapture(source),publisherPreview);
   }
   const headers=new Headers(r.headers);headers.delete('content-length');const create=new Request(new URL('/api/capture',r.url),{method:'POST',headers,body:JSON.stringify({capture,requestId:data.requestId})});
   return await captureAPI(create,c,fetcher);
- }catch(e){return json({error:e instanceof Error?e.message:'The source page could not be prepared.',needsCapture:true},422);}
+ }catch(e){const needsHeadline=Boolean(e&&typeof e==='object'&&'needsHeadline' in e&&e.needsHeadline===true);return json({error:e instanceof Error?e.message:'The source page could not be prepared.',needsCapture:!needsHeadline,...(needsHeadline?{needsHeadline:true}:{})},422);}
 }

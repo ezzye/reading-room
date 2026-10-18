@@ -1,0 +1,71 @@
+{
+  "scope": "Public metadata-only audit package; no article bodies, private accounts, rooms or sessions included.",
+  "publicOutletAudit": {
+    "articles": 25,
+    "outlets": 13,
+    "extracted": 16,
+    "notWorking": 9,
+    "visualVerified": 0
+  },
+  "outletAuditEvidence": "Ordinary HTTP retrieval and parser output only; zero source articles visually verified. Report browser/download/native-sharing limitations remain as recorded in outlet-audit.json.",
+  "camdenCoverage": {
+    "newspaperTitles": 12,
+    "magazineTitles": 4,
+    "syntheticMatchCases": 7,
+    "syntheticMatchCasesPassed": 7
+  },
+  "camdenEvidence": "The original title inventory remains a dated coverage/discovery audit. A later ordinary authenticated library-service lookup found one Sunday Telegraph article; that result does not establish other title entitlements, magazine ingestion or the phone app flow.",
+  "reportControls": "Both reports include Save HTML and Share file with download-and-attach fallback. Public-package validation does not claim physical-device sharing.",
+  "publicPackageVerification": {
+    "date": "2026-10-18",
+    "syntheticApplicationTests": {
+      "passed": 160,
+      "failed": 0
+    },
+    "typeCheck": "passed",
+    "productionBuild": "passed",
+    "reportHandlerChecks": "Both HTML reports parsed; row totals, self-contained asset loading, Save HTML payload, Share fallback and native-share arguments passed in synthetic DOM.",
+    "actualBrowserDownloadVerifiedInPublicPackage": false,
+    "actualNativeSharingVerifiedInPublicPackage": false,
+    "privacyReview": "69 pending files checked for private paths, personal names, non-example emails, private hosts, access keys and private keys; no private-data findings. No article corpus, runtime account data or library access records were copied.",
+    "fictionalCorpusAndConfiguration": "Existing fictional corpus and placeholder hosting configuration were preserved.",
+    "phoneAcceptance": "v41 retest pending. v40 phone showed no Times image; politics article not found on phone and in library service. France service retrieval is distinct from phone acceptance."
+  },
+  "latestLibraryServiceValidation": {
+    "date": "2026-10-18",
+    "method": "Ordinary authenticated AWS-hosted library-service lookup with an authorised account; no browser-state transfer or access bypass. Only result metadata is recorded here.",
+    "positive": {
+      "publisher": "The Sunday Telegraph (London, UK)",
+      "input": "Verified France-protests headline and publication date",
+      "status": "found",
+      "paragraphs": 51
+    },
+    "negative": {
+      "input": "18 October politics article with supplied headline hint",
+      "status": "not_found"
+    },
+    "phoneEvidence": {
+      "bbc": "Owner confirmed the BBC article is readable on the phone.",
+      "timesV40": "The v40 phone retest still showed no Times image; image recovery is unresolved for that article.",
+      "telegraphApp": "The phone screenshot showed the new 18 October politics article not found; an ordinary authenticated library-service lookup for that same article also returned not_found.",
+      "franceService": "The France-protests article returned 51 paragraphs from The Sunday Telegraph through the library service; this is not a phone import confirmation.",
+      "postV41": "Phone retest pending after the source changes; no claim that all reading or media issues are fixed."
+    },
+    "privacy": "No article body, library card, credentials, room identifiers, participant details, cookies or provider session included."
+  },
+  "ukSupplement": {
+    "coverage": {
+      "outlets": 5,
+      "actualArticleURLs": 4,
+      "unsupportedAdapters": 3,
+      "visualVerified": 0,
+      "newProfiles": 2
+    },
+    "checkedAt": "2026-10-18T12:22:31.104Z",
+    "source": "uk-supplement-audit.json",
+    "publicExtraction": "Daily Mirror: 1417 words,36 paragraphs,7 images/7 captions. The Sun:565 words,30 paragraphs,6 image references. Completeness and rendered appearance remain unverified.",
+    "unsupported": "Financial Times homepage HTTP403; Observer selected article subscription gate; Daily Mail public article found but adapter unsupported.",
+    "originalAudit": "Original25-URL13-outlet matrix retained as a distinct dated run.",
+    "reportControls": "Standalone HTML parsed with five metadata rows; Save HTML payload and Share fallback/native arguments passed synthetic DOM checks. Actual browser download/native sharing remain unverified."
+  }
+}

@@ -1,0 +1,441 @@
+{
+  "asOf": "2026-10-18",
+  "scope": "Bounded 12-newspaper / 4-magazine inventory. Discovery, entitlement, implementation and live retrieval are distinct. Not a claim that 1,350 sources work in Reading Room.",
+  "sourceVerification": "Official council/provider sources and current local code inspection; search-index versus opened-page differences recorded.",
+  "sources": [
+    {
+      "id": "camden-digital",
+      "url": "https://www.camden.gov.uk/digital-library",
+      "claim": "Camden services, registration conditions, explicit Times collection dates."
+    },
+    {
+      "id": "camden-reference",
+      "url": "https://www.camden.gov.uk/online-reference-information",
+      "claim": "Remote NewsBank resource described as most national UK daily/Sunday newspapers; no exhaustive title entitlement list."
+    },
+    {
+      "id": "newsbank-2026",
+      "url": "https://www.newsbank.com/regional/solutions/access-uk-ireland-news",
+      "claim": "2026 product exceeds 1,350 sources; collection updated daily; formats vary."
+    },
+    {
+      "id": "newsbank-map",
+      "url": "https://www.newsbank.com/regional/access-uk-ireland",
+      "claim": "Primary provider coverage map names all 12 candidate newspaper titles. This does not prove Camden entitlement."
+    },
+    {
+      "id": "camden-magazines",
+      "url": "https://camdenlibrary.overdrive.com/search?subject=1176",
+      "claim": "Search-index extract from Camden catalogue lists TIME International, New Yorker, Week UK, Spectator and Newsweek issues. Direct open showed a catalogue loading error; authenticated borrowing untested."
+    },
+    {
+      "id": "economist-provider",
+      "url": "https://www.globenewswire.com/news-release/2026/05/12/3293095/0/en/PressReader-renews-its-agreement-with-The-Economist-and-expands-access-to-corporate-and-government-institutions-in-new-regions.html",
+      "claim": "PressReader-issued announcement dated 12 May 2026 confirms Economist replica library licence renewal, not Camden entitlement."
+    }
+  ],
+  "titles": [
+    {
+      "title": "The Times",
+      "type": "newspaper",
+      "providerEvidence": "NewsBank UK coverage map names title",
+      "camdenEntitlement": "Explicit Times collection confirmation",
+      "sources": [
+        "camden-digital",
+        "newsbank-map"
+      ],
+      "host": "thetimes.com",
+      "urlCandidateRoute": true,
+      "headlineSearch": true,
+      "directHTMLProfile": true,
+      "route": "Times NewsBank adapter",
+      "articleRetrievalThisSlice": "Not live tested",
+      "media": "NewsBank text route does not establish publisher images/video. Public HTML media extraction conditional on readable markup.",
+      "updateInterval": "NewsBank collection updated daily; title-specific delay/embargo not verified",
+      "archive": "Times full text/web since 1985; page images since 2020"
+    },
+    {
+      "title": "The Sunday Times",
+      "type": "newspaper",
+      "providerEvidence": "NewsBank UK coverage map names title",
+      "camdenEntitlement": "Explicit Times collection confirmation",
+      "sources": [
+        "camden-digital",
+        "newsbank-map"
+      ],
+      "host": "thetimes.com",
+      "urlCandidateRoute": true,
+      "headlineSearch": true,
+      "directHTMLProfile": true,
+      "route": "Times NewsBank adapter; Sunday title identity requires acceptance check",
+      "articleRetrievalThisSlice": "Not live tested",
+      "media": "NewsBank text route does not establish publisher images/video. Public HTML media extraction conditional on readable markup.",
+      "updateInterval": "NewsBank collection updated daily; title-specific delay/embargo not verified",
+      "archive": "Times full text/web since 1985; page images since 2020"
+    },
+    {
+      "title": "The Daily Telegraph",
+      "type": "newspaper",
+      "providerEvidence": "NewsBank UK coverage map names title",
+      "camdenEntitlement": "Unverified per title; generic Camden NewsBank offer only",
+      "sources": [
+        "camden-digital",
+        "newsbank-map"
+      ],
+      "host": "telegraph.co.uk",
+      "urlCandidateRoute": true,
+      "headlineSearch": true,
+      "directHTMLProfile": true,
+      "route": "London Telegraph NewsBank adapter",
+      "articleRetrievalThisSlice": "Not live tested",
+      "media": "NewsBank text route does not establish publisher images/video. Public HTML media extraction conditional on readable markup.",
+      "updateInterval": "NewsBank collection updated daily; title-specific delay/embargo not verified",
+      "archive": "Title-specific dates unverified"
+    },
+    {
+      "title": "The Sunday Telegraph",
+      "type": "newspaper",
+      "providerEvidence": "NewsBank UK coverage map names title",
+      "camdenEntitlement": "One article returned through the authorised Camden library service; title-wide archive and availability remain unverified.",
+      "sources": [
+        "camden-digital",
+        "newsbank-map"
+      ],
+      "host": "telegraph.co.uk",
+      "urlCandidateRoute": true,
+      "headlineSearch": true,
+      "directHTMLProfile": true,
+      "route": "London Telegraph NewsBank adapter",
+      "articleRetrievalThisSlice": "Later library-service check: one verified France-protests article found, 51 paragraphs; app/phone flow not yet confirmed.",
+      "media": "NewsBank text route does not establish publisher images/video. Public HTML media extraction conditional on readable markup.",
+      "updateInterval": "NewsBank collection updated daily; title-specific delay/embargo not verified",
+      "archive": "Title-specific dates unverified"
+    },
+    {
+      "title": "The Guardian",
+      "type": "newspaper",
+      "providerEvidence": "NewsBank UK coverage map names title",
+      "camdenEntitlement": "Unverified per title; generic Camden NewsBank offer only",
+      "sources": [
+        "camden-digital",
+        "newsbank-map"
+      ],
+      "host": "theguardian.com",
+      "urlCandidateRoute": true,
+      "headlineSearch": true,
+      "directHTMLProfile": true,
+      "route": "Public HTML / reviewed readable-page capture",
+      "articleRetrievalThisSlice": "Not live tested",
+      "media": "NewsBank text route does not establish publisher images/video. Public HTML media extraction conditional on readable markup.",
+      "updateInterval": "NewsBank collection updated daily; title-specific delay/embargo not verified",
+      "archive": "Title-specific dates unverified"
+    },
+    {
+      "title": "The Observer",
+      "type": "newspaper",
+      "providerEvidence": "NewsBank UK coverage map names title",
+      "camdenEntitlement": "Unverified per title; generic Camden NewsBank offer only",
+      "sources": [
+        "camden-digital",
+        "newsbank-map"
+      ],
+      "host": null,
+      "urlCandidateRoute": false,
+      "headlineSearch": false,
+      "directHTMLProfile": false,
+      "route": "Dedicated current-domain adapter absent; verify publisher domain before expansion",
+      "articleRetrievalThisSlice": "Not live tested",
+      "media": "Not established",
+      "updateInterval": "NewsBank collection updated daily; title-specific delay/embargo not verified",
+      "archive": "Title-specific dates unverified"
+    },
+    {
+      "title": "Financial Times",
+      "type": "newspaper",
+      "providerEvidence": "NewsBank UK coverage map names title",
+      "camdenEntitlement": "Unverified per title; generic Camden NewsBank offer only",
+      "sources": [
+        "camden-digital",
+        "newsbank-map"
+      ],
+      "host": "ft.com",
+      "urlCandidateRoute": false,
+      "headlineSearch": false,
+      "directHTMLProfile": false,
+      "route": "Adapter absent",
+      "articleRetrievalThisSlice": "Not live tested",
+      "media": "Not established",
+      "updateInterval": "NewsBank collection updated daily; title-specific delay/embargo not verified",
+      "archive": "Title-specific dates unverified"
+    },
+    {
+      "title": "The Independent",
+      "type": "newspaper",
+      "providerEvidence": "NewsBank UK coverage map names title",
+      "camdenEntitlement": "Unverified per title; generic Camden NewsBank offer only",
+      "sources": [
+        "camden-digital",
+        "newsbank-map"
+      ],
+      "host": "independent.co.uk",
+      "urlCandidateRoute": true,
+      "headlineSearch": true,
+      "directHTMLProfile": true,
+      "route": "Public HTML / reviewed readable-page capture",
+      "articleRetrievalThisSlice": "Not live tested",
+      "media": "NewsBank text route does not establish publisher images/video. Public HTML media extraction conditional on readable markup.",
+      "updateInterval": "NewsBank collection updated daily; title-specific delay/embargo not verified",
+      "archive": "Title-specific dates unverified"
+    },
+    {
+      "title": "Daily Mail",
+      "type": "newspaper",
+      "providerEvidence": "NewsBank UK coverage map names title",
+      "camdenEntitlement": "Unverified per title; generic Camden NewsBank offer only",
+      "sources": [
+        "camden-digital",
+        "newsbank-map"
+      ],
+      "host": "dailymail.co.uk",
+      "urlCandidateRoute": false,
+      "headlineSearch": false,
+      "directHTMLProfile": false,
+      "route": "Adapter absent",
+      "articleRetrievalThisSlice": "Not live tested",
+      "media": "Not established",
+      "updateInterval": "NewsBank collection updated daily; title-specific delay/embargo not verified",
+      "archive": "Title-specific dates unverified"
+    },
+    {
+      "title": "Daily Mirror",
+      "type": "newspaper",
+      "providerEvidence": "NewsBank UK coverage map names title",
+      "camdenEntitlement": "Unverified per title; generic Camden NewsBank offer only",
+      "sources": [
+        "camden-digital",
+        "newsbank-map"
+      ],
+      "host": "mirror.co.uk",
+      "urlCandidateRoute": false,
+      "headlineSearch": false,
+      "directHTMLProfile": false,
+      "route": "Adapter absent",
+      "articleRetrievalThisSlice": "Not live tested",
+      "media": "Not established",
+      "updateInterval": "NewsBank collection updated daily; title-specific delay/embargo not verified",
+      "archive": "Title-specific dates unverified"
+    },
+    {
+      "title": "The Sun",
+      "type": "newspaper",
+      "providerEvidence": "NewsBank UK coverage map names title",
+      "camdenEntitlement": "Unverified per title; generic Camden NewsBank offer only",
+      "sources": [
+        "camden-digital",
+        "newsbank-map"
+      ],
+      "host": "thesun.co.uk",
+      "urlCandidateRoute": false,
+      "headlineSearch": false,
+      "directHTMLProfile": false,
+      "route": "Adapter absent",
+      "articleRetrievalThisSlice": "Not live tested",
+      "media": "Not established",
+      "updateInterval": "NewsBank collection updated daily; title-specific delay/embargo not verified",
+      "archive": "Title-specific dates unverified"
+    },
+    {
+      "title": "Evening Standard / The Standard",
+      "type": "newspaper",
+      "providerEvidence": "NewsBank UK coverage map names title",
+      "camdenEntitlement": "Unverified per title; generic Camden NewsBank offer only",
+      "sources": [
+        "camden-digital",
+        "newsbank-map"
+      ],
+      "host": "standard.co.uk",
+      "urlCandidateRoute": true,
+      "headlineSearch": true,
+      "directHTMLProfile": true,
+      "route": "Public HTML / reviewed readable-page capture",
+      "articleRetrievalThisSlice": "Not live tested",
+      "media": "NewsBank text route does not establish publisher images/video. Public HTML media extraction conditional on readable markup.",
+      "updateInterval": "NewsBank collection updated daily; title-specific delay/embargo not verified",
+      "archive": "Title-specific dates unverified"
+    },
+    {
+      "title": "The Economist",
+      "type": "magazine",
+      "providerEvidence": "PressReader library replica provider licence confirmed; Camden add-on/subscription not verified",
+      "camdenEntitlement": "Unverified",
+      "sources": [
+        "economist-provider",
+        "camden-digital"
+      ],
+      "host": null,
+      "urlCandidateRoute": false,
+      "headlineSearch": false,
+      "directHTMLProfile": false,
+      "route": "No magazine adapter implemented; open official Camden service",
+      "articleRetrievalThisSlice": "Not live tested",
+      "media": "Not established",
+      "updateInterval": "Title-specific cadence and ingestion delay unverified",
+      "archive": "Unverified"
+    },
+    {
+      "title": "New Statesman",
+      "type": "magazine",
+      "providerEvidence": "No Camden title-level catalogue evidence found in bounded search",
+      "camdenEntitlement": "Unverified",
+      "sources": [
+        "camden-digital"
+      ],
+      "host": null,
+      "urlCandidateRoute": false,
+      "headlineSearch": false,
+      "directHTMLProfile": false,
+      "route": "No magazine adapter implemented; open official Camden service",
+      "articleRetrievalThisSlice": "Not live tested",
+      "media": "Not established",
+      "updateInterval": "Title-specific cadence and ingestion delay unverified",
+      "archive": "Unverified"
+    },
+    {
+      "title": "Prospect",
+      "type": "magazine",
+      "providerEvidence": "No Camden title-level catalogue evidence found in bounded search",
+      "camdenEntitlement": "Unverified",
+      "sources": [
+        "camden-digital"
+      ],
+      "host": null,
+      "urlCandidateRoute": false,
+      "headlineSearch": false,
+      "directHTMLProfile": false,
+      "route": "No magazine adapter implemented; open official Camden service",
+      "articleRetrievalThisSlice": "Not live tested",
+      "media": "Not established",
+      "updateInterval": "Title-specific cadence and ingestion delay unverified",
+      "archive": "Unverified"
+    },
+    {
+      "title": "TIME International Edition",
+      "type": "magazine",
+      "providerEvidence": "Libby/OverDrive catalogue lists Oct 26 2026 issue; direct open loading failure",
+      "camdenEntitlement": "Camden catalogue indexed listing observed; loan untested",
+      "sources": [
+        "camden-magazines"
+      ],
+      "host": null,
+      "urlCandidateRoute": false,
+      "headlineSearch": false,
+      "directHTMLProfile": false,
+      "route": "No magazine adapter implemented; open official Camden service",
+      "articleRetrievalThisSlice": "Not live tested",
+      "media": "Not established",
+      "updateInterval": "Title-specific cadence and ingestion delay unverified",
+      "archive": "Unverified"
+    }
+  ],
+  "codeSnapshot": "Reading Room source inspected 18 October 2026; point-in-time capability inventory.",
+  "currentCapabilities": {
+    "publicHTMLProfiles": 15,
+    "headlinePublisherGroups": 9,
+    "search": "URL candidate bypasses paid search; exact-ish original query then stopword-reduced fallback, 4\u2013200 headline characters, publisher domain restriction, up to 8 results, 30 searches/room/day. Search results never prove readability.",
+    "libraryMatching": "Normalized token overlap (not semantic fuzzy search), score >=0.72 and runner-up gap >=0.12, date penalty 0.35; NewsBank document URL validation. Times/London Telegraph publication checks in HTTP adapter.",
+    "media": "Public readable HTML adapter may extract article-contained media; Times photo recovery not demonstrated by this slice.",
+    "magazines": "No magazine URL/headline ingestion adapter."
+  },
+  "fixtureTests": {
+    "type": "deterministic synthetic fixture tests, not live retrieval",
+    "cases": [
+      {
+        "id": "exact",
+        "expectedAccepted": true,
+        "accepted": true,
+        "pass": true,
+        "error": ""
+      },
+      {
+        "id": "punctuation",
+        "expectedAccepted": true,
+        "accepted": true,
+        "pass": true,
+        "error": ""
+      },
+      {
+        "id": "minor variant",
+        "expectedAccepted": true,
+        "accepted": true,
+        "pass": true,
+        "error": ""
+      },
+      {
+        "id": "unrelated",
+        "expectedAccepted": false,
+        "accepted": false,
+        "pass": true,
+        "error": "The library search did not find one unambiguous headline match. No article was substituted."
+      },
+      {
+        "id": "ambiguous",
+        "expectedAccepted": false,
+        "accepted": false,
+        "pass": true,
+        "error": "The library search did not find one unambiguous headline match. No article was substituted."
+      },
+      {
+        "id": "wrong date",
+        "expectedAccepted": false,
+        "accepted": false,
+        "pass": true,
+        "error": "The library search did not find one unambiguous headline match. No article was substituted."
+      },
+      {
+        "id": "foreign result URL",
+        "expectedAccepted": false,
+        "accepted": false,
+        "pass": true,
+        "error": "The library result link was not recognised."
+      }
+    ]
+  },
+  "liveValidation": "A later ordinary authenticated AWS-hosted library-service lookup returned the verified France-protests article from The Sunday Telegraph (London, UK), with 51 paragraphs. The new 18 October politics article was not found both in the phone screenshot and in an ordinary authenticated service lookup. The v40 phone retest still had no Times image. BBC readability was owner-confirmed. Post-v41 phone retesting remains pending; service retrieval is not phone acceptance.",
+  "nextSteps": [
+    "Authenticate ordinary Camden NewsBank title browser and record source IDs, coverage dates, formats and current availability before enabling any additional library title.",
+    "Prioritise Guardian/Independent/Standard existing public adapters; extend explicit NewsBank publication source mapping for each title only after observed entitlement.",
+    "Treat Observer current domain and archive identities separately; never silently alias it to Guardian.",
+    "For Financial Times record current embargo/availability from authenticated source information; do not infer same-day from daily collection refresh.",
+    "Add Mail/Mirror/Sun dedicated public profiles only after bounded official-page fixtures and source-boundary checks.",
+    "For magazines verify Camden issue entitlement and supported readable capture format first; TIME has indexed catalogue evidence, Economist only provider evidence, Statesman/Prospect unresolved.",
+    "Use exact publisher+headline+date first; fuzzy variants return candidates for review and reject ties, wrong source, wrong date and unsafe URLs. Expand tests for very short headlines, accented titles and ambiguous editions."
+  ],
+  "verifiedAlternativeMagazineListings": [
+    "The New Yorker \u2014 Oct 19 2026",
+    "The Week UK \u2014 1614",
+    "The Spectator \u2014 Oct 17 2026",
+    "Newsweek International \u2014 Oct 23 2026"
+  ],
+  "latestValidation": {
+    "date": "2026-10-18",
+    "method": "Ordinary authenticated AWS-hosted library-service lookup with an authorised account; no browser-state transfer or access bypass. Only result metadata is recorded here.",
+    "positive": {
+      "publisher": "The Sunday Telegraph (London, UK)",
+      "input": "Verified France-protests headline and publication date",
+      "status": "found",
+      "paragraphs": 51
+    },
+    "negative": {
+      "input": "18 October politics article with supplied headline hint",
+      "status": "not_found"
+    },
+    "phoneEvidence": {
+      "bbc": "Owner confirmed the BBC article is readable on the phone.",
+      "timesV40": "The v40 phone retest still showed no Times image; image recovery is unresolved for that article.",
+      "telegraphApp": "The phone screenshot showed the new 18 October politics article not found; an ordinary authenticated library-service lookup for that same article also returned not_found.",
+      "franceService": "The France-protests article returned 51 paragraphs from The Sunday Telegraph through the library service; this is not a phone import confirmation.",
+      "postV41": "Phone retest pending after the source changes; no claim that all reading or media issues are fixed."
+    },
+    "privacy": "No article body, library card, credentials, room identifiers, participant details, cookies or provider session included."
+  }
+}
