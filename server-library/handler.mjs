@@ -1,4 +1,6 @@
 import {createNewsBankHTTPClient} from '../lib/newsbank-http.mjs';
+import {publisherPreview} from './publisher-preview.mjs';
+import {publisherRender} from './publisher-render.mjs';
 
 const MAX_EVENT_BYTES=30_000,MAX_OUTPUT_BYTES=30_000,MAX_ARTICLE_CHARS=18_000;
 const jsonBytes=value=>new TextEncoder().encode(JSON.stringify(value)).byteLength;
@@ -23,6 +25,8 @@ export async function handler(event,context={}){
  try{
   if(!event||typeof event!=='object'||Array.isArray(event)||jsonBytes(event)>MAX_EVENT_BYTES)return response({status:'error',code:'request_too_large'});
   const fetcher=context.fetch||globalThis.fetch;if(typeof fetcher!=='function')return response({status:'error',code:'unavailable'});
+  if(event.action==='publisher-preview')return response(await publisherPreview(event,{fetch:fetcher}));
+  if(event.action==='publisher-render')return response(await publisherRender(event));
   if(event.action==='probe')return response(await createNewsBankHTTPClient({fetch:fetcher}).probe());
   if(event.action==='connect'){
    const account=credentials(event),client=createNewsBankHTTPClient({fetch:fetcher});

@@ -8,6 +8,9 @@ import {resourceLookupAPI} from './resource-service.ts';
 import {libraryServerConfigured,lookupNewsBankSource} from './library-server.ts';
 import {buildLibraryCapture} from './library-capture.mjs';
 import {addLibraryPreview} from './library-preview.mjs';
+import {fetchPublisherPreview} from './library-transport.mjs';
+import {roomMediaAPI} from './media-service.ts';
+import {retainRoomMediaOnSavedCapture} from './reused-media.ts';
 const json=(data:unknown,status=200,headers={})=>Response.json(data,{status,headers:{'Cache-Control':'private, no-store','X-Content-Type-Options':'nosniff',...headers}});
 export async function articleAPI(r:Request,c:Config,fetcher:typeof fetch=fetch){
  if(roomId(r))c={...c,RR_ACTIVE_ROOM_ID:roomId(r)};
@@ -24,19 +27,34 @@ export async function articleAPI(r:Request,c:Config,fetcher:typeof fetch=fetch){
   if(!/^[0-9a-f-]{36}$/i.test(data.requestId||''))return json({error:'Reload the page and try again.'},400);
   // Reserve network fetches too, preventing anonymous URL import from becoming an unrestricted fetch service.
   const day=new Date().toISOString().slice(0,10);const attempt=await c.DB.prepare('INSERT INTO education_counters (key,n) VALUES (?,1) ON CONFLICT(key) DO UPDATE SET n=n+1 WHERE n<? RETURNING n').bind('url-fetch:'+day,30).first();if(!attempt)return json({error:'Today’s thirty URL/import attempts have been used. Saved shared editions still open.'},429);
-  let capture,publisherPreview;
+  let capture,publisherPreview,serverPreview;
+  if(!data.html&&p.host==='telegraph.co.uk'&&c.RR_LIBRARY_AWS_FUNCTION&&await libraryServerConfigured(c)){
+   try{serverPreview=await fetchPublisherPreview(c,p.url,fetcher);}
+   catch{serverPreview={status:'publisher-preview',state:'unavailable',sourceURL:p.url,title:'',date:'',checkedAt:new Date().toISOString(),blocks:[],receipts:[],httpStatus:null,reasonCode:'request_failed'};}
+  }
   try{
-   if(libraryRefresh)throw Error('Refresh the matched library edition.');
+   if(libraryRefresh||serverPreview)throw Error('Use the matched library edition.');
    let source;if(typeof data.html==='string'){if(data.html.length>2_800_000)return json({error:'Use an HTML file smaller than 2.8 MB.'},413);source={html:data.html,url:p.url};}else source=await publicHTML(p.url,fetcher);
    if(!data.html)publisherPreview=source;
    capture=extractNewspaper(source.html,source.url,{method:data.html?'saved-html':'public-url'});
   }catch(error){
    if(data.html||!['thetimes.com','telegraph.co.uk'].includes(p.host))throw error;
    if(!await libraryServerConfigured(c))throw Error(isOwner(r,c)?'Connect Camden Library from the room menu, then try this article again.':'Ask this room’s owner to connect Camden Library, then try again.');
-   const source=await lookupNewsBankSource(p.url,c,fetcher,data.sourceHeadline);
+   const source=await lookupNewsBankSource(p.url,c,fetcher,data.sourceHeadline,serverPreview);
    capture=addLibraryPreview(buildLibraryCapture(source),publisherPreview);
   }
   const headers=new Headers(r.headers);headers.delete('content-length');const create=new Request(new URL('/api/capture',r.url),{method:'POST',headers,body:JSON.stringify({capture,requestId:data.requestId})});
-  return await captureAPI(create,c,fetcher);
+  const response=await captureAPI(create,c,fetcher);
+  if(response.ok&&capture.presentation?.method==='library-text'){
+   const saved=await response.clone().json() as {id?:string};
+   if(saved.id&&roomId(r)){
+    try{await retainRoomMediaOnSavedCapture(c,saved.id);}catch{console.warn('RR_MEDIA_REUSE_UNAVAILABLE');}
+    if(serverPreview){
+     try{await roomMediaAPI(new Request(new URL('/api/room-media',r.url),{method:'POST',headers,body:JSON.stringify({id:saved.id})}),c,fetcher,{publisherPreview:serverPreview});}
+     catch{console.warn('RR_AUTOMATIC_MEDIA_UNAVAILABLE');}
+    }
+   }
+  }
+  return response;
  }catch(e){const needsHeadline=Boolean(e&&typeof e==='object'&&'needsHeadline' in e&&e.needsHeadline===true);return json({error:e instanceof Error?e.message:'The source page could not be prepared.',needsCapture:!needsHeadline,...(needsHeadline?{needsHeadline:true}:{})},422);}
 }

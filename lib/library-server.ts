@@ -1,6 +1,6 @@
 import {roomId,DEFAULT_ROOM_ID} from './rooms.ts';
 import {parseHTML} from 'linkedom';
-import {runtimeLibraryClient} from './library-transport.mjs';
+import {runtimeLibraryClient,validatePublisherPreview} from './library-transport.mjs';
 import {normalizeNewsBankDate} from './newsbank-http.mjs';
 import {sealLibrary,openLibrary} from './library-vault.mjs';
 import {timesURL,headline,terms} from '../extension-library/library-core.mjs';
@@ -9,6 +9,7 @@ import {libraryArticle} from './library-article-url.mjs';
 import {providerCall,isOwner} from './education-service.ts';
 import type {Config} from './education-service.ts';
 import {sameOrigin} from './edition-access.ts';
+import {cleanPublisherHeadline} from './publisher-headline.mjs';
 const now=()=>new Date().toISOString();
 const json=(body:unknown,status=200)=>Response.json(body,{status,headers:{'Cache-Control':'private, no-store','X-Content-Type-Options':'nosniff','Referrer-Policy':'no-referrer'}});
 function connectionId(c:Config){const id=typeof c.RR_ACTIVE_ROOM_ID==='string'?c.RR_ACTIVE_ROOM_ID:DEFAULT_ROOM_ID;return id===DEFAULT_ROOM_ID?'camden':'camden:'+id;}
@@ -49,7 +50,7 @@ export async function librarySettingsAPI(r:Request,c:Config,fetcher:typeof fetch
   return json({error:'The library connection could not be updated. '+(safe||'Try again or reconnect. Your card was not exposed.')},502);
  }
 }
-function usableTitle(raw:unknown){if(typeof raw!=='string')return '';const value=headline(raw.replace(/<[^>]*>/g,' ')).replace(/\s+[|–—-]\s+(?:The\s+)?(?:(?:Daily|Sunday)\s+)?Telegraph(?:\s+.*)?$/i,'').trim();return value.length>=15&&value.length<=400&&!/^(?:verifying|verify |just a moment|access (?:denied|issue|error)|sign.?in|subscribe|error|not found|payment required|robot check|enable javascript)/i.test(value)?value:'';}
+function usableTitle(raw:unknown){if(typeof raw!=='string')return '';const value=cleanPublisherHeadline(headline(raw.replace(/<[^>]*>/g,' '))).replace(/\s+[|–—-]\s+(?:The\s+)?(?:(?:Daily|Sunday)\s+)?Telegraph(?:\s+.*)?$/i,'').trim();return value.length>=15&&value.length<=400&&!/^(?:verifying|verify |just a moment|access (?:denied|issue|error)|sign.?in|subscribe|error|not found|payment required|robot check|enable javascript)/i.test(value)?value:'';}
 function metadataIdentity(raw:unknown){try{return libraryArticle(String(raw)).url.replace(/\/$/,'');}catch{return '';}}
 export function libraryMetadataQueries(raw:string){
  const publisher=libraryArticle(raw),url=new URL(publisher.url),slug=url.pathname.split('/').filter(Boolean).at(-1)!.replace(/-[a-z0-9]{9}$/i,publisher.key==='times'?'':'$&').replaceAll('-',' '),prefix='site:'+publisher.host+' ',available=128-prefix.length;
@@ -58,7 +59,7 @@ export function libraryMetadataQueries(raw:string){
  return [...new Set([fit(slug),fit([date,...words.slice(-6)].filter(Boolean).join(' '))])];
 }
 export async function timesMetadata(url:string,c:Config,fetcher:typeof fetch){return libraryMetadata(timesURL(url),c,fetcher);}
-export async function libraryMetadata(url:string,c:Config,fetcher:typeof fetch,headlineHint=''){
+export async function libraryMetadata(url:string,c:Config,fetcher:typeof fetch,headlineHint='',publisherPreview?:unknown){
  const publisher=libraryArticle(url);url=publisher.url;const pathDate=publisher.key==='telegraph'?new URL(url).pathname.match(/\/(\d{4}\/\d{2}\/\d{2})\//)?.[1].replaceAll('/','-')||'':'';const other=new URL(url);other.hostname='www.'+publisher.host;
  // The page title may be an AI synthesis. Only stored source metadata can
  // identify reporting; do not send an educational page's title to NewsBank.
@@ -83,11 +84,15 @@ export async function libraryMetadata(url:string,c:Config,fetcher:typeof fetch,h
  }
  const hint=typeof headlineHint==='string'&&headlineHint.length<=400&&!/[<>]|https?:\/\//i.test(headlineHint)?usableTitle(headlineHint):'';
  if(hint&&terms(hint).length>=3)return {title:hint,date:pathDate,basis:'reader-supplied headline; library match required'};
- try{const page=await publicHTML(url,fetcher);const {document:d}=parseHTML(page.html);const title=metadataIdentity(page.url)===metadataIdentity(url)&&(usableTitle(d.querySelector('h1')?.textContent)||usableTitle(d.querySelector('meta[property="og:title"]')?.getAttribute('content'))||usableTitle(d.title));if(title)return {title,date:d.querySelector('meta[property="article:published_time"]')?.getAttribute('content')?.slice(0,10)||pathDate,basis:'publisher headline'};}catch{/* A challenge or access error is never bypassed. Public search metadata can still identify the URL. */}
+ let preview:any;
+ if(publisher.key==='telegraph'&&publisherPreview!==undefined){try{preview=validatePublisherPreview(publisherPreview,url);}catch{/* Invalid prefetched metadata cannot identify an article. */}}
+ const previewTitle=preview?.state==='available'?usableTitle(preview.title):'';
+ if(previewTitle)return {title:previewTitle,date:normalizeNewsBankDate(preview.date)||pathDate,basis:'server public-preview headline'};
+ if(!preview)try{const page=await publicHTML(url,fetcher);const {document:d}=parseHTML(page.html);const title=metadataIdentity(page.url)===metadataIdentity(url)&&(usableTitle(d.querySelector('h1')?.textContent)||usableTitle(d.querySelector('meta[property="og:title"]')?.getAttribute('content'))||usableTitle(d.title));if(title)return {title,date:d.querySelector('meta[property="article:published_time"]')?.getAttribute('content')?.slice(0,10)||pathDate,basis:'publisher headline'};}catch{/* A challenge or access error is never bypassed. Public search metadata can still identify the URL. */}
  const key=c.DEEPSEEK_API_KEY||c['DEEPSEEK-API-KEY'],attempts:string[]=[];
  if(typeof key==='string'&&key.trim()){
   // Metadata only: no fetched content/body is read, retained or sent to NewsBank.
-  try{const result:any=await providerCall(key.trim(),'/v1/tools/fetch',{url},fetcher);const title=usableTitle(result?.title);
+  if(!preview)try{const result:any=await providerCall(key.trim(),'/v1/tools/fetch',{url},fetcher);const title=usableTitle(result?.title);
    if(metadataIdentity(result?.url)===metadataIdentity(url)&&title)return {title,date:pathDate,basis:'exact-URL public fetch headline'};
    attempts.push('public fetch did not return a usable title with the exact source URL');
   }catch{attempts.push('public metadata fetch unavailable');}
@@ -100,11 +105,11 @@ export async function libraryMetadata(url:string,c:Config,fetcher:typeof fetch,h
  }else attempts.push('public metadata provider is not configured');
  throw Object.assign(Error(publisher.name+' headline could not be verified for this URL. Supply the original headline for review. No library article was substituted.'),{code:'headline_unverified',needsHeadline:true,metadataAttempts:attempts});
 }
-export async function lookupNewsBankSource(rawURL:string,c:Config,fetcher:typeof fetch=fetch,headlineHint=''){
+export async function lookupNewsBankSource(rawURL:string,c:Config,fetcher:typeof fetch=fetch,headlineHint='',publisherPreview?:unknown){
  const publisher=libraryArticle(rawURL),originalURL=publisher.url,row=await stored(c);if(!row)throw Error('The room owner has not connected Camden for server lookup yet.');
  if(row.state==='needs-attention'&&Date.now()-Date.parse(row.checkedAt)<90000)throw Error('The library connection needs the owner’s attention. Open Library connection.');
  if(!await slot(c,'library-lookup:'+connectionId(c),30))throw Error('Today’s thirty library lookups have been used. Saved editions remain available.');
- const metadata=await libraryMetadata(originalURL,c,fetcher,headlineHint),meta={...metadata,publisher:publisher.key},account=accountValue(await openLibrary(c.RR_LIBRARY_VAULT_KEY,row.encrypted));
+ const metadata=await libraryMetadata(originalURL,c,fetcher,headlineHint,publisherPreview),meta={...metadata,publisher:publisher.key},account=accountValue(await openLibrary(c.RR_LIBRARY_VAULT_KEY,row.encrypted));
  const client=runtimeLibraryClient(c,fetcher,account);if(account.session)client.restoreSession(account.session);
  let result=await client.lookup(meta);
  if(result.status==='login_required'){

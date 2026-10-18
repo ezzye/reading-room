@@ -6,6 +6,7 @@ import {resourceURL} from './resource-service.ts';
 import {mediaURL} from './capture-core.mjs';
 import {rankSavedArticles,safeURLMatch} from './article-matching.mjs';
 import {sameOrigin} from './edition-access.ts';
+import {cleanPublisherHeadline} from './publisher-headline.mjs';
 
 const headers={'Cache-Control':'private, no-store','X-Content-Type-Options':'nosniff','Referrer-Policy':'no-referrer','X-Robots-Tag':'noindex, nofollow'};
 const json=(data:unknown,status=200)=>Response.json(data,{status,headers});
@@ -99,7 +100,7 @@ export async function articleSearchAPI(r:Request,c:Config,fetcher:typeof fetch=f
    for(const candidate of found.results){
     try{const url=resourceURL(candidate.url),actual=searchPublisher(url);if(!actual||publisher&&!publisher.domains.includes(searchHost(url))||typeof candidate.title!=='string')continue;matches++;
      if(results.some(row=>safeURLMatch(row.url,url)))continue;
-     results.push({title:candidate.title.slice(0,300),url,publisher:actual.name,image:'',saved:false});
+     results.push({title:cleanPublisherHeadline(candidate.title).slice(0,300),url,publisher:actual.name,image:'',saved:false});
     }catch{}
    }
    if(matches)break;
