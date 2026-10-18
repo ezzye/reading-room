@@ -1,4 +1,4 @@
-# Reading Room Page Lens 0.2.0
+# Reading Room Page Lens 0.2.1
 
 An unpacked Manifest V3 Chrome extension for explicit rendered-page capture and a short, owner-enabled connection to a private Reading Room. This version adds permissions. Review the permission changes before loading or reloading it. No installed extension has been changed by the automated checks.
 
@@ -16,7 +16,7 @@ The default connection is `reader.example.org`. `dayofflondon.com` is an optiona
 
 ## Permission changes requiring review
 
-The existing `activeTab`, `scripting`, and `storage` permissions remain. Version 0.2.0 adds `alarms` for thirty-second checks and the exact default Reading Room host permission. `https://dayofflondon.com/*` is optional and requested only when selected. The connection content script runs only at `/page-lens-connect` on those origins; the existing reviewed-capture handoff paths remain. There are no newspaper-wide host, cookies, debugger, network interception or remote-executor permissions. The source grant still comes from the user opening the popup on that tab.
+The existing `activeTab`, `scripting`, and `storage` permissions remain. The direct connection introduced in 0.2.0 adds `alarms` for thirty-second checks and the exact default Reading Room host permission. `https://dayofflondon.com/*` is optional and requested only when selected. The connection content script runs only at `/page-lens-connect` on those origins; the existing reviewed-capture handoff paths remain. There are no newspaper-wide host, cookies, debugger, network interception or remote-executor permissions. The source grant still comes from the user opening the popup on that tab.
 
 ## Manual capture and handoff
 
@@ -31,3 +31,9 @@ Only public HTTPS references are retained. Credentials, private hosts and signed
 ## Verification status
 
 Local rendered-DOM tests cover visibility, partial viewport intersections, occlusion, safe URLs and player handling. Worker tests use the actual private-room API with an in-memory database to check pairing sizes, canonical source identity, one-use commands, review staging and stop races. They also check inactive sources, expiry and revocation. These are local simulated checks, not installed Chrome or phone verification. Browser-origin/CORS behavior, activeTab retention, alarm timing, real pairing and phone media display require an explicit permission review followed by manual end-to-end testing. No extension was loaded or run against Chrome during implementation.
+
+## Polling repair (0.2.1)
+
+Successful pairing checks the fixed endpoint immediately and ensures a thirty-second alarm exists. Worker startup and popup status recreate a missing alarm for an unexpired locally enabled session. **Check now** performs the same bounded check; it cannot activate or navigate the source. The popup retains only safe timestamps, fixed outcome labels and HTTP status codes after failure or expiry. It displays no bearer, source URL, query or backend error text. This repair addresses a lifecycle gap consistent with a paired connection that never polls; the exact cause of the observed live failure remains unconfirmed until the owner tests this version. Permissions are unchanged from 0.2.0.
+
+While pairing or enabled, Enable is disabled. Repeated Enable messages for the same tab preserve the current nonce or capability and do not create another connection page. Use Stop before explicitly starting again or selecting another tab. A screenshot showing “Confirm the connection” identifies pending pairing, not a completed connection; the alarm repair is not a confirmed explanation of that observed state.
