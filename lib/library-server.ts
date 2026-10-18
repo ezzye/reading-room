@@ -1,4 +1,4 @@
-import {roomId,DEFAULT_ROOM_ID} from './rooms.ts';
+import {roomId,DEFAULT_ROOM_ID,requireRoom} from './rooms.ts';
 import {parseHTML} from 'linkedom';
 import {runtimeLibraryClient,validatePublisherPreview} from './library-transport.mjs';
 import {normalizeNewsBankDate} from './newsbank-http.mjs';
@@ -13,6 +13,7 @@ import {cleanPublisherHeadline} from './publisher-headline.mjs';
 import {sanitizeMatchDiagnostic} from './newsbank-match-diagnostic.mjs';
 import {spendPressAuditStage} from './press-audit.ts';
 import type {PressAuditAllowance} from './press-audit.ts';
+import {publicationSearchQuery,sanitizePublicationSearch,sanitizePublicationSearchStatus} from './newsbank-publications.mjs';
 const now=()=>new Date().toISOString();
 const json=(body:unknown,status=200)=>Response.json(body,{status,headers:{'Cache-Control':'private, no-store','X-Content-Type-Options':'nosniff','Referrer-Policy':'no-referrer'}});
 function connectionId(c:Config){const id=typeof c.RR_ACTIVE_ROOM_ID==='string'?c.RR_ACTIVE_ROOM_ID:DEFAULT_ROOM_ID;return id===DEFAULT_ROOM_ID?'camden':'camden:'+id;}
@@ -35,6 +36,28 @@ export async function librarySettingsAPI(r:Request,c:Config,fetcher:typeof fetch
   if(r.method!=='POST')return json({error:'Use the library connection controls.'},405);
   if(!sameOrigin(r))return json({error:'Use the same-origin library connection form.'},403);
   stage='form';const data=await body(r);
+  if(data.action==='search-publications'){
+   stage='publication-metadata';
+   const room=await requireRoom(r,c);if(room.role!=='owner'||room.owner_id!==room.member_id)return json({error:'Only this room’s owner can check library publication metadata.'},403);
+   let query;try{if(Object.keys(data).some(key=>!['action','publication','title'].includes(key)))throw Error();query=publicationSearchQuery({publication:data.publication,title:data.title});}catch{return json({error:'Choose a supported publication and a bounded headline. This diagnostic does not accept URLs.'},400);}
+   const row=await stored(c);if(!row||!c.RR_LIBRARY_VAULT_KEY)return json({error:'Connect Camden in this room before checking publication metadata.'},409);
+   const account=accountValue(await openLibrary(c.RR_LIBRARY_VAULT_KEY,row.encrypted));
+   if(!account.session||!Array.isArray((account.session as any).cookies)||!(account.session as any).cookies.length)return json({error:'Reconnect Camden before checking publication metadata.'},409);
+   const client=runtimeLibraryClient(c,fetcher,account);client.restoreSession(account.session);
+   if(!await slot(c,'library-publication-metadata:'+connectionId(c),12))return json({error:'Today’s twelve publication metadata checks for this room have been used.'},429);
+   let result=await client.searchPublications(query);
+   if(result.status==='login_required'){
+    if(!await slot(c,'library-login:'+connectionId(c),10))return json({error:'Today’s library sign-in limit has been used.',status:'login_required',stage:'session',reasonCode:'session_expired'},429);
+    const auth=await client.login(account);
+    if(auth.status!=='authenticated')return json({status:auth.status==='needs_interaction'?'needs_interaction':'login_required',stage:'session',reasonCode:auth.status==='needs_interaction'?'entry_needs_interaction':'session_expired',reason:'The existing Camden connection needs attention. No article was opened or accepted.'});
+    account.session=client.serializeSession();await save(c,account);
+    result=await client.searchPublications(query);
+   }
+   if(result.status==='metadata'){const clean=sanitizePublicationSearch(result);if(!clean)return json({error:'The library metadata response was invalid.'},502);return json(clean);}
+   const diagnostic=sanitizePublicationSearchStatus(result);if(!diagnostic)return json({error:'The library metadata status was invalid.'},502);
+   const reasons={entry_needs_interaction:'NewsBank presented a browser check or interaction page.',session_expired:'The saved NewsBank session needs reconnecting.',form_missing:'The ordinary NewsBank search form was not present.',destination_changed:'The NewsBank search form destination or controls changed.',results_changed:'The returned page was not ordinary search results.',route_changed:'NewsBank redirected outside the permitted search routes.'};
+   return json({...diagnostic,reason:reasons[diagnostic.reasonCode as keyof typeof reasons]+' No article was opened or accepted.'});
+  }
   if(data.action==='check-match'){
    stage='match-check';
    const publisher=libraryArticle(data.url),title=usableTitle(data.title);
@@ -65,6 +88,7 @@ export async function librarySettingsAPI(r:Request,c:Config,fetcher:typeof fetch
   if(result.status!=='authenticated')return json({error:result.reason||'NewsBank did not accept this sign-in. No new connection was saved.',state:result.status},422);
   stage='encrypted-storage';account.session=client.serializeSession();await save(c,account);return json({connected:true,desktopRequired:false});
  }catch(e){
+  if(e instanceof Response)return e;
   const message=e instanceof Error?e.message:'';
   // Provider/client errors are fixed local messages, never response bodies,
   // form values, cookies or credential-bearing URLs.
@@ -103,7 +127,7 @@ export async function libraryMetadata(url:string,c:Config,fetcher:typeof fetch,h
    // NewsBank puts the standfirst after a spaced hyphen. Apply the same
    // headline boundary used for candidates, only to a verified library source.
    const title=usableTitle(source.libraryEdition&&typeof source.sourceTitle==='string'?source.sourceTitle.split(/\s+-\s+/)[0]:source.sourceTitle);
-   if(title)return {title,date:source.urlWordsHint?pathDate:normalizeNewsBankDate(source.sourceDate),basis:source.urlWordsHint?'URL words; previously matched library record':source.readerHeadlineHint?'reader-supplied headline; previously matched library record':'previously matched edition'};
+   if(title)return {title,date:source.urlWordsHint&&publisher.key==='telegraph'?pathDate:normalizeNewsBankDate(source.sourceDate),basis:source.urlWordsHint?'URL words; previously matched library record':source.readerHeadlineHint?'reader-supplied headline; previously matched library record':'previously matched edition'};
   }catch{/* Invalid stored source identity cannot replace publisher metadata. */}
  }
  const hint=typeof headlineHint==='string'&&headlineHint.length<=400&&!/[<>]|https?:\/\//i.test(headlineHint)?usableTitle(headlineHint):'';
@@ -113,6 +137,11 @@ export async function libraryMetadata(url:string,c:Config,fetcher:typeof fetch,h
  const previewTitle=preview?.state==='available'?usableTitle(preview.title):'';
  if(previewTitle)return {title:previewTitle,date:normalizeNewsBankDate(preview.date)||pathDate,basis:'server public-preview headline'};
  if(!preview)try{const page=await publicHTML(url,fetcher);const {document:d}=parseHTML(page.html);const title=metadataIdentity(page.url)===metadataIdentity(url)&&(usableTitle(d.querySelector('h1')?.textContent)||usableTitle(d.querySelector('meta[property="og:title"]')?.getAttribute('content'))||usableTitle(d.title));if(title)return {title,date:d.querySelector('meta[property="article:published_time"]')?.getAttribute('content')?.slice(0,10)||pathDate,basis:'publisher headline'};}catch{/* A challenge or access error is never bypassed. Public search metadata can still identify the URL. */}
+ const urlWords=new URL(url).pathname.split('/').filter(Boolean).at(-1)!.replaceAll('-',' ');
+ // Observer has a library-only adapter. A substantial literal URL slug may
+ // identify a search, but only strict same-publication library matching can
+ // accept it. Do not send its page to a public-body capture adapter.
+ if(publisher.key==='observer'&&urlWords.length<=240&&terms(urlWords).length>=5)return {title:urlWords,date:'',basis:'URL words; library match required'};
  const key=c.DEEPSEEK_API_KEY||c['DEEPSEEK-API-KEY'],attempts:string[]=[];
  if(typeof key==='string'&&key.trim()){
   // Metadata only: no fetched content/body is read, retained or sent to NewsBank.
@@ -129,7 +158,6 @@ export async function libraryMetadata(url:string,c:Config,fetcher:typeof fetch,h
  }else attempts.push('public metadata provider is not configured');
  // URL words are search hints, never an independently observed web headline.
  // A stricter title/date check is required after the library document is fetched.
- const urlWords=new URL(url).pathname.split('/').filter(Boolean).at(-1)!.replaceAll('-',' ');
  if(publisher.key==='telegraph'&&pathDate&&normalizeNewsBankDate(pathDate)&&urlWords.length<=240&&terms(urlWords).length>=5)return {title:urlWords,date:pathDate,basis:'URL words; library match required'};
  throw Object.assign(Error(publisher.name+' headline could not be verified for this URL. Supply the original headline for review. No library article was substituted.'),{code:'headline_unverified',needsHeadline:true,metadataAttempts:attempts});
 }
@@ -152,7 +180,7 @@ export async function lookupNewsBankSource(rawURL:string,c:Config,fetcher:typeof
   // Newspaper URL slugs omit apostrophes: “Cambridge’s” becomes “cambridges”.
   // Compare that punctuation loss without lowering the stricter score threshold.
   const urlText=(value:string)=>value.replace(/[’']/g,'');
-  const score=rankMatches(urlText(meta.title),[{title:urlText(result.article.title),date:normalizeNewsBankDate(result.article.date)}],meta.date,{allowNextDayPublication:true})[0]?.score||0;
+  const score=rankMatches(urlText(meta.title),[{title:urlText(result.article.title),date:normalizeNewsBankDate(result.article.date)}],meta.date,{allowNextDayPublication:publisher.key==='telegraph'})[0]?.score||0;
   if(!normalizeNewsBankDate(result.article.date)||score<0.85){await save(c,account);throw Object.assign(Error('The URL words did not closely match the returned library headline and date. Paste the original newspaper headline to check it. No article was substituted.'),{code:'headline_unverified',needsHeadline:true});}
  }
  await save(c,account);

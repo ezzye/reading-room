@@ -1,0 +1,2219 @@
+{
+  "schema": "reading-room-outlet-gaps-and-allowance/v1",
+  "generatedAt": "2026-10-18T23:09:36.611Z",
+  "scope": "Four UK national follow-ups, retained Scotland/Northern Ireland observations, three Republic of Ireland papers and six selected US outlets. AP/NPR are news comparators, not newspapers. This is not every newspaper or independent print edition.",
+  "totals": {
+    "families": 23,
+    "observedStories": 30,
+    "homepageGaps": 8,
+    "newSaved": 3,
+    "cached": 0,
+    "failed": 3,
+    "pending": 24
+  },
+  "allowance": {
+    "newSavedEditionsPerUTCDay": 30,
+    "scope": "Shared across this Reading Room service, newspapers, rooms and members",
+    "cachedCharge": 0,
+    "failedCharge": 0,
+    "pendingHoldMinutes": 15,
+    "pendingHoldEndsAtUTCMidnight": true,
+    "sourceAttemptProtection": 90,
+    "commentaryAttemptProtection": 90,
+    "history": "Legacy attempt counters remain intact. They mix successes and failures, so they cannot be re-labelled as completed editions or attributed reliably to individual papers. Completed-edition tracking begins at its recorded migration timestamp.",
+    "currentUsage": {
+      "limit": 30,
+      "used": 3,
+      "pending": 0,
+      "remaining": 27,
+      "available": 27,
+      "resetsAt": "2026-10-19T00:00:00Z",
+      "trackingSince": null,
+      "historyStatus": "earlier-completions-unavailable"
+    },
+    "quotaProof": {
+      "checkpoints": [
+        {
+          "stage": "initial",
+          "label": "Initial allowance",
+          "remaining": 30
+        },
+        {
+          "stage": "paid-refusal",
+          "label": "After paid article refusal",
+          "remaining": 30
+        },
+        {
+          "stage": "express-save",
+          "label": "After Express new save",
+          "remaining": 29
+        },
+        {
+          "stage": "npr-first-save",
+          "label": "After first NPR new save",
+          "remaining": 28
+        },
+        {
+          "stage": "irish-failure",
+          "label": "After Irish Independent failure",
+          "remaining": 28
+        },
+        {
+          "stage": "npr-second-save",
+          "label": "After second NPR new save",
+          "remaining": 27
+        },
+        {
+          "stage": "cached-open",
+          "label": "After saved edition reuse",
+          "remaining": 27
+        }
+      ],
+      "completeSequence": true,
+      "successfulSaveAccountingConfirmed": true,
+      "latestRecordedRemaining": 27,
+      "note": "Recorded checkpoints distinguish new successful saves from refusals, failures and reuse."
+    }
+  },
+  "historicalSummary": {
+    "recordedAt": "2026-10-18T20:54:58.904Z",
+    "observedStories": 46,
+    "saved": 26,
+    "cached": 1,
+    "failed": 19,
+    "note": "Historical 46-story operator audit; separate from this follow-up and the completed-edition allowance. No failed source is reclassified as passed."
+  },
+  "priorPhoneAcceptance": {
+    "priorOwnerPhoneConfirmation": true,
+    "note": "Earlier owner phone confirmation covered Sun dine-and-dash photographs and a Telegraph clock-tower thumbnail. It does not verify these follow-up articles, their new images or video playback."
+  },
+  "followupPhoneAcceptance": {
+    "nprFirstEditionPhotoAndAI": true,
+    "scope": "Owner confirmation for the first NPR edition covers one photo and AI comments only. All-photo completeness and video playback remain unverified."
+  },
+  "evidence": {
+    "uk": "press-gap-uk-20261018.json",
+    "ireland": "press-gap-ireland-20261018.json",
+    "us": "us-press-gap-20261018.json",
+    "scotlandNI": "press-room-nations-20261018.json",
+    "profileChecks": "press-room-profile-evidence.json",
+    "historicalAudit": "press-live-final.json",
+    "currentLiveSupplied": true,
+    "currentLiveRecordedAt": null,
+    "librarySupplied": true,
+    "libraryRecordedAt": "2026-10-18T22:39:03.906Z"
+  },
+  "families": [
+    {
+      "family": "The Observer",
+      "region": "UK national",
+      "classification": "newspaper",
+      "homepage": "https://observer.co.uk/",
+      "observedAt": "2026-10-18T21:41:11.948Z",
+      "httpStatus": 200,
+      "editionNote": "",
+      "homepageOutcome": "Linked stories observed",
+      "stories": [
+        {
+          "title": "Children’s commissioner declares ‘state of emergency’ on young people’s lives",
+          "url": "https://observer.co.uk/news/national/article/childrens-commissioner-declares-state-of-emergency-on-young-peoples-lives",
+          "rank": 1,
+          "observedAt": "2026-10-18T21:41:11.948Z",
+          "sourceAccess": {
+            "status": "subscription-only",
+            "label": "Subscription-only metadata",
+            "note": "Public metadata declares restricted access. No public body is treated as an eligible source.",
+            "counts": {
+              "paragraphs": null,
+              "words": null,
+              "images": null,
+              "videos": null,
+              "annotations": null,
+              "expanded": null
+            },
+            "countBasis": "none"
+          },
+          "adapter": {
+            "status": "unsupported",
+            "label": "Direct profile missing",
+            "note": "A missing adapter is separate from publisher access and library availability."
+          },
+          "live": {
+            "status": "failed",
+            "label": "Addition did not complete",
+            "note": "The recorded attempt did not produce a confirmed saved edition.",
+            "counts": {
+              "paragraphs": null,
+              "words": null,
+              "images": null,
+              "videos": null,
+              "annotations": null,
+              "expanded": null
+            },
+            "recordedAt": null
+          },
+          "media": {
+            "rendered": "pending",
+            "images": "pending",
+            "imageLabel": "pending",
+            "allImagesLoaded": false,
+            "playback": "pending",
+            "phone": "pending",
+            "loadedImageReferences": null,
+            "phoneScope": null,
+            "imageScope": null
+          },
+          "sourceCleanup": {
+            "status": "not-recorded",
+            "note": "No saved-source cleanup result supplied."
+          },
+          "library": {
+            "status": "unverified",
+            "label": "Library metadata reported; verification incomplete",
+            "note": "A catalogue or search result is not treated as proof of authenticated article entitlement.",
+            "publication": null,
+            "scope": "Publication/collection only"
+          }
+        },
+        {
+          "title": "The childhood lottery: see how your postcode fares",
+          "url": "https://observer.co.uk/news/national/article/the-childhood-lottery-see-how-your-postcode-fares",
+          "rank": 2,
+          "observedAt": "2026-10-18T21:41:11.948Z",
+          "sourceAccess": {
+            "status": "subscription-only",
+            "label": "Subscription-only metadata",
+            "note": "Public metadata declares restricted access. No public body is treated as an eligible source.",
+            "counts": {
+              "paragraphs": null,
+              "words": null,
+              "images": null,
+              "videos": null,
+              "annotations": null,
+              "expanded": null
+            },
+            "countBasis": "none"
+          },
+          "adapter": {
+            "status": "unsupported",
+            "label": "Direct profile missing",
+            "note": "A missing adapter is separate from publisher access and library availability."
+          },
+          "live": {
+            "status": "pending",
+            "label": "Live addition pending",
+            "note": "No confirmed current app-add result supplied.",
+            "counts": {
+              "paragraphs": null,
+              "words": null,
+              "images": null,
+              "videos": null,
+              "annotations": null,
+              "expanded": null
+            },
+            "recordedAt": null
+          },
+          "media": {
+            "rendered": "pending",
+            "images": "pending",
+            "imageLabel": "pending",
+            "allImagesLoaded": false,
+            "playback": "pending",
+            "phone": "pending",
+            "loadedImageReferences": null,
+            "phoneScope": null,
+            "imageScope": null
+          },
+          "sourceCleanup": {
+            "status": "not-recorded",
+            "note": "No saved-source cleanup result supplied."
+          },
+          "library": {
+            "status": "unverified",
+            "label": "Library metadata reported; verification incomplete",
+            "note": "A catalogue or search result is not treated as proof of authenticated article entitlement.",
+            "publication": null,
+            "scope": "Publication/collection only"
+          }
+        }
+      ]
+    },
+    {
+      "family": "Daily Express / Sunday Express",
+      "region": "UK national",
+      "classification": "newspaper",
+      "homepage": "https://www.express.co.uk/",
+      "observedAt": "2026-10-18T21:41:11.990Z",
+      "httpStatus": 200,
+      "editionNote": "",
+      "homepageOutcome": "Linked stories observed",
+      "stories": [
+        {
+          "title": "Strictly star forced to leave BBC show immediately as they issue emotional statement",
+          "url": "https://www.express.co.uk/showbiz/tv-radio/2258269/strictly-star-forced-leave-bbc-show-immediately",
+          "rank": 1,
+          "observedAt": "2026-10-18T21:41:11.990Z",
+          "sourceAccess": {
+            "status": "public-structure",
+            "label": "Public body structure observed",
+            "note": "Ordinary rendered markup was substantive and unobstructed in this observation. This is not a completed app import.",
+            "counts": {
+              "paragraphs": 17,
+              "words": 523,
+              "images": null,
+              "videos": null,
+              "annotations": null,
+              "expanded": null
+            },
+            "countBasis": "rendered-structure"
+          },
+          "adapter": {
+            "status": "source-profile",
+            "label": "Direct profile in current source",
+            "note": "Source registration alone does not establish deployed success or access rights."
+          },
+          "live": {
+            "status": "saved",
+            "label": "New edition saved",
+            "note": "A completed save is explicitly recorded.",
+            "counts": {
+              "paragraphs": 14,
+              "words": null,
+              "images": 2,
+              "videos": 0,
+              "annotations": 7,
+              "expanded": 0
+            },
+            "recordedAt": "2026-10-18T22:04:18.093Z"
+          },
+          "media": {
+            "rendered": "verified",
+            "images": "verified",
+            "imageLabel": "All recorded images loaded",
+            "allImagesLoaded": true,
+            "playback": "pending",
+            "phone": "pending",
+            "loadedImageReferences": 2,
+            "phoneScope": null,
+            "imageScope": null
+          },
+          "sourceCleanup": {
+            "status": "cleaned",
+            "removedNewsletterParagraphs": 1,
+            "removedAttachedAI": 1,
+            "reportingPreserved": true,
+            "discussionPreserved": true,
+            "note": "Saved-source cleanup completed. 1 newsletter paragraph removed. 1 attached AI annotation removed. Reporting and discussion preserved."
+          },
+          "library": {
+            "status": "unverified",
+            "label": "Entitlement unverified",
+            "note": "No actual title/article-level library metadata supplied.",
+            "publication": null,
+            "scope": null
+          }
+        },
+        {
+          "title": "Britain can do this one thing to stop asylum seekers breaking the law",
+          "url": "https://www.express.co.uk/news/politics/2257606/britain-asylum-seekers-crime-rape",
+          "rank": 2,
+          "observedAt": "2026-10-18T21:41:11.990Z",
+          "sourceAccess": {
+            "status": "subscription-only",
+            "label": "Subscription-only metadata",
+            "note": "Public metadata declares restricted access. No public body is treated as an eligible source.",
+            "counts": {
+              "paragraphs": null,
+              "words": null,
+              "images": null,
+              "videos": null,
+              "annotations": null,
+              "expanded": null
+            },
+            "countBasis": "none"
+          },
+          "adapter": {
+            "status": "source-profile",
+            "label": "Direct profile in current source",
+            "note": "Source registration alone does not establish deployed success or access rights."
+          },
+          "live": {
+            "status": "failed",
+            "label": "Addition did not complete",
+            "note": "An access restriction prevented a public import.",
+            "counts": {
+              "paragraphs": null,
+              "words": null,
+              "images": null,
+              "videos": null,
+              "annotations": null,
+              "expanded": null
+            },
+            "recordedAt": "2026-10-18T22:01:21.462Z"
+          },
+          "media": {
+            "rendered": "pending",
+            "images": "pending",
+            "imageLabel": "pending",
+            "allImagesLoaded": false,
+            "playback": "pending",
+            "phone": "pending",
+            "loadedImageReferences": null,
+            "phoneScope": null,
+            "imageScope": null
+          },
+          "sourceCleanup": {
+            "status": "not-recorded",
+            "note": "No saved-source cleanup result supplied."
+          },
+          "library": {
+            "status": "unverified",
+            "label": "Entitlement unverified",
+            "note": "No actual title/article-level library metadata supplied.",
+            "publication": null,
+            "scope": null
+          }
+        }
+      ]
+    },
+    {
+      "family": "Financial Times / FT Weekend",
+      "region": "UK national",
+      "classification": "newspaper",
+      "homepage": "https://www.ft.com/",
+      "observedAt": "2026-10-18T21:41:11.991Z",
+      "httpStatus": 403,
+      "editionNote": "",
+      "homepageOutcome": "HTTP 403; stopped without retry",
+      "stories": []
+    },
+    {
+      "family": "Morning Star",
+      "region": "UK national",
+      "classification": "newspaper",
+      "homepage": "https://morningstaronline.co.uk/",
+      "observedAt": "2026-10-18T21:41:11.991Z",
+      "httpStatus": 200,
+      "editionNote": "",
+      "homepageOutcome": "Linked stories observed",
+      "stories": [
+        {
+          "title": "Lessons on the French rebellion must not be lost on the British labour movement",
+          "url": "https://morningstaronline.co.uk/article/lessons-french-rebellion-must-not-be-lost-british-labour-movement",
+          "rank": 1,
+          "observedAt": "2026-10-18T21:41:11.991Z",
+          "sourceAccess": {
+            "status": "access-gate",
+            "label": "Access gate observed",
+            "note": "A visible gate or subscription prompt was recorded; no public body import is claimed.",
+            "counts": {
+              "paragraphs": null,
+              "words": null,
+              "images": null,
+              "videos": null,
+              "annotations": null,
+              "expanded": null
+            },
+            "countBasis": "none"
+          },
+          "adapter": {
+            "status": "unsupported",
+            "label": "Direct profile missing",
+            "note": "A missing adapter is separate from publisher access and library availability."
+          },
+          "live": {
+            "status": "pending",
+            "label": "Live addition pending",
+            "note": "No confirmed current app-add result supplied.",
+            "counts": {
+              "paragraphs": null,
+              "words": null,
+              "images": null,
+              "videos": null,
+              "annotations": null,
+              "expanded": null
+            },
+            "recordedAt": null
+          },
+          "media": {
+            "rendered": "pending",
+            "images": "pending",
+            "imageLabel": "pending",
+            "allImagesLoaded": false,
+            "playback": "pending",
+            "phone": "pending",
+            "loadedImageReferences": null,
+            "phoneScope": null,
+            "imageScope": null
+          },
+          "sourceCleanup": {
+            "status": "not-recorded",
+            "note": "No saved-source cleanup result supplied."
+          },
+          "library": {
+            "status": "not-found",
+            "label": "No verified library result",
+            "note": "A bounded lookup found no usable result; this does not prove the publication is absent from the provider.",
+            "publication": null,
+            "scope": "Publication/collection only"
+          }
+        },
+        {
+          "title": "Polanski to amend ‘zionism is racism’ policy",
+          "url": "https://morningstaronline.co.uk/article/polanski-amend-zionism-racism-policy",
+          "rank": 2,
+          "observedAt": "2026-10-18T21:41:11.991Z",
+          "sourceAccess": {
+            "status": "access-gate",
+            "label": "Access gate observed",
+            "note": "A visible gate or subscription prompt was recorded; no public body import is claimed.",
+            "counts": {
+              "paragraphs": null,
+              "words": null,
+              "images": null,
+              "videos": null,
+              "annotations": null,
+              "expanded": null
+            },
+            "countBasis": "none"
+          },
+          "adapter": {
+            "status": "unsupported",
+            "label": "Direct profile missing",
+            "note": "A missing adapter is separate from publisher access and library availability."
+          },
+          "live": {
+            "status": "pending",
+            "label": "Live addition pending",
+            "note": "No confirmed current app-add result supplied.",
+            "counts": {
+              "paragraphs": null,
+              "words": null,
+              "images": null,
+              "videos": null,
+              "annotations": null,
+              "expanded": null
+            },
+            "recordedAt": null
+          },
+          "media": {
+            "rendered": "pending",
+            "images": "pending",
+            "imageLabel": "pending",
+            "allImagesLoaded": false,
+            "playback": "pending",
+            "phone": "pending",
+            "loadedImageReferences": null,
+            "phoneScope": null,
+            "imageScope": null
+          },
+          "sourceCleanup": {
+            "status": "not-recorded",
+            "note": "No saved-source cleanup result supplied."
+          },
+          "library": {
+            "status": "not-found",
+            "label": "No verified library result",
+            "note": "A bounded lookup found no usable result; this does not prove the publication is absent from the provider.",
+            "publication": null,
+            "scope": "Publication/collection only"
+          }
+        }
+      ]
+    },
+    {
+      "family": "Daily Record",
+      "region": "Scotland",
+      "classification": "newspaper",
+      "homepage": "https://www.dailyrecord.co.uk/",
+      "observedAt": "2026-10-18T20:25:24.619Z",
+      "httpStatus": 200,
+      "editionNote": "Homepage title explicitly names Daily Record & Sunday Mail. These are shared website homepage links; Sunday Mail print-edition attribution was not established.",
+      "homepageOutcome": "Linked stories observed",
+      "stories": [
+        {
+          "title": "Flight school pays tribute to instructor and teen student killed in plane crash near Drymen",
+          "url": "https://www.dailyrecord.co.uk/news/scottish-news/flight-school-pays-tribute-instructor-37785138",
+          "rank": 1,
+          "observedAt": "2026-10-18T20:25:24.619Z",
+          "sourceAccess": {
+            "status": "public-body",
+            "label": "Public extraction recorded",
+            "note": "Bounded source paragraphs and media references were extracted; completeness, loading and playback remain separate.",
+            "counts": {
+              "paragraphs": 16,
+              "words": 622,
+              "images": 3,
+              "videos": 0,
+              "annotations": null,
+              "expanded": null
+            },
+            "countBasis": "public-extraction"
+          },
+          "adapter": {
+            "status": "source-profile",
+            "label": "Direct profile in current source",
+            "note": "Source registration alone does not establish deployed success or access rights."
+          },
+          "live": {
+            "status": "pending",
+            "label": "Live addition pending",
+            "note": "No confirmed current app-add result supplied.",
+            "counts": {
+              "paragraphs": null,
+              "words": null,
+              "images": null,
+              "videos": null,
+              "annotations": null,
+              "expanded": null
+            },
+            "recordedAt": null
+          },
+          "media": {
+            "rendered": "pending",
+            "images": "pending",
+            "imageLabel": "pending",
+            "allImagesLoaded": false,
+            "playback": "pending",
+            "phone": "pending",
+            "loadedImageReferences": null,
+            "phoneScope": null,
+            "imageScope": null
+          },
+          "sourceCleanup": {
+            "status": "not-recorded",
+            "note": "No saved-source cleanup result supplied."
+          },
+          "library": {
+            "status": "unverified",
+            "label": "Entitlement unverified",
+            "note": "No actual title/article-level library metadata supplied.",
+            "publication": null,
+            "scope": null
+          }
+        },
+        {
+          "title": "Notorious gangster molls behind Scotland's top cons from pole dancer to celebrity makeup artist",
+          "url": "https://www.dailyrecord.co.uk/news/scottish-news/notorious-gangster-molls-behind-scotlands-37775755",
+          "rank": 2,
+          "observedAt": "2026-10-18T20:25:24.619Z",
+          "sourceAccess": {
+            "status": "not-checked",
+            "label": "No eligible body result",
+            "note": "The supplied observation does not certify public extraction or entitlement.",
+            "counts": {
+              "paragraphs": null,
+              "words": null,
+              "images": null,
+              "videos": null,
+              "annotations": null,
+              "expanded": null
+            },
+            "countBasis": "none"
+          },
+          "adapter": {
+            "status": "source-profile",
+            "label": "Direct profile in current source",
+            "note": "Source registration alone does not establish deployed success or access rights."
+          },
+          "live": {
+            "status": "pending",
+            "label": "Live addition pending",
+            "note": "No confirmed current app-add result supplied.",
+            "counts": {
+              "paragraphs": null,
+              "words": null,
+              "images": null,
+              "videos": null,
+              "annotations": null,
+              "expanded": null
+            },
+            "recordedAt": null
+          },
+          "media": {
+            "rendered": "pending",
+            "images": "pending",
+            "imageLabel": "pending",
+            "allImagesLoaded": false,
+            "playback": "pending",
+            "phone": "pending",
+            "loadedImageReferences": null,
+            "phoneScope": null,
+            "imageScope": null
+          },
+          "sourceCleanup": {
+            "status": "not-recorded",
+            "note": "No saved-source cleanup result supplied."
+          },
+          "library": {
+            "status": "unverified",
+            "label": "Entitlement unverified",
+            "note": "No actual title/article-level library metadata supplied.",
+            "publication": null,
+            "scope": null
+          }
+        }
+      ]
+    },
+    {
+      "family": "The Scotsman",
+      "region": "Scotland",
+      "classification": "newspaper",
+      "homepage": "https://www.scotsman.com/",
+      "observedAt": "2026-10-18T20:25:24.615Z",
+      "httpStatus": 403,
+      "editionNote": "Website family homepage only. Shared daily/Sunday print-edition identity is not independently established by these links.",
+      "homepageOutcome": "HTTP 403; stopped without retry",
+      "stories": []
+    },
+    {
+      "family": "The Herald",
+      "region": "Scotland",
+      "classification": "newspaper",
+      "homepage": "https://www.heraldscotland.com/",
+      "observedAt": "2026-10-18T20:25:24.646Z",
+      "httpStatus": 200,
+      "editionNote": "Website family homepage only. Shared daily/Sunday print-edition identity is not independently established by these links.",
+      "homepageOutcome": "Linked stories observed",
+      "stories": [
+        {
+          "title": "I watched BBC Scotland for a night and all I got was this lousy sense of doom",
+          "url": "https://www.heraldscotland.com/news/26644107.watched-bbc-scotland-night-got-sense-doom/",
+          "rank": 1,
+          "observedAt": "2026-10-18T20:25:24.646Z",
+          "sourceAccess": {
+            "status": "eligibility-unverified",
+            "label": "Public eligibility unresolved",
+            "note": "Access-related markup was observed. A class or supplied body alone does not establish public access.",
+            "counts": {
+              "paragraphs": null,
+              "words": null,
+              "images": null,
+              "videos": null,
+              "annotations": null,
+              "expanded": null
+            },
+            "countBasis": "none"
+          },
+          "adapter": {
+            "status": "unsupported",
+            "label": "Direct profile missing",
+            "note": "A missing adapter is separate from publisher access and library availability."
+          },
+          "live": {
+            "status": "pending",
+            "label": "Live addition pending",
+            "note": "No confirmed current app-add result supplied.",
+            "counts": {
+              "paragraphs": null,
+              "words": null,
+              "images": null,
+              "videos": null,
+              "annotations": null,
+              "expanded": null
+            },
+            "recordedAt": null
+          },
+          "media": {
+            "rendered": "pending",
+            "images": "pending",
+            "imageLabel": "pending",
+            "allImagesLoaded": false,
+            "playback": "pending",
+            "phone": "pending",
+            "loadedImageReferences": null,
+            "phoneScope": null,
+            "imageScope": null
+          },
+          "sourceCleanup": {
+            "status": "not-recorded",
+            "note": "No saved-source cleanup result supplied."
+          },
+          "library": {
+            "status": "unverified",
+            "label": "Library metadata reported; verification incomplete",
+            "note": "A catalogue or search result is not treated as proof of authenticated article entitlement.",
+            "publication": null,
+            "scope": "Publication/collection only"
+          }
+        },
+        {
+          "title": "John Swinney compared to dictator as bus plans branded ‘business confiscation’",
+          "url": "https://www.heraldscotland.com/news/26647133.swinney-compared-dictators-bus-public-control-plan/",
+          "rank": 2,
+          "observedAt": "2026-10-18T20:25:24.646Z",
+          "sourceAccess": {
+            "status": "not-checked",
+            "label": "No eligible body result",
+            "note": "The supplied observation does not certify public extraction or entitlement.",
+            "counts": {
+              "paragraphs": null,
+              "words": null,
+              "images": null,
+              "videos": null,
+              "annotations": null,
+              "expanded": null
+            },
+            "countBasis": "none"
+          },
+          "adapter": {
+            "status": "unsupported",
+            "label": "Direct profile missing",
+            "note": "A missing adapter is separate from publisher access and library availability."
+          },
+          "live": {
+            "status": "pending",
+            "label": "Live addition pending",
+            "note": "No confirmed current app-add result supplied.",
+            "counts": {
+              "paragraphs": null,
+              "words": null,
+              "images": null,
+              "videos": null,
+              "annotations": null,
+              "expanded": null
+            },
+            "recordedAt": null
+          },
+          "media": {
+            "rendered": "pending",
+            "images": "pending",
+            "imageLabel": "pending",
+            "allImagesLoaded": false,
+            "playback": "pending",
+            "phone": "pending",
+            "loadedImageReferences": null,
+            "phoneScope": null,
+            "imageScope": null
+          },
+          "sourceCleanup": {
+            "status": "not-recorded",
+            "note": "No saved-source cleanup result supplied."
+          },
+          "library": {
+            "status": "unverified",
+            "label": "Library metadata reported; verification incomplete",
+            "note": "A catalogue or search result is not treated as proof of authenticated article entitlement.",
+            "publication": null,
+            "scope": "Publication/collection only"
+          }
+        }
+      ]
+    },
+    {
+      "family": "The National",
+      "region": "Scotland",
+      "classification": "newspaper",
+      "homepage": "https://www.thenational.scot/",
+      "observedAt": "2026-10-18T20:25:24.983Z",
+      "httpStatus": 200,
+      "editionNote": "Website family homepage only. Shared daily/Sunday print-edition identity is not independently established by these links.",
+      "homepageOutcome": "Linked stories observed",
+      "stories": [
+        {
+          "title": "Deputy First Minister defends SNP bus plans after McGill’s threatens legal action",
+          "url": "https://www.thenational.scot/news/26647064.jenny-gilruth-pledges-work-bus-companies-mcgills/",
+          "rank": 1,
+          "observedAt": "2026-10-18T20:25:24.983Z",
+          "sourceAccess": {
+            "status": "eligibility-unverified",
+            "label": "Public eligibility unresolved",
+            "note": "Access-related markup was observed. A class or supplied body alone does not establish public access.",
+            "counts": {
+              "paragraphs": null,
+              "words": null,
+              "images": null,
+              "videos": null,
+              "annotations": null,
+              "expanded": null
+            },
+            "countBasis": "none"
+          },
+          "adapter": {
+            "status": "unsupported",
+            "label": "Direct profile missing",
+            "note": "A missing adapter is separate from publisher access and library availability."
+          },
+          "live": {
+            "status": "pending",
+            "label": "Live addition pending",
+            "note": "No confirmed current app-add result supplied.",
+            "counts": {
+              "paragraphs": null,
+              "words": null,
+              "images": null,
+              "videos": null,
+              "annotations": null,
+              "expanded": null
+            },
+            "recordedAt": null
+          },
+          "media": {
+            "rendered": "pending",
+            "images": "pending",
+            "imageLabel": "pending",
+            "allImagesLoaded": false,
+            "playback": "pending",
+            "phone": "pending",
+            "loadedImageReferences": null,
+            "phoneScope": null,
+            "imageScope": null
+          },
+          "sourceCleanup": {
+            "status": "not-recorded",
+            "note": "No saved-source cleanup result supplied."
+          },
+          "library": {
+            "status": "unverified",
+            "label": "Library metadata reported; verification incomplete",
+            "note": "A catalogue or search result is not treated as proof of authenticated article entitlement.",
+            "publication": null,
+            "scope": "Publication/collection only"
+          }
+        },
+        {
+          "title": "Scotland's buses to be brought back into public control, John Swinney announces",
+          "url": "https://www.thenational.scot/news/26646270.scotlands-buses-brought-back-public-control/",
+          "rank": 2,
+          "observedAt": "2026-10-18T20:25:24.983Z",
+          "sourceAccess": {
+            "status": "not-checked",
+            "label": "No eligible body result",
+            "note": "The supplied observation does not certify public extraction or entitlement.",
+            "counts": {
+              "paragraphs": null,
+              "words": null,
+              "images": null,
+              "videos": null,
+              "annotations": null,
+              "expanded": null
+            },
+            "countBasis": "none"
+          },
+          "adapter": {
+            "status": "unsupported",
+            "label": "Direct profile missing",
+            "note": "A missing adapter is separate from publisher access and library availability."
+          },
+          "live": {
+            "status": "pending",
+            "label": "Live addition pending",
+            "note": "No confirmed current app-add result supplied.",
+            "counts": {
+              "paragraphs": null,
+              "words": null,
+              "images": null,
+              "videos": null,
+              "annotations": null,
+              "expanded": null
+            },
+            "recordedAt": null
+          },
+          "media": {
+            "rendered": "pending",
+            "images": "pending",
+            "imageLabel": "pending",
+            "allImagesLoaded": false,
+            "playback": "pending",
+            "phone": "pending",
+            "loadedImageReferences": null,
+            "phoneScope": null,
+            "imageScope": null
+          },
+          "sourceCleanup": {
+            "status": "not-recorded",
+            "note": "No saved-source cleanup result supplied."
+          },
+          "library": {
+            "status": "unverified",
+            "label": "Library metadata reported; verification incomplete",
+            "note": "A catalogue or search result is not treated as proof of authenticated article entitlement.",
+            "publication": null,
+            "scope": "Publication/collection only"
+          }
+        }
+      ]
+    },
+    {
+      "family": "Press and Journal",
+      "region": "Scotland",
+      "classification": "newspaper",
+      "homepage": "https://www.pressandjournal.co.uk/",
+      "observedAt": "2026-10-18T20:25:25.196Z",
+      "httpStatus": 200,
+      "editionNote": "Website family homepage only. Shared daily/Sunday print-edition identity is not independently established by these links.",
+      "homepageOutcome": "Linked stories observed",
+      "stories": [
+        {
+          "title": "Aberdeen businessman who throttled partner jailed for three years",
+          "url": "https://www.pressandjournal.co.uk/fp/news/crime-courts/7132942/aberdeen-businessman-who-throttled-partner-jailed-for-three-years/",
+          "rank": 1,
+          "observedAt": "2026-10-18T20:25:25.196Z",
+          "sourceAccess": {
+            "status": "subscription-only",
+            "label": "Subscription-only metadata",
+            "note": "Public metadata declares restricted access. No public body is treated as an eligible source.",
+            "counts": {
+              "paragraphs": null,
+              "words": null,
+              "images": null,
+              "videos": null,
+              "annotations": null,
+              "expanded": null
+            },
+            "countBasis": "none"
+          },
+          "adapter": {
+            "status": "unsupported",
+            "label": "Direct profile missing",
+            "note": "A missing adapter is separate from publisher access and library availability."
+          },
+          "live": {
+            "status": "pending",
+            "label": "Live addition pending",
+            "note": "No confirmed current app-add result supplied.",
+            "counts": {
+              "paragraphs": null,
+              "words": null,
+              "images": null,
+              "videos": null,
+              "annotations": null,
+              "expanded": null
+            },
+            "recordedAt": null
+          },
+          "media": {
+            "rendered": "pending",
+            "images": "pending",
+            "imageLabel": "pending",
+            "allImagesLoaded": false,
+            "playback": "pending",
+            "phone": "pending",
+            "loadedImageReferences": null,
+            "phoneScope": null,
+            "imageScope": null
+          },
+          "sourceCleanup": {
+            "status": "not-recorded",
+            "note": "No saved-source cleanup result supplied."
+          },
+          "library": {
+            "status": "not-found",
+            "label": "No verified library result",
+            "note": "A bounded lookup found no usable result; this does not prove the publication is absent from the provider.",
+            "publication": null,
+            "scope": "Publication/collection only"
+          }
+        },
+        {
+          "title": "Weekend court roll – a rapist policeman and an TikTok feud",
+          "url": "https://www.pressandjournal.co.uk/fp/news/7132411/weekend-court-roll-a-rapist-policeman-and-an-tiktok-feud/",
+          "rank": 3,
+          "observedAt": "2026-10-18T20:25:25.196Z",
+          "sourceAccess": {
+            "status": "not-checked",
+            "label": "No eligible body result",
+            "note": "The supplied observation does not certify public extraction or entitlement.",
+            "counts": {
+              "paragraphs": null,
+              "words": null,
+              "images": null,
+              "videos": null,
+              "annotations": null,
+              "expanded": null
+            },
+            "countBasis": "none"
+          },
+          "adapter": {
+            "status": "unsupported",
+            "label": "Direct profile missing",
+            "note": "A missing adapter is separate from publisher access and library availability."
+          },
+          "live": {
+            "status": "pending",
+            "label": "Live addition pending",
+            "note": "No confirmed current app-add result supplied.",
+            "counts": {
+              "paragraphs": null,
+              "words": null,
+              "images": null,
+              "videos": null,
+              "annotations": null,
+              "expanded": null
+            },
+            "recordedAt": null
+          },
+          "media": {
+            "rendered": "pending",
+            "images": "pending",
+            "imageLabel": "pending",
+            "allImagesLoaded": false,
+            "playback": "pending",
+            "phone": "pending",
+            "loadedImageReferences": null,
+            "phoneScope": null,
+            "imageScope": null
+          },
+          "sourceCleanup": {
+            "status": "not-recorded",
+            "note": "No saved-source cleanup result supplied."
+          },
+          "library": {
+            "status": "not-found",
+            "label": "No verified library result",
+            "note": "A bounded lookup found no usable result; this does not prove the publication is absent from the provider.",
+            "publication": null,
+            "scope": "Publication/collection only"
+          }
+        }
+      ]
+    },
+    {
+      "family": "The Courier",
+      "region": "Scotland",
+      "classification": "newspaper",
+      "homepage": "https://www.thecourier.co.uk/",
+      "observedAt": "2026-10-18T20:25:25.171Z",
+      "httpStatus": 200,
+      "editionNote": "Website family homepage only. Shared daily/Sunday print-edition identity is not independently established by these links.",
+      "homepageOutcome": "Linked stories observed",
+      "stories": [
+        {
+          "title": "Drivers face delays on A9 near Dunblane after crash",
+          "url": "https://www.thecourier.co.uk/fp/news/5600635/delays-a9-dunblane-crash/",
+          "rank": 1,
+          "observedAt": "2026-10-18T20:25:25.171Z",
+          "sourceAccess": {
+            "status": "subscription-only",
+            "label": "Subscription-only metadata",
+            "note": "Public metadata declares restricted access. No public body is treated as an eligible source.",
+            "counts": {
+              "paragraphs": null,
+              "words": null,
+              "images": null,
+              "videos": null,
+              "annotations": null,
+              "expanded": null
+            },
+            "countBasis": "none"
+          },
+          "adapter": {
+            "status": "unsupported",
+            "label": "Direct profile missing",
+            "note": "A missing adapter is separate from publisher access and library availability."
+          },
+          "live": {
+            "status": "pending",
+            "label": "Live addition pending",
+            "note": "No confirmed current app-add result supplied.",
+            "counts": {
+              "paragraphs": null,
+              "words": null,
+              "images": null,
+              "videos": null,
+              "annotations": null,
+              "expanded": null
+            },
+            "recordedAt": null
+          },
+          "media": {
+            "rendered": "pending",
+            "images": "pending",
+            "imageLabel": "pending",
+            "allImagesLoaded": false,
+            "playback": "pending",
+            "phone": "pending",
+            "loadedImageReferences": null,
+            "phoneScope": null,
+            "imageScope": null
+          },
+          "sourceCleanup": {
+            "status": "not-recorded",
+            "note": "No saved-source cleanup result supplied."
+          },
+          "library": {
+            "status": "not-found",
+            "label": "No verified library result",
+            "note": "A bounded lookup found no usable result; this does not prove the publication is absent from the provider.",
+            "publication": null,
+            "scope": "Publication/collection only"
+          }
+        },
+        {
+          "title": "Perthshire A9 safety fears as video shows cars parked on verge of Scotland’s most dangerous road",
+          "url": "https://www.thecourier.co.uk/fp/news/5600584/a9-the-hermitage-dunkeld-parking-safety/",
+          "rank": 2,
+          "observedAt": "2026-10-18T20:25:25.171Z",
+          "sourceAccess": {
+            "status": "not-checked",
+            "label": "No eligible body result",
+            "note": "The supplied observation does not certify public extraction or entitlement.",
+            "counts": {
+              "paragraphs": null,
+              "words": null,
+              "images": null,
+              "videos": null,
+              "annotations": null,
+              "expanded": null
+            },
+            "countBasis": "none"
+          },
+          "adapter": {
+            "status": "unsupported",
+            "label": "Direct profile missing",
+            "note": "A missing adapter is separate from publisher access and library availability."
+          },
+          "live": {
+            "status": "pending",
+            "label": "Live addition pending",
+            "note": "No confirmed current app-add result supplied.",
+            "counts": {
+              "paragraphs": null,
+              "words": null,
+              "images": null,
+              "videos": null,
+              "annotations": null,
+              "expanded": null
+            },
+            "recordedAt": null
+          },
+          "media": {
+            "rendered": "pending",
+            "images": "pending",
+            "imageLabel": "pending",
+            "allImagesLoaded": false,
+            "playback": "pending",
+            "phone": "pending",
+            "loadedImageReferences": null,
+            "phoneScope": null,
+            "imageScope": null
+          },
+          "sourceCleanup": {
+            "status": "not-recorded",
+            "note": "No saved-source cleanup result supplied."
+          },
+          "library": {
+            "status": "not-found",
+            "label": "No verified library result",
+            "note": "A bounded lookup found no usable result; this does not prove the publication is absent from the provider.",
+            "publication": null,
+            "scope": "Publication/collection only"
+          }
+        }
+      ]
+    },
+    {
+      "family": "Sunday Post",
+      "region": "Scotland",
+      "classification": "newspaper",
+      "homepage": "https://www.sundaypost.com/",
+      "observedAt": "2026-10-18T20:25:25.197Z",
+      "httpStatus": 200,
+      "editionNote": "Observed homepage title identifies The Sunday Post. The selected links were on its website homepage; print-edition placement was not established.",
+      "homepageOutcome": "Linked stories observed",
+      "stories": [
+        {
+          "title": "Pledge for all rogue police officers to face independent panel secretly axed",
+          "url": "https://www.sundaypost.com/fp/police-quietly-shelve-plan-for-independent-review-of-all-rogue-officers/",
+          "rank": 1,
+          "observedAt": "2026-10-18T20:25:25.197Z",
+          "sourceAccess": {
+            "status": "public-body",
+            "label": "Public extraction recorded",
+            "note": "Bounded source paragraphs and media references were extracted; completeness, loading and playback remain separate.",
+            "counts": {
+              "paragraphs": 40,
+              "words": 1219,
+              "images": 7,
+              "videos": 0,
+              "annotations": null,
+              "expanded": null
+            },
+            "countBasis": "public-extraction"
+          },
+          "adapter": {
+            "status": "source-profile",
+            "label": "Direct profile in current source",
+            "note": "Source registration alone does not establish deployed success or access rights."
+          },
+          "live": {
+            "status": "pending",
+            "label": "Live addition pending",
+            "note": "No confirmed current app-add result supplied.",
+            "counts": {
+              "paragraphs": null,
+              "words": null,
+              "images": null,
+              "videos": null,
+              "annotations": null,
+              "expanded": null
+            },
+            "recordedAt": null
+          },
+          "media": {
+            "rendered": "pending",
+            "images": "pending",
+            "imageLabel": "pending",
+            "allImagesLoaded": false,
+            "playback": "pending",
+            "phone": "pending",
+            "loadedImageReferences": null,
+            "phoneScope": null,
+            "imageScope": null
+          },
+          "sourceCleanup": {
+            "status": "not-recorded",
+            "note": "No saved-source cleanup result supplied."
+          },
+          "library": {
+            "status": "unverified",
+            "label": "Entitlement unverified",
+            "note": "No actual title/article-level library metadata supplied.",
+            "publication": null,
+            "scope": null
+          }
+        },
+        {
+          "title": "Through the looking glasses: Advances in smart specs see 88% of Scots back crackdown",
+          "url": "https://www.sundaypost.com/fp/scots-back-crackdown-on-camera-enabled-smart-glasses/",
+          "rank": 2,
+          "observedAt": "2026-10-18T20:25:25.197Z",
+          "sourceAccess": {
+            "status": "not-checked",
+            "label": "No eligible body result",
+            "note": "The supplied observation does not certify public extraction or entitlement.",
+            "counts": {
+              "paragraphs": null,
+              "words": null,
+              "images": null,
+              "videos": null,
+              "annotations": null,
+              "expanded": null
+            },
+            "countBasis": "none"
+          },
+          "adapter": {
+            "status": "source-profile",
+            "label": "Direct profile in current source",
+            "note": "Source registration alone does not establish deployed success or access rights."
+          },
+          "live": {
+            "status": "pending",
+            "label": "Live addition pending",
+            "note": "No confirmed current app-add result supplied.",
+            "counts": {
+              "paragraphs": null,
+              "words": null,
+              "images": null,
+              "videos": null,
+              "annotations": null,
+              "expanded": null
+            },
+            "recordedAt": null
+          },
+          "media": {
+            "rendered": "pending",
+            "images": "pending",
+            "imageLabel": "pending",
+            "allImagesLoaded": false,
+            "playback": "pending",
+            "phone": "pending",
+            "loadedImageReferences": null,
+            "phoneScope": null,
+            "imageScope": null
+          },
+          "sourceCleanup": {
+            "status": "not-recorded",
+            "note": "No saved-source cleanup result supplied."
+          },
+          "library": {
+            "status": "unverified",
+            "label": "Entitlement unverified",
+            "note": "No actual title/article-level library metadata supplied.",
+            "publication": null,
+            "scope": null
+          }
+        }
+      ]
+    },
+    {
+      "family": "Belfast Telegraph",
+      "region": "Northern Ireland",
+      "classification": "newspaper",
+      "homepage": "https://www.belfasttelegraph.co.uk/",
+      "observedAt": "2026-10-18T20:25:26.278Z",
+      "httpStatus": 403,
+      "editionNote": "HTTP 403 prevented homepage link discovery. Neither Belfast Telegraph nor Sunday Life story/edition identity was established in this pass.",
+      "homepageOutcome": "HTTP 403; stopped without retry",
+      "stories": []
+    },
+    {
+      "family": "Irish News",
+      "region": "Northern Ireland",
+      "classification": "newspaper",
+      "homepage": "https://www.irishnews.com/",
+      "observedAt": "2026-10-18T20:25:26.414Z",
+      "httpStatus": 200,
+      "editionNote": "Website family homepage only. Shared daily/Sunday print-edition identity is not independently established by these links.",
+      "homepageOutcome": "Linked stories observed",
+      "stories": [
+        {
+          "title": "Stormont budget stand-off sees nearly 8,000 college places axed",
+          "url": "https://www.irishnews.com/news/northern-ireland/stormont-budget-stand-off-sees-nearly-8000-college-places-axed-CECOAKICDFC4FAGNOZU6L7JJI4/",
+          "rank": 1,
+          "observedAt": "2026-10-18T20:25:26.414Z",
+          "sourceAccess": {
+            "status": "subscription-only",
+            "label": "Subscription-only metadata",
+            "note": "Public metadata declares restricted access. No public body is treated as an eligible source.",
+            "counts": {
+              "paragraphs": null,
+              "words": null,
+              "images": null,
+              "videos": null,
+              "annotations": null,
+              "expanded": null
+            },
+            "countBasis": "none"
+          },
+          "adapter": {
+            "status": "unsupported",
+            "label": "Direct profile missing",
+            "note": "A missing adapter is separate from publisher access and library availability."
+          },
+          "live": {
+            "status": "pending",
+            "label": "Live addition pending",
+            "note": "No confirmed current app-add result supplied.",
+            "counts": {
+              "paragraphs": null,
+              "words": null,
+              "images": null,
+              "videos": null,
+              "annotations": null,
+              "expanded": null
+            },
+            "recordedAt": null
+          },
+          "media": {
+            "rendered": "pending",
+            "images": "pending",
+            "imageLabel": "pending",
+            "allImagesLoaded": false,
+            "playback": "pending",
+            "phone": "pending",
+            "loadedImageReferences": null,
+            "phoneScope": null,
+            "imageScope": null
+          },
+          "sourceCleanup": {
+            "status": "not-recorded",
+            "note": "No saved-source cleanup result supplied."
+          },
+          "library": {
+            "status": "not-found",
+            "label": "No verified library result",
+            "note": "A bounded lookup found no usable result; this does not prove the publication is absent from the provider.",
+            "publication": null,
+            "scope": "Publication/collection only"
+          }
+        },
+        {
+          "title": "Drumcree legal challenge returning to High Court",
+          "url": "https://www.irishnews.com/news/northern-ireland/drumcree-legal-challenge-returning-to-high-court-JNHJJX7I2BHRJLDQVKJYD53I7E/",
+          "rank": 2,
+          "observedAt": "2026-10-18T20:25:26.414Z",
+          "sourceAccess": {
+            "status": "not-checked",
+            "label": "No eligible body result",
+            "note": "The supplied observation does not certify public extraction or entitlement.",
+            "counts": {
+              "paragraphs": null,
+              "words": null,
+              "images": null,
+              "videos": null,
+              "annotations": null,
+              "expanded": null
+            },
+            "countBasis": "none"
+          },
+          "adapter": {
+            "status": "unsupported",
+            "label": "Direct profile missing",
+            "note": "A missing adapter is separate from publisher access and library availability."
+          },
+          "live": {
+            "status": "pending",
+            "label": "Live addition pending",
+            "note": "No confirmed current app-add result supplied.",
+            "counts": {
+              "paragraphs": null,
+              "words": null,
+              "images": null,
+              "videos": null,
+              "annotations": null,
+              "expanded": null
+            },
+            "recordedAt": null
+          },
+          "media": {
+            "rendered": "pending",
+            "images": "pending",
+            "imageLabel": "pending",
+            "allImagesLoaded": false,
+            "playback": "pending",
+            "phone": "pending",
+            "loadedImageReferences": null,
+            "phoneScope": null,
+            "imageScope": null
+          },
+          "sourceCleanup": {
+            "status": "not-recorded",
+            "note": "No saved-source cleanup result supplied."
+          },
+          "library": {
+            "status": "not-found",
+            "label": "No verified library result",
+            "note": "A bounded lookup found no usable result; this does not prove the publication is absent from the provider.",
+            "publication": null,
+            "scope": "Publication/collection only"
+          }
+        }
+      ]
+    },
+    {
+      "family": "News Letter",
+      "region": "Northern Ireland",
+      "classification": "newspaper",
+      "homepage": "https://www.newsletter.co.uk/",
+      "observedAt": "2026-10-18T20:25:26.297Z",
+      "httpStatus": 403,
+      "editionNote": "Website family homepage only. Shared daily/Sunday print-edition identity is not independently established by these links.",
+      "homepageOutcome": "HTTP 403; stopped without retry",
+      "stories": []
+    },
+    {
+      "family": "The Irish Times",
+      "region": "Republic of Ireland",
+      "classification": "newspaper",
+      "homepage": "https://www.irishtimes.com/",
+      "observedAt": "2026-10-18T21:47:15.907Z",
+      "httpStatus": 200,
+      "editionNote": "First selected article URL carries 2026-10-19, but its link was actually observed on the homepage on 2026-10-18. No publish-date or print-edition identity is inferred from the current front page.",
+      "homepageOutcome": "Linked stories observed",
+      "stories": [
+        {
+          "title": "Ukraine defies Trump by launching its largest-ever drone attack on St Petersburg",
+          "url": "https://www.irishtimes.com/world/europe/2026/10/19/ukraine-defies-trump-by-launching-its-largest-ever-drone-attack-on-st-petersburg/",
+          "rank": 1,
+          "observedAt": "2026-10-18T21:47:15.907Z",
+          "sourceAccess": {
+            "status": "eligibility-unverified",
+            "label": "Public eligibility unresolved",
+            "note": "Access-related markup was observed. A class or supplied body alone does not establish public access.",
+            "counts": {
+              "paragraphs": null,
+              "words": null,
+              "images": null,
+              "videos": null,
+              "annotations": null,
+              "expanded": null
+            },
+            "countBasis": "none"
+          },
+          "adapter": {
+            "status": "unsupported",
+            "label": "Direct profile missing",
+            "note": "A missing adapter is separate from publisher access and library availability."
+          },
+          "live": {
+            "status": "pending",
+            "label": "Live addition pending",
+            "note": "No confirmed current app-add result supplied.",
+            "counts": {
+              "paragraphs": null,
+              "words": null,
+              "images": null,
+              "videos": null,
+              "annotations": null,
+              "expanded": null
+            },
+            "recordedAt": null
+          },
+          "media": {
+            "rendered": "pending",
+            "images": "pending",
+            "imageLabel": "pending",
+            "allImagesLoaded": false,
+            "playback": "pending",
+            "phone": "pending",
+            "loadedImageReferences": null,
+            "phoneScope": null,
+            "imageScope": null
+          },
+          "sourceCleanup": {
+            "status": "not-recorded",
+            "note": "No saved-source cleanup result supplied."
+          },
+          "library": {
+            "status": "unverified",
+            "label": "Entitlement unverified",
+            "note": "No actual title/article-level library metadata supplied.",
+            "publication": null,
+            "scope": null
+          }
+        },
+        {
+          "title": "Taoiseach rejects Michael O’Leary’s view he would ‘buckle’ to public sector unions",
+          "url": "https://www.irishtimes.com/politics/2026/10/18/taoiseach-rejects-michael-olearys-view-that-he-would-buckle-to-public-sector-unions/",
+          "rank": 2,
+          "observedAt": "2026-10-18T21:47:15.907Z",
+          "sourceAccess": {
+            "status": "eligibility-unverified",
+            "label": "Public eligibility unresolved",
+            "note": "Access-related markup was observed. A class or supplied body alone does not establish public access.",
+            "counts": {
+              "paragraphs": null,
+              "words": null,
+              "images": null,
+              "videos": null,
+              "annotations": null,
+              "expanded": null
+            },
+            "countBasis": "none"
+          },
+          "adapter": {
+            "status": "unsupported",
+            "label": "Direct profile missing",
+            "note": "A missing adapter is separate from publisher access and library availability."
+          },
+          "live": {
+            "status": "pending",
+            "label": "Live addition pending",
+            "note": "No confirmed current app-add result supplied.",
+            "counts": {
+              "paragraphs": null,
+              "words": null,
+              "images": null,
+              "videos": null,
+              "annotations": null,
+              "expanded": null
+            },
+            "recordedAt": null
+          },
+          "media": {
+            "rendered": "pending",
+            "images": "pending",
+            "imageLabel": "pending",
+            "allImagesLoaded": false,
+            "playback": "pending",
+            "phone": "pending",
+            "loadedImageReferences": null,
+            "phoneScope": null,
+            "imageScope": null
+          },
+          "sourceCleanup": {
+            "status": "not-recorded",
+            "note": "No saved-source cleanup result supplied."
+          },
+          "library": {
+            "status": "unverified",
+            "label": "Entitlement unverified",
+            "note": "No actual title/article-level library metadata supplied.",
+            "publication": null,
+            "scope": null
+          }
+        }
+      ]
+    },
+    {
+      "family": "Irish Independent",
+      "region": "Republic of Ireland",
+      "classification": "newspaper",
+      "homepage": "https://www.independent.ie/",
+      "observedAt": "2026-10-18T21:47:23.474Z",
+      "httpStatus": 200,
+      "editionNote": "",
+      "homepageOutcome": "Linked stories observed",
+      "stories": [
+        {
+          "title": "Three members of suspected car theft and burglary gang arrested after M50 chase",
+          "url": "https://www.independent.ie/irish-news/three-members-of-suspected-car-theft-and-burglary-gang-arrested-after-m50-chase/a/163257630.html",
+          "rank": 1,
+          "observedAt": "2026-10-18T21:47:23.474Z",
+          "sourceAccess": {
+            "status": "public-structure",
+            "label": "Public body structure observed",
+            "note": "Ordinary rendered markup was substantive and unobstructed in this observation. This is not a completed app import.",
+            "counts": {
+              "paragraphs": 19,
+              "words": 523,
+              "images": null,
+              "videos": null,
+              "annotations": null,
+              "expanded": null
+            },
+            "countBasis": "rendered-structure"
+          },
+          "adapter": {
+            "status": "source-profile",
+            "label": "Direct profile in current source",
+            "note": "Source registration alone does not establish deployed success or access rights."
+          },
+          "live": {
+            "status": "failed",
+            "label": "Addition did not complete",
+            "note": "An access restriction prevented a public import.",
+            "counts": {
+              "paragraphs": null,
+              "words": null,
+              "images": null,
+              "videos": null,
+              "annotations": null,
+              "expanded": null
+            },
+            "recordedAt": "2026-10-18T22:07:30.957Z"
+          },
+          "media": {
+            "rendered": "pending",
+            "images": "pending",
+            "imageLabel": "pending",
+            "allImagesLoaded": false,
+            "playback": "pending",
+            "phone": "pending",
+            "loadedImageReferences": null,
+            "phoneScope": null,
+            "imageScope": null
+          },
+          "sourceCleanup": {
+            "status": "not-recorded",
+            "note": "No saved-source cleanup result supplied."
+          },
+          "library": {
+            "status": "unverified",
+            "label": "Entitlement unverified",
+            "note": "No actual title/article-level library metadata supplied.",
+            "publication": null,
+            "scope": null
+          }
+        },
+        {
+          "title": "Man (38) who died in fatal assault at Blackhorse Avenue, Dublin, ‘may have been target of revenge attack’",
+          "url": "https://www.independent.ie/county/dublin/man-38-who-died-in-fatal-assault-at-blackhorse-avenue-dublin-may-have-been-target-of-revenge-attack/a/163232505.html",
+          "rank": 2,
+          "observedAt": "2026-10-18T21:47:23.474Z",
+          "sourceAccess": {
+            "status": "subscription-only",
+            "label": "Subscription-only metadata",
+            "note": "Public metadata declares restricted access. No public body is treated as an eligible source.",
+            "counts": {
+              "paragraphs": null,
+              "words": null,
+              "images": null,
+              "videos": null,
+              "annotations": null,
+              "expanded": null
+            },
+            "countBasis": "none"
+          },
+          "adapter": {
+            "status": "source-profile",
+            "label": "Direct profile in current source",
+            "note": "Source registration alone does not establish deployed success or access rights."
+          },
+          "live": {
+            "status": "pending",
+            "label": "Live addition pending",
+            "note": "No confirmed current app-add result supplied.",
+            "counts": {
+              "paragraphs": null,
+              "words": null,
+              "images": null,
+              "videos": null,
+              "annotations": null,
+              "expanded": null
+            },
+            "recordedAt": null
+          },
+          "media": {
+            "rendered": "pending",
+            "images": "pending",
+            "imageLabel": "pending",
+            "allImagesLoaded": false,
+            "playback": "pending",
+            "phone": "pending",
+            "loadedImageReferences": null,
+            "phoneScope": null,
+            "imageScope": null
+          },
+          "sourceCleanup": {
+            "status": "not-recorded",
+            "note": "No saved-source cleanup result supplied."
+          },
+          "library": {
+            "status": "unverified",
+            "label": "Entitlement unverified",
+            "note": "No actual title/article-level library metadata supplied.",
+            "publication": null,
+            "scope": null
+          }
+        }
+      ]
+    },
+    {
+      "family": "Irish Examiner",
+      "region": "Republic of Ireland",
+      "classification": "newspaper",
+      "homepage": "https://www.irishexaminer.com/",
+      "observedAt": "2026-10-18T21:47:30.172Z",
+      "httpStatus": 200,
+      "editionNote": "",
+      "homepageOutcome": "Linked stories observed",
+      "stories": [
+        {
+          "title": "Man murdered in Mallow may have been killed in professional 'execution' hit",
+          "url": "https://www.irishexaminer.com/news/arid-41925776.html",
+          "rank": 1,
+          "observedAt": "2026-10-18T21:47:30.172Z",
+          "sourceAccess": {
+            "status": "subscription-only",
+            "label": "Subscription-only metadata",
+            "note": "Public metadata declares restricted access. No public body is treated as an eligible source.",
+            "counts": {
+              "paragraphs": null,
+              "words": null,
+              "images": null,
+              "videos": null,
+              "annotations": null,
+              "expanded": null
+            },
+            "countBasis": "none"
+          },
+          "adapter": {
+            "status": "source-profile",
+            "label": "Direct profile in current source",
+            "note": "Source registration alone does not establish deployed success or access rights."
+          },
+          "live": {
+            "status": "pending",
+            "label": "Live addition pending",
+            "note": "No confirmed current app-add result supplied.",
+            "counts": {
+              "paragraphs": null,
+              "words": null,
+              "images": null,
+              "videos": null,
+              "annotations": null,
+              "expanded": null
+            },
+            "recordedAt": null
+          },
+          "media": {
+            "rendered": "pending",
+            "images": "pending",
+            "imageLabel": "pending",
+            "allImagesLoaded": false,
+            "playback": "pending",
+            "phone": "pending",
+            "loadedImageReferences": null,
+            "phoneScope": null,
+            "imageScope": null
+          },
+          "sourceCleanup": {
+            "status": "not-recorded",
+            "note": "No saved-source cleanup result supplied."
+          },
+          "library": {
+            "status": "unverified",
+            "label": "Entitlement unverified",
+            "note": "No actual title/article-level library metadata supplied.",
+            "publication": null,
+            "scope": null
+          }
+        },
+        {
+          "title": "Glen Rovers boss Tomás Mulcahy: No disrespect but beating the Barrs makes it sweeter",
+          "url": "https://www.irishexaminer.com/sport/gaa/arid-41925779.html",
+          "rank": 2,
+          "observedAt": "2026-10-18T21:47:30.172Z",
+          "sourceAccess": {
+            "status": "subscription-only",
+            "label": "Subscription-only metadata",
+            "note": "Public metadata declares restricted access. No public body is treated as an eligible source.",
+            "counts": {
+              "paragraphs": null,
+              "words": null,
+              "images": null,
+              "videos": null,
+              "annotations": null,
+              "expanded": null
+            },
+            "countBasis": "none"
+          },
+          "adapter": {
+            "status": "source-profile",
+            "label": "Direct profile in current source",
+            "note": "Source registration alone does not establish deployed success or access rights."
+          },
+          "live": {
+            "status": "pending",
+            "label": "Live addition pending",
+            "note": "No confirmed current app-add result supplied.",
+            "counts": {
+              "paragraphs": null,
+              "words": null,
+              "images": null,
+              "videos": null,
+              "annotations": null,
+              "expanded": null
+            },
+            "recordedAt": null
+          },
+          "media": {
+            "rendered": "pending",
+            "images": "pending",
+            "imageLabel": "pending",
+            "allImagesLoaded": false,
+            "playback": "pending",
+            "phone": "pending",
+            "loadedImageReferences": null,
+            "phoneScope": null,
+            "imageScope": null
+          },
+          "sourceCleanup": {
+            "status": "not-recorded",
+            "note": "No saved-source cleanup result supplied."
+          },
+          "library": {
+            "status": "unverified",
+            "label": "Entitlement unverified",
+            "note": "No actual title/article-level library metadata supplied.",
+            "publication": null,
+            "scope": null
+          }
+        }
+      ]
+    },
+    {
+      "family": "The New York Times",
+      "region": "United States",
+      "classification": "newspaper",
+      "homepage": "https://www.nytimes.com/",
+      "observedAt": "2026-10-18T21:41:57.698Z",
+      "httpStatus": 403,
+      "editionNote": "",
+      "homepageOutcome": "HTTP 403; stopped without retry",
+      "stories": []
+    },
+    {
+      "family": "The Washington Post",
+      "region": "United States",
+      "classification": "newspaper",
+      "homepage": "https://www.washingtonpost.com/",
+      "observedAt": "2026-10-18T21:41:57.722Z",
+      "httpStatus": 200,
+      "editionNote": "",
+      "homepageOutcome": "Linked stories observed",
+      "stories": [
+        {
+          "title": "Trump approval hits record low, handing Democrats a clear midterm edge",
+          "url": "https://www.washingtonpost.com/politics/2026/10/18/trump-approval-hits-record-low-handing-democrats-clear-midterm-edge/",
+          "rank": 1,
+          "observedAt": "2026-10-18T21:41:57.722Z",
+          "sourceAccess": {
+            "status": "subscription-only",
+            "label": "Subscription-only metadata",
+            "note": "Public metadata declares restricted access. No public body is treated as an eligible source.",
+            "counts": {
+              "paragraphs": null,
+              "words": null,
+              "images": null,
+              "videos": null,
+              "annotations": null,
+              "expanded": null
+            },
+            "countBasis": "none"
+          },
+          "adapter": {
+            "status": "unsupported",
+            "label": "Direct profile missing",
+            "note": "A missing adapter is separate from publisher access and library availability."
+          },
+          "live": {
+            "status": "pending",
+            "label": "Live addition pending",
+            "note": "No confirmed current app-add result supplied.",
+            "counts": {
+              "paragraphs": null,
+              "words": null,
+              "images": null,
+              "videos": null,
+              "annotations": null,
+              "expanded": null
+            },
+            "recordedAt": null
+          },
+          "media": {
+            "rendered": "pending",
+            "images": "pending",
+            "imageLabel": "pending",
+            "allImagesLoaded": false,
+            "playback": "pending",
+            "phone": "pending",
+            "loadedImageReferences": null,
+            "phoneScope": null,
+            "imageScope": null
+          },
+          "sourceCleanup": {
+            "status": "not-recorded",
+            "note": "No saved-source cleanup result supplied."
+          },
+          "library": {
+            "status": "unverified",
+            "label": "Entitlement unverified",
+            "note": "No actual title/article-level library metadata supplied.",
+            "publication": null,
+            "scope": null
+          }
+        },
+        {
+          "title": "Takeaways from JD Vance’s town hall forum in Michigan",
+          "url": "https://www.washingtonpost.com/politics/2026/10/18/takeaways-jd-vances-town-hall-forum-michigan/",
+          "rank": 2,
+          "observedAt": "2026-10-18T21:41:57.722Z",
+          "sourceAccess": {
+            "status": "subscription-only",
+            "label": "Subscription-only metadata",
+            "note": "Public metadata declares restricted access. No public body is treated as an eligible source.",
+            "counts": {
+              "paragraphs": null,
+              "words": null,
+              "images": null,
+              "videos": null,
+              "annotations": null,
+              "expanded": null
+            },
+            "countBasis": "none"
+          },
+          "adapter": {
+            "status": "unsupported",
+            "label": "Direct profile missing",
+            "note": "A missing adapter is separate from publisher access and library availability."
+          },
+          "live": {
+            "status": "pending",
+            "label": "Live addition pending",
+            "note": "No confirmed current app-add result supplied.",
+            "counts": {
+              "paragraphs": null,
+              "words": null,
+              "images": null,
+              "videos": null,
+              "annotations": null,
+              "expanded": null
+            },
+            "recordedAt": null
+          },
+          "media": {
+            "rendered": "pending",
+            "images": "pending",
+            "imageLabel": "pending",
+            "allImagesLoaded": false,
+            "playback": "pending",
+            "phone": "pending",
+            "loadedImageReferences": null,
+            "phoneScope": null,
+            "imageScope": null
+          },
+          "sourceCleanup": {
+            "status": "not-recorded",
+            "note": "No saved-source cleanup result supplied."
+          },
+          "library": {
+            "status": "unverified",
+            "label": "Entitlement unverified",
+            "note": "No actual title/article-level library metadata supplied.",
+            "publication": null,
+            "scope": null
+          }
+        }
+      ]
+    },
+    {
+      "family": "The Wall Street Journal",
+      "region": "United States",
+      "classification": "newspaper",
+      "homepage": "https://www.wsj.com/",
+      "observedAt": "2026-10-18T21:41:58.751Z",
+      "httpStatus": 401,
+      "editionNote": "",
+      "homepageOutcome": "HTTP 401; stopped without retry",
+      "stories": []
+    },
+    {
+      "family": "USA Today",
+      "region": "United States",
+      "classification": "newspaper",
+      "homepage": "https://www.usatoday.com/",
+      "observedAt": "2026-10-18T21:41:58.806Z",
+      "httpStatus": 402,
+      "editionNote": "",
+      "homepageOutcome": "HTTP 402; stopped without retry",
+      "stories": []
+    },
+    {
+      "family": "AP News",
+      "region": "United States",
+      "classification": "news comparator",
+      "homepage": "https://apnews.com/",
+      "observedAt": "2026-10-18T21:41:58.808Z",
+      "httpStatus": 403,
+      "editionNote": "",
+      "homepageOutcome": "HTTP 403; stopped without retry",
+      "stories": []
+    },
+    {
+      "family": "NPR",
+      "region": "United States",
+      "classification": "news comparator",
+      "homepage": "https://www.npr.org/",
+      "observedAt": "2026-10-18T21:41:58.921Z",
+      "httpStatus": 200,
+      "editionNote": "",
+      "homepageOutcome": "Linked stories observed",
+      "stories": [
+        {
+          "title": "With an ad aimed at Trump, this Republican exposed GOP angst about Latino voters",
+          "url": "https://www.npr.org/2026/10/18/nx-s1-5978762/maria-elvira-salazar-immigration-trump",
+          "rank": 1,
+          "observedAt": "2026-10-18T21:41:58.921Z",
+          "sourceAccess": {
+            "status": "public-body",
+            "label": "Public extraction recorded",
+            "note": "Bounded source paragraphs and media references were extracted; completeness, loading and playback remain separate.",
+            "counts": {
+              "paragraphs": 31,
+              "words": 932,
+              "images": 5,
+              "videos": 0,
+              "annotations": null,
+              "expanded": null
+            },
+            "countBasis": "public-extraction"
+          },
+          "adapter": {
+            "status": "source-profile",
+            "label": "Direct profile in current source",
+            "note": "Source registration alone does not establish deployed success or access rights."
+          },
+          "live": {
+            "status": "saved",
+            "label": "New edition saved",
+            "note": "A completed save is explicitly recorded.",
+            "counts": {
+              "paragraphs": 31,
+              "words": null,
+              "images": 5,
+              "videos": 0,
+              "annotations": 8,
+              "expanded": 0
+            },
+            "recordedAt": "2026-10-18T22:05:44.616Z"
+          },
+          "media": {
+            "rendered": "verified",
+            "images": "verified",
+            "imageLabel": "At least one photo loaded",
+            "allImagesLoaded": false,
+            "playback": "pending",
+            "phone": "verified",
+            "loadedImageReferences": 2,
+            "phoneScope": "Owner confirmed one photo and AI comments on the first NPR edition. This does not verify all photos or video playback.",
+            "imageScope": "This check does not establish all-photo completeness or video playback."
+          },
+          "sourceCleanup": {
+            "status": "not-applied",
+            "actualArticlePhotos": 2,
+            "relatedCardImagesKnown": 3,
+            "dailyCleanupChecksUsed": 2,
+            "sourcePreserved": true,
+            "note": "Saved edition still includes 3 known related-card image references alongside 2 actual article photos. Cleanup has not been applied; complete source fidelity is not claimed."
+          },
+          "library": {
+            "status": "unverified",
+            "label": "Entitlement unverified",
+            "note": "No actual title/article-level library metadata supplied.",
+            "publication": null,
+            "scope": null
+          }
+        },
+        {
+          "title": "After losing ground with Latino voters, Democrats are turning to influencers for help",
+          "url": "https://www.npr.org/2026/10/10/nx-s1-5991897/democrats-latino-voters-influencers-bold-pac",
+          "rank": 2,
+          "observedAt": "2026-10-18T21:41:58.921Z",
+          "sourceAccess": {
+            "status": "public-body",
+            "label": "Public extraction recorded",
+            "note": "Bounded source paragraphs and media references were extracted; completeness, loading and playback remain separate.",
+            "counts": {
+              "paragraphs": 29,
+              "words": 901,
+              "images": 6,
+              "videos": 0,
+              "annotations": null,
+              "expanded": null
+            },
+            "countBasis": "public-extraction"
+          },
+          "adapter": {
+            "status": "source-profile",
+            "label": "Direct profile in current source",
+            "note": "Source registration alone does not establish deployed success or access rights."
+          },
+          "live": {
+            "status": "saved",
+            "label": "New edition saved",
+            "note": "A completed save is explicitly recorded.",
+            "counts": {
+              "paragraphs": 27,
+              "words": null,
+              "images": 2,
+              "videos": 0,
+              "annotations": 7,
+              "expanded": 0
+            },
+            "recordedAt": "2026-10-18T22:11:17.937Z"
+          },
+          "media": {
+            "rendered": "verified",
+            "images": "verified",
+            "imageLabel": "All recorded images loaded",
+            "allImagesLoaded": true,
+            "playback": "pending",
+            "phone": "pending",
+            "loadedImageReferences": 2,
+            "phoneScope": null,
+            "imageScope": null
+          },
+          "sourceCleanup": {
+            "status": "cleaned",
+            "captionRelocations": 2,
+            "photoAttributionsUpdated": 2,
+            "relatedCardsExcluded": true,
+            "reportingPreserved": true,
+            "discussionPreserved": true,
+            "note": "Saved-source cleanup completed. Related cards were excluded. 2 captions relocated to their photos. 2 photo credits updated. Reporting and discussion preserved."
+          },
+          "library": {
+            "status": "unverified",
+            "label": "Entitlement unverified",
+            "note": "No actual title/article-level library metadata supplied.",
+            "publication": null,
+            "scope": null
+          }
+        }
+      ]
+    }
+  ]
+}

@@ -1,5 +1,6 @@
 import {createNewsBankHTTPClient} from '../lib/newsbank-http.mjs';
 import {sanitizeMatchDiagnostic} from '../lib/newsbank-match-diagnostic.mjs';
+import {publicationSearchQuery,sanitizePublicationSearch,sanitizePublicationSearchStatus} from '../lib/newsbank-publications.mjs';
 import {publisherPreview} from './publisher-preview.mjs';
 import {publisherRender} from './publisher-render.mjs';
 
@@ -29,6 +30,15 @@ export async function handler(event,context={}){
   if(event.action==='publisher-preview')return response(await publisherPreview(event,{fetch:fetcher}));
   if(event.action==='publisher-render')return response(await publisherRender(event));
   if(event.action==='probe')return response(await createNewsBankHTTPClient({fetch:fetcher}).probe());
+  if(event.action==='search-publications'){
+   if(Object.keys(event).some(key=>!['action','publication','title','session'].includes(key)))return response({status:'error',code:'invalid_publication_query'});
+   const query=publicationSearchQuery({publication:event.publication,title:event.title});
+   if(!event.session)return response({status:'login_required',stage:'session',reasonCode:'session_expired'});
+   const client=createNewsBankHTTPClient({fetch:fetcher});client.restoreSession(event.session);
+   const result=await client.searchPublications(query);
+   if(result.status==='metadata'){const clean=sanitizePublicationSearch(result);return response(clean||{status:'error',code:'invalid_publication_metadata'});}
+   return response(sanitizePublicationSearchStatus(result)||{status:'needs_interaction',stage:'results',reasonCode:'results_changed'});
+  }
   if(event.action==='connect'){
    const account=credentials(event),client=createNewsBankHTTPClient({fetch:fetcher});
    const result=await client.login(account);
@@ -36,7 +46,7 @@ export async function handler(event,context={}){
    return response({status:'authenticated',session:client.serializeSession()});
   }
   if(event.action==='lookup'){
-   const account=credentials(event);const publisher=event.publisher===undefined?'times':event.publisher;if(!['times','telegraph'].includes(publisher))return response({status:'error',code:'invalid_publisher'});if(typeof event.title!=='string'||!event.title.trim()||event.title.length>400)return response({status:'error',code:'invalid_title'});
+   const account=credentials(event);const publisher=event.publisher===undefined?'times':event.publisher;if(!['times','telegraph','observer'].includes(publisher))return response({status:'error',code:'invalid_publisher'});if(typeof event.title!=='string'||!event.title.trim()||event.title.length>400)return response({status:'error',code:'invalid_title'});
    const client=createNewsBankHTTPClient({fetch:fetcher});if(event.session)client.restoreSession(event.session);
    const lookup={title:event.title,date:typeof event.date==='string'?event.date:'',publisher,urlWordsHint:event.urlWordsHint===true};
    let result=await client.lookup(lookup);
@@ -51,7 +61,7 @@ export async function handler(event,context={}){
   return response({status:'error',code:'unsupported_action'});
  }catch(e){
   if(e?.code==='newsbank_http_status'&&Number.isInteger(e.httpStatus)&&e.httpStatus>=400&&e.httpStatus<=599)return response({status:'blocked',httpStatus:e.httpStatus});
-  const code=e?.message==='invalid_article'?'invalid_article':e?.message==='article_too_large'?'article_too_large':e?.message==='missing_credentials'?'missing_credentials':'upstream_failure';
+  const code=e?.message==='invalid_publication_query'?'invalid_publication_query':e?.message==='invalid_article'?'invalid_article':e?.message==='article_too_large'?'article_too_large':e?.message==='missing_credentials'?'missing_credentials':'upstream_failure';
   return response({status:'error',code});
  }
 }

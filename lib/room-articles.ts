@@ -10,6 +10,7 @@ import {cleanPublisherHeadline} from './publisher-headline.mjs';
 import {claimPressAuditEntry,finishPressAuditEntry,classifyPressAuditFailure} from './press-audit.ts';
 import type {PressAuditAllowance,PressAuditErrorCode} from './press-audit.ts';
 import {publisherFor} from './newspaper-core.mjs';
+import {libraryArticle} from './library-article-url.mjs';
 
 const headers={'Cache-Control':'private, no-store','X-Content-Type-Options':'nosniff','Referrer-Policy':'no-referrer','X-Robots-Tag':'noindex, nofollow'};
 const json=(data:unknown,status=200,extraHeaders:Record<string,string>={})=>Response.json(data,{status,headers:{...headers,...extraHeaders}});
@@ -53,7 +54,7 @@ export async function roomArticlesAPI(r:Request,c:Config,fetcher:typeof fetch=fe
   }
   const response=await addRoomArticle(r,c,fetcher,room,data,url,auditAllowance);
   const value=await response.clone().json() as any;
-  let unsupported=false;if(auditAllowance)try{publisherFor(url);}catch{unsupported=true;}
+  let unsupported=false;if(auditAllowance)try{publisherFor(url);}catch{try{unsupported=libraryArticle(url).key!=='observer';}catch{unsupported=true;}}
   outcome={ok:response.ok,status:response.status,id:value.id,cached:value.cached,needsHeadline:value.needsHeadline,unsupported,errorCode:value.errorCode};
   return response;
  }catch(error){if(error instanceof Response){outcome={ok:false,status:error.status};return error;}return json({error:'The article could not be added. Please try again.'},502);}
@@ -70,14 +71,14 @@ async function addRoomArticle(r:Request,c:Config,fetcher:typeof fetch,room:Await
   }
   const forwardedHeaders=new Headers(r.headers);forwardedHeaders.delete('content-length');
   const result=await articleAPI(new Request(new URL('/api/articles',r.url),{method:'POST',headers:forwardedHeaders,body:JSON.stringify({url,requestId:data.requestId||crypto.randomUUID(),sourceHeadline:data.sourceHeadline})}),c,fetcher,{auditAllowance});
-  const value=await result.json() as any;if(!result.ok){const classified=auditAllowance?classifyPressAuditFailure(value.error,value.needsHeadline===true):null;const usage=!auditAllowance&&value.errorCode==='daily_import_limit'?{errorCode:value.errorCode,usage:value.usage}:{};const retry=!auditAllowance&&value.errorCode==='daily_import_limit'?result.headers.get('Retry-After'):null;return json({...classified,...usage,error:classified?.error||value.error||'This article could not be opened.',...(value.needsHeadline?{needsHeadline:true}:{})},result.status,retry?{'Retry-After':retry}:{});}
+  const value=await result.json() as any;if(!result.ok){const classified=auditAllowance?classifyPressAuditFailure(value.error,value.needsHeadline===true):null;const guard=!auditAllowance&&['daily_import_limit','imports_pending','import_in_progress','import_reservation_expired','source_request_guard','daily_commentary_cost_guard'].includes(value.errorCode);const usage=guard?{errorCode:value.errorCode,...(value.usage?{usage:value.usage}:{}),...(value.costGuard?{costGuard:value.costGuard}:{})}:{};const retry=guard?result.headers.get('Retry-After'):null;return json({...classified,...usage,error:classified?.error||value.error||'This article could not be opened.',...(value.needsHeadline?{needsHeadline:true}:{})},result.status,retry?{'Retry-After':retry}:{});}
   let id=value.id;if(!id&&typeof value.href==='string'){const match=value.href.match(/\/(?:preview|read)\/([a-f0-9]{48})/);id=match?.[1];}
   if(!id||!await accessiblePage(r,c,id))return json({error:'The article was not added to this room.'},502);
   return json({id,href:'/read/'+id+'?room='+room.id,cached:Boolean(value.cached)});
 }
 
 const publishers:Record<string,{name:string,domains:string[]}>= {
- times:{name:'The Times',domains:['thetimes.com']},guardian:{name:'The Guardian',domains:['theguardian.com']},bbc:{name:'BBC News',domains:['bbc.co.uk','bbc.com']},independent:{name:'The Independent',domains:['independent.co.uk']},telegraph:{name:'The Telegraph',domains:['telegraph.co.uk']},standard:{name:'The Standard',domains:['standard.co.uk']},metro:{name:'Metro',domains:['metro.co.uk']},mirror:{name:'Daily Mirror',domains:['mirror.co.uk']},sun:{name:'The Sun',domains:['thesun.co.uk']},mail:{name:'Daily Mail',domains:['dailymail.com','dailymail.co.uk']},star:{name:'Daily Star',domains:['dailystar.co.uk']},record:{name:'Daily Record',domains:['dailyrecord.co.uk']},nytimes:{name:'The New York Times',domains:['nytimes.com']},dawn:{name:'Dawn',domains:['dawn.com']}
+ times:{name:'The Times',domains:['thetimes.com']},observer:{name:'The Observer',domains:['observer.co.uk']},guardian:{name:'The Guardian',domains:['theguardian.com']},bbc:{name:'BBC News',domains:['bbc.co.uk','bbc.com']},independent:{name:'The Independent',domains:['independent.co.uk']},telegraph:{name:'The Telegraph',domains:['telegraph.co.uk']},standard:{name:'The Standard',domains:['standard.co.uk']},metro:{name:'Metro',domains:['metro.co.uk']},mirror:{name:'Daily Mirror',domains:['mirror.co.uk']},sun:{name:'The Sun',domains:['thesun.co.uk']},mail:{name:'Daily Mail',domains:['dailymail.com','dailymail.co.uk']},star:{name:'Daily Star',domains:['dailystar.co.uk']},record:{name:'Daily Record',domains:['dailyrecord.co.uk']},nytimes:{name:'The New York Times',domains:['nytimes.com']},dawn:{name:'Dawn',domains:['dawn.com']},express:{name:'Daily and Sunday Express',domains:['express.co.uk']},ipaper:{name:'i paper',domains:['inews.co.uk']},cityam:{name:'City A.M.',domains:['cityam.com']},sundaypost:{name:'The Sunday Post',domains:['sundaypost.com']},walesonline:{name:'WalesOnline',domains:['walesonline.co.uk']},northwaleslive:{name:'North Wales Live',domains:['dailypost.co.uk']},npr:{name:'NPR',domains:['npr.org']},irishindependent:{name:'Irish Independent',domains:['independent.ie']}
 };
 function searchHost(url:string){return new URL(url).hostname.replace(/^(?:www|m|amp)\./,'');}
 function searchPublisher(url:string){const host=searchHost(url);return Object.values(publishers).find(p=>p.domains.includes(host));}
