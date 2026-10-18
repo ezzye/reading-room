@@ -19,7 +19,7 @@
   "publicPackageVerification": {
     "date": "2026-10-18",
     "syntheticApplicationTests": {
-      "passed": 160,
+      "passed": 161,
       "failed": 0
     },
     "typeCheck": "passed",
@@ -67,5 +67,12 @@
     "unsupported": "Financial Times homepage HTTP403; Observer selected article subscription gate; Daily Mail public article found but adapter unsupported.",
     "originalAudit": "Original25-URL13-outlet matrix retained as a distinct dated run.",
     "reportControls": "Standalone HTML parsed with five metadata rows; Save HTML payload and Share fallback/native arguments passed synthetic DOM checks. Actual browser download/native sharing remain unverified."
+  },
+  "phoneFollowup": {
+    "bbc": "Readable confirmed by owner",
+    "timesMedia": "Still missing on phone; server receives zero-image public responses and provider returns Verifying Device. No bypass attempted.",
+    "telegraphFrance": "Service retrieval found51paragraphs; phone screenshot used URL words as headline and did not confirm a new edition. Correctly prefilled shared-title test pending.",
+    "telegraphPolitics": "No unambiguous current library match in phone/service tests.",
+    "v42Changes": "Successful Add opens exact resulting edition; Android shared title travels with URL; missing media message distinguishes source delivery from absence of images."
   }
 }
