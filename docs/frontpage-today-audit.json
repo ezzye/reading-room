@@ -1,0 +1,610 @@
+{
+  "auditDate": "2026-10-18",
+  "timeZone": "Europe/London",
+  "checkedAt": "2026-10-18T13:08:33.185Z",
+  "method": "One ordinary public homepage fetch per publisher. Up to two real linked story URLs selected from headline elements or article-card headline structure. At most one ordinary fetch per selected supported article URL. Same reader User-Agent as current public reader. No cookies, browser, challenge bypass, provider calls, or retries after HTTP 402/403/challenge. Unsupported FT/Observer URLs are recorded from the homepage; article bodies were not fetched. Stored output contains metadata/counts only.",
+  "limitations": [
+    "Homepage observation date is distinct from any article publication date.",
+    "Extraction passing does not establish full-text completeness, visual fidelity, media playback, or physical-phone behavior.",
+    "No browser was used; the final HTML browser opening and native sharing were not tested. Handler behavior is separately simulated in a DOM.",
+    "Daily Mail redirects from .com may be observed by the ordinary fetch; only the final response of each fetch call is recorded."
+  ],
+  "coverage": {
+    "publishers": 12,
+    "initialHomepageRequests": 12,
+    "followupHomepageRequests": 6,
+    "linkedArticleURLs": 16,
+    "fetchedArticleURLs": 14,
+    "extractionPassed": 13,
+    "extractionRejected": 1,
+    "renderedOrPlaybackVerified": 0
+  },
+  "rows": [
+    {
+      "outlet": "The Guardian",
+      "homeURL": "https://www.theguardian.com/",
+      "homepageHTTPStatus": 200,
+      "homepageFinalURL": "https://www.theguardian.com/uk",
+      "homepageObservedAt": "2026-10-18T13:08:33.186Z",
+      "homepageOutcome": "Challenge/gate detected; stopped without article requests",
+      "articles": [
+        {
+          "articleURL": "https://www.theguardian.com/world/live/2026/oct/18/paris-protests-france-demonstrations-europe-live-latest-news",
+          "homepageTitle": "Europe liveArrests over France protests rise to 1,800, with whole streets in Paris ‘devastated’",
+          "discoveryBasis": "Headline text observed inside linked headline element/card",
+          "articleHTTPStatus": 200,
+          "actualTitle": "Arrests over France protests rise to 1,800, with whole streets in Paris ‘devastated’ – Europe live",
+          "articleDate": "2026-10-18T13:07:52.000Z",
+          "wordCount": 2029,
+          "paragraphCount": 85,
+          "imageCount": 13,
+          "videoCount": 0,
+          "outcome": "Extraction passed; completeness/rendering unverified",
+          "adapterStatus": "Supported current adapter",
+          "accessPaywall": "Public text retrieved without sign-in; full completeness not certified.",
+          "libraryRouteAccess": "Not tested for this article."
+        },
+        {
+          "articleURL": "https://www.theguardian.com/world/2026/oct/17/protests-france-high-prices-social-security-gilets-jaunes",
+          "homepageTitle": "FranceBuildings set ablaze and more than 1,800 arrested as police clash with protesters across France",
+          "discoveryBasis": "Headline text observed inside linked headline element/card",
+          "articleHTTPStatus": 200,
+          "actualTitle": "Buildings set ablaze and more than 1,800 arrested as police clash with protesters across France",
+          "articleDate": "2026-10-18T00:01:12.000Z",
+          "wordCount": 1133,
+          "paragraphCount": 38,
+          "imageCount": 7,
+          "videoCount": 0,
+          "outcome": "Extraction passed; completeness/rendering unverified",
+          "adapterStatus": "Supported current adapter",
+          "accessPaywall": "Public text retrieved without sign-in; full completeness not certified.",
+          "libraryRouteAccess": "Not tested for this article."
+        }
+      ],
+      "homepageFollowup": {
+        "requestedAt": "2026-10-18T13:11:02.243Z",
+        "httpStatus": 200,
+        "finalURL": "https://www.theguardian.com/uk",
+        "title": "Latest news, sport and opinion from the Guardian",
+        "outcome": "2 linked story headline(s) observed",
+        "articles": [
+          {
+            "articleURL": "https://www.theguardian.com/world/live/2026/oct/18/paris-protests-france-demonstrations-europe-live-latest-news",
+            "homepageTitle": "Europe liveArrests over France protests rise to 1,800, with whole streets in Paris ‘devastated’",
+            "discoveryBasis": "Headline text observed inside linked headline element/card",
+            "articleHTTPStatus": 200,
+            "actualTitle": "Arrests over France protests rise to 1,800, with whole streets in Paris ‘devastated’ – Europe live",
+            "articleDate": "2026-10-18T13:07:52.000Z",
+            "wordCount": 2029,
+            "paragraphCount": 85,
+            "imageCount": 13,
+            "videoCount": 0,
+            "outcome": "Extraction passed; completeness/rendering unverified",
+            "adapterStatus": "Supported current adapter"
+          },
+          {
+            "articleURL": "https://www.theguardian.com/world/2026/oct/17/protests-france-high-prices-social-security-gilets-jaunes",
+            "homepageTitle": "FranceBuildings set ablaze and more than 1,800 arrested as police clash with protesters across France",
+            "discoveryBasis": "Headline text observed inside linked headline element/card",
+            "articleHTTPStatus": 200,
+            "actualTitle": "Buildings set ablaze and more than 1,800 arrested as police clash with protesters across France",
+            "articleDate": "2026-10-18T00:01:12.000Z",
+            "wordCount": 1133,
+            "paragraphCount": 38,
+            "imageCount": 7,
+            "videoCount": 0,
+            "outcome": "Extraction passed; completeness/rendering unverified",
+            "adapterStatus": "Supported current adapter"
+          }
+        ]
+      },
+      "accessPaywallSummary": "See each linked article result."
+    },
+    {
+      "outlet": "BBC News",
+      "homeURL": "https://www.bbc.com/news",
+      "homepageHTTPStatus": 200,
+      "homepageFinalURL": "https://www.bbc.com/news",
+      "homepageObservedAt": "2026-10-18T13:08:33.369Z",
+      "homepageOutcome": "Observed 2 linked story headline(s)",
+      "articles": [
+        {
+          "articleURL": "https://www.bbc.com/news/articles/c574pdzl0k4no",
+          "homepageTitle": "Burnt out cars and shattered glass on Paris streets after protests turn to riots and lootingAround 1,800 people were arrested after nationwide protests saw outbreaks of violence and vandalism.1 hr agoEurope",
+          "discoveryBasis": "Headline link inside homepage article card",
+          "adapterStatus": "Supported publisher profile",
+          "articleRequestedAt": "2026-10-18T13:08:33.552Z",
+          "articleHTTPStatus": 200,
+          "actualTitle": "Burnt out cars and shattered glass on Paris streets after protests turn to riots and looting",
+          "articleDate": null,
+          "paragraphCount": 32,
+          "imageCount": 1,
+          "videoCount": 0,
+          "outcome": "Extraction passed; completeness and rendering unverified",
+          "rejectionReason": null,
+          "wordCount": null,
+          "wordCountNote": "Not recorded in the original fetch; no repeat article request was made solely to reconstruct it.",
+          "accessPaywall": "Public text retrieved without sign-in; full completeness not certified.",
+          "libraryRouteAccess": "Not tested for this article."
+        },
+        {
+          "articleURL": "https://www.bbc.com/news/videos/cmn5vey19q3go",
+          "homepageTitle": "Parisians wake up to protest damage and looted shopsViolence broke out across France on Saturday during the latest day of demonstrations against conditions in schools and the cost of living.2 hrs agoEurope",
+          "discoveryBasis": "Headline link inside homepage article card",
+          "adapterStatus": "Supported publisher profile",
+          "articleRequestedAt": "2026-10-18T13:08:33.707Z",
+          "articleHTTPStatus": 200,
+          "actualTitle": "Parisians wake up to protest damage and looted shops",
+          "articleDate": null,
+          "paragraphCount": null,
+          "imageCount": null,
+          "videoCount": null,
+          "outcome": "Extraction rejected",
+          "rejectionReason": "RET could not find readable article markup. Use Page Lens or a saved HTML page.",
+          "wordCount": null,
+          "wordCountNote": "Not recorded in the original fetch; no repeat article request was made solely to reconstruct it.",
+          "accessPaywall": "Not established: no readable article body; the rejection does not establish a paywall.",
+          "libraryRouteAccess": "Not tested for this article."
+        }
+      ],
+      "accessPaywallSummary": "See each linked article result."
+    },
+    {
+      "outlet": "The Standard",
+      "homeURL": "https://www.standard.co.uk/",
+      "homepageHTTPStatus": 200,
+      "homepageFinalURL": "https://www.standard.co.uk/",
+      "homepageObservedAt": "2026-10-18T13:08:33.821Z",
+      "homepageOutcome": "Challenge/gate detected; stopped without article requests",
+      "articles": [],
+      "homepageFollowup": {
+        "requestedAt": "2026-10-18T13:11:02.892Z",
+        "httpStatus": 200,
+        "finalURL": "https://www.standard.co.uk/",
+        "title": "London news, sport and culture | The Standard | London Evening Standard | The London Standard",
+        "outcome": "0 linked story headline(s) observed",
+        "articles": []
+      },
+      "accessPaywallSummary": "Not tested for an article; no qualifying article URL was found."
+    },
+    {
+      "outlet": "Metro",
+      "homeURL": "https://metro.co.uk/",
+      "homepageHTTPStatus": 200,
+      "homepageFinalURL": "https://metro.co.uk/",
+      "homepageObservedAt": "2026-10-18T13:08:34.015Z",
+      "homepageOutcome": "Observed 2 linked story headline(s)",
+      "articles": [
+        {
+          "articleURL": "https://metro.co.uk/2026/10/18/parisian-protestor-dies-collapsing-french-riots-police-say-29718496/",
+          "homepageTitle": "Parisian protester dies after collapsing during French riots, police say",
+          "discoveryBasis": "Linked headline element on official homepage",
+          "adapterStatus": "Supported publisher profile",
+          "articleRequestedAt": "2026-10-18T13:08:34.115Z",
+          "articleHTTPStatus": 200,
+          "actualTitle": "Parisian protester dies after collapsing during French riots, police say",
+          "articleDate": "2026-10-18T12:08:20+0000",
+          "paragraphCount": 36,
+          "imageCount": 7,
+          "videoCount": 1,
+          "outcome": "Extraction passed; completeness and rendering unverified",
+          "rejectionReason": null,
+          "wordCount": null,
+          "wordCountNote": "Not recorded in the original fetch; no repeat article request was made solely to reconstruct it.",
+          "accessPaywall": "Public text retrieved without sign-in; full completeness not certified.",
+          "libraryRouteAccess": "Not tested for this article."
+        },
+        {
+          "articleURL": "https://metro.co.uk/2026/10/17/teacher-says-tiger-attack-victim-everything-going-him-29717681/",
+          "homepageTitle": "Tiger attack victim was 'self-starter' with 'bright future' says mum in old blog posts",
+          "discoveryBasis": "Linked headline element on official homepage",
+          "adapterStatus": "Supported publisher profile",
+          "articleRequestedAt": "2026-10-18T13:08:34.342Z",
+          "articleHTTPStatus": 200,
+          "actualTitle": "Tiger attack victim was ‘self-starter’ with ‘bright future’ says mum in old blog posts",
+          "articleDate": "2026-10-17T17:15:20+0000",
+          "paragraphCount": 33,
+          "imageCount": 4,
+          "videoCount": 0,
+          "outcome": "Extraction passed; completeness and rendering unverified",
+          "rejectionReason": null,
+          "wordCount": null,
+          "wordCountNote": "Not recorded in the original fetch; no repeat article request was made solely to reconstruct it.",
+          "accessPaywall": "Public text retrieved without sign-in; full completeness not certified.",
+          "libraryRouteAccess": "Not tested for this article."
+        }
+      ],
+      "accessPaywallSummary": "See each linked article result."
+    },
+    {
+      "outlet": "The Independent",
+      "homeURL": "https://www.independent.co.uk/",
+      "homepageHTTPStatus": 200,
+      "homepageFinalURL": "https://www.independent.co.uk/",
+      "homepageObservedAt": "2026-10-18T13:08:34.465Z",
+      "homepageOutcome": "Challenge/gate detected; stopped without article requests",
+      "articles": [
+        {
+          "articleURL": "https://www.independent.co.uk/news/world/europe/france-protests-paris-live-riots-police-arrests-students-b3068758.html",
+          "homepageTitle": "Trump hits out at protests as Macron expected to address nation: 'France is burning'",
+          "discoveryBasis": "Headline text observed inside linked headline element/card",
+          "articleHTTPStatus": 200,
+          "actualTitle": "France protests latest: Macron to address nation as Trump says ‘France is burning’ and hits out at protesters",
+          "articleDate": "2026-10-18T13:10:36.000Z",
+          "wordCount": 1416,
+          "paragraphCount": 57,
+          "imageCount": 5,
+          "videoCount": 1,
+          "outcome": "Extraction passed; completeness/rendering unverified",
+          "adapterStatus": "Supported current adapter",
+          "accessPaywall": "Public text retrieved without sign-in; full completeness not certified.",
+          "libraryRouteAccess": "Not tested for this article."
+        },
+        {
+          "articleURL": "https://www.independent.co.uk/news/world/europe/france-riots-protests-reason-schools-macron-b3068596.html",
+          "homepageTitle": "What sparked the fiery protests in France – and how they could spread",
+          "discoveryBasis": "Headline link inside homepage article card",
+          "articleHTTPStatus": 200,
+          "actualTitle": "What sparked the fiery protests in France – and how they could spread across Europe",
+          "articleDate": "2026-10-18T12:05:45.000Z",
+          "wordCount": 817,
+          "paragraphCount": 27,
+          "imageCount": 5,
+          "videoCount": 1,
+          "outcome": "Extraction passed; completeness/rendering unverified",
+          "adapterStatus": "Supported current adapter",
+          "accessPaywall": "Public text retrieved without sign-in; full completeness not certified.",
+          "libraryRouteAccess": "Not tested for this article."
+        }
+      ],
+      "homepageFollowup": {
+        "requestedAt": "2026-10-18T13:11:03.267Z",
+        "httpStatus": 200,
+        "finalURL": "https://www.independent.co.uk/",
+        "title": "News | The Independent | Today's headlines and latest breaking news",
+        "outcome": "2 linked story headline(s) observed",
+        "articles": [
+          {
+            "articleURL": "https://www.independent.co.uk/news/world/europe/france-protests-paris-live-riots-police-arrests-students-b3068758.html",
+            "homepageTitle": "Trump hits out at protests as Macron expected to address nation: 'France is burning'",
+            "discoveryBasis": "Headline text observed inside linked headline element/card",
+            "articleHTTPStatus": 200,
+            "actualTitle": "France protests latest: Macron to address nation as Trump says ‘France is burning’ and hits out at protesters",
+            "articleDate": "2026-10-18T13:10:36.000Z",
+            "wordCount": 1416,
+            "paragraphCount": 57,
+            "imageCount": 5,
+            "videoCount": 1,
+            "outcome": "Extraction passed; completeness/rendering unverified",
+            "adapterStatus": "Supported current adapter"
+          },
+          {
+            "articleURL": "https://www.independent.co.uk/news/world/europe/france-riots-protests-reason-schools-macron-b3068596.html",
+            "homepageTitle": "What sparked the fiery protests in France – and how they could spread",
+            "discoveryBasis": "Headline link inside homepage article card",
+            "articleHTTPStatus": 200,
+            "actualTitle": "What sparked the fiery protests in France – and how they could spread across Europe",
+            "articleDate": "2026-10-18T12:05:45.000Z",
+            "wordCount": 817,
+            "paragraphCount": 27,
+            "imageCount": 5,
+            "videoCount": 1,
+            "outcome": "Extraction passed; completeness/rendering unverified",
+            "adapterStatus": "Supported current adapter"
+          }
+        ]
+      },
+      "accessPaywallSummary": "See each linked article result."
+    },
+    {
+      "outlet": "The Times",
+      "homeURL": "https://www.thetimes.com/",
+      "homepageHTTPStatus": 200,
+      "homepageFinalURL": "https://www.thetimes.com/",
+      "homepageObservedAt": "2026-10-18T13:08:34.653Z",
+      "homepageOutcome": "No article link met the headline/link evidence rule",
+      "articles": [],
+      "homepageFollowup": {
+        "requestedAt": "2026-10-18T13:11:04.067Z",
+        "httpStatus": 200,
+        "finalURL": "https://www.thetimes.com/",
+        "title": "Latest news & breaking headlines | The Times and The Sunday Times",
+        "outcome": "0 linked story headline(s) observed",
+        "articles": []
+      },
+      "accessPaywallSummary": "Not tested for an article; no qualifying article URL was found."
+    },
+    {
+      "outlet": "The Telegraph",
+      "homeURL": "https://www.telegraph.co.uk/",
+      "homepageHTTPStatus": 402,
+      "homepageFinalURL": "https://www.telegraph.co.uk/",
+      "homepageObservedAt": "2026-10-18T13:08:34.987Z",
+      "homepageOutcome": "Stopped at HTTP 402; no article requests",
+      "articles": [],
+      "accessPaywallSummary": "Automated access refused; article paywall not established by this homepage request."
+    },
+    {
+      "outlet": "Daily Mirror",
+      "homeURL": "https://www.mirror.co.uk/",
+      "homepageHTTPStatus": 200,
+      "homepageFinalURL": "https://www.mirror.co.uk/",
+      "homepageObservedAt": "2026-10-18T13:08:35.249Z",
+      "homepageOutcome": "Observed 2 linked story headline(s)",
+      "articles": [
+        {
+          "articleURL": "https://www.mirror.co.uk/news/uk-news/bedford-train-crash-hero-eli-37775689",
+          "homepageTitle": "Mystery off-duty GP who saved lives on Bedford train crash while barely able to move from own injuries is Pride of Britain hero",
+          "discoveryBasis": "Headline link inside homepage article card",
+          "adapterStatus": "Supported publisher profile",
+          "articleRequestedAt": "2026-10-18T13:08:35.320Z",
+          "articleHTTPStatus": 200,
+          "actualTitle": "Bedford train crash hero doctor says 'aftermath was like a war zone'",
+          "articleDate": "2026-10-17T19:13:31Z",
+          "paragraphCount": 36,
+          "imageCount": 7,
+          "videoCount": 0,
+          "outcome": "Extraction passed; completeness and rendering unverified",
+          "rejectionReason": null,
+          "wordCount": null,
+          "wordCountNote": "Not recorded in the original fetch; no repeat article request was made solely to reconstruct it.",
+          "accessPaywall": "Public text retrieved without sign-in; full completeness not certified.",
+          "libraryRouteAccess": "Not tested for this article."
+        },
+        {
+          "articleURL": "https://www.mirror.co.uk/news/uk-news/police-officer-shot-nottingham-centre-37784014",
+          "homepageTitle": "Police officer shot in Nottingham as 999 crews swarm and streets sealed off",
+          "discoveryBasis": "Headline link inside homepage article card",
+          "adapterStatus": "Supported publisher profile",
+          "articleRequestedAt": "2026-10-18T13:08:35.459Z",
+          "articleHTTPStatus": 200,
+          "actualTitle": "Police officer shot in Nottingham as 999 crews swarm and streets sealed off",
+          "articleDate": "2026-10-18T07:45:35Z",
+          "paragraphCount": 24,
+          "imageCount": 4,
+          "videoCount": 0,
+          "outcome": "Extraction passed; completeness and rendering unverified",
+          "rejectionReason": null,
+          "wordCount": null,
+          "wordCountNote": "Not recorded in the original fetch; no repeat article request was made solely to reconstruct it.",
+          "accessPaywall": "Public text retrieved without sign-in; full completeness not certified.",
+          "libraryRouteAccess": "Not tested for this article."
+        }
+      ],
+      "accessPaywallSummary": "See each linked article result."
+    },
+    {
+      "outlet": "The Sun",
+      "homeURL": "https://www.thesun.co.uk/",
+      "homepageHTTPStatus": 200,
+      "homepageFinalURL": "https://www.thesun.co.uk/",
+      "homepageObservedAt": "2026-10-18T13:08:35.509Z",
+      "homepageOutcome": "No article link met the headline/link evidence rule",
+      "articles": [
+        {
+          "articleURL": "https://www.thesun.co.uk/news/40723775/police-officer-shot-city-centre-manhunt/",
+          "homepageTitle": "Gun recovered after police officer shot in UK city centre as cops hunt man and woman on the run",
+          "discoveryBasis": "Headline text observed inside linked headline element/card",
+          "articleHTTPStatus": 200,
+          "actualTitle": "Gun recovered after police officer shot in UK city centre as cops hunt man and woman on the run",
+          "articleDate": "2026-10-18T08:17:55+00:00",
+          "wordCount": 514,
+          "paragraphCount": 27,
+          "imageCount": 5,
+          "videoCount": 0,
+          "outcome": "Extraction passed; completeness/rendering unverified",
+          "adapterStatus": "Supported current adapter",
+          "accessPaywall": "Public text retrieved without sign-in; full completeness not certified.",
+          "libraryRouteAccess": "Not tested for this article."
+        },
+        {
+          "articleURL": "https://www.thesun.co.uk/news/40723310/fatal-canada-military-base-fire/",
+          "homepageTitle": "'At least 7 dead' at military base in town's 'largest mass casualty event'",
+          "discoveryBasis": "Headline text observed inside linked headline element/card",
+          "articleHTTPStatus": 200,
+          "actualTitle": "‘At least 7 dead’ & dozens injured after explosion rocks military base in community’s ‘largest ever mass casualty event’",
+          "articleDate": "2026-10-18T06:14:03+00:00",
+          "wordCount": 570,
+          "paragraphCount": 29,
+          "imageCount": 5,
+          "videoCount": 0,
+          "outcome": "Extraction passed; completeness/rendering unverified",
+          "adapterStatus": "Supported current adapter",
+          "accessPaywall": "Public text retrieved without sign-in; full completeness not certified.",
+          "libraryRouteAccess": "Not tested for this article."
+        }
+      ],
+      "homepageFollowup": {
+        "requestedAt": "2026-10-18T13:11:04.473Z",
+        "httpStatus": 200,
+        "finalURL": "https://www.thesun.co.uk/",
+        "title": "News, sport, celebrities and gossip | The Sun",
+        "outcome": "2 linked story headline(s) observed",
+        "articles": [
+          {
+            "articleURL": "https://www.thesun.co.uk/news/40723775/police-officer-shot-city-centre-manhunt/",
+            "homepageTitle": "Gun recovered after police officer shot in UK city centre as cops hunt man and woman on the run",
+            "discoveryBasis": "Headline text observed inside linked headline element/card",
+            "articleHTTPStatus": 200,
+            "actualTitle": "Gun recovered after police officer shot in UK city centre as cops hunt man and woman on the run",
+            "articleDate": "2026-10-18T08:17:55+00:00",
+            "wordCount": 514,
+            "paragraphCount": 27,
+            "imageCount": 5,
+            "videoCount": 0,
+            "outcome": "Extraction passed; completeness/rendering unverified",
+            "adapterStatus": "Supported current adapter"
+          },
+          {
+            "articleURL": "https://www.thesun.co.uk/news/40723310/fatal-canada-military-base-fire/",
+            "homepageTitle": "'At least 7 dead' at military base in town's 'largest mass casualty event'",
+            "discoveryBasis": "Headline text observed inside linked headline element/card",
+            "articleHTTPStatus": 200,
+            "actualTitle": "‘At least 7 dead’ & dozens injured after explosion rocks military base in community’s ‘largest ever mass casualty event’",
+            "articleDate": "2026-10-18T06:14:03+00:00",
+            "wordCount": 570,
+            "paragraphCount": 29,
+            "imageCount": 5,
+            "videoCount": 0,
+            "outcome": "Extraction passed; completeness/rendering unverified",
+            "adapterStatus": "Supported current adapter"
+          }
+        ]
+      },
+      "accessPaywallSummary": "See each linked article result."
+    },
+    {
+      "outlet": "Daily Mail",
+      "homeURL": "https://www.dailymail.com/",
+      "homepageHTTPStatus": 200,
+      "homepageFinalURL": "https://www.dailymail.com/home/index.html",
+      "homepageObservedAt": "2026-10-18T13:08:35.648Z",
+      "homepageOutcome": "Observed 2 linked story headline(s)",
+      "articles": [
+        {
+          "articleURL": "https://www.dailymail.com/news/article-16218361/Moment-French-rioters-attack-shopkeeper.html",
+          "homepageTitle": "Moment French rioters attack shopkeeper and distraught woman begs them not to loot store as police admit they've 'lost control' of violent protests that saw 143-year-old town hall incinerated",
+          "discoveryBasis": "Linked headline element on official homepage",
+          "adapterStatus": "Supported publisher profile",
+          "articleRequestedAt": "2026-10-18T13:08:36.763Z",
+          "articleHTTPStatus": 200,
+          "actualTitle": "Moment French rioters attack shopkeeper and distraught woman begs them not to loot store as police admit they've 'lost control' of violent protests that saw 143-year-old town hall incinerated",
+          "articleDate": "2026-10-18T10:44:35+0100",
+          "paragraphCount": 88,
+          "imageCount": 65,
+          "videoCount": 1,
+          "outcome": "Extraction passed; completeness and rendering unverified",
+          "rejectionReason": null,
+          "wordCount": null,
+          "wordCountNote": "Not recorded in the original fetch; no repeat article request was made solely to reconstruct it.",
+          "accessPaywall": "Public text retrieved without sign-in; full completeness not certified.",
+          "libraryRouteAccess": "Not tested for this article."
+        },
+        {
+          "articleURL": "https://www.dailymail.com/news/article-16213985/brutal-killings-murder-capital-Wales.html",
+          "homepageTitle": "A schoolgirl, 14, found in undergrowth, a rugby player slain with a zombie knife and a grandfather, 74, beaten to death - the brutal killings turning rural county into murder capital of Wales",
+          "discoveryBasis": "Linked headline element on official homepage",
+          "adapterStatus": "Supported publisher profile",
+          "articleRequestedAt": "2026-10-18T13:08:38.462Z",
+          "articleHTTPStatus": 200,
+          "actualTitle": "A schoolgirl, 14, found in undergrowth, a rugby player slain with a zombie knife and a grandfather, 74, beaten to death - the brutal killings turning rural county into murder capital of Wales",
+          "articleDate": "2026-10-18T11:51:22+0100",
+          "paragraphCount": 46,
+          "imageCount": 8,
+          "videoCount": 0,
+          "outcome": "Extraction passed; completeness and rendering unverified",
+          "rejectionReason": null,
+          "wordCount": null,
+          "wordCountNote": "Not recorded in the original fetch; no repeat article request was made solely to reconstruct it.",
+          "accessPaywall": "Public text retrieved without sign-in; full completeness not certified.",
+          "libraryRouteAccess": "Not tested for this article."
+        }
+      ],
+      "accessPaywallSummary": "See each linked article result."
+    },
+    {
+      "outlet": "Financial Times",
+      "homeURL": "https://www.ft.com/",
+      "homepageHTTPStatus": 403,
+      "homepageFinalURL": "https://www.ft.com/",
+      "homepageObservedAt": "2026-10-18T13:08:40.256Z",
+      "homepageOutcome": "Stopped at HTTP 403; no article requests",
+      "articles": [],
+      "accessPaywallSummary": "Automated access refused; article paywall not established by this homepage request."
+    },
+    {
+      "outlet": "The Observer",
+      "homeURL": "https://observer.co.uk/",
+      "homepageHTTPStatus": 200,
+      "homepageFinalURL": "https://observer.co.uk/",
+      "homepageObservedAt": "2026-10-18T13:08:40.313Z",
+      "homepageOutcome": "No article link met the headline/link evidence rule; unsupported adapter, article bodies not fetched",
+      "articles": [
+        {
+          "articleURL": "https://observer.co.uk/news/national/article/childrens-commissioner-declares-state-of-emergency-on-young-peoples-lives",
+          "homepageTitle": "Children’s commissioner declares ‘state of emergency’ on young people’s lives",
+          "discoveryBasis": "Headline text observed inside linked headline element/card",
+          "articleHTTPStatus": null,
+          "actualTitle": null,
+          "articleDate": null,
+          "wordCount": null,
+          "paragraphCount": null,
+          "imageCount": null,
+          "videoCount": null,
+          "outcome": "Homepage URL/headline observed only; article body not fetched",
+          "adapterStatus": "Unsupported current adapter",
+          "accessPaywall": "Not tested: article not fetched; no adapter.",
+          "libraryRouteAccess": "Not tested for this article."
+        },
+        {
+          "articleURL": "https://observer.co.uk/news/national/article/the-childhood-lottery-see-how-your-postcode-fares",
+          "homepageTitle": "The childhood lottery: see how your postcode fares",
+          "discoveryBasis": "Headline text observed inside linked headline element/card",
+          "articleHTTPStatus": null,
+          "actualTitle": null,
+          "articleDate": null,
+          "wordCount": null,
+          "paragraphCount": null,
+          "imageCount": null,
+          "videoCount": null,
+          "outcome": "Homepage URL/headline observed only; article body not fetched",
+          "adapterStatus": "Unsupported current adapter",
+          "accessPaywall": "Not tested: article not fetched; no adapter.",
+          "libraryRouteAccess": "Not tested for this article."
+        }
+      ],
+      "homepageFollowup": {
+        "requestedAt": "2026-10-18T13:11:05.411Z",
+        "httpStatus": 200,
+        "finalURL": "https://observer.co.uk/",
+        "title": "News, culture and style | The Observer",
+        "outcome": "2 linked story headline(s) observed",
+        "articles": [
+          {
+            "articleURL": "https://observer.co.uk/news/national/article/childrens-commissioner-declares-state-of-emergency-on-young-peoples-lives",
+            "homepageTitle": "Children’s commissioner declares ‘state of emergency’ on young people’s lives",
+            "discoveryBasis": "Headline text observed inside linked headline element/card",
+            "articleHTTPStatus": null,
+            "actualTitle": null,
+            "articleDate": null,
+            "wordCount": null,
+            "paragraphCount": null,
+            "imageCount": null,
+            "videoCount": null,
+            "outcome": "Homepage URL/headline observed only; article body not fetched",
+            "adapterStatus": "Unsupported current adapter"
+          },
+          {
+            "articleURL": "https://observer.co.uk/news/national/article/the-childhood-lottery-see-how-your-postcode-fares",
+            "homepageTitle": "The childhood lottery: see how your postcode fares",
+            "discoveryBasis": "Headline text observed inside linked headline element/card",
+            "articleHTTPStatus": null,
+            "actualTitle": null,
+            "articleDate": null,
+            "wordCount": null,
+            "paragraphCount": null,
+            "imageCount": null,
+            "videoCount": null,
+            "outcome": "Homepage URL/headline observed only; article body not fetched",
+            "adapterStatus": "Unsupported current adapter"
+          }
+        ]
+      },
+      "accessPaywallSummary": "See each linked article result."
+    }
+  ],
+  "correction": {
+    "correctionAt": "2026-10-18T13:11:05.537Z",
+    "reason": "The initial discovery filter incorrectly excluded article-category paths and missed headings nested inside links; the initial gate check scanned generic script text for captcha. The initial record is preserved as frontpage-today-audit-initial.json. This follow-up made one ordinary homepage fetch each for Guardian, Standard, Independent, Times, Sun, and Observer only. Existing eight article responses were reused; new supported article URLs were fetched once. No retry to Telegraph or FT.",
+    "methodCorrection": "Story URL filter now excludes exact section landing paths and known author/tag/index routes while permitting article-category paths. Heading text comes from the linked heading. Gate detection removes script/style/template/noscript before checking normalized title and visible body text."
+  },
+  "contextualPriorEvidence": {
+    "label": "Prior owner-tested article; outside today’s front-page sample",
+    "articleURL": "https://www.telegraph.co.uk/world-news/2026/10/17/students-tear-gassed-hit-batons-france-braces-mass-protests/",
+    "homepageObservedToday": false,
+    "accessPaywall": "Subscription gate confirmed in the owner-provided Chrome screenshot on 18 October 2026 at 12:12; the screenshot showed “Subscribe to continue.”",
+    "libraryRouteAccess": "Owner reported the correct article opened on a phone and its Camden text was retrieved (51 paragraphs). Original media still requires a visible capture.",
+    "sourceKind": "Owner-provided screenshot and owner report; not re-fetched for this audit.",
+    "countedInTodayFrontpageSample": false
+  }
+}

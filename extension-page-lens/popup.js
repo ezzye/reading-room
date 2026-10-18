@@ -1,21 +1,22 @@
 let latest=null;
 const $=id=>document.getElementById(id);
-$('capture').addEventListener('click',async()=>{
-  $('status').textContent='Reading visible rendered content…'; $('capture').disabled=true;
+async function capturePage(mediaOnly=false){
+  $('status').textContent=mediaOnly?'Reading visible article media…':'Reading visible rendered content…';
+  $('capture').disabled=true;$('capture-media').disabled=true;
   try{
     const [tab]=await chrome.tabs.query({active:true,currentWindow:true});
-    if(!tab?.id) throw Error('No active tab.');
-    const [{result}]=await chrome.scripting.executeScript({target:{tabId:tab.id},world:'ISOLATED',func:extractArticle});
-    if(!result?.blocks?.length) throw Error('No readable article content was found.');
-    latest=result; $('download').disabled=false; $('send').disabled=false;
-    const d=result.diagnostics;
-    $('status').textContent=`${result.title||'Untitled article'} · ${result.publisher||'Publisher unknown'}`;
-    $('review').hidden=false;
-    $('review').textContent=`${d.wordCount} words · ${d.paragraphCount} paragraphs · ${d.imageCount} images · ${d.videoCount} videos${d.paywallDetected?' · access-related markup found; it may be inactive':''}. Fidelity varies by page; completeNotCertified is always true.`;
-  } catch(e){$('status').textContent=e.message||'Capture failed.'; latest=null;$('download').disabled=true;$('send').disabled=true;}
-  finally{$('capture').disabled=false;}
-});
-$('download').addEventListener('click',()=>{if(!latest)return;const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([JSON.stringify(latest,null,2)],{type:'application/json'}));a.download='ret-capture.json';a.click();setTimeout(()=>URL.revokeObjectURL(a.href),1000);});
+    if(!tab?.id)throw Error('No active tab.');
+    const [{result}]=await chrome.scripting.executeScript({target:{tabId:tab.id},world:'ISOLATED',func:mediaOnly?extractMedia:extractArticle});
+    if(mediaOnly?!result?.media?.length:!result?.blocks?.length){const unknown=result?.diagnostics?.unsupportedPlayerCount;throw Error(mediaOnly?(unknown?'Visible player unsupported ('+unknown+'). '+(result.diagnostics.unsupportedPlayerHosts||[]).join(', '):'No unobscured article media is visible. Bring most of the image or player into view and try again.'):'No readable article content was found.');}
+    latest=result;$('download').disabled=false;$('send').disabled=false;
+    const d=result.diagnostics;$('status').textContent=result.title||'Untitled article';$('review').hidden=false;
+    $('review').textContent=mediaOnly?`Media only · ${d.imageCount} images · ${d.videoCount} videos. No article paragraphs captured. Only substantially visible media in this viewport is included; playback and original placement are not certified.`:`${d.wordCount} words · ${d.paragraphCount} paragraphs · ${d.imageCount} images · ${d.videoCount} videos${d.paywallDetected?' · access-related markup found; it may be inactive':''}. Fidelity varies by page; completeNotCertified is always true.`;
+  }catch(e){$('status').textContent=e.message||'Capture failed.';latest=null;$('download').disabled=true;$('send').disabled=true;$('review').hidden=true;}
+  finally{$('capture').disabled=false;$('capture-media').disabled=false;}
+}
+$('capture').addEventListener('click',()=>capturePage(false));
+$('capture-media').addEventListener('click',()=>capturePage(true));
+$('download').addEventListener('click',()=>{if(!latest)return;const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([JSON.stringify(latest,null,2)],{type:'application/json'}));a.download=latest.schema==='ret-media/v1'?'reading-room-media.json':'ret-capture.json';a.click();setTimeout(()=>URL.revokeObjectURL(a.href),1000);});
  $('send').addEventListener('click',async()=>{if(!latest)return;const nonce=crypto.getRandomValues(new Uint8Array(24)).reduce((s,b)=>s+b.toString(16).padStart(2,'0'),'');const url=new URL('https://reader.example.org/capture-review');url.searchParams.set('from','extension');url.searchParams.set('captureNonce',nonce);await chrome.storage.local.set({retReviewedCapture:{capture:latest,nonce,expiresAt:Date.now()+600000}});await chrome.tabs.create({url:url.href});});
 
 function extractArticle(){
@@ -58,3 +59,5 @@ function extractArticle(){
  const meta=n=>norm(document.querySelector(`meta[name="${n}"],meta[property="${n}"]`)?.content);
  return {schema:'ret-capture/v1',url:clean(location.href),title:rawTitle,publisher:meta('og:site_name')||location.hostname,byline:meta('author')||norm(document.querySelector('[rel="author"],.byline,[class*="author"]')?.innerText),date:meta('article:published_time')||meta('date'),standfirst:(dek&&visible(dek)?norm(dek.innerText):'')||meta('description'),capturedAt:new Date().toISOString(),viewport:{width:innerWidth,height:innerHeight,devicePixelRatio},articleRect:(()=>{const ps=blocks.filter(b=>b.type==='paragraph'&&b.text.length>100).map(b=>b.rect);const r=ps.length?ps.sort((a,b)=>a.width-b.width)[Math.floor(ps.length/2)]:rect(root);return{x:r.x,y:r.y,width:r.width}})(),design:{bodyBackground:bodyStyle.color?getComputedStyle(document.body).backgroundColor:'transparent',articleBackground:getComputedStyle(root).backgroundColor,headlineStyle:css(root.querySelector('h1')||document.querySelector('h1')),bodyStyle:articleStyle,standfirstStyle:dek&&visible(dek)?css(dek):{}},fonts,blocks,diagnostics:{wordCount,paragraphCount:paragraphs,imageCount:blocks.filter(b=>b.type==='figure').length,videoCount:blocks.filter(b=>b.type==='video').length,paywallDetected:paywall,captureSpanHeight,rootHeight,viewportScreens:innerHeight?Math.round((captureSpanHeight/innerHeight)*100)/100:0,completeNotCertified:true}};
 }
+
+// Serialized by chrome.scripting: keep this function independent and read-only.

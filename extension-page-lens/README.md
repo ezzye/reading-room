@@ -1,24 +1,33 @@
-# RET Page Lens 0.1.3
+# Reading Room Page Lens 0.2.0
 
-An unpacked Manifest V3 Chrome extension prototype for explicit, local review of readable rendered article content. It does not upload captures. The user must click **Read this page**, inspect the counts/warnings, then choose **Download JSON** or **Open RET**. The latter stores one reviewed JSON payload with a random one-use nonce and ten-minute expiry in `chrome.storage.local`, then opens RET `/capture-review` with that nonce. A page button must dispatch `ret-request-capture`; only the matching fresh tab receives `ret-capture-ready`. Reading Room shows the supplied text and counts for review; the reader must confirm and choose Import to save it in the current private room with separate AI commentary.
+An unpacked Manifest V3 Chrome extension for explicit rendered-page capture and a short, owner-enabled connection to a private Reading Room. This version adds permissions. Review the permission changes before loading or reloading it. No installed extension has been changed by the automated checks.
 
-## Install for development
+## Direct connection without the ChatGPT extension
 
-1. Open `chrome://extensions` and enable Developer mode.
-2. Choose **Load unpacked** and select this folder.
-3. Open a readable article and click the extension icon, then **Read this page**.
-4. Review the warning and counts; download the JSON or open RET for the reviewed handoff.
+1. Keep the newspaper article open. Scroll until most of the wanted image or player is visible.
+2. Open Page Lens and choose **Enable this tab**. This explicitly permits requests during the next ten minutes to send this tab’s visible media references into your private Reading Room for review.
+3. Confirm the connection in the Reading Room tab opened by Page Lens, within ninety seconds. Then return to the source tab yourself.
+4. Request visible media from Reading Room, including an authorised phone. Keep the enabled source tab active and Chrome focused. A desktop request requires returning to the source tab before the next check, which occurs about every thirty seconds.
+5. Inspect the staged media in Reading Room and choose whether to import it. Nothing is appended automatically. Use **Stop connection** in Page Lens or Reading Room to end the session.
 
-Permissions are limited to `activeTab`, `scripting`, and `storage`. There are no cookie, network interception, or wildcard host permissions. The content script runs only on `/capture*` and `/capture-review*` at the configured RET, dayofflondon.com, and local development origins. Popup capture executes on click in Chrome's isolated world.
+The extension never navigates, activates tabs, scrolls, dismisses overlays, or accepts remote JavaScript. The only command is bundled `extractMedia`, executed in the isolated world of the enabled source tab. Closing that tab, changing its article URL, stopping, expiry, or server revocation ends its authority. Inactive or unfocused sources return a status without capturing. Commands expire after ninety seconds and are consumed once. The owner’s original Reading Room login remains a revocation dependency.
 
-## Scope and privacy limits
+The default connection is `reader.example.org`. `dayofflondon.com` is an optional, explicitly selected origin. The connection capability is kept in Chrome session storage and sent only in a request header to the chosen fixed Reading Room API. It is never put in a URL or sent to the newspaper. API requests omit cookies. Pairing uses a nonce-bound connection-page handshake; no pairing code must be copied each capture.
 
-Capture includes rendered DOM text and visible DOM image/video elements under a scored article subtree, including readable offscreen content. It skips CSS-hidden, clipped, blurred, or semantically nested duplicate blocks. A visible fixed/sticky sign-in, subscription, or access overlay that overlaps the article pauses capture; hidden paywall markers alone do not block it. The diagnostic span estimates captured content height against the selected root and viewport; it does not establish source completeness. `completeNotCertified` is always true.
+## Permission changes requiring review
 
-The capture does not preserve the original page's exact layout or scripts. Remote images are linked and are not embedded for offline viewing; cross-origin frames are represented only as visible supported-provider links, not read or copied. Font names and computed styles are retained, but font files are not copied. Hidden state, JSON-LD, page application state, network interception, DRM, and media extraction are out of scope. Media URLs are restricted to HTTP(S), with credentials, fragments, and common tracking/signed-auth parameters stripped. This is best-effort sanitization, not a guarantee that every source URL is shareable.
+The existing `activeTab`, `scripting`, and `storage` permissions remain. Version 0.2.0 adds `alarms` for thirty-second checks and the exact default Reading Room host permission. `https://dayofflondon.com/*` is optional and requested only when selected. The connection content script runs only at `/page-lens-connect` on those origins; the existing reviewed-capture handoff paths remain. There are no newspaper-wide host, cookies, debugger, network interception or remote-executor permissions. The source grant still comes from the user opening the popup on that tab.
 
-The existing 15-share/day cap must remain enforced by RET's server-side owner flow; this extension does not implement or bypass that cap. AI comments and saved edition comparison are not part of this capture prototype.
+## Manual capture and handoff
+
+**Capture page** reads rendered article paragraphs and media under a scored article subtree. A displayed access overlay pauses full-article capture. CSS-hidden, clipped and blurred content is skipped. Completeness is never certified. **Capture visible media** independently captures only visible image/player references without article paragraphs. Review the counts, then download the JSON or choose **Open reviewed capture in RET**. This manual handoff uses a random one-use nonce and ten-minute expiry. Reading Room requires explicit review and Import before saving to the current private room.
+
+## Visible media boundaries
+
+`ret-media/v1` contains the public source URL, headline, capture time, viewport and at most twenty image/player references with plain captions, credits and measured rectangles. Media must intersect the viewport by at least 80×50 pixels and 40% of its area; at least six of nine hit-tested points must belong to its surface. Hidden, inert, blurred, overflow-clipped, dialog, unrelated, navigation and advertising regions are excluded. These conservative geometry checks do not certify placement or playback.
+
+Only public HTTPS references are retained. Credentials, private hosts and signed/authenticated query parameters are rejected. YouTube, Vimeo, observed Brightcove identifiers, direct MP4/WebM URLs and the observed exact Telegraph player host are supported. Unknown visible player posters can be figures labeled “Visible poster; player unsupported”; URLs are never guessed. Cross-origin frame interiors, cookies, hidden application state, JSON-LD, scripts and protected streams are not read. Media files are not downloaded or embedded for offline use. Providers can restrict subsequent display or playback.
 
 ## Verification status
 
-JavaScript syntax, unchanged manifest permissions, a simulated one-use nonce handoff with no upload before explicit Import, and server tests for room isolation, same-origin writes and preview rejection passed locally. No installed extension was changed. Live Chrome handoff, Telegraph capture, deployment and phone reading still need verification. Subscription-only or missing text is never reconstructed. A paywall marker can be inactive, so compare captured text with the readable original; capture completeness is not certified.
+Local rendered-DOM tests cover visibility, partial viewport intersections, occlusion, safe URLs and player handling. Worker tests use the actual private-room API with an in-memory database to check pairing sizes, canonical source identity, one-use commands, review staging and stop races. They also check inactive sources, expiry and revocation. These are local simulated checks, not installed Chrome or phone verification. Browser-origin/CORS behavior, activeTab retention, alarm timing, real pairing and phone media display require an explicit permission review followed by manual end-to-end testing. No extension was loaded or run against Chrome during implementation.

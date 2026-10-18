@@ -5,6 +5,8 @@ import {memberAuthAPI,memberAuthGate,isPublicMemberAuthPath} from '../lib/member
 import type {MemberAuthEnv} from '../lib/member-auth';
 import {roomId,DEFAULT_ROOM_ID} from '../lib/rooms';
 import {resolveRoomLink} from '../lib/short-links';
+import {pageLensAPI} from '../lib/page-lens-service';
+import type {Config} from '../lib/education-service';
 
 export default {
   async fetch(request: Request, env: Cloudflare.Env, ctx: ExecutionContext<{ CONNECTORS?: ConnectorBinding }>) {
@@ -12,13 +14,16 @@ export default {
     const path=new URL(request.url).pathname;
     if(path.startsWith('/r/'))return resolveRoomLink(request,roomEnv);
     if(path==='/api/member-auth')return memberAuthAPI(request,roomEnv);
+    // Page Lens authenticates either the room owner or its short-lived,
+    // exact-article capture capability. It never uses a Camden credential.
+    if(path==='/api/page-lens')return pageLensAPI(request,env as unknown as Config);
     if(roomEnv.RR_MEMBER_AUTH_MODE==='enforced'&&!isPublicMemberAuthPath(path)){
       const gated=await memberAuthGate(request,roomEnv);
       if(gated instanceof Response)return gated;
       request=gated;
       // Retained legacy tools and private corpus assets belong to the migrated room.
       // New room owners never inherit access to those global, pre-room records.
-      const legacy=/^\/(?:api\/(?:education|capture|resources|requests|library-connector|private-assets|discussion)(?:\/|$)|critical(?:\/|$)|critical-assets(?:\/|$)|private-assets-admin$|library-connector$|(?:ret-corpus|research)\.json$|ret-(?:camden-connector|page-lens-extension)\.zip$|(?:phone|help|unpaywall|subscriptions|read-everything-guide)\.html$|index\.html$)/.test(path);
+      const legacy=/^\/(?:api\/(?:education|capture|resources|requests|library-connector|private-assets|discussion)(?:\/|$)|critical(?:\/|$)|critical-assets(?:\/|$)|private-assets-admin$|library-connector$|(?:ret-corpus|research)\.json$|ret-camden-connector\.zip$|(?:phone|help|unpaywall|subscriptions|read-everything-guide)\.html$|index\.html$)/.test(path);
       if(legacy&&roomId(request)!==DEFAULT_ROOM_ID)return new Response('Not found',{status:404,headers:{'Cache-Control':'private, no-store'}});
     }
     let binding = ctx.props?.CONNECTORS;

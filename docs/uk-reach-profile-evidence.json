@@ -1,0 +1,210 @@
+{
+  "checkedAt": "2026-10-18T13:27:28.198Z",
+  "method": "At most one ordinary existing-reader-UA article request per eligible homepage200 outlet; no cookies, retries, stealth, hidden JSON text, browser or provider calls. Metadata/counts only persisted in final evidence.",
+  "rows": [
+    {
+      "publisher": "Daily Express",
+      "sourceURL": "https://www.express.co.uk/news/royal/2258091/beatrice-eugenie-trapped-nightmare-andrew",
+      "homepageHTTP": 200,
+      "homepageOutcome": "Homepage response received",
+      "checkedAt": "2026-10-18T13:26:33.920Z",
+      "adapterAdded": false,
+      "visualVerified": false,
+      "completenessVerified": false,
+      "httpStatus": 200,
+      "sourceTitle": "Beatrice and Eugenie are trapped in a nightmare - Andrew and Fergie just made it worse",
+      "date": "2026-10-18T14:00:00+01:00",
+      "canonical": "https://www.express.co.uk/news/royal/2258091/beatrice-eugenie-trapped-nightmare-andrew",
+      "bytes": 180423,
+      "challenge": false,
+      "subscription": false,
+      "candidateRoots": [
+        {
+          "tag": "DIV",
+          "id": "singleArticle",
+          "cls": "single-article article-body regular",
+          "testid": null,
+          "paragraphs": 14,
+          "images": 4,
+          "players": 0
+        },
+        {
+          "tag": "ARTICLE",
+          "id": "article-body",
+          "cls": "",
+          "testid": null,
+          "paragraphs": 13,
+          "images": 3,
+          "players": 0
+        }
+      ],
+      "captionContainers": [
+        {
+          "tag": "SPAN",
+          "cls": "caption"
+        },
+        {
+          "tag": "SPAN",
+          "cls": "caption"
+        }
+      ],
+      "result": "No adapter added: observed ctx_content p402_premium access marker; public eligibility unclear",
+      "premiumMarker": "ctx_content p402_premium",
+      "limit": "No article-text extraction attempted; no access bypass or additional request."
+    },
+    {
+      "publisher": "Daily Star",
+      "sourceURL": "https://www.dailystar.co.uk/tv/real-fight-erupts-netflixs-gentleman-37782219",
+      "homepageHTTP": 200,
+      "homepageOutcome": "Homepage response received",
+      "checkedAt": "2026-10-18T13:26:34.043Z",
+      "adapterAdded": true,
+      "visualVerified": false,
+      "completenessVerified": false,
+      "httpStatus": 200,
+      "sourceTitle": "Real fight 'erupts' on Netflix's The Gentleman set as star 'shocked' by punch-up",
+      "date": "2026-10-18T08:15:23Z",
+      "canonical": "https://www.dailystar.co.uk/tv/real-fight-erupts-netflixs-gentleman-37782219",
+      "bytes": 578150,
+      "challenge": false,
+      "subscription": false,
+      "candidateRoots": [
+        {
+          "tag": "ARTICLE",
+          "id": "article-body",
+          "cls": "ArticleBody_article__AwrJE",
+          "testid": "body",
+          "paragraphs": 25,
+          "images": 5,
+          "players": 0
+        }
+      ],
+      "captionContainers": [
+        {
+          "tag": "FIGCAPTION",
+          "cls": "ImageCaption_caption__j7HRu"
+        },
+        {
+          "tag": "SPAN",
+          "cls": "ImageCaption_caption-header__4xmz_"
+        },
+        {
+          "tag": "P",
+          "cls": "ImageCaption_caption-title__ccyQU"
+        },
+        {
+          "tag": "CITE",
+          "cls": "ImageCaption_caption-credit__wlx1W"
+        },
+        {
+          "tag": "FIGCAPTION",
+          "cls": "ImageCaption_caption__j7HRu"
+        },
+        {
+          "tag": "SPAN",
+          "cls": "ImageCaption_caption-header__4xmz_"
+        }
+      ],
+      "result": "Strict adapter extraction passed from one ordinary public response; completeness/visual rendering unverified",
+      "extraction": {
+        "paragraphCount": 11,
+        "wordCount": 368,
+        "imageCount": 4,
+        "videoCount": 0,
+        "paywallDetected": false,
+        "completeNotCertified": true,
+        "captionCount": 4
+      },
+      "extractedTitle": "Real fight 'erupts' on Netflix's The Gentleman set as star 'shocked' by punch-up",
+      "sourceDate": "2026-10-18T08:15:23Z",
+      "boundary": "#article-body[data-testid=\"body\"]"
+    },
+    {
+      "publisher": "Daily Record",
+      "sourceURL": "https://www.dailyrecord.co.uk/news/scottish-news/first-picture-flying-instructor-killed-37783715",
+      "homepageHTTP": 200,
+      "homepageOutcome": "Homepage response received",
+      "checkedAt": "2026-10-18T13:26:34.203Z",
+      "adapterAdded": true,
+      "visualVerified": false,
+      "completenessVerified": false,
+      "httpStatus": 200,
+      "sourceTitle": "First picture of flying instructor killed in plane crash near Drymen with teen student",
+      "date": "2026-10-17T21:06:03Z",
+      "canonical": "https://www.dailyrecord.co.uk/news/scottish-news/first-picture-flying-instructor-killed-37783715",
+      "bytes": 542602,
+      "challenge": false,
+      "subscription": false,
+      "candidateRoots": [
+        {
+          "tag": "ARTICLE",
+          "id": "article-body",
+          "cls": "ArticleBody_article__AwrJE",
+          "testid": "body",
+          "paragraphs": 21,
+          "images": 4,
+          "players": 0
+        }
+      ],
+      "captionContainers": [
+        {
+          "tag": "FIGCAPTION",
+          "cls": "ImageCaption_caption__j7HRu"
+        },
+        {
+          "tag": "SPAN",
+          "cls": "ImageCaption_caption-header__4xmz_"
+        },
+        {
+          "tag": "P",
+          "cls": "ImageCaption_caption-title__ccyQU"
+        },
+        {
+          "tag": "CITE",
+          "cls": "ImageCaption_caption-credit__wlx1W"
+        },
+        {
+          "tag": "FIGCAPTION",
+          "cls": "ImageCaption_caption__j7HRu"
+        },
+        {
+          "tag": "SPAN",
+          "cls": "ImageCaption_caption-header__4xmz_"
+        }
+      ],
+      "result": "Strict adapter extraction passed from one ordinary public response; completeness/visual rendering unverified",
+      "extraction": {
+        "paragraphCount": 16,
+        "wordCount": 387,
+        "imageCount": 4,
+        "videoCount": 0,
+        "paywallDetected": false,
+        "completeNotCertified": true,
+        "captionCount": 4
+      },
+      "extractedTitle": "First picture of flying instructor killed in plane crash near Drymen with teen student",
+      "sourceDate": "2026-10-17T21:06:03Z",
+      "boundary": "#article-body[data-testid=\"body\"]"
+    }
+  ],
+  "verification": {
+    "parserPresentationTestsPassed": 26,
+    "typeCheck": "passed",
+    "scopedLint": "passed",
+    "browserVisualVerified": false,
+    "rawResponsesDeleted": true,
+    "sourceProsePersisted": false,
+    "extractorSHA256": "64d319f8f583b514aac1468c933e7bbf8f799fe6b3c56e09a7547dcea9392726"
+  },
+  "coverage": {
+    "outletsChecked": 3,
+    "newProfiles": 2,
+    "notAdded": 1
+  },
+  "limitations": [
+    "One observed public article per new website family; other articles and Sunday editions not independently verified.",
+    "Image counts are URL references; Daily Record includes two source crops of the same photograph.",
+    "No browser rendering, playback, complete-source fidelity or physical-device acceptance was verified.",
+    "Daily Express was left unsupported because an observed p402_premium access marker made public eligibility unclear."
+  ]
+}

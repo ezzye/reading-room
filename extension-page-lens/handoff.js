@@ -11,7 +11,7 @@
     const {retReviewedCapture: record} = await chrome.storage.local.get('retReviewedCapture');
     if (!record || record.nonce !== requested || !/^[a-f0-9]{48}$/.test(record.nonce) ||
         !Number.isFinite(record.expiresAt) || record.expiresAt <= Date.now() || record.expiresAt > Date.now() + 600000 ||
-        record.capture?.schema !== 'ret-capture/v1') return;
+        !['ret-capture/v1','ret-media/v1'].includes(record.capture?.schema)) return;
     await chrome.storage.local.remove('retReviewedCapture');
     window.dispatchEvent(new CustomEvent('ret-capture-ready', {detail: {capture: record.capture, nonce: record.nonce}}));
   }, {once: true});

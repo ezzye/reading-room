@@ -1,0 +1,1644 @@
+{
+  "auditDate": "2026-10-18",
+  "timeZone": "Europe/London",
+  "checkedAt": "2026-10-18T13:21:32.830Z",
+  "scope": "Checklist of major UK national daily/Sunday titles and representative leading Scotland, Wales, Northern Ireland, London, and English regional publishers. BBC is shown only as a separate news-site comparator, not a newspaper. This is not a complete inventory of every UK newspaper or regional title.",
+  "method": "New website families only: one ordinary public homepage fetch each; metadata/counts only; at most one real linked headline URL observed, no article-body fetch where the current reader has no publisher profile. No cookies, browser, challenge bypass, provider calls, or denied-homepage retries. Existing 12-publisher audit evidence is reused as comparator and was not re-fetched.",
+  "editionNotes": [
+    "Shared-site daily and Sunday mastheads are listed separately; a homepage URL/headline observation does not verify a Sunday edition article.",
+    "For shared-site editions without their own tested route, the route is identified as shared/unchecked.",
+    "The current list is intentionally open: local, specialist, language, trade, and other regional papers remain outside this bounded coverage pass."
+  ],
+  "publisherFamilies": [
+    {
+      "websiteFamily": "Daily Express",
+      "region": "National",
+      "homepageURL": "https://www.express.co.uk/",
+      "editions": [
+        {
+          "title": "Daily Express",
+          "editionRoute": "Shared website family; this title edition was not independently checked"
+        },
+        {
+          "title": "Sunday Express",
+          "editionRoute": "Shared website family; this title edition was not independently checked"
+        }
+      ],
+      "checkedAt": "2026-10-18T13:21:32.831Z",
+      "httpStatus": 200,
+      "homepageOutcome": "Homepage response received",
+      "observedHeadline": "Beatrice and Eugenie are trapped in a nightmare - Andrew and Fergie just made it worse",
+      "articleURL": "https://www.express.co.uk/news/royal/2258091/beatrice-eugenie-trapped-nightmare-andrew",
+      "urlBasis": "Headline observed in linked heading/card",
+      "readerSupport": "No current extractNewspaper profile; article body test not implemented",
+      "accessPaywall": "Public headline/URL observed; article body access not tested.",
+      "libraryArticleVerification": "Not checked for this edition.",
+      "followupArticleCheck": {
+        "publisher": "Daily Express",
+        "sourceURL": "https://www.express.co.uk/news/royal/2258091/beatrice-eugenie-trapped-nightmare-andrew",
+        "checkedAt": "2026-10-18T13:26:33.920Z",
+        "httpStatus": 200,
+        "sourceTitle": "Beatrice and Eugenie are trapped in a nightmare - Andrew and Fergie just made it worse",
+        "profileAdded": false,
+        "adapterStatus": "No adapter added; text import not attempted",
+        "extraction": null,
+        "premiumMarker": "ctx_content p402_premium",
+        "result": "No adapter added: observed ctx_content p402_premium access marker; public eligibility unclear",
+        "accessPaywall": "ctx_content p402_premium marker observed; public eligibility unclear; paywall not confirmed.",
+        "visualVerified": false,
+        "completenessVerified": false,
+        "libraryArticleVerification": "Phone/library verification pending; no physical-device or Camden route result in this evidence."
+      },
+      "initialHomepageHeadlineEvidenceRetained": true
+    },
+    {
+      "websiteFamily": "Daily Star",
+      "region": "National",
+      "homepageURL": "https://www.dailystar.co.uk/",
+      "editions": [
+        {
+          "title": "Daily Star",
+          "editionRoute": "Shared website family; this title edition was not independently checked"
+        },
+        {
+          "title": "Daily Star Sunday",
+          "editionRoute": "Shared Daily Star website family; Sunday article not independently verified"
+        }
+      ],
+      "checkedAt": "2026-10-18T13:21:32.979Z",
+      "httpStatus": 200,
+      "homepageOutcome": "Homepage response received",
+      "observedHeadline": "'CUT LIP': Real fight 'erupts' on Netflix's The Gentleman set as star 'shocked' by punch-up",
+      "articleURL": "https://www.dailystar.co.uk/tv/real-fight-erupts-netflixs-gentleman-37782219",
+      "urlBasis": "Headline observed in linked heading/card",
+      "readerSupport": "Strict adapter/profile and search integration published in deployed v45; extraction evidence is available, visual completeness and phone validation remain unverified.",
+      "accessPaywall": "Public headline/URL observed; article body access not tested.",
+      "libraryArticleVerification": "Not checked for this edition.",
+      "titleEvidenceURLs": [
+        "https://www.reachplc.com/news/2025/daily-star-editor-in-chief-to-leave-role-in-march"
+      ],
+      "followupArticleCheck": {
+        "publisher": "Daily Star",
+        "sourceURL": "https://www.dailystar.co.uk/tv/real-fight-erupts-netflixs-gentleman-37782219",
+        "checkedAt": "2026-10-18T13:26:34.043Z",
+        "httpStatus": 200,
+        "sourceTitle": "Real fight 'erupts' on Netflix's The Gentleman set as star 'shocked' by punch-up",
+        "profileAdded": true,
+        "adapterStatus": "Strict adapter/profile and search integration published in deployed v45.",
+        "extraction": {
+          "paragraphCount": 11,
+          "wordCount": 368,
+          "imageCount": 4,
+          "videoCount": 0,
+          "paywallDetected": false,
+          "completeNotCertified": true,
+          "captionCount": 4
+        },
+        "premiumMarker": null,
+        "result": "Strict adapter extraction passed from one ordinary public response; completeness/visual rendering unverified",
+        "accessPaywall": "Public text extracted from one HTTP 200 response without sign-in; completeness not certified.",
+        "visualVerified": false,
+        "completenessVerified": false,
+        "libraryArticleVerification": "Phone/library verification pending; no physical-device or Camden route result in this evidence.",
+        "v45Deployment": {
+          "version": "v45",
+          "deploymentId": "appgdep_6ad4caf326988191b1f0b720acb19f08",
+          "deployedAt": "2026-10-18T13:35:00Z",
+          "sourceCommit": "6b352d5a1a6bcaf34400d2e92f61650eaf87e961",
+          "liveRoomTested": false,
+          "phoneTested": false
+        }
+      },
+      "initialHomepageHeadlineEvidenceRetained": true,
+      "initialReaderSupport": "No current extractNewspaper profile; article body test not implemented"
+    },
+    {
+      "websiteFamily": "i paper",
+      "region": "National",
+      "homepageURL": "https://inews.co.uk/",
+      "editions": [
+        {
+          "title": "i paper",
+          "editionRoute": "Shared website family; this title edition was not independently checked"
+        }
+      ],
+      "checkedAt": "2026-10-18T13:21:33.121Z",
+      "httpStatus": 200,
+      "homepageOutcome": "Homepage response received",
+      "observedHeadline": "The parents ‘better off’ on universal credit due to childcare trap",
+      "articleURL": "https://inews.co.uk/news/education/parents-better-off-on-universal-credit-childcare-trap-4825817",
+      "urlBasis": "Headline observed in linked heading/card",
+      "readerSupport": "No current extractNewspaper profile; article body test not implemented",
+      "accessPaywall": "Public headline/URL observed; article body access not tested.",
+      "libraryArticleVerification": "Not checked for this edition."
+    },
+    {
+      "websiteFamily": "Daily Record",
+      "region": "Scotland",
+      "homepageURL": "https://www.dailyrecord.co.uk/",
+      "editions": [
+        {
+          "title": "Daily Record",
+          "editionRoute": "Shared website family; this title edition was not independently checked"
+        },
+        {
+          "title": "Sunday Mail",
+          "editionRoute": "Shared website family; this title edition was not independently checked"
+        }
+      ],
+      "checkedAt": "2026-10-18T13:21:33.208Z",
+      "httpStatus": 200,
+      "homepageOutcome": "Homepage response received",
+      "observedHeadline": "First picture of flying instructor killed in plane crash near Drymen with teen student",
+      "articleURL": "https://www.dailyrecord.co.uk/news/scottish-news/first-picture-flying-instructor-killed-37783715",
+      "urlBasis": "Headline observed in linked heading/card",
+      "readerSupport": "Strict adapter/profile and search integration published in deployed v45; extraction evidence is available, visual completeness and phone validation remain unverified.",
+      "accessPaywall": "Public headline/URL observed; article body access not tested.",
+      "libraryArticleVerification": "Not checked for this edition.",
+      "followupArticleCheck": {
+        "publisher": "Daily Record",
+        "sourceURL": "https://www.dailyrecord.co.uk/news/scottish-news/first-picture-flying-instructor-killed-37783715",
+        "checkedAt": "2026-10-18T13:26:34.203Z",
+        "httpStatus": 200,
+        "sourceTitle": "First picture of flying instructor killed in plane crash near Drymen with teen student",
+        "profileAdded": true,
+        "adapterStatus": "Strict adapter/profile and search integration published in deployed v45.",
+        "extraction": {
+          "paragraphCount": 16,
+          "wordCount": 387,
+          "imageCount": 4,
+          "videoCount": 0,
+          "paywallDetected": false,
+          "completeNotCertified": true,
+          "captionCount": 4
+        },
+        "premiumMarker": null,
+        "result": "Strict adapter extraction passed from one ordinary public response; completeness/visual rendering unverified",
+        "accessPaywall": "Public text extracted from one HTTP 200 response without sign-in; completeness not certified.",
+        "visualVerified": false,
+        "completenessVerified": false,
+        "libraryArticleVerification": "Phone/library verification pending; no physical-device or Camden route result in this evidence.",
+        "v45Deployment": {
+          "version": "v45",
+          "deploymentId": "appgdep_6ad4caf326988191b1f0b720acb19f08",
+          "deployedAt": "2026-10-18T13:35:00Z",
+          "sourceCommit": "6b352d5a1a6bcaf34400d2e92f61650eaf87e961",
+          "liveRoomTested": false,
+          "phoneTested": false
+        }
+      },
+      "initialHomepageHeadlineEvidenceRetained": true,
+      "initialReaderSupport": "No current extractNewspaper profile; article body test not implemented"
+    },
+    {
+      "websiteFamily": "Morning Star",
+      "region": "National",
+      "homepageURL": "https://morningstaronline.co.uk/",
+      "editions": [
+        {
+          "title": "Morning Star",
+          "editionRoute": "Shared website family; this title edition was not independently checked"
+        }
+      ],
+      "checkedAt": "2026-10-18T13:21:33.371Z",
+      "httpStatus": 200,
+      "homepageOutcome": "Homepage response received",
+      "observedHeadline": null,
+      "articleURL": null,
+      "urlBasis": null,
+      "readerSupport": "No article URL identified under headline/card rule",
+      "accessPaywall": "Not established; no article URL tested.",
+      "libraryArticleVerification": "Not checked for this edition."
+    },
+    {
+      "websiteFamily": "The Scotsman",
+      "region": "Scotland",
+      "homepageURL": "https://www.scotsman.com/",
+      "editions": [
+        {
+          "title": "The Scotsman",
+          "editionRoute": "Shared website family; this title edition was not independently checked"
+        },
+        {
+          "title": "Scotland on Sunday",
+          "editionRoute": "Shared website family; this title edition was not independently checked"
+        }
+      ],
+      "checkedAt": "2026-10-18T13:21:33.496Z",
+      "httpStatus": 403,
+      "homepageOutcome": "HTTP 403",
+      "observedHeadline": null,
+      "articleURL": null,
+      "urlBasis": null,
+      "readerSupport": "Not evaluated; no article URL",
+      "accessPaywall": "Automated access refused; article paywall not established by homepage request.",
+      "libraryArticleVerification": "Not checked for this edition."
+    },
+    {
+      "websiteFamily": "The Herald",
+      "region": "Scotland",
+      "homepageURL": "https://www.heraldscotland.com/",
+      "editions": [
+        {
+          "title": "The Herald",
+          "editionRoute": "Shared website family; this title edition was not independently checked"
+        }
+      ],
+      "checkedAt": "2026-10-18T13:21:33.556Z",
+      "httpStatus": 200,
+      "homepageOutcome": "Homepage response received",
+      "observedHeadline": "John Swinney compared to dictator as bus plans branded ‘business confiscation’",
+      "articleURL": "https://www.heraldscotland.com/news/26647133.swinney-compared-dictators-bus-public-control-plan/",
+      "urlBasis": "Headline observed in linked heading/card",
+      "readerSupport": "No current extractNewspaper profile; article body test not implemented",
+      "accessPaywall": "Public headline/URL observed; article body access not tested.",
+      "libraryArticleVerification": "Not checked for this edition."
+    },
+    {
+      "websiteFamily": "The National",
+      "region": "Scotland",
+      "homepageURL": "https://www.thenational.scot/",
+      "editions": [
+        {
+          "title": "The National",
+          "editionRoute": "Shared website family; this title edition was not independently checked"
+        }
+      ],
+      "checkedAt": "2026-10-18T13:21:33.657Z",
+      "httpStatus": 200,
+      "homepageOutcome": "Homepage response received",
+      "observedHeadline": "Deputy First Minister defends SNP bus plans after McGill’s threatens legal action",
+      "articleURL": "https://www.thenational.scot/news/26647064.jenny-gilruth-pledges-work-bus-companies-mcgills/",
+      "urlBasis": "Headline observed in linked heading/card",
+      "readerSupport": "No current extractNewspaper profile; article body test not implemented",
+      "accessPaywall": "Public headline/URL observed; article body access not tested.",
+      "libraryArticleVerification": "Not checked for this edition."
+    },
+    {
+      "websiteFamily": "Press and Journal",
+      "region": "Scotland",
+      "homepageURL": "https://www.pressandjournal.co.uk/",
+      "editions": [
+        {
+          "title": "Press and Journal",
+          "editionRoute": "Shared website family; this title edition was not independently checked"
+        }
+      ],
+      "checkedAt": "2026-10-18T13:21:33.764Z",
+      "httpStatus": 200,
+      "homepageOutcome": "Homepage response received",
+      "observedHeadline": "Exclusive: How Moray wind farm plans to use AI to pay full energy bills of nearby residents",
+      "articleURL": "https://www.pressandjournal.co.uk/fp/news/moray/7130305/moray-wind-farm-dorenell-galileo-ai-energy-bills/",
+      "urlBasis": "Headline observed in linked heading/card",
+      "readerSupport": "No current extractNewspaper profile; article body test not implemented",
+      "accessPaywall": "Public headline/URL observed; article body access not tested.",
+      "libraryArticleVerification": "Not checked for this edition."
+    },
+    {
+      "websiteFamily": "The Courier",
+      "region": "Scotland",
+      "homepageURL": "https://www.thecourier.co.uk/",
+      "editions": [
+        {
+          "title": "The Courier",
+          "editionRoute": "Shared website family; this title edition was not independently checked"
+        }
+      ],
+      "checkedAt": "2026-10-18T13:21:33.907Z",
+      "httpStatus": 200,
+      "homepageOutcome": "Homepage response received",
+      "observedHeadline": "Flying instructor, 80, dies in Stirlingshire plane crash alongside teen",
+      "articleURL": "https://www.thecourier.co.uk/fp/news/5600468/ian-haggis-plane-crash-drymen/",
+      "urlBasis": "Headline observed in linked heading/card",
+      "readerSupport": "No current extractNewspaper profile; article body test not implemented",
+      "accessPaywall": "Public headline/URL observed; article body access not tested.",
+      "libraryArticleVerification": "Not checked for this edition."
+    },
+    {
+      "websiteFamily": "Sunday Post",
+      "region": "Scotland",
+      "homepageURL": "https://www.sundaypost.com/",
+      "editions": [
+        {
+          "title": "Sunday Post",
+          "editionRoute": "Shared website family; this title edition was not independently checked"
+        }
+      ],
+      "checkedAt": "2026-10-18T13:21:34.028Z",
+      "httpStatus": 200,
+      "homepageOutcome": "Homepage response received",
+      "observedHeadline": "Pledge for all rogue police officers to face independent panel secretly axed",
+      "articleURL": "https://www.sundaypost.com/fp/police-quietly-shelve-plan-for-independent-review-of-all-rogue-officers/",
+      "urlBasis": "Headline observed in linked heading/card",
+      "readerSupport": "No current extractNewspaper profile; article body test not implemented",
+      "accessPaywall": "Public headline/URL observed; article body access not tested.",
+      "libraryArticleVerification": "Not checked for this edition."
+    },
+    {
+      "websiteFamily": "WalesOnline / Western Mail",
+      "region": "Wales",
+      "homepageURL": "https://www.walesonline.co.uk/",
+      "editions": [
+        {
+          "title": "WalesOnline",
+          "editionRoute": "Shared website family; this title edition was not independently checked"
+        },
+        {
+          "title": "Western Mail",
+          "editionRoute": "Shared website family; this title edition was not independently checked"
+        }
+      ],
+      "checkedAt": "2026-10-18T13:21:34.199Z",
+      "httpStatus": 200,
+      "homepageOutcome": "Homepage response received",
+      "observedHeadline": "Poundland staff shut out of store after locks were changed",
+      "articleURL": "https://www.walesonline.co.uk/news/wales-news/poundland-staff-shut-out-aberystwyth-34781912",
+      "urlBasis": "Headline observed in linked heading/card",
+      "readerSupport": "No current extractNewspaper profile; article body test not implemented",
+      "accessPaywall": "Public headline/URL observed; article body access not tested.",
+      "libraryArticleVerification": "Not checked for this edition."
+    },
+    {
+      "websiteFamily": "Daily Post / North Wales Live",
+      "region": "Wales",
+      "homepageURL": "https://www.dailypost.co.uk/",
+      "editions": [
+        {
+          "title": "Daily Post",
+          "editionRoute": "Shared website family; this title edition was not independently checked"
+        }
+      ],
+      "checkedAt": "2026-10-18T13:21:34.272Z",
+      "httpStatus": 200,
+      "homepageOutcome": "Homepage response received",
+      "observedHeadline": "Police update on Holyhead murder probe after man died in flats",
+      "articleURL": "https://www.dailypost.co.uk/news/north-wales-news/police-update-holyhead-murder-probe-34781757",
+      "urlBasis": "Headline observed in linked heading/card",
+      "readerSupport": "No current extractNewspaper profile; article body test not implemented",
+      "accessPaywall": "Public headline/URL observed; article body access not tested.",
+      "libraryArticleVerification": "Not checked for this edition."
+    },
+    {
+      "websiteFamily": "Belfast Telegraph",
+      "region": "Northern Ireland",
+      "homepageURL": "https://www.belfasttelegraph.co.uk/",
+      "editions": [
+        {
+          "title": "Belfast Telegraph",
+          "editionRoute": "Shared website family; this title edition was not independently checked"
+        },
+        {
+          "title": "Sunday Life",
+          "editionRoute": "Belfast Telegraph family section; not front-page/article checked"
+        }
+      ],
+      "checkedAt": "2026-10-18T13:21:34.422Z",
+      "httpStatus": 403,
+      "homepageOutcome": "HTTP 403",
+      "observedHeadline": null,
+      "articleURL": null,
+      "urlBasis": null,
+      "readerSupport": "Not evaluated; no article URL",
+      "accessPaywall": "Automated access refused; article paywall not established by homepage request.",
+      "libraryArticleVerification": "Not checked for this edition.",
+      "titleEvidenceURLs": [
+        "https://www.mediahuis.com/en/brands/sunday-life",
+        "https://www.belfasttelegraph.co.uk/sunday-life/"
+      ]
+    },
+    {
+      "websiteFamily": "Irish News",
+      "region": "Northern Ireland",
+      "homepageURL": "https://www.irishnews.com/",
+      "editions": [
+        {
+          "title": "The Irish News",
+          "editionRoute": "Shared website family; this title edition was not independently checked"
+        }
+      ],
+      "checkedAt": "2026-10-18T13:21:34.468Z",
+      "httpStatus": 200,
+      "homepageOutcome": "Homepage response received",
+      "observedHeadline": "SDLP MLA Patsy McGlone calls for ‘urgent meeting’ with BBC NI leadership in wake of proposed Irish language job cuts",
+      "articleURL": "https://www.irishnews.com/news/northern-ireland/sdlp-mla-patsy-mcglone-calls-for-urgent-meeting-with-bbc-ni-leadership-in-wake-of-proposed-irish-language-job-cuts-HRRG6LWBN5AVBFGGJN7UALOCJ4/",
+      "urlBasis": "Headline observed in linked heading/card",
+      "readerSupport": "No current extractNewspaper profile; article body test not implemented",
+      "accessPaywall": "Public headline/URL observed; article body access not tested.",
+      "libraryArticleVerification": "Not checked for this edition."
+    },
+    {
+      "websiteFamily": "News Letter",
+      "region": "Northern Ireland",
+      "homepageURL": "https://www.newsletter.co.uk/",
+      "editions": [
+        {
+          "title": "News Letter",
+          "editionRoute": "Shared website family; this title edition was not independently checked"
+        }
+      ],
+      "checkedAt": "2026-10-18T13:21:34.604Z",
+      "httpStatus": 403,
+      "homepageOutcome": "HTTP 403",
+      "observedHeadline": null,
+      "articleURL": null,
+      "urlBasis": null,
+      "readerSupport": "Not evaluated; no article URL",
+      "accessPaywall": "Automated access refused; article paywall not established by homepage request.",
+      "libraryArticleVerification": "Not checked for this edition."
+    },
+    {
+      "websiteFamily": "City A.M.",
+      "region": "London / national business",
+      "homepageURL": "https://www.cityam.com/",
+      "editions": [
+        {
+          "title": "City A.M.",
+          "editionRoute": "Shared website family; this title edition was not independently checked"
+        }
+      ],
+      "checkedAt": "2026-10-18T13:21:34.658Z",
+      "httpStatus": 200,
+      "homepageOutcome": "Homepage response received",
+      "observedHeadline": null,
+      "articleURL": null,
+      "urlBasis": null,
+      "readerSupport": "No article URL identified under headline/card rule",
+      "accessPaywall": "Not established; no article URL tested.",
+      "libraryArticleVerification": "Not checked for this edition."
+    },
+    {
+      "websiteFamily": "Yorkshire Post",
+      "region": "England regional",
+      "homepageURL": "https://www.yorkshirepost.co.uk/",
+      "editions": [
+        {
+          "title": "Yorkshire Post",
+          "editionRoute": "Shared website family; this title edition was not independently checked"
+        }
+      ],
+      "checkedAt": "2026-10-18T13:21:36.524Z",
+      "httpStatus": 403,
+      "homepageOutcome": "HTTP 403",
+      "observedHeadline": null,
+      "articleURL": null,
+      "urlBasis": null,
+      "readerSupport": "Not evaluated; no article URL",
+      "accessPaywall": "Automated access refused; article paywall not established by homepage request.",
+      "libraryArticleVerification": "Not checked for this edition."
+    },
+    {
+      "websiteFamily": "Manchester Evening News",
+      "region": "England regional",
+      "homepageURL": "https://www.manchestereveningnews.co.uk/",
+      "editions": [
+        {
+          "title": "Manchester Evening News",
+          "editionRoute": "Shared website family; this title edition was not independently checked"
+        }
+      ],
+      "checkedAt": "2026-10-18T13:21:36.577Z",
+      "httpStatus": 200,
+      "homepageOutcome": "Homepage response received",
+      "observedHeadline": "BREAKING: Tragedy as man dies in house fire",
+      "articleURL": "https://www.manchestereveningnews.co.uk/news/greater-manchester-news/tragedy-man-dies-prestwich-house-34781826",
+      "urlBasis": "Headline observed in linked heading/card",
+      "readerSupport": "No current extractNewspaper profile; article body test not implemented",
+      "accessPaywall": "Public headline/URL observed; article body access not tested.",
+      "libraryArticleVerification": "Not checked for this edition."
+    },
+    {
+      "websiteFamily": "Liverpool Echo",
+      "region": "England regional",
+      "homepageURL": "https://www.liverpoolecho.co.uk/",
+      "editions": [
+        {
+          "title": "Liverpool Echo",
+          "editionRoute": "Shared website family; this title edition was not independently checked"
+        }
+      ],
+      "checkedAt": "2026-10-18T13:21:36.680Z",
+      "httpStatus": 200,
+      "homepageOutcome": "Homepage response received",
+      "observedHeadline": "People living in Liverpool streets 'terrified' after years of 'disgraceful' actions",
+      "articleURL": "https://www.liverpoolecho.co.uk/news/liverpool-news/people-living-liverpool-streets-terrified-34777122",
+      "urlBasis": "Headline observed in linked heading/card",
+      "readerSupport": "No current extractNewspaper profile; article body test not implemented",
+      "accessPaywall": "Public headline/URL observed; article body access not tested.",
+      "libraryArticleVerification": "Not checked for this edition."
+    },
+    {
+      "websiteFamily": "Birmingham Live",
+      "region": "England regional",
+      "homepageURL": "https://www.birminghammail.co.uk/",
+      "editions": [
+        {
+          "title": "Birmingham Mail / Birmingham Live",
+          "editionRoute": "Shared website family; this title edition was not independently checked"
+        }
+      ],
+      "checkedAt": "2026-10-18T13:21:36.770Z",
+      "httpStatus": 200,
+      "homepageOutcome": "Homepage response received",
+      "observedHeadline": "Teen dead and second seriously hurt as car hits railings in Birmingham",
+      "articleURL": "https://www.birminghammail.co.uk/news/midlands-news/teenager-dead-second-seriously-hurt-34781651",
+      "urlBasis": "Headline observed in linked heading/card",
+      "readerSupport": "No current extractNewspaper profile; article body test not implemented",
+      "accessPaywall": "Public headline/URL observed; article body access not tested.",
+      "libraryArticleVerification": "Not checked for this edition."
+    },
+    {
+      "websiteFamily": "Bristol Post",
+      "region": "England regional",
+      "homepageURL": "https://www.bristolpost.co.uk/",
+      "editions": [
+        {
+          "title": "Bristol Post",
+          "editionRoute": "Shared website family; this title edition was not independently checked"
+        }
+      ],
+      "checkedAt": "2026-10-18T13:21:36.852Z",
+      "httpStatus": 200,
+      "homepageOutcome": "Homepage response received",
+      "observedHeadline": "Dad held at gunpoint hails 'life changing' medication in PTSD battle",
+      "articleURL": "https://www.bristolpost.co.uk/news/bristol-news/dad-held-gunpoint-hails-life-11201162",
+      "urlBasis": "Headline observed in linked heading/card",
+      "readerSupport": "No current extractNewspaper profile; article body test not implemented",
+      "accessPaywall": "Public headline/URL observed; article body access not tested.",
+      "libraryArticleVerification": "Not checked for this edition."
+    },
+    {
+      "websiteFamily": "The Northern Echo",
+      "region": "England regional",
+      "homepageURL": "https://www.thenorthernecho.co.uk/",
+      "editions": [
+        {
+          "title": "The Northern Echo",
+          "editionRoute": "Shared website family; this title edition was not independently checked"
+        }
+      ],
+      "checkedAt": "2026-10-18T13:21:36.996Z",
+      "httpStatus": 200,
+      "homepageOutcome": "Homepage response received",
+      "observedHeadline": "Why The Northern Echo subscription price is changing and why your support matters",
+      "articleURL": "https://www.thenorthernecho.co.uk/leisure/showbiz/26570303.northern-echo-subscription-price-changes-support-matters/",
+      "urlBasis": "Headline observed within article card",
+      "readerSupport": "No current extractNewspaper profile; article body test not implemented",
+      "accessPaywall": "Public headline/URL observed; article body access not tested.",
+      "libraryArticleVerification": "Not checked for this edition."
+    }
+  ],
+  "openEditionChecklist": [
+    {
+      "title": "Daily Express",
+      "routeOrFamily": "See publisher family row or reused original audit",
+      "independentlyFetchedEdition": false
+    },
+    {
+      "title": "Sunday Express",
+      "routeOrFamily": "See publisher family row or reused original audit",
+      "independentlyFetchedEdition": false
+    },
+    {
+      "title": "Daily Star",
+      "routeOrFamily": "See publisher family row or reused original audit",
+      "independentlyFetchedEdition": false
+    },
+    {
+      "title": "Daily Star Sunday",
+      "routeOrFamily": "See publisher family row or reused original audit",
+      "independentlyFetchedEdition": false
+    },
+    {
+      "title": "i paper",
+      "routeOrFamily": "See publisher family row or reused original audit",
+      "independentlyFetchedEdition": false
+    },
+    {
+      "title": "Daily Record",
+      "routeOrFamily": "See publisher family row or reused original audit",
+      "independentlyFetchedEdition": false
+    },
+    {
+      "title": "Sunday Mail",
+      "routeOrFamily": "See publisher family row or reused original audit",
+      "independentlyFetchedEdition": false
+    },
+    {
+      "title": "Morning Star",
+      "routeOrFamily": "See publisher family row or reused original audit",
+      "independentlyFetchedEdition": false
+    },
+    {
+      "title": "The Scotsman",
+      "routeOrFamily": "See publisher family row or reused original audit",
+      "independentlyFetchedEdition": false
+    },
+    {
+      "title": "Scotland on Sunday",
+      "routeOrFamily": "See publisher family row or reused original audit",
+      "independentlyFetchedEdition": false
+    },
+    {
+      "title": "The Herald",
+      "routeOrFamily": "See publisher family row or reused original audit",
+      "independentlyFetchedEdition": false
+    },
+    {
+      "title": "The National",
+      "routeOrFamily": "See publisher family row or reused original audit",
+      "independentlyFetchedEdition": false
+    },
+    {
+      "title": "Press and Journal",
+      "routeOrFamily": "See publisher family row or reused original audit",
+      "independentlyFetchedEdition": false
+    },
+    {
+      "title": "The Courier",
+      "routeOrFamily": "See publisher family row or reused original audit",
+      "independentlyFetchedEdition": false
+    },
+    {
+      "title": "Sunday Post",
+      "routeOrFamily": "See publisher family row or reused original audit",
+      "independentlyFetchedEdition": false
+    },
+    {
+      "title": "WalesOnline",
+      "routeOrFamily": "See publisher family row or reused original audit",
+      "independentlyFetchedEdition": false
+    },
+    {
+      "title": "Western Mail",
+      "routeOrFamily": "See publisher family row or reused original audit",
+      "independentlyFetchedEdition": false
+    },
+    {
+      "title": "Daily Post",
+      "routeOrFamily": "See publisher family row or reused original audit",
+      "independentlyFetchedEdition": false
+    },
+    {
+      "title": "Belfast Telegraph",
+      "routeOrFamily": "See publisher family row or reused original audit",
+      "independentlyFetchedEdition": false
+    },
+    {
+      "title": "The Irish News",
+      "routeOrFamily": "See publisher family row or reused original audit",
+      "independentlyFetchedEdition": false
+    },
+    {
+      "title": "News Letter",
+      "routeOrFamily": "See publisher family row or reused original audit",
+      "independentlyFetchedEdition": false
+    },
+    {
+      "title": "City A.M.",
+      "routeOrFamily": "See publisher family row or reused original audit",
+      "independentlyFetchedEdition": false
+    },
+    {
+      "title": "Yorkshire Post",
+      "routeOrFamily": "See publisher family row or reused original audit",
+      "independentlyFetchedEdition": false
+    },
+    {
+      "title": "Manchester Evening News",
+      "routeOrFamily": "See publisher family row or reused original audit",
+      "independentlyFetchedEdition": false
+    },
+    {
+      "title": "Liverpool Echo",
+      "routeOrFamily": "See publisher family row or reused original audit",
+      "independentlyFetchedEdition": false
+    },
+    {
+      "title": "Birmingham Mail / Birmingham Live",
+      "routeOrFamily": "See publisher family row or reused original audit",
+      "independentlyFetchedEdition": false
+    },
+    {
+      "title": "Bristol Post",
+      "routeOrFamily": "See publisher family row or reused original audit",
+      "independentlyFetchedEdition": false
+    },
+    {
+      "title": "The Northern Echo",
+      "routeOrFamily": "See publisher family row or reused original audit",
+      "independentlyFetchedEdition": false
+    },
+    {
+      "title": "Guardian / The Observer",
+      "routeOrFamily": "See publisher family row or reused original audit",
+      "independentlyFetchedEdition": false
+    },
+    {
+      "title": "The Times / Sunday Times",
+      "routeOrFamily": "See publisher family row or reused original audit",
+      "independentlyFetchedEdition": false
+    },
+    {
+      "title": "The Telegraph / Sunday Telegraph",
+      "routeOrFamily": "See publisher family row or reused original audit",
+      "independentlyFetchedEdition": false
+    },
+    {
+      "title": "Daily Mail / Mail on Sunday",
+      "routeOrFamily": "See publisher family row or reused original audit",
+      "independentlyFetchedEdition": false
+    },
+    {
+      "title": "Daily Mirror / Sunday Mirror / Sunday People",
+      "routeOrFamily": "See publisher family row or reused original audit",
+      "independentlyFetchedEdition": false
+    },
+    {
+      "title": "The Sun / Sun on Sunday",
+      "routeOrFamily": "See publisher family row or reused original audit",
+      "independentlyFetchedEdition": false
+    },
+    {
+      "title": "Financial Times / FT Weekend",
+      "routeOrFamily": "See publisher family row or reused original audit",
+      "independentlyFetchedEdition": false
+    },
+    {
+      "title": "The Standard",
+      "routeOrFamily": "See publisher family row or reused original audit",
+      "independentlyFetchedEdition": false
+    },
+    {
+      "title": "Metro",
+      "routeOrFamily": "See publisher family row or reused original audit",
+      "independentlyFetchedEdition": false
+    },
+    {
+      "title": "The Independent",
+      "routeOrFamily": "See publisher family row or reused original audit",
+      "independentlyFetchedEdition": false
+    },
+    {
+      "title": "BBC News (separate comparator)",
+      "routeOrFamily": "See publisher family row or reused original audit",
+      "independentlyFetchedEdition": false
+    },
+    {
+      "title": "Sunday Life",
+      "routeOrFamily": "Belfast Telegraph family section; no article verification",
+      "independentlyFetchedEdition": false,
+      "sourceEvidenceURLs": [
+        "https://www.mediahuis.com/en/brands/sunday-life",
+        "https://www.belfasttelegraph.co.uk/sunday-life/"
+      ]
+    }
+  ],
+  "coverage": {
+    "newWebsiteFamilies": 23,
+    "headlinesObserved": 17,
+    "readerProfilesSupported": 0,
+    "unsupportedBodiesNotFetched": 17,
+    "deniedOrChallenge": 4,
+    "editionsListed": 48,
+    "articleBodiesFetched": 0,
+    "sourceFamiliesListed": 35,
+    "adapterFollowup": {
+      "articleRequests": 3,
+      "extractableProfilesAdded": 2,
+      "extractionPassed": 2,
+      "bodyTextImportNotAttempted": 1,
+      "renderedOrPhoneVerified": 0,
+      "sourceEvidence": "work/ret-expansion/uk-reach-profile-evidence.json",
+      "sourceChecks": "2026-10-18T13:27:28.198Z",
+      "v45Deployment": {
+        "version": "v45",
+        "deploymentId": "appgdep_6ad4caf326988191b1f0b720acb19f08",
+        "deployedAt": "2026-10-18T13:35:00Z",
+        "sourceCommit": "6b352d5a1a6bcaf34400d2e92f61650eaf87e961",
+        "liveRoomTested": false,
+        "phoneTested": false
+      },
+      "integrationStatus": "Adapter/profile and search integration published in deployed v45; live-room and phone validation remain unverified."
+    }
+  },
+  "editionChecklist": [
+    {
+      "publicationEdition": "Daily Express",
+      "websiteFamily": "Daily Express",
+      "region": "National",
+      "homepageURL": "https://www.express.co.uk/",
+      "homepageStatus": 200,
+      "homepageDate": "2026-10-18T13:21:32.831Z",
+      "headlineURL": "https://www.express.co.uk/news/royal/2258091/beatrice-eugenie-trapped-nightmare-andrew",
+      "observedHeadline": "Beatrice and Eugenie are trapped in a nightmare - Andrew and Fergie just made it worse",
+      "urlBasis": "Headline observed in linked heading/card",
+      "accessPaywallBasis": "Public headline/URL observed; article body access not tested.",
+      "readerSupport": "No current extractNewspaper profile; article body test not implemented",
+      "libraryArticleVerification": "Not checked for this edition; no Camden library-route result is inferred."
+    },
+    {
+      "publicationEdition": "Sunday Express",
+      "websiteFamily": "Daily Express",
+      "region": "National",
+      "homepageURL": "https://www.express.co.uk/",
+      "homepageStatus": 200,
+      "homepageDate": "2026-10-18T13:21:32.831Z",
+      "headlineURL": null,
+      "observedHeadline": null,
+      "urlBasis": "Shared website route; this Sunday/weekend edition article was not separately verified",
+      "accessPaywallBasis": "Public headline/URL observed; article body access not tested.",
+      "readerSupport": "No current extractNewspaper profile; article body test not implemented",
+      "libraryArticleVerification": "Not checked for this edition; no Camden library-route result is inferred."
+    },
+    {
+      "publicationEdition": "Daily Star",
+      "websiteFamily": "Daily Star",
+      "region": "National",
+      "homepageURL": "https://www.dailystar.co.uk/",
+      "homepageStatus": 200,
+      "homepageDate": "2026-10-18T13:21:32.979Z",
+      "headlineURL": "https://www.dailystar.co.uk/tv/real-fight-erupts-netflixs-gentleman-37782219",
+      "observedHeadline": "'CUT LIP': Real fight 'erupts' on Netflix's The Gentleman set as star 'shocked' by punch-up",
+      "urlBasis": "Headline observed in linked heading/card",
+      "accessPaywallBasis": "Public headline/URL observed; article body access not tested.",
+      "readerSupport": "Strict adapter/profile and search integration published in deployed v45; live-room and phone validation remain unverified.",
+      "libraryArticleVerification": "Not checked for this edition; no Camden library-route result is inferred.",
+      "initialReaderSupport": "No current extractNewspaper profile; article body test not implemented"
+    },
+    {
+      "publicationEdition": "Daily Star Sunday",
+      "websiteFamily": "Daily Star",
+      "region": "National",
+      "homepageURL": "https://www.dailystar.co.uk/",
+      "homepageStatus": 200,
+      "homepageDate": "2026-10-18T13:21:32.979Z",
+      "headlineURL": null,
+      "observedHeadline": null,
+      "urlBasis": "Shared website route; this Sunday/weekend edition article was not separately verified",
+      "accessPaywallBasis": "Public headline/URL observed; article body access not tested.",
+      "readerSupport": "Strict adapter/profile and search integration published in deployed v45; live-room and phone validation remain unverified.",
+      "libraryArticleVerification": "Not checked for this edition; no Camden library-route result is inferred.",
+      "sourceEvidenceURLs": [
+        {
+          "url": "https://www.reachplc.com/news/2025/daily-star-editor-in-chief-to-leave-role-in-march",
+          "label": "Reach plc title reference"
+        }
+      ],
+      "initialReaderSupport": "No current extractNewspaper profile; article body test not implemented"
+    },
+    {
+      "publicationEdition": "i paper",
+      "websiteFamily": "i paper",
+      "region": "National",
+      "homepageURL": "https://inews.co.uk/",
+      "homepageStatus": 200,
+      "homepageDate": "2026-10-18T13:21:33.121Z",
+      "headlineURL": "https://inews.co.uk/news/education/parents-better-off-on-universal-credit-childcare-trap-4825817",
+      "observedHeadline": "The parents ‘better off’ on universal credit due to childcare trap",
+      "urlBasis": "Headline observed in linked heading/card",
+      "accessPaywallBasis": "Public headline/URL observed; article body access not tested.",
+      "readerSupport": "No current extractNewspaper profile; article body test not implemented",
+      "libraryArticleVerification": "Not checked for this edition; no Camden library-route result is inferred."
+    },
+    {
+      "publicationEdition": "Daily Record",
+      "websiteFamily": "Daily Record",
+      "region": "Scotland",
+      "homepageURL": "https://www.dailyrecord.co.uk/",
+      "homepageStatus": 200,
+      "homepageDate": "2026-10-18T13:21:33.208Z",
+      "headlineURL": "https://www.dailyrecord.co.uk/news/scottish-news/first-picture-flying-instructor-killed-37783715",
+      "observedHeadline": "First picture of flying instructor killed in plane crash near Drymen with teen student",
+      "urlBasis": "Headline observed in linked heading/card",
+      "accessPaywallBasis": "Public headline/URL observed; article body access not tested.",
+      "readerSupport": "Strict adapter/profile and search integration published in deployed v45; live-room and phone validation remain unverified.",
+      "libraryArticleVerification": "Not checked for this edition; no Camden library-route result is inferred.",
+      "initialReaderSupport": "No current extractNewspaper profile; article body test not implemented"
+    },
+    {
+      "publicationEdition": "Sunday Mail",
+      "websiteFamily": "Daily Record",
+      "region": "Scotland",
+      "homepageURL": "https://www.dailyrecord.co.uk/",
+      "homepageStatus": 200,
+      "homepageDate": "2026-10-18T13:21:33.208Z",
+      "headlineURL": null,
+      "observedHeadline": null,
+      "urlBasis": "Shared website route; this Sunday/weekend edition article was not separately verified",
+      "accessPaywallBasis": "Public headline/URL observed; article body access not tested.",
+      "readerSupport": "Strict adapter/profile and search integration published in deployed v45; live-room and phone validation remain unverified.",
+      "libraryArticleVerification": "Not checked for this edition; no Camden library-route result is inferred.",
+      "initialReaderSupport": "No current extractNewspaper profile; article body test not implemented"
+    },
+    {
+      "publicationEdition": "Morning Star",
+      "websiteFamily": "Morning Star",
+      "region": "National",
+      "homepageURL": "https://morningstaronline.co.uk/",
+      "homepageStatus": 200,
+      "homepageDate": "2026-10-18T13:21:33.371Z",
+      "headlineURL": null,
+      "observedHeadline": null,
+      "urlBasis": "Homepage response received",
+      "accessPaywallBasis": "Not established; no article URL tested.",
+      "readerSupport": "No article URL identified under headline/card rule",
+      "libraryArticleVerification": "Not checked for this edition; no Camden library-route result is inferred."
+    },
+    {
+      "publicationEdition": "The Scotsman",
+      "websiteFamily": "The Scotsman",
+      "region": "Scotland",
+      "homepageURL": "https://www.scotsman.com/",
+      "homepageStatus": 403,
+      "homepageDate": "2026-10-18T13:21:33.496Z",
+      "headlineURL": null,
+      "observedHeadline": null,
+      "urlBasis": "HTTP 403",
+      "accessPaywallBasis": "Automated access refused; article paywall not established by homepage request.",
+      "readerSupport": "Not evaluated; no article URL",
+      "libraryArticleVerification": "Not checked for this edition; no Camden library-route result is inferred."
+    },
+    {
+      "publicationEdition": "Scotland on Sunday",
+      "websiteFamily": "The Scotsman",
+      "region": "Scotland",
+      "homepageURL": "https://www.scotsman.com/",
+      "homepageStatus": 403,
+      "homepageDate": "2026-10-18T13:21:33.496Z",
+      "headlineURL": null,
+      "observedHeadline": null,
+      "urlBasis": "Shared website route; this Sunday/weekend edition article was not separately verified",
+      "accessPaywallBasis": "Automated access refused; article paywall not established by homepage request.",
+      "readerSupport": "Not evaluated; no article URL",
+      "libraryArticleVerification": "Not checked for this edition; no Camden library-route result is inferred."
+    },
+    {
+      "publicationEdition": "The Herald",
+      "websiteFamily": "The Herald",
+      "region": "Scotland",
+      "homepageURL": "https://www.heraldscotland.com/",
+      "homepageStatus": 200,
+      "homepageDate": "2026-10-18T13:21:33.556Z",
+      "headlineURL": "https://www.heraldscotland.com/news/26647133.swinney-compared-dictators-bus-public-control-plan/",
+      "observedHeadline": "John Swinney compared to dictator as bus plans branded ‘business confiscation’",
+      "urlBasis": "Headline observed in linked heading/card",
+      "accessPaywallBasis": "Public headline/URL observed; article body access not tested.",
+      "readerSupport": "No current extractNewspaper profile; article body test not implemented",
+      "libraryArticleVerification": "Not checked for this edition; no Camden library-route result is inferred."
+    },
+    {
+      "publicationEdition": "The National",
+      "websiteFamily": "The National",
+      "region": "Scotland",
+      "homepageURL": "https://www.thenational.scot/",
+      "homepageStatus": 200,
+      "homepageDate": "2026-10-18T13:21:33.657Z",
+      "headlineURL": "https://www.thenational.scot/news/26647064.jenny-gilruth-pledges-work-bus-companies-mcgills/",
+      "observedHeadline": "Deputy First Minister defends SNP bus plans after McGill’s threatens legal action",
+      "urlBasis": "Headline observed in linked heading/card",
+      "accessPaywallBasis": "Public headline/URL observed; article body access not tested.",
+      "readerSupport": "No current extractNewspaper profile; article body test not implemented",
+      "libraryArticleVerification": "Not checked for this edition; no Camden library-route result is inferred."
+    },
+    {
+      "publicationEdition": "Press and Journal",
+      "websiteFamily": "Press and Journal",
+      "region": "Scotland",
+      "homepageURL": "https://www.pressandjournal.co.uk/",
+      "homepageStatus": 200,
+      "homepageDate": "2026-10-18T13:21:33.764Z",
+      "headlineURL": "https://www.pressandjournal.co.uk/fp/news/moray/7130305/moray-wind-farm-dorenell-galileo-ai-energy-bills/",
+      "observedHeadline": "Exclusive: How Moray wind farm plans to use AI to pay full energy bills of nearby residents",
+      "urlBasis": "Headline observed in linked heading/card",
+      "accessPaywallBasis": "Public headline/URL observed; article body access not tested.",
+      "readerSupport": "No current extractNewspaper profile; article body test not implemented",
+      "libraryArticleVerification": "Not checked for this edition; no Camden library-route result is inferred."
+    },
+    {
+      "publicationEdition": "The Courier",
+      "websiteFamily": "The Courier",
+      "region": "Scotland",
+      "homepageURL": "https://www.thecourier.co.uk/",
+      "homepageStatus": 200,
+      "homepageDate": "2026-10-18T13:21:33.907Z",
+      "headlineURL": "https://www.thecourier.co.uk/fp/news/5600468/ian-haggis-plane-crash-drymen/",
+      "observedHeadline": "Flying instructor, 80, dies in Stirlingshire plane crash alongside teen",
+      "urlBasis": "Headline observed in linked heading/card",
+      "accessPaywallBasis": "Public headline/URL observed; article body access not tested.",
+      "readerSupport": "No current extractNewspaper profile; article body test not implemented",
+      "libraryArticleVerification": "Not checked for this edition; no Camden library-route result is inferred."
+    },
+    {
+      "publicationEdition": "Sunday Post",
+      "websiteFamily": "Sunday Post",
+      "region": "Scotland",
+      "homepageURL": "https://www.sundaypost.com/",
+      "homepageStatus": 200,
+      "homepageDate": "2026-10-18T13:21:34.028Z",
+      "headlineURL": null,
+      "observedHeadline": null,
+      "urlBasis": "Shared website route; this Sunday/weekend edition article was not separately verified",
+      "accessPaywallBasis": "Public headline/URL observed; article body access not tested.",
+      "readerSupport": "No current extractNewspaper profile; article body test not implemented",
+      "libraryArticleVerification": "Not checked for this edition; no Camden library-route result is inferred."
+    },
+    {
+      "publicationEdition": "WalesOnline",
+      "websiteFamily": "WalesOnline / Western Mail",
+      "region": "Wales",
+      "homepageURL": "https://www.walesonline.co.uk/",
+      "homepageStatus": 200,
+      "homepageDate": "2026-10-18T13:21:34.199Z",
+      "headlineURL": "https://www.walesonline.co.uk/news/wales-news/poundland-staff-shut-out-aberystwyth-34781912",
+      "observedHeadline": "Poundland staff shut out of store after locks were changed",
+      "urlBasis": "Headline observed in linked heading/card",
+      "accessPaywallBasis": "Public headline/URL observed; article body access not tested.",
+      "readerSupport": "No current extractNewspaper profile; article body test not implemented",
+      "libraryArticleVerification": "Not checked for this edition; no Camden library-route result is inferred."
+    },
+    {
+      "publicationEdition": "Western Mail",
+      "websiteFamily": "WalesOnline / Western Mail",
+      "region": "Wales",
+      "homepageURL": "https://www.walesonline.co.uk/",
+      "homepageStatus": 200,
+      "homepageDate": "2026-10-18T13:21:34.199Z",
+      "headlineURL": "https://www.walesonline.co.uk/news/wales-news/poundland-staff-shut-out-aberystwyth-34781912",
+      "observedHeadline": "Poundland staff shut out of store after locks were changed",
+      "urlBasis": "Headline observed in linked heading/card",
+      "accessPaywallBasis": "Public headline/URL observed; article body access not tested.",
+      "readerSupport": "No current extractNewspaper profile; article body test not implemented",
+      "libraryArticleVerification": "Not checked for this edition; no Camden library-route result is inferred."
+    },
+    {
+      "publicationEdition": "Daily Post",
+      "websiteFamily": "Daily Post / North Wales Live",
+      "region": "Wales",
+      "homepageURL": "https://www.dailypost.co.uk/",
+      "homepageStatus": 200,
+      "homepageDate": "2026-10-18T13:21:34.272Z",
+      "headlineURL": "https://www.dailypost.co.uk/news/north-wales-news/police-update-holyhead-murder-probe-34781757",
+      "observedHeadline": "Police update on Holyhead murder probe after man died in flats",
+      "urlBasis": "Headline observed in linked heading/card",
+      "accessPaywallBasis": "Public headline/URL observed; article body access not tested.",
+      "readerSupport": "No current extractNewspaper profile; article body test not implemented",
+      "libraryArticleVerification": "Not checked for this edition; no Camden library-route result is inferred."
+    },
+    {
+      "publicationEdition": "Belfast Telegraph",
+      "websiteFamily": "Belfast Telegraph",
+      "region": "Northern Ireland",
+      "homepageURL": "https://www.belfasttelegraph.co.uk/",
+      "homepageStatus": 403,
+      "homepageDate": "2026-10-18T13:21:34.422Z",
+      "headlineURL": null,
+      "observedHeadline": null,
+      "urlBasis": "HTTP 403",
+      "accessPaywallBasis": "Automated access refused; article paywall not established by homepage request.",
+      "readerSupport": "Not evaluated; no article URL",
+      "libraryArticleVerification": "Not checked for this edition; no Camden library-route result is inferred."
+    },
+    {
+      "publicationEdition": "The Irish News",
+      "websiteFamily": "Irish News",
+      "region": "Northern Ireland",
+      "homepageURL": "https://www.irishnews.com/",
+      "homepageStatus": 200,
+      "homepageDate": "2026-10-18T13:21:34.468Z",
+      "headlineURL": "https://www.irishnews.com/news/northern-ireland/sdlp-mla-patsy-mcglone-calls-for-urgent-meeting-with-bbc-ni-leadership-in-wake-of-proposed-irish-language-job-cuts-HRRG6LWBN5AVBFGGJN7UALOCJ4/",
+      "observedHeadline": "SDLP MLA Patsy McGlone calls for ‘urgent meeting’ with BBC NI leadership in wake of proposed Irish language job cuts",
+      "urlBasis": "Headline observed in linked heading/card",
+      "accessPaywallBasis": "Public headline/URL observed; article body access not tested.",
+      "readerSupport": "No current extractNewspaper profile; article body test not implemented",
+      "libraryArticleVerification": "Not checked for this edition; no Camden library-route result is inferred."
+    },
+    {
+      "publicationEdition": "News Letter",
+      "websiteFamily": "News Letter",
+      "region": "Northern Ireland",
+      "homepageURL": "https://www.newsletter.co.uk/",
+      "homepageStatus": 403,
+      "homepageDate": "2026-10-18T13:21:34.604Z",
+      "headlineURL": null,
+      "observedHeadline": null,
+      "urlBasis": "HTTP 403",
+      "accessPaywallBasis": "Automated access refused; article paywall not established by homepage request.",
+      "readerSupport": "Not evaluated; no article URL",
+      "libraryArticleVerification": "Not checked for this edition; no Camden library-route result is inferred."
+    },
+    {
+      "publicationEdition": "City A.M.",
+      "websiteFamily": "City A.M.",
+      "region": "London / national business",
+      "homepageURL": "https://www.cityam.com/",
+      "homepageStatus": 200,
+      "homepageDate": "2026-10-18T13:21:34.658Z",
+      "headlineURL": null,
+      "observedHeadline": null,
+      "urlBasis": "Homepage response received",
+      "accessPaywallBasis": "Not established; no article URL tested.",
+      "readerSupport": "No article URL identified under headline/card rule",
+      "libraryArticleVerification": "Not checked for this edition; no Camden library-route result is inferred."
+    },
+    {
+      "publicationEdition": "Yorkshire Post",
+      "websiteFamily": "Yorkshire Post",
+      "region": "England regional",
+      "homepageURL": "https://www.yorkshirepost.co.uk/",
+      "homepageStatus": 403,
+      "homepageDate": "2026-10-18T13:21:36.524Z",
+      "headlineURL": null,
+      "observedHeadline": null,
+      "urlBasis": "HTTP 403",
+      "accessPaywallBasis": "Automated access refused; article paywall not established by homepage request.",
+      "readerSupport": "Not evaluated; no article URL",
+      "libraryArticleVerification": "Not checked for this edition; no Camden library-route result is inferred."
+    },
+    {
+      "publicationEdition": "Manchester Evening News",
+      "websiteFamily": "Manchester Evening News",
+      "region": "England regional",
+      "homepageURL": "https://www.manchestereveningnews.co.uk/",
+      "homepageStatus": 200,
+      "homepageDate": "2026-10-18T13:21:36.577Z",
+      "headlineURL": "https://www.manchestereveningnews.co.uk/news/greater-manchester-news/tragedy-man-dies-prestwich-house-34781826",
+      "observedHeadline": "BREAKING: Tragedy as man dies in house fire",
+      "urlBasis": "Headline observed in linked heading/card",
+      "accessPaywallBasis": "Public headline/URL observed; article body access not tested.",
+      "readerSupport": "No current extractNewspaper profile; article body test not implemented",
+      "libraryArticleVerification": "Not checked for this edition; no Camden library-route result is inferred."
+    },
+    {
+      "publicationEdition": "Liverpool Echo",
+      "websiteFamily": "Liverpool Echo",
+      "region": "England regional",
+      "homepageURL": "https://www.liverpoolecho.co.uk/",
+      "homepageStatus": 200,
+      "homepageDate": "2026-10-18T13:21:36.680Z",
+      "headlineURL": "https://www.liverpoolecho.co.uk/news/liverpool-news/people-living-liverpool-streets-terrified-34777122",
+      "observedHeadline": "People living in Liverpool streets 'terrified' after years of 'disgraceful' actions",
+      "urlBasis": "Headline observed in linked heading/card",
+      "accessPaywallBasis": "Public headline/URL observed; article body access not tested.",
+      "readerSupport": "No current extractNewspaper profile; article body test not implemented",
+      "libraryArticleVerification": "Not checked for this edition; no Camden library-route result is inferred."
+    },
+    {
+      "publicationEdition": "Birmingham Mail / Birmingham Live",
+      "websiteFamily": "Birmingham Live",
+      "region": "England regional",
+      "homepageURL": "https://www.birminghammail.co.uk/",
+      "homepageStatus": 200,
+      "homepageDate": "2026-10-18T13:21:36.770Z",
+      "headlineURL": "https://www.birminghammail.co.uk/news/midlands-news/teenager-dead-second-seriously-hurt-34781651",
+      "observedHeadline": "Teen dead and second seriously hurt as car hits railings in Birmingham",
+      "urlBasis": "Headline observed in linked heading/card",
+      "accessPaywallBasis": "Public headline/URL observed; article body access not tested.",
+      "readerSupport": "No current extractNewspaper profile; article body test not implemented",
+      "libraryArticleVerification": "Not checked for this edition; no Camden library-route result is inferred."
+    },
+    {
+      "publicationEdition": "Bristol Post",
+      "websiteFamily": "Bristol Post",
+      "region": "England regional",
+      "homepageURL": "https://www.bristolpost.co.uk/",
+      "homepageStatus": 200,
+      "homepageDate": "2026-10-18T13:21:36.852Z",
+      "headlineURL": "https://www.bristolpost.co.uk/news/bristol-news/dad-held-gunpoint-hails-life-11201162",
+      "observedHeadline": "Dad held at gunpoint hails 'life changing' medication in PTSD battle",
+      "urlBasis": "Headline observed in linked heading/card",
+      "accessPaywallBasis": "Public headline/URL observed; article body access not tested.",
+      "readerSupport": "No current extractNewspaper profile; article body test not implemented",
+      "libraryArticleVerification": "Not checked for this edition; no Camden library-route result is inferred."
+    },
+    {
+      "publicationEdition": "The Northern Echo",
+      "websiteFamily": "The Northern Echo",
+      "region": "England regional",
+      "homepageURL": "https://www.thenorthernecho.co.uk/",
+      "homepageStatus": 200,
+      "homepageDate": "2026-10-18T13:21:36.996Z",
+      "headlineURL": "https://www.thenorthernecho.co.uk/leisure/showbiz/26570303.northern-echo-subscription-price-changes-support-matters/",
+      "observedHeadline": "Why The Northern Echo subscription price is changing and why your support matters",
+      "urlBasis": "Headline observed within article card",
+      "accessPaywallBasis": "Public headline/URL observed; article body access not tested.",
+      "readerSupport": "No current extractNewspaper profile; article body test not implemented",
+      "libraryArticleVerification": "Not checked for this edition; no Camden library-route result is inferred."
+    },
+    {
+      "publicationEdition": "The Guardian",
+      "websiteFamily": "The Guardian",
+      "region": "National",
+      "homepageURL": "https://www.theguardian.com/",
+      "homepageStatus": 200,
+      "homepageDate": "2026-10-18T13:11:02.243Z",
+      "headlineURL": "https://www.theguardian.com/world/live/2026/oct/18/paris-protests-france-demonstrations-europe-live-latest-news",
+      "observedHeadline": "Europe liveArrests over France protests rise to 1,800, with whole streets in Paris ‘devastated’",
+      "urlBasis": "Headline text observed inside linked headline element/card; body result: Extraction passed; completeness/rendering unverified",
+      "accessPaywallBasis": "Public text retrieved without sign-in; full completeness not certified.",
+      "readerSupport": "Supported current adapter",
+      "libraryArticleVerification": "Not checked for this edition."
+    },
+    {
+      "publicationEdition": "The Observer",
+      "websiteFamily": "The Observer",
+      "region": "National",
+      "homepageURL": "https://observer.co.uk/",
+      "homepageStatus": 200,
+      "homepageDate": "2026-10-18T13:11:05.411Z",
+      "headlineURL": "https://observer.co.uk/news/national/article/childrens-commissioner-declares-state-of-emergency-on-young-peoples-lives",
+      "observedHeadline": "Children’s commissioner declares ‘state of emergency’ on young people’s lives",
+      "urlBasis": "Headline text observed inside linked headline element/card; body result: Homepage URL/headline observed only; article body not fetched",
+      "accessPaywallBasis": "Not tested: article not fetched; no adapter.",
+      "readerSupport": "Unsupported current adapter",
+      "libraryArticleVerification": "Not checked for this edition."
+    },
+    {
+      "publicationEdition": "BBC News",
+      "websiteFamily": "BBC News",
+      "region": "Comparator only",
+      "homepageURL": "https://www.bbc.com/news",
+      "homepageStatus": 200,
+      "homepageDate": "2026-10-18T13:08:33.185Z",
+      "headlineURL": "https://www.bbc.com/news/articles/c574pdzl0k4no",
+      "observedHeadline": "Burnt out cars and shattered glass on Paris streets after protests turn to riots and lootingAround 1,800 people were arrested after nationwide protests saw outbreaks of violence and vandalism.1 hr agoEurope",
+      "urlBasis": "Headline link inside homepage article card; body result: Extraction passed; completeness and rendering unverified",
+      "accessPaywallBasis": "Public text retrieved without sign-in; full completeness not certified.",
+      "readerSupport": "Supported publisher profile",
+      "libraryArticleVerification": "Not checked for this edition."
+    },
+    {
+      "publicationEdition": "The Standard",
+      "websiteFamily": "The Standard",
+      "region": "London",
+      "homepageURL": "https://www.standard.co.uk/",
+      "homepageStatus": 200,
+      "homepageDate": "2026-10-18T13:11:02.892Z",
+      "headlineURL": null,
+      "observedHeadline": null,
+      "urlBasis": "Challenge/gate detected; stopped without article requests",
+      "accessPaywallBasis": "Not tested for an article; no qualifying article URL was found.",
+      "readerSupport": "See reused current reader profile status; no new profile added.",
+      "libraryArticleVerification": "Not checked for this edition."
+    },
+    {
+      "publicationEdition": "Metro",
+      "websiteFamily": "Metro",
+      "region": "London",
+      "homepageURL": "https://metro.co.uk/",
+      "homepageStatus": 200,
+      "homepageDate": "2026-10-18T13:08:33.185Z",
+      "headlineURL": "https://metro.co.uk/2026/10/18/parisian-protestor-dies-collapsing-french-riots-police-say-29718496/",
+      "observedHeadline": "Parisian protester dies after collapsing during French riots, police say",
+      "urlBasis": "Linked headline element on official homepage; body result: Extraction passed; completeness and rendering unverified",
+      "accessPaywallBasis": "Public text retrieved without sign-in; full completeness not certified.",
+      "readerSupport": "Supported publisher profile",
+      "libraryArticleVerification": "Not checked for this edition."
+    },
+    {
+      "publicationEdition": "The Independent",
+      "websiteFamily": "The Independent",
+      "region": "National",
+      "homepageURL": "https://www.independent.co.uk/",
+      "homepageStatus": 200,
+      "homepageDate": "2026-10-18T13:11:03.267Z",
+      "headlineURL": "https://www.independent.co.uk/news/world/europe/france-protests-paris-live-riots-police-arrests-students-b3068758.html",
+      "observedHeadline": "Trump hits out at protests as Macron expected to address nation: 'France is burning'",
+      "urlBasis": "Headline text observed inside linked headline element/card; body result: Extraction passed; completeness/rendering unverified",
+      "accessPaywallBasis": "Public text retrieved without sign-in; full completeness not certified.",
+      "readerSupport": "Supported current adapter",
+      "libraryArticleVerification": "Not checked for this edition."
+    },
+    {
+      "publicationEdition": "The Times",
+      "websiteFamily": "The Times",
+      "region": "National",
+      "homepageURL": "https://www.thetimes.com/",
+      "homepageStatus": 200,
+      "homepageDate": "2026-10-18T13:11:04.067Z",
+      "headlineURL": null,
+      "observedHeadline": null,
+      "urlBasis": "No article link met the headline/link evidence rule",
+      "accessPaywallBasis": "Not tested for an article; no qualifying article URL was found.",
+      "readerSupport": "See reused current reader profile status; no new profile added.",
+      "libraryArticleVerification": "Not checked for this edition."
+    },
+    {
+      "publicationEdition": "Sunday Times",
+      "websiteFamily": "The Times",
+      "region": "National",
+      "homepageURL": "https://www.thetimes.com/",
+      "homepageStatus": 200,
+      "homepageDate": "2026-10-18T13:11:04.067Z",
+      "headlineURL": null,
+      "observedHeadline": null,
+      "urlBasis": "Shared website route; this edition article was not separately verified",
+      "accessPaywallBasis": "Not tested for an article; no qualifying article URL was found.",
+      "readerSupport": "See reused current reader profile status; no new profile added.",
+      "libraryArticleVerification": "Not checked for this edition."
+    },
+    {
+      "publicationEdition": "The Telegraph",
+      "websiteFamily": "The Telegraph",
+      "region": "National",
+      "homepageURL": "https://www.telegraph.co.uk/",
+      "homepageStatus": 402,
+      "homepageDate": "2026-10-18T13:08:33.185Z",
+      "headlineURL": null,
+      "observedHeadline": null,
+      "urlBasis": "Stopped at HTTP 402; no article requests",
+      "accessPaywallBasis": "Automated access refused; article paywall not established by this homepage request.",
+      "readerSupport": "See reused current reader profile status; no new profile added.",
+      "libraryArticleVerification": "Not checked for this edition."
+    },
+    {
+      "publicationEdition": "Sunday Telegraph",
+      "websiteFamily": "The Telegraph",
+      "region": "National",
+      "homepageURL": "https://www.telegraph.co.uk/",
+      "homepageStatus": 402,
+      "homepageDate": "2026-10-18T13:08:33.185Z",
+      "headlineURL": null,
+      "observedHeadline": null,
+      "urlBasis": "Shared website route; this edition article was not separately verified",
+      "accessPaywallBasis": "Automated access refused; article paywall not established by this homepage request.",
+      "readerSupport": "See reused current reader profile status; no new profile added.",
+      "libraryArticleVerification": "Not checked for this edition."
+    },
+    {
+      "publicationEdition": "Daily Mail",
+      "websiteFamily": "Daily Mail",
+      "region": "National",
+      "homepageURL": "https://www.dailymail.com/",
+      "homepageStatus": 200,
+      "homepageDate": "2026-10-18T13:08:33.185Z",
+      "headlineURL": "https://www.dailymail.com/news/article-16218361/Moment-French-rioters-attack-shopkeeper.html",
+      "observedHeadline": "Moment French rioters attack shopkeeper and distraught woman begs them not to loot store as police admit they've 'lost control' of violent protests that saw 143-year-old town hall incinerated",
+      "urlBasis": "Linked headline element on official homepage; body result: Extraction passed; completeness and rendering unverified",
+      "accessPaywallBasis": "Public text retrieved without sign-in; full completeness not certified.",
+      "readerSupport": "Supported publisher profile",
+      "libraryArticleVerification": "Not checked for this edition."
+    },
+    {
+      "publicationEdition": "Mail on Sunday",
+      "websiteFamily": "Daily Mail",
+      "region": "National",
+      "homepageURL": "https://www.dailymail.com/",
+      "homepageStatus": 200,
+      "homepageDate": "2026-10-18T13:08:33.185Z",
+      "headlineURL": null,
+      "observedHeadline": null,
+      "urlBasis": "Shared website route; this edition article was not separately verified",
+      "accessPaywallBasis": "See each linked article result.",
+      "readerSupport": "See reused current reader profile status; no new profile added.",
+      "libraryArticleVerification": "Not checked for this edition."
+    },
+    {
+      "publicationEdition": "Daily Mirror",
+      "websiteFamily": "Daily Mirror",
+      "region": "National",
+      "homepageURL": "https://www.mirror.co.uk/",
+      "homepageStatus": 200,
+      "homepageDate": "2026-10-18T13:08:33.185Z",
+      "headlineURL": "https://www.mirror.co.uk/news/uk-news/bedford-train-crash-hero-eli-37775689",
+      "observedHeadline": "Mystery off-duty GP who saved lives on Bedford train crash while barely able to move from own injuries is Pride of Britain hero",
+      "urlBasis": "Headline link inside homepage article card; body result: Extraction passed; completeness and rendering unverified",
+      "accessPaywallBasis": "Public text retrieved without sign-in; full completeness not certified.",
+      "readerSupport": "Supported publisher profile",
+      "libraryArticleVerification": "Not checked for this edition."
+    },
+    {
+      "publicationEdition": "Sunday Mirror",
+      "websiteFamily": "Daily Mirror",
+      "region": "National",
+      "homepageURL": "https://www.mirror.co.uk/",
+      "homepageStatus": 200,
+      "homepageDate": "2026-10-18T13:08:33.185Z",
+      "headlineURL": null,
+      "observedHeadline": null,
+      "urlBasis": "Shared website route; this edition article was not separately verified",
+      "accessPaywallBasis": "See each linked article result.",
+      "readerSupport": "See reused current reader profile status; no new profile added.",
+      "libraryArticleVerification": "Not checked for this edition."
+    },
+    {
+      "publicationEdition": "Sunday People",
+      "websiteFamily": "Daily Mirror",
+      "region": "National",
+      "homepageURL": "https://www.mirror.co.uk/",
+      "homepageStatus": 200,
+      "homepageDate": "2026-10-18T13:08:33.185Z",
+      "headlineURL": null,
+      "observedHeadline": null,
+      "urlBasis": "Shared website route; this edition article was not separately verified",
+      "accessPaywallBasis": "See each linked article result.",
+      "readerSupport": "See reused current reader profile status; no new profile added.",
+      "libraryArticleVerification": "Not checked for this edition."
+    },
+    {
+      "publicationEdition": "The Sun",
+      "websiteFamily": "The Sun",
+      "region": "National",
+      "homepageURL": "https://www.thesun.co.uk/",
+      "homepageStatus": 200,
+      "homepageDate": "2026-10-18T13:11:04.473Z",
+      "headlineURL": "https://www.thesun.co.uk/news/40723775/police-officer-shot-city-centre-manhunt/",
+      "observedHeadline": "Gun recovered after police officer shot in UK city centre as cops hunt man and woman on the run",
+      "urlBasis": "Headline text observed inside linked headline element/card; body result: Extraction passed; completeness/rendering unverified",
+      "accessPaywallBasis": "Public text retrieved without sign-in; full completeness not certified.",
+      "readerSupport": "Supported current adapter",
+      "libraryArticleVerification": "Not checked for this edition."
+    },
+    {
+      "publicationEdition": "Sun on Sunday",
+      "websiteFamily": "The Sun",
+      "region": "National",
+      "homepageURL": "https://www.thesun.co.uk/",
+      "homepageStatus": 200,
+      "homepageDate": "2026-10-18T13:11:04.473Z",
+      "headlineURL": null,
+      "observedHeadline": null,
+      "urlBasis": "Shared website route; this edition article was not separately verified",
+      "accessPaywallBasis": "See each linked article result.",
+      "readerSupport": "See reused current reader profile status; no new profile added.",
+      "libraryArticleVerification": "Not checked for this edition."
+    },
+    {
+      "publicationEdition": "Financial Times",
+      "websiteFamily": "Financial Times",
+      "region": "National",
+      "homepageURL": "https://www.ft.com/",
+      "homepageStatus": 403,
+      "homepageDate": "2026-10-18T13:08:33.185Z",
+      "headlineURL": null,
+      "observedHeadline": null,
+      "urlBasis": "Stopped at HTTP 403; no article requests",
+      "accessPaywallBasis": "Automated access refused; article paywall not established by this homepage request.",
+      "readerSupport": "See reused current reader profile status; no new profile added.",
+      "libraryArticleVerification": "Not checked for this edition."
+    },
+    {
+      "publicationEdition": "FT Weekend",
+      "websiteFamily": "Financial Times",
+      "region": "National",
+      "homepageURL": "https://www.ft.com/",
+      "homepageStatus": 403,
+      "homepageDate": "2026-10-18T13:08:33.185Z",
+      "headlineURL": null,
+      "observedHeadline": null,
+      "urlBasis": "Shared website route; this edition article was not separately verified",
+      "accessPaywallBasis": "Automated access refused; article paywall not established by this homepage request.",
+      "readerSupport": "See reused current reader profile status; no new profile added.",
+      "libraryArticleVerification": "Not checked for this edition."
+    },
+    {
+      "publicationEdition": "Sunday Life",
+      "websiteFamily": "Belfast Telegraph",
+      "region": "Northern Ireland",
+      "homepageURL": "https://www.belfasttelegraph.co.uk/",
+      "homepageStatus": 403,
+      "homepageDate": "2026-10-18T13:21:34.422Z",
+      "headlineURL": null,
+      "observedHeadline": null,
+      "urlBasis": "Listed as a Belfast Telegraph family section; this edition was not front-page/article checked.",
+      "accessPaywallBasis": "Not tested for a Sunday Life article.",
+      "readerSupport": "Not evaluated; no article URL",
+      "libraryArticleVerification": "Not checked for this edition.",
+      "sourceEvidenceURLs": [
+        {
+          "url": "https://www.mediahuis.com/en/brands/sunday-life",
+          "label": "Mediahuis title listing"
+        },
+        {
+          "url": "https://www.belfasttelegraph.co.uk/sunday-life/",
+          "label": "Belfast Telegraph Sunday Life section"
+        }
+      ]
+    }
+  ],
+  "coverageGaps": [
+    "This is a bounded major-title and representative-region checklist, not a complete inventory of every UK newspaper or regional outlet.",
+    "Six of 23 new families have no recorded headline URL: four homepage responses were refused/challenged and two accessible homepages had no qualifying headline link.",
+    "Sunday and weekend mastheads sharing websites are listed separately, but a shared homepage route does not verify a Sunday-edition article.",
+    "No Camden library-route article was independently verified in this expansion; physical-device and rendered-view evidence are outside this checklist.",
+    "Local, specialist, trade, language, print-only, and additional regional publishers remain open coverage gaps."
+  ],
+  "titleCorrections": [
+    {
+      "edition": "Daily Star Sunday",
+      "evidenceURL": "https://www.reachplc.com/news/2025/daily-star-editor-in-chief-to-leave-role-in-march",
+      "disposition": "Official Reach plc publisher article identifies Daily Star Sunday."
+    },
+    {
+      "edition": "Sunday Life",
+      "evidenceURLs": [
+        "https://www.mediahuis.com/en/brands/sunday-life",
+        "https://www.belfasttelegraph.co.uk/sunday-life/"
+      ],
+      "disposition": "Mediahuis lists the title and Belfast Telegraph carries a Sunday Life section; listing only, no new homepage/article check."
+    }
+  ],
+  "followupArticleChecks": [
+    {
+      "publisher": "Daily Express",
+      "sourceURL": "https://www.express.co.uk/news/royal/2258091/beatrice-eugenie-trapped-nightmare-andrew",
+      "checkedAt": "2026-10-18T13:26:33.920Z",
+      "httpStatus": 200,
+      "sourceTitle": "Beatrice and Eugenie are trapped in a nightmare - Andrew and Fergie just made it worse",
+      "profileAdded": false,
+      "adapterStatus": "No adapter added; text import not attempted",
+      "extraction": null,
+      "premiumMarker": "ctx_content p402_premium",
+      "result": "No adapter added: observed ctx_content p402_premium access marker; public eligibility unclear",
+      "accessPaywall": "ctx_content p402_premium marker observed; public eligibility unclear; paywall not confirmed.",
+      "visualVerified": false,
+      "completenessVerified": false,
+      "libraryArticleVerification": "Phone/library verification pending; no physical-device or Camden route result in this evidence.",
+      "v45Deployment": {
+        "version": "v45",
+        "deploymentId": "appgdep_6ad4caf326988191b1f0b720acb19f08",
+        "deployedAt": "2026-10-18T13:35:00Z",
+        "sourceCommit": "6b352d5a1a6bcaf34400d2e92f61650eaf87e961",
+        "liveRoomTested": false,
+        "phoneTested": false
+      },
+      "liveRoomTested": false,
+      "phoneTested": false
+    },
+    {
+      "publisher": "Daily Star",
+      "sourceURL": "https://www.dailystar.co.uk/tv/real-fight-erupts-netflixs-gentleman-37782219",
+      "checkedAt": "2026-10-18T13:26:34.043Z",
+      "httpStatus": 200,
+      "sourceTitle": "Real fight 'erupts' on Netflix's The Gentleman set as star 'shocked' by punch-up",
+      "profileAdded": true,
+      "adapterStatus": "Strict adapter/profile and search integration published in deployed v45.",
+      "extraction": {
+        "paragraphCount": 11,
+        "wordCount": 368,
+        "imageCount": 4,
+        "videoCount": 0,
+        "paywallDetected": false,
+        "completeNotCertified": true,
+        "captionCount": 4
+      },
+      "premiumMarker": null,
+      "result": "Strict adapter extraction passed from one ordinary public response; completeness/visual rendering unverified",
+      "accessPaywall": "Public text extracted from one HTTP 200 response without sign-in; completeness not certified.",
+      "visualVerified": false,
+      "completenessVerified": false,
+      "libraryArticleVerification": "Phone/library verification pending; no physical-device or Camden route result in this evidence.",
+      "v45Deployment": {
+        "version": "v45",
+        "deploymentId": "appgdep_6ad4caf326988191b1f0b720acb19f08",
+        "deployedAt": "2026-10-18T13:35:00Z",
+        "sourceCommit": "6b352d5a1a6bcaf34400d2e92f61650eaf87e961",
+        "liveRoomTested": false,
+        "phoneTested": false
+      },
+      "liveRoomTested": false,
+      "phoneTested": false
+    },
+    {
+      "publisher": "Daily Record",
+      "sourceURL": "https://www.dailyrecord.co.uk/news/scottish-news/first-picture-flying-instructor-killed-37783715",
+      "checkedAt": "2026-10-18T13:26:34.203Z",
+      "httpStatus": 200,
+      "sourceTitle": "First picture of flying instructor killed in plane crash near Drymen with teen student",
+      "profileAdded": true,
+      "adapterStatus": "Strict adapter/profile and search integration published in deployed v45.",
+      "extraction": {
+        "paragraphCount": 16,
+        "wordCount": 387,
+        "imageCount": 4,
+        "videoCount": 0,
+        "paywallDetected": false,
+        "completeNotCertified": true,
+        "captionCount": 4
+      },
+      "premiumMarker": null,
+      "result": "Strict adapter extraction passed from one ordinary public response; completeness/visual rendering unverified",
+      "accessPaywall": "Public text extracted from one HTTP 200 response without sign-in; completeness not certified.",
+      "visualVerified": false,
+      "completenessVerified": false,
+      "libraryArticleVerification": "Phone/library verification pending; no physical-device or Camden route result in this evidence.",
+      "v45Deployment": {
+        "version": "v45",
+        "deploymentId": "appgdep_6ad4caf326988191b1f0b720acb19f08",
+        "deployedAt": "2026-10-18T13:35:00Z",
+        "sourceCommit": "6b352d5a1a6bcaf34400d2e92f61650eaf87e961",
+        "liveRoomTested": false,
+        "phoneTested": false
+      },
+      "liveRoomTested": false,
+      "phoneTested": false
+    }
+  ],
+  "v45Deployment": {
+    "version": "v45",
+    "deploymentId": "appgdep_6ad4caf326988191b1f0b720acb19f08",
+    "deployedAt": "2026-10-18T13:35:00Z",
+    "sourceCommit": "6b352d5a1a6bcaf34400d2e92f61650eaf87e961",
+    "liveRoomTested": false,
+    "phoneTested": false
+  }
+}
