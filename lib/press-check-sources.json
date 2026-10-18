@@ -1,0 +1,733 @@
+{
+  "schema": "reading-room-press-selection/v1",
+  "label": "UK press front-page check · 18 October 2026",
+  "observedDate": "2026-10-18",
+  "timeZone": "Europe/London",
+  "scope": "Major UK press first: 28 national and leading nations/London newspaper website families, with shared daily/Sunday sites distinguished from independently verified editions. Six English local/regional families are deferred at the owner’s request. BBC excluded.",
+  "families": [
+    {
+      "family": "The Times / The Sunday Times",
+      "homepage": "https://www.thetimes.com/",
+      "observedAt": "2026-10-18T20:27:54.977Z",
+      "method": "One explicitly authorised corrective ordinary homepage fetch after HTTP 200 parser gap; all visible story-anchor metadata parsed without heading requirement.",
+      "httpStatus": 200,
+      "editionNotes": "Shared website family. Two news article links were observed in the corrected homepage parse. The Sunday Times e-paper link was exposed but not opened; separate print-edition identity was not verified.",
+      "stories": [
+        {
+          "title": "Macron vows rioters will pay for seeking ‘to bring down the Republic’",
+          "url": "https://www.thetimes.com/world/europe/article/france-protests-paris-students-cost-of-living-latest-news-dbdlgf98v",
+          "homepageEvidence": "Actual story anchor text observed in corrective homepage response at https://www.thetimes.com/; no article body fetched.",
+          "rank": 1
+        },
+        {
+          "title": "Trump endorses Netanyahu before Israeli elections as settler attacks surge",
+          "url": "https://www.thetimes.com/world/middle-east/article/trump-endorses-netanyahu-israel-election-8gbbz275d",
+          "homepageEvidence": "Actual story anchor text observed in corrective homepage response at https://www.thetimes.com/; no article body fetched.",
+          "rank": 2
+        }
+      ],
+      "error": null
+    },
+    {
+      "family": "The Telegraph / The Sunday Telegraph",
+      "homepage": "https://www.telegraph.co.uk/",
+      "observedAt": "2026-10-18T20:25:23.245Z",
+      "method": "One ordinary public homepage fetch; linked headings only; no article body fetched.",
+      "httpStatus": 402,
+      "editionNotes": "Shared website family; no separate Sunday edition is inferred.",
+      "stories": [],
+      "error": "HTTP 402; stopped without retry."
+    },
+    {
+      "family": "The Guardian",
+      "homepage": "https://www.theguardian.com/uk",
+      "observedAt": "2026-10-18T20:25:23.246Z",
+      "method": "One ordinary public homepage fetch; linked headings only; no article body fetched.",
+      "httpStatus": 200,
+      "editionNotes": "Guardian homepage; Observer is checked as a separate website family.",
+      "stories": [
+        {
+          "title": "‘We are suffocating’: protests spread to Lisbon and Milan as housing and living cost tensions intensify",
+          "url": "https://www.theguardian.com/world/2026/oct/18/lisbon-milan-protests-housing-living-costs",
+          "homepageEvidence": "Linked h3 observed in ordinary homepage response at https://www.theguardian.com/uk; section kicker removed from headline metadata.",
+          "rank": 1
+        },
+        {
+          "title": "Why are people protesting across Europe?",
+          "url": "https://www.theguardian.com/world/2026/oct/18/europe-protests-france-spain-portugal-2026-explainer",
+          "homepageEvidence": "Linked h3 observed in ordinary homepage response at https://www.theguardian.com/uk; section kicker removed from headline metadata.",
+          "rank": 2
+        }
+      ],
+      "error": null
+    },
+    {
+      "family": "The Observer",
+      "homepage": "https://observer.co.uk/",
+      "observedAt": "2026-10-18T20:25:23.246Z",
+      "method": "One ordinary public homepage fetch; linked headings only; no article body fetched.",
+      "httpStatus": 200,
+      "editionNotes": "Observer website checked independently; no edition identity is inferred beyond visible masthead links.",
+      "stories": [
+        {
+          "title": "Children’s commissioner declares ‘state of emergency’ on young people’s lives",
+          "url": "https://observer.co.uk/news/national/article/childrens-commissioner-declares-state-of-emergency-on-young-peoples-lives",
+          "homepageEvidence": "Linked h6 observed in ordinary homepage response at https://observer.co.uk/",
+          "rank": 1
+        },
+        {
+          "title": "The childhood lottery: see how your postcode fares",
+          "url": "https://observer.co.uk/news/national/article/the-childhood-lottery-see-how-your-postcode-fares",
+          "homepageEvidence": "Linked h6 observed in ordinary homepage response at https://observer.co.uk/",
+          "rank": 2
+        }
+      ],
+      "error": null
+    },
+    {
+      "family": "The Independent",
+      "homepage": "https://www.independent.co.uk/",
+      "observedAt": "2026-10-18T20:25:23.247Z",
+      "method": "One ordinary public homepage fetch; linked headings only; no article body fetched.",
+      "httpStatus": 200,
+      "editionNotes": "Website family observation.",
+      "stories": [
+        {
+          "title": "Macron says 'we all feel anger and shame' after 'unprecedented violence' across France",
+          "url": "https://www.independent.co.uk/news/world/europe/france-protests-paris-live-riots-police-arrests-students-b3068758.html",
+          "homepageEvidence": "Linked h2 observed in ordinary homepage response at https://www.independent.co.uk/",
+          "rank": 1
+        },
+        {
+          "title": "Polanski says he won’t overturn Green Party's ‘Zionism is racism’ motion",
+          "url": "https://www.independent.co.uk/news/uk/politics/green-party-zionism-motion-racism-zack-polanski-b3068717.html",
+          "homepageEvidence": "Linked h2 observed in ordinary homepage response at https://www.independent.co.uk/",
+          "rank": 2
+        }
+      ],
+      "error": null
+    },
+    {
+      "family": "Daily Mail / The Mail on Sunday",
+      "homepage": "https://www.dailymail.co.uk/",
+      "observedAt": "2026-10-18T20:25:23.247Z",
+      "method": "One ordinary public homepage fetch; linked headings only; no article body fetched.",
+      "httpStatus": 200,
+      "editionNotes": "Shared website family. Ordinary homepage request redirected from dailymail.co.uk to https://www.dailymail.com/home/index.html; observed story links use dailymail.com. No separate Sunday edition is inferred.",
+      "stories": [
+        {
+          "title": "Macron pledges crackdown following 'apocalyptic' violence as Donald Trump blames 'immigrants with hatred in their hearts' for French riots amid fears country is 'ungovernable'",
+          "url": "https://www.dailymail.com/news/article-16218361/Moment-French-rioters-attack-shopkeeper.html",
+          "homepageEvidence": "Linked h2 observed in ordinary homepage response at https://www.dailymail.com/home/index.html",
+          "rank": 1
+        },
+        {
+          "title": "Cindy Crawford and Rande Gerber break silence on son Presley's tragic death at 27: 'We are beyond heartbroken'",
+          "url": "https://www.dailymail.com/tvshowbiz/article-16218985/Cindy-Crawford-Rande-Gerber-break-silence-son-Presleys-tragic-death-27-heartbroken.html",
+          "homepageEvidence": "Linked h2 observed in ordinary homepage response at https://www.dailymail.com/home/index.html",
+          "rank": 2
+        }
+      ],
+      "error": null
+    },
+    {
+      "family": "Daily Mirror / Sunday Mirror / Sunday People",
+      "homepage": "https://www.mirror.co.uk/",
+      "observedAt": "2026-10-18T20:25:23.247Z",
+      "method": "One ordinary public homepage fetch; linked headings only; no article body fetched.",
+      "httpStatus": 200,
+      "editionNotes": "Shared website family; no separate Sunday edition is inferred.",
+      "stories": [
+        {
+          "title": "Hardest places in England for kids to grow up named -'state of emergency'",
+          "url": "https://www.mirror.co.uk/news/uk-news/hardest-place-grow-up-england-37785206",
+          "homepageEvidence": "Linked h3 observed in ordinary homepage response at https://www.mirror.co.uk/",
+          "rank": 3
+        },
+        {
+          "title": "St Petersburg on fire as Zelensky defies Trump again",
+          "url": "https://www.mirror.co.uk/news/world-news/st-petersburg-fire-zelensky-defies-37783952",
+          "homepageEvidence": "Linked h3 observed in ordinary homepage response at https://www.mirror.co.uk/",
+          "rank": 4
+        }
+      ],
+      "error": null
+    },
+    {
+      "family": "The Sun / The Sun on Sunday",
+      "homepage": "https://www.thesun.co.uk/",
+      "observedAt": "2026-10-18T20:25:23.248Z",
+      "method": "One ordinary public homepage fetch; linked headings only; no article body fetched.",
+      "httpStatus": 200,
+      "editionNotes": "Shared website family. One homepage story is explicitly labelled THE SUN ON SUNDAY SAYS; that observed label does not establish a separate Sunday edition page.",
+      "stories": [
+        {
+          "title": "Waiter attacks, shock tactics & even stealing with KIDS… Britain's dine & dash plague driving restaurants to brink",
+          "url": "https://www.thesun.co.uk/news/40669745/dine-dash-tactics-plague-uk/",
+          "homepageEvidence": "Linked h3 observed in ordinary homepage response at https://www.thesun.co.uk/",
+          "rank": 1
+        },
+        {
+          "title": "Traitors mole says Richard E Grant may have FAKED show clanger for 2 reasons",
+          "url": "https://www.thesun.co.uk/tv/40726742/traitors-richard-e-grant-blunder-suspects-wanted-out/",
+          "homepageEvidence": "Linked h3 observed in ordinary homepage response at https://www.thesun.co.uk/",
+          "rank": 2
+        }
+      ],
+      "error": null
+    },
+    {
+      "family": "Daily Express / Sunday Express",
+      "homepage": "https://www.express.co.uk/",
+      "observedAt": "2026-10-18T20:25:23.248Z",
+      "method": "One ordinary public homepage fetch; linked headings only; no article body fetched.",
+      "httpStatus": 200,
+      "editionNotes": "Shared website family. A homepage navigation anchor labelled Sunday exposes https://www.express.co.uk/news/sunday; route was not opened in this one-fetch family pass, so a separate Sunday page or edition identity is not verified.",
+      "stories": [
+        {
+          "title": "Strictly star forced to leave BBC show immediately as they issue emotional statement",
+          "url": "https://www.express.co.uk/showbiz/tv-radio/2258269/strictly-star-forced-leave-bbc-show-immediately",
+          "homepageEvidence": "Linked h2 observed in ordinary homepage response at https://www.express.co.uk/",
+          "rank": 1
+        },
+        {
+          "title": "Britain can do this one thing to stop asylum seekers breaking the law",
+          "url": "https://www.express.co.uk/news/politics/2257606/britain-asylum-seekers-crime-rape",
+          "homepageEvidence": "Linked h2 observed in ordinary homepage response at https://www.express.co.uk/",
+          "rank": 2
+        }
+      ],
+      "error": null
+    },
+    {
+      "family": "Daily Star / Daily Star Sunday",
+      "homepage": "https://www.dailystar.co.uk/",
+      "observedAt": "2026-10-18T20:25:23.249Z",
+      "method": "One ordinary public homepage fetch; linked headings only; no article body fetched.",
+      "httpStatus": 200,
+      "editionNotes": "Shared website family; no separate Sunday edition is inferred.",
+      "stories": [
+        {
+          "title": "'IT'S MY WIFE': Russell Brand's 'mystery woman' breaks silence as she talks about 'hurricane outside court'",
+          "url": "https://www.dailystar.co.uk/news/latest-news/russell-brands-mystery-woman-breaks-37785186",
+          "homepageEvidence": "Linked h2 observed in ordinary homepage response at https://www.dailystar.co.uk/",
+          "rank": 1
+        },
+        {
+          "title": "Priest killed during service after massive cross falls on him in front of worshippers",
+          "url": "https://www.dailystar.co.uk/news/world-news/priest-killed-during-service-after-37784872",
+          "homepageEvidence": "Linked h3 observed in ordinary homepage response at https://www.dailystar.co.uk/",
+          "rank": 2
+        }
+      ],
+      "error": null
+    },
+    {
+      "family": "i paper",
+      "homepage": "https://inews.co.uk/",
+      "observedAt": "2026-10-18T20:25:23.249Z",
+      "method": "One ordinary public homepage fetch; linked headings only; no article body fetched.",
+      "httpStatus": 200,
+      "editionNotes": "Website family observation.",
+      "stories": [
+        {
+          "title": "Blunkett leads Labour backlash against Burnham's voting reform",
+          "url": "https://inews.co.uk/news/politics/blunkett-labour-backlash-against-burnham-voting-reform-4826328",
+          "homepageEvidence": "Linked h2 observed in ordinary homepage response at https://inews.co.uk/",
+          "rank": 1
+        },
+        {
+          "title": "Trump is wearing his authoritarian mask with increasing confidence",
+          "url": "https://inews.co.uk/news/world/trump-wearing-authoritarian-mask-increasing-confidence-4834769",
+          "homepageEvidence": "Linked h2 observed in ordinary homepage response at https://inews.co.uk/",
+          "rank": 2
+        }
+      ],
+      "error": null
+    },
+    {
+      "family": "Financial Times / FT Weekend",
+      "homepage": "https://www.ft.com/",
+      "observedAt": "2026-10-18T20:25:23.249Z",
+      "method": "One ordinary public homepage fetch; linked headings only; no article body fetched.",
+      "httpStatus": 403,
+      "editionNotes": "Shared website family; no separate weekend edition is inferred.",
+      "stories": [],
+      "error": "HTTP 403; stopped without retry."
+    },
+    {
+      "family": "Morning Star",
+      "homepage": "https://morningstaronline.co.uk/",
+      "observedAt": "2026-10-18T20:27:55.407Z",
+      "method": "One explicitly authorised corrective ordinary homepage fetch after HTTP 200 parser gap; all visible story-anchor metadata parsed without heading requirement.",
+      "httpStatus": 200,
+      "editionNotes": "Website family observation.",
+      "stories": [
+        {
+          "title": "Lessons on the French rebellion must not be lost on the British labour movement",
+          "url": "https://morningstaronline.co.uk/article/lessons-french-rebellion-must-not-be-lost-british-labour-movement",
+          "homepageEvidence": "Actual story anchor text observed in corrective homepage response at https://morningstaronline.co.uk/; no article body fetched.",
+          "rank": 1
+        },
+        {
+          "title": "Polanski to amend ‘zionism is racism’ policy",
+          "url": "https://morningstaronline.co.uk/article/polanski-amend-zionism-racism-policy",
+          "homepageEvidence": "Actual story anchor text observed in corrective homepage response at https://morningstaronline.co.uk/; no article body fetched.",
+          "rank": 2
+        }
+      ],
+      "error": null
+    },
+    {
+      "family": "Metro",
+      "homepage": "https://metro.co.uk/",
+      "observedAt": "2026-10-18T20:25:23.250Z",
+      "method": "One ordinary public homepage fetch; linked headings only; no article body fetched.",
+      "httpStatus": 200,
+      "editionNotes": "Website family observation.",
+      "stories": [
+        {
+          "title": "Parisian protester dies after collapsing during French riots, police say",
+          "url": "https://metro.co.uk/2026/10/18/parisian-protestor-dies-collapsing-french-riots-police-say-29718496/",
+          "homepageEvidence": "Linked h3 observed in ordinary homepage response at https://metro.co.uk/",
+          "rank": 1
+        },
+        {
+          "title": "Four servicemen killed in inferno during training at Canadian military base",
+          "url": "https://metro.co.uk/2026/10/18/least-seven-killed-explosion-canadian-forces-base-wainwright-29718150/",
+          "homepageEvidence": "Linked h3 observed in ordinary homepage response at https://metro.co.uk/",
+          "rank": 2
+        }
+      ],
+      "error": null
+    },
+    {
+      "family": "The Standard",
+      "homepage": "https://www.standard.co.uk/",
+      "observedAt": "2026-10-18T20:27:55.525Z",
+      "method": "One explicitly authorised corrective ordinary homepage fetch after HTTP 200 parser gap; all visible story-anchor metadata parsed without heading requirement.",
+      "httpStatus": 200,
+      "editionNotes": "Website family observation.",
+      "stories": [
+        {
+          "title": "Forecasters predict major London weather change: 'A storm is coming'",
+          "url": "https://www.standard.co.uk/news/london/storm-weather-forecast-met-office-latest-b1301235.html",
+          "homepageEvidence": "Actual story anchor text observed in corrective homepage response at https://www.standard.co.uk/; no article body fetched.",
+          "rank": 1
+        },
+        {
+          "title": "Westminster Bridge closed as police respond to 'ongoing incident'",
+          "url": "https://www.standard.co.uk/news/london/westminster-bridge-closed-met-police-respond-ongoing-incident-b1301365.html",
+          "homepageEvidence": "Actual story anchor text observed in corrective homepage response at https://www.standard.co.uk/; no article body fetched.",
+          "rank": 2
+        }
+      ],
+      "error": null
+    },
+    {
+      "family": "City A.M.",
+      "homepage": "https://www.cityam.com/",
+      "observedAt": "2026-10-18T20:25:23.250Z",
+      "method": "One ordinary public homepage fetch; linked headings only; no article body fetched.",
+      "httpStatus": 200,
+      "editionNotes": "Website family observation.",
+      "stories": [
+        {
+          "title": "MPs press competition watchdog to probe live music industry’s ‘dominant’ firms",
+          "url": "https://www.cityam.com/mps-press-competition-watchdog-to-probe-live-music-industrys-dominant-firms/",
+          "homepageEvidence": "Linked h3 observed in ordinary homepage response at https://www.cityam.com/",
+          "rank": 1
+        },
+        {
+          "title": "What drinking alcohol at football could tell us about sporting fandom",
+          "url": "https://www.cityam.com/what-drinking-alcohol-at-football-could-tell-us-about-sporting-fandom/",
+          "homepageEvidence": "Linked h3 observed in ordinary homepage response at https://www.cityam.com/",
+          "rank": 2
+        }
+      ],
+      "error": null
+    },
+    {
+      "family": "Daily Record",
+      "region": "Scotland",
+      "homepage": "https://www.dailyrecord.co.uk/",
+      "observedAt": "2026-10-18T20:25:24.619Z",
+      "method": "One ordinary unauthenticated Node fetch of public homepage; linked heading metadata only; no article fetch. Rank is document order among distinct qualifying linked headings.",
+      "httpStatus": 200,
+      "editionNotes": "Homepage title explicitly names Daily Record & Sunday Mail. These are shared website homepage links; Sunday Mail print-edition attribution was not established.",
+      "stories": [
+        {
+          "title": "Flight school pays tribute to instructor and teen student killed in plane crash near Drymen",
+          "url": "https://www.dailyrecord.co.uk/news/scottish-news/flight-school-pays-tribute-instructor-37785138",
+          "homepageEvidence": "Observed h3 text linked by ancestor anchor in HTTP 200 homepage response at 2026-10-18T20:25:24.619Z. Homepage title: Daily Record & Sunday Mail - Scottish News, Sport, Politics and Celeb news",
+          "rank": 1
+        },
+        {
+          "title": "Notorious gangster molls behind Scotland's top cons from pole dancer to celebrity makeup artist",
+          "url": "https://www.dailyrecord.co.uk/news/scottish-news/notorious-gangster-molls-behind-scotlands-37775755",
+          "homepageEvidence": "Observed h3 text linked by ancestor anchor in HTTP 200 homepage response at 2026-10-18T20:25:24.619Z. Homepage title: Daily Record & Sunday Mail - Scottish News, Sport, Politics and Celeb news",
+          "rank": 2
+        }
+      ],
+      "error": null
+    },
+    {
+      "family": "The Scotsman",
+      "region": "Scotland",
+      "homepage": "https://www.scotsman.com/",
+      "observedAt": "2026-10-18T20:25:24.615Z",
+      "method": "One ordinary unauthenticated Node fetch of public homepage; linked heading metadata only; no article fetch. Rank is document order among distinct qualifying linked headings.",
+      "httpStatus": 403,
+      "editionNotes": "Website family homepage only. Shared daily/Sunday print-edition identity is not independently established by these links.",
+      "stories": [],
+      "error": "Stopped at HTTP 403; no retry and no article requests."
+    },
+    {
+      "family": "The Herald",
+      "region": "Scotland",
+      "homepage": "https://www.heraldscotland.com/",
+      "observedAt": "2026-10-18T20:25:24.646Z",
+      "method": "One ordinary unauthenticated Node fetch of public homepage; linked heading metadata only; no article fetch. Rank is document order among distinct qualifying linked headings.",
+      "httpStatus": 200,
+      "editionNotes": "Website family homepage only. Shared daily/Sunday print-edition identity is not independently established by these links.",
+      "stories": [
+        {
+          "title": "I watched BBC Scotland for a night and all I got was this lousy sense of doom",
+          "url": "https://www.heraldscotland.com/news/26644107.watched-bbc-scotland-night-got-sense-doom/",
+          "homepageEvidence": "Observed h2 text linked by child anchor in HTTP 200 homepage response at 2026-10-18T20:25:24.646Z. Homepage title: Scotland News, Politics, Sport, Events and Comment - The Herald",
+          "rank": 1
+        },
+        {
+          "title": "John Swinney compared to dictator as bus plans branded ‘business confiscation’",
+          "url": "https://www.heraldscotland.com/news/26647133.swinney-compared-dictators-bus-public-control-plan/",
+          "homepageEvidence": "Observed h2 text linked by child anchor in HTTP 200 homepage response at 2026-10-18T20:25:24.646Z. Homepage title: Scotland News, Politics, Sport, Events and Comment - The Herald",
+          "rank": 2
+        }
+      ],
+      "error": null
+    },
+    {
+      "family": "The National",
+      "region": "Scotland",
+      "homepage": "https://www.thenational.scot/",
+      "observedAt": "2026-10-18T20:25:24.983Z",
+      "method": "One ordinary unauthenticated Node fetch of public homepage; linked heading metadata only; no article fetch. Rank is document order among distinct qualifying linked headings.",
+      "httpStatus": 200,
+      "editionNotes": "Website family homepage only. Shared daily/Sunday print-edition identity is not independently established by these links.",
+      "stories": [
+        {
+          "title": "Deputy First Minister defends SNP bus plans after McGill’s threatens legal action",
+          "url": "https://www.thenational.scot/news/26647064.jenny-gilruth-pledges-work-bus-companies-mcgills/",
+          "homepageEvidence": "Observed h2 text linked by child anchor in HTTP 200 homepage response at 2026-10-18T20:25:24.983Z. Homepage title: Scotland's News & Independence Debate - The National",
+          "rank": 1
+        },
+        {
+          "title": "Scotland's buses to be brought back into public control, John Swinney announces",
+          "url": "https://www.thenational.scot/news/26646270.scotlands-buses-brought-back-public-control/",
+          "homepageEvidence": "Observed h2 text linked by child anchor in HTTP 200 homepage response at 2026-10-18T20:25:24.983Z. Homepage title: Scotland's News & Independence Debate - The National",
+          "rank": 2
+        }
+      ],
+      "error": null
+    },
+    {
+      "family": "Press and Journal",
+      "region": "Scotland",
+      "homepage": "https://www.pressandjournal.co.uk/",
+      "observedAt": "2026-10-18T20:25:25.196Z",
+      "method": "One ordinary unauthenticated Node fetch of public homepage; linked heading metadata only; no article fetch. Rank is document order among distinct qualifying linked headings.",
+      "httpStatus": 200,
+      "editionNotes": "Website family homepage only. Shared daily/Sunday print-edition identity is not independently established by these links.",
+      "stories": [
+        {
+          "title": "Aberdeen businessman who throttled partner jailed for three years",
+          "url": "https://www.pressandjournal.co.uk/fp/news/crime-courts/7132942/aberdeen-businessman-who-throttled-partner-jailed-for-three-years/",
+          "homepageEvidence": "Observed h3 text linked by child anchor in HTTP 200 homepage response at 2026-10-18T20:25:25.196Z. Homepage title: Aberdeen, Aberdeenshire, Highlands News | The Press and Journal",
+          "rank": 1
+        },
+        {
+          "title": "Weekend court roll – a rapist policeman and an TikTok feud",
+          "url": "https://www.pressandjournal.co.uk/fp/news/7132411/weekend-court-roll-a-rapist-policeman-and-an-tiktok-feud/",
+          "homepageEvidence": "Observed h3 text linked by child anchor in HTTP 200 homepage response at 2026-10-18T20:25:25.196Z. Homepage title: Aberdeen, Aberdeenshire, Highlands News | The Press and Journal",
+          "rank": 3
+        }
+      ],
+      "error": null
+    },
+    {
+      "family": "The Courier",
+      "region": "Scotland",
+      "homepage": "https://www.thecourier.co.uk/",
+      "observedAt": "2026-10-18T20:25:25.171Z",
+      "method": "One ordinary unauthenticated Node fetch of public homepage; linked heading metadata only; no article fetch. Rank is document order among distinct qualifying linked headings.",
+      "httpStatus": 200,
+      "editionNotes": "Website family homepage only. Shared daily/Sunday print-edition identity is not independently established by these links.",
+      "stories": [
+        {
+          "title": "Drivers face delays on A9 near Dunblane after crash",
+          "url": "https://www.thecourier.co.uk/fp/news/5600635/delays-a9-dunblane-crash/",
+          "homepageEvidence": "Observed h3 text linked by child anchor in HTTP 200 homepage response at 2026-10-18T20:25:25.171Z. Homepage title: Latest News from Dundee, Perth, Fife, Angus, Stirling | The Courier",
+          "rank": 1
+        },
+        {
+          "title": "Perthshire A9 safety fears as video shows cars parked on verge of Scotland’s most dangerous road",
+          "url": "https://www.thecourier.co.uk/fp/news/5600584/a9-the-hermitage-dunkeld-parking-safety/",
+          "homepageEvidence": "Observed h3 text linked by child anchor in HTTP 200 homepage response at 2026-10-18T20:25:25.171Z. Homepage title: Latest News from Dundee, Perth, Fife, Angus, Stirling | The Courier",
+          "rank": 2
+        }
+      ],
+      "error": null
+    },
+    {
+      "family": "Sunday Post",
+      "region": "Scotland",
+      "homepage": "https://www.sundaypost.com/",
+      "observedAt": "2026-10-18T20:25:25.197Z",
+      "method": "One ordinary unauthenticated Node fetch of public homepage; linked heading metadata only; no article fetch. Rank is document order among distinct qualifying linked headings.",
+      "httpStatus": 200,
+      "editionNotes": "Observed homepage title identifies The Sunday Post. The selected links were on its website homepage; print-edition placement was not established.",
+      "stories": [
+        {
+          "title": "Pledge for all rogue police officers to face independent panel secretly axed",
+          "url": "https://www.sundaypost.com/fp/police-quietly-shelve-plan-for-independent-review-of-all-rogue-officers/",
+          "homepageEvidence": "Observed h3 text linked by child anchor in HTTP 200 homepage response at 2026-10-18T20:25:25.197Z. Homepage title: The Sunday Post",
+          "rank": 1
+        },
+        {
+          "title": "Through the looking glasses: Advances in smart specs see 88% of Scots back crackdown",
+          "url": "https://www.sundaypost.com/fp/scots-back-crackdown-on-camera-enabled-smart-glasses/",
+          "homepageEvidence": "Observed h3 text linked by child anchor in HTTP 200 homepage response at 2026-10-18T20:25:25.197Z. Homepage title: The Sunday Post",
+          "rank": 2
+        }
+      ],
+      "error": null
+    },
+    {
+      "family": "WalesOnline / Western Mail",
+      "region": "Wales",
+      "homepage": "https://www.walesonline.co.uk/",
+      "observedAt": "2026-10-18T20:25:26.174Z",
+      "method": "One ordinary unauthenticated Node fetch of public homepage; linked heading metadata only; no article fetch. Rank is document order among distinct qualifying linked headings.",
+      "httpStatus": 200,
+      "editionNotes": "Observed homepage title identifies WalesOnline. Western Mail edition identity was not observed in the selected homepage evidence.",
+      "stories": [
+        {
+          "title": "Fuel continues to leak into River Taff as experts hunt source",
+          "url": "https://www.walesonline.co.uk/news/wales-news/fuel-continues-leak-river-taff-34782920",
+          "homepageEvidence": "Observed h3 text linked by ancestor anchor in HTTP 200 homepage response at 2026-10-18T20:25:26.174Z. Homepage title: WalesOnline: News, sport, weather and events from across Wales",
+          "rank": 1
+        },
+        {
+          "title": "Poundland staff shut out of store after locks were changed",
+          "url": "https://www.walesonline.co.uk/news/wales-news/poundland-staff-shut-out-aberystwyth-34781912",
+          "homepageEvidence": "Observed h3 text linked by ancestor anchor in HTTP 200 homepage response at 2026-10-18T20:25:26.174Z. Homepage title: WalesOnline: News, sport, weather and events from across Wales",
+          "rank": 2
+        }
+      ],
+      "error": null
+    },
+    {
+      "family": "Daily Post / North Wales Live",
+      "region": "Wales",
+      "homepage": "https://www.dailypost.co.uk/",
+      "observedAt": "2026-10-18T20:25:26.274Z",
+      "method": "One ordinary unauthenticated Node fetch of public homepage; linked heading metadata only; no article fetch. Rank is document order among distinct qualifying linked headings.",
+      "httpStatus": 200,
+      "editionNotes": "Observed homepage title identifies North Wales Live. Daily Post print-edition identity was not observed in the selected homepage evidence.",
+      "stories": [
+        {
+          "title": "What happened after The Grand in Llandudno received multi-million pound revamp",
+          "url": "https://www.dailypost.co.uk/whats-on/whats-on-news/what-happened-after-grand-llandudno-34780818",
+          "homepageEvidence": "Observed h3 text linked by ancestor anchor in HTTP 200 homepage response at 2026-10-18T20:25:26.274Z. Homepage title: North Wales Live - Latest North Wales news, sport and what's on",
+          "rank": 1
+        },
+        {
+          "title": "Heineken pub group backs £600K revamp to reopen North Wales venue",
+          "url": "https://www.dailypost.co.uk/news/north-wales-news/heineken-pub-group-backs-600k-34782803",
+          "homepageEvidence": "Observed h3 text linked by ancestor anchor in HTTP 200 homepage response at 2026-10-18T20:25:26.274Z. Homepage title: North Wales Live - Latest North Wales news, sport and what's on",
+          "rank": 2
+        }
+      ],
+      "error": null
+    },
+    {
+      "family": "Belfast Telegraph",
+      "region": "Northern Ireland",
+      "homepage": "https://www.belfasttelegraph.co.uk/",
+      "observedAt": "2026-10-18T20:25:26.278Z",
+      "method": "One ordinary unauthenticated Node fetch of public homepage; linked heading metadata only; no article fetch. Rank is document order among distinct qualifying linked headings.",
+      "httpStatus": 403,
+      "editionNotes": "HTTP 403 prevented homepage link discovery. Neither Belfast Telegraph nor Sunday Life story/edition identity was established in this pass.",
+      "stories": [],
+      "error": "Stopped at HTTP 403; no retry and no article requests."
+    },
+    {
+      "family": "Irish News",
+      "region": "Northern Ireland",
+      "homepage": "https://www.irishnews.com/",
+      "observedAt": "2026-10-18T20:25:26.414Z",
+      "method": "One ordinary unauthenticated Node fetch of public homepage; linked heading metadata only; no article fetch. Rank is document order among distinct qualifying linked headings.",
+      "httpStatus": 200,
+      "editionNotes": "Website family homepage only. Shared daily/Sunday print-edition identity is not independently established by these links.",
+      "stories": [
+        {
+          "title": "Stormont budget stand-off sees nearly 8,000 college places axed",
+          "url": "https://www.irishnews.com/news/northern-ireland/stormont-budget-stand-off-sees-nearly-8000-college-places-axed-CECOAKICDFC4FAGNOZU6L7JJI4/",
+          "homepageEvidence": "Observed h2 text linked by child anchor in HTTP 200 homepage response at 2026-10-18T20:25:26.414Z. Homepage title: The Irish News",
+          "rank": 1
+        },
+        {
+          "title": "Drumcree legal challenge returning to High Court",
+          "url": "https://www.irishnews.com/news/northern-ireland/drumcree-legal-challenge-returning-to-high-court-JNHJJX7I2BHRJLDQVKJYD53I7E/",
+          "homepageEvidence": "Observed h2 text linked by child anchor in HTTP 200 homepage response at 2026-10-18T20:25:26.414Z. Homepage title: The Irish News",
+          "rank": 2
+        }
+      ],
+      "error": null
+    },
+    {
+      "family": "News Letter",
+      "region": "Northern Ireland",
+      "homepage": "https://www.newsletter.co.uk/",
+      "observedAt": "2026-10-18T20:25:26.297Z",
+      "method": "One ordinary unauthenticated Node fetch of public homepage; linked heading metadata only; no article fetch. Rank is document order among distinct qualifying linked headings.",
+      "httpStatus": 403,
+      "editionNotes": "Website family homepage only. Shared daily/Sunday print-edition identity is not independently established by these links.",
+      "stories": [],
+      "error": "Stopped at HTTP 403; no retry and no article requests."
+    }
+  ],
+  "deferredFamilies": [
+    {
+      "family": "Yorkshire Post",
+      "region": "England regional",
+      "homepage": "https://www.yorkshirepost.co.uk/",
+      "observedAt": "2026-10-18T20:25:26.507Z",
+      "method": "One ordinary unauthenticated Node fetch of public homepage; linked heading metadata only; no article fetch. Rank is document order among distinct qualifying linked headings.",
+      "httpStatus": 403,
+      "editionNotes": "Website family homepage only. Shared daily/Sunday print-edition identity is not independently established by these links.",
+      "stories": [],
+      "error": "Stopped at HTTP 403; no retry and no article requests."
+    },
+    {
+      "family": "Manchester Evening News",
+      "region": "England regional",
+      "homepage": "https://www.manchestereveningnews.co.uk/",
+      "observedAt": "2026-10-18T20:25:26.481Z",
+      "method": "One ordinary unauthenticated Node fetch of public homepage; linked heading metadata only; no article fetch. Rank is document order among distinct qualifying linked headings.",
+      "httpStatus": 200,
+      "editionNotes": "Website family homepage only. Shared daily/Sunday print-edition identity is not independently established by these links.",
+      "stories": [
+        {
+          "title": "Everything heard this week in the trial of a man accused of murdering Stretford Grammar headteacher Michael Mullins",
+          "url": "https://www.manchestereveningnews.co.uk/news/greater-manchester-news/everything-heard-week-trial-man-34775325",
+          "homepageEvidence": "Observed h3 text linked by ancestor anchor in HTTP 200 homepage response at 2026-10-18T20:25:26.481Z. Homepage title: Manchester Evening News: Number one for news, opinion, sport & celebrity news",
+          "rank": 1
+        },
+        {
+          "title": "Man dies after being hit by car on M56 while fleeing on foot following police chase",
+          "url": "https://www.manchestereveningnews.co.uk/news/greater-manchester-news/man-dies-after-being-hit-34782572",
+          "homepageEvidence": "Observed h3 text linked by ancestor anchor in HTTP 200 homepage response at 2026-10-18T20:25:26.481Z. Homepage title: Manchester Evening News: Number one for news, opinion, sport & celebrity news",
+          "rank": 2
+        }
+      ],
+      "error": null
+    },
+    {
+      "family": "Liverpool Echo",
+      "region": "England regional",
+      "homepage": "https://www.liverpoolecho.co.uk/",
+      "observedAt": "2026-10-18T20:25:27.545Z",
+      "method": "One ordinary unauthenticated Node fetch of public homepage; linked heading metadata only; no article fetch. Rank is document order among distinct qualifying linked headings.",
+      "httpStatus": 200,
+      "editionNotes": "Website family homepage only. Shared daily/Sunday print-edition identity is not independently established by these links.",
+      "stories": [
+        {
+          "title": "Man thought supermarket was ‘collapsing’ after car crashed into Stoneycroft Farmfoods",
+          "url": "https://www.liverpoolecho.co.uk/news/liverpool-news/man-thought-supermarket-collapsing-after-34782879",
+          "homepageEvidence": "Observed h3 text linked by ancestor anchor in HTTP 200 homepage response at 2026-10-18T20:25:27.545Z. Homepage title: Liverpool Echo: Latest Liverpool and Merseyside news sports and whats on",
+          "rank": 1
+        },
+        {
+          "title": "BBC Time star Paul Smith Jr: 'My dad would rather me act than box but I want to do both'",
+          "url": "https://www.liverpoolecho.co.uk/news/liverpool-news/bbc-time-star-paul-smith-34783015",
+          "homepageEvidence": "Observed h3 text linked by ancestor anchor in HTTP 200 homepage response at 2026-10-18T20:25:27.545Z. Homepage title: Liverpool Echo: Latest Liverpool and Merseyside news sports and whats on",
+          "rank": 2
+        }
+      ],
+      "error": null
+    },
+    {
+      "family": "Birmingham Live",
+      "region": "England regional",
+      "homepage": "https://www.birminghammail.co.uk/",
+      "observedAt": "2026-10-18T20:25:27.558Z",
+      "method": "One ordinary unauthenticated Node fetch of public homepage; linked heading metadata only; no article fetch. Rank is document order among distinct qualifying linked headings.",
+      "httpStatus": 200,
+      "editionNotes": "Observed homepage title identifies Birmingham Live. Birmingham Mail print-edition identity was not independently established.",
+      "stories": [
+        {
+          "title": "Killer driver says he 'prays every day' after mowing down cancer survivor",
+          "url": "https://www.birminghammail.co.uk/news/midlands-news/killer-driver-says-prays-every-34767490",
+          "homepageEvidence": "Observed h3 text linked by ancestor anchor in HTTP 200 homepage response at 2026-10-18T20:25:27.558Z. Homepage title: Birmingham Live - Birmingham news, features, information and sport",
+          "rank": 1
+        },
+        {
+          "title": "Teen dead and second seriously hurt as car hits railings in Birmingham",
+          "url": "https://www.birminghammail.co.uk/news/midlands-news/teenager-dead-second-seriously-hurt-34781651",
+          "homepageEvidence": "Observed h3 text linked by ancestor anchor in HTTP 200 homepage response at 2026-10-18T20:25:27.558Z. Homepage title: Birmingham Live - Birmingham news, features, information and sport",
+          "rank": 2
+        }
+      ],
+      "error": null
+    },
+    {
+      "family": "Bristol Post",
+      "region": "England regional",
+      "homepage": "https://www.bristolpost.co.uk/",
+      "observedAt": "2026-10-18T20:25:27.664Z",
+      "method": "One ordinary unauthenticated Node fetch of public homepage; linked heading metadata only; no article fetch. Rank is document order among distinct qualifying linked headings.",
+      "httpStatus": 200,
+      "editionNotes": "Observed homepage title identifies Bristol Live. Bristol Post print-edition identity was not independently established.",
+      "stories": [
+        {
+          "title": "Are coffee shops the new pubs? The battle for the future of Bristol's high streets",
+          "url": "https://www.bristolpost.co.uk/whats-on/whats-on-news/coffee-shops-new-pubs-battle-11166898",
+          "homepageEvidence": "Observed h3 text linked by ancestor anchor in HTTP 200 homepage response at 2026-10-18T20:25:27.664Z. Homepage title: Bristol Live - latest local news, sport & business from Bristol Headline text excludes trailing displayed byline, by Ellie Kendall.",
+          "rank": 1
+        },
+        {
+          "title": "Dad held at gunpoint hails 'life changing' medication in PTSD battle",
+          "url": "https://www.bristolpost.co.uk/news/bristol-news/dad-held-gunpoint-hails-life-11201162",
+          "homepageEvidence": "Observed h3 text linked by ancestor anchor in HTTP 200 homepage response at 2026-10-18T20:25:27.664Z. Homepage title: Bristol Live - latest local news, sport & business from Bristol",
+          "rank": 2
+        }
+      ],
+      "error": null
+    },
+    {
+      "family": "The Northern Echo",
+      "region": "England regional",
+      "homepage": "https://www.thenorthernecho.co.uk/",
+      "observedAt": "2026-10-18T20:25:27.720Z",
+      "method": "One ordinary unauthenticated Node fetch of public homepage; linked heading metadata only; no article fetch. Rank is document order among distinct qualifying linked headings.",
+      "httpStatus": 200,
+      "editionNotes": "Website family homepage only. Shared daily/Sunday print-edition identity is not independently established by these links.",
+      "stories": [
+        {
+          "title": "County Durham Kik pervert suggested '14-year-old' girl meet him in his BMW",
+          "url": "https://www.thenorthernecho.co.uk/news/26639863.blackhall-paedophile-messaged-teenage-girl-kik/",
+          "homepageEvidence": "Observed h2 text linked by child anchor in HTTP 200 homepage response at 2026-10-18T20:25:27.720Z. Homepage title: North East News, Sport, Business, Events - The Northern Echo",
+          "rank": 1
+        },
+        {
+          "title": "Three people taken to hospital after 'serious' crash closes A1 in Northumberland",
+          "url": "https://www.thenorthernecho.co.uk/news/26647574.three-people-taken-hospital-serious-a1-crash/",
+          "homepageEvidence": "Observed h2 text linked by child anchor in HTTP 200 homepage response at 2026-10-18T20:25:27.720Z. Homepage title: North East News, Sport, Business, Events - The Northern Echo",
+          "rank": 2
+        }
+      ],
+      "error": null
+    }
+  ]
+}

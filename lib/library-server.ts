@@ -11,6 +11,8 @@ import type {Config} from './education-service.ts';
 import {sameOrigin} from './edition-access.ts';
 import {cleanPublisherHeadline} from './publisher-headline.mjs';
 import {sanitizeMatchDiagnostic} from './newsbank-match-diagnostic.mjs';
+import {spendPressAuditStage} from './press-audit.ts';
+import type {PressAuditAllowance} from './press-audit.ts';
 const now=()=>new Date().toISOString();
 const json=(body:unknown,status=200)=>Response.json(body,{status,headers:{'Cache-Control':'private, no-store','X-Content-Type-Options':'nosniff','Referrer-Policy':'no-referrer'}});
 function connectionId(c:Config){const id=typeof c.RR_ACTIVE_ROOM_ID==='string'?c.RR_ACTIVE_ROOM_ID:DEFAULT_ROOM_ID;return id===DEFAULT_ROOM_ID?'camden':'camden:'+id;}
@@ -131,10 +133,10 @@ export async function libraryMetadata(url:string,c:Config,fetcher:typeof fetch,h
  if(publisher.key==='telegraph'&&pathDate&&normalizeNewsBankDate(pathDate)&&urlWords.length<=240&&terms(urlWords).length>=5)return {title:urlWords,date:pathDate,basis:'URL words; library match required'};
  throw Object.assign(Error(publisher.name+' headline could not be verified for this URL. Supply the original headline for review. No library article was substituted.'),{code:'headline_unverified',needsHeadline:true,metadataAttempts:attempts});
 }
-export async function lookupNewsBankSource(rawURL:string,c:Config,fetcher:typeof fetch=fetch,headlineHint='',publisherPreview?:unknown){
+export async function lookupNewsBankSource(rawURL:string,c:Config,fetcher:typeof fetch=fetch,headlineHint='',publisherPreview?:unknown,internal:{auditAllowance?:PressAuditAllowance}={}){
  const publisher=libraryArticle(rawURL),originalURL=publisher.url,row=await stored(c);if(!row)throw Error('The room owner has not connected Camden for server lookup yet.');
  if(row.state==='needs-attention'&&Date.now()-Date.parse(row.checkedAt)<90000)throw Error('The library connection needs the owner’s attention. Open Library connection.');
- if(!await slot(c,'library-lookup:'+connectionId(c),30))throw Error('Today’s thirty library lookups have been used. Saved editions remain available.');
+ if(!await spendPressAuditStage(internal.auditAllowance,'library',c,originalURL)&&!await slot(c,'library-lookup:'+connectionId(c),30))throw Error('Today’s thirty library lookups have been used. Saved editions remain available.');
  const metadata=await libraryMetadata(originalURL,c,fetcher,headlineHint,publisherPreview),meta={...metadata,publisher:publisher.key,urlWordsHint:metadata.basis.startsWith('URL words')},account=accountValue(await openLibrary(c.RR_LIBRARY_VAULT_KEY,row.encrypted));
  const client=runtimeLibraryClient(c,fetcher,account);if(account.session)client.restoreSession(account.session);
  let result=await client.lookup(meta);

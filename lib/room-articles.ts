@@ -7,6 +7,9 @@ import {mediaURL} from './capture-core.mjs';
 import {rankSavedArticles,safeURLMatch} from './article-matching.mjs';
 import {sameOrigin} from './edition-access.ts';
 import {cleanPublisherHeadline} from './publisher-headline.mjs';
+import {claimPressAuditEntry,finishPressAuditEntry,classifyPressAuditFailure} from './press-audit.ts';
+import type {PressAuditAllowance,PressAuditErrorCode} from './press-audit.ts';
+import {publisherFor} from './newspaper-core.mjs';
 
 const headers={'Cache-Control':'private, no-store','X-Content-Type-Options':'nosniff','Referrer-Policy':'no-referrer','X-Robots-Tag':'noindex, nofollow'};
 const json=(data:unknown,status=200)=>Response.json(data,{status,headers});
@@ -25,6 +28,8 @@ export function shelfMetadata(row:any){
  return {id:row.id,title,sourceURL:row.source_url||row.sourceURL,publisher,image,createdAt:row.addedAt||row.created_at,commentCount:Number(row.commentCount||0)};
 }
 export async function roomArticlesAPI(r:Request,c:Config,fetcher:typeof fetch=fetch){
+ let auditAllowance:PressAuditAllowance|undefined;
+ let outcome:{ok:boolean;status:number;id?:string;cached?:boolean;needsHeadline?:boolean;unsupported?:boolean;errorCode?:PressAuditErrorCode}={ok:false,status:502};
  try{
   const room=await requireRoom(r,c);
   if(r.method==='GET'){
@@ -43,19 +48,32 @@ export async function roomArticlesAPI(r:Request,c:Config,fetcher:typeof fetch=fe
    await c.DB.prepare('DELETE FROM rr_room_articles WHERE room_id=? AND page_id=?').bind(room.id,data.id).run();return json({removed:true});
   }
   let url:string;try{url=resourceURL(data.url);}catch{return json({error:'Paste an article link.'},400);}
+  if(data.auditRunId!==undefined||data.auditEntryId!==undefined){
+   const claimed=await claimPressAuditEntry(r,c,{runId:data.auditRunId,entryId:data.auditEntryId,url,requestId:data.requestId});auditAllowance=claimed.allowance;data.sourceHeadline=claimed.sourceHeadline;
+  }
+  const response=await addRoomArticle(r,c,fetcher,room,data,url,auditAllowance);
+  const value=await response.clone().json() as any;
+  let unsupported=false;if(auditAllowance)try{publisherFor(url);}catch{unsupported=true;}
+  outcome={ok:response.ok,status:response.status,id:value.id,cached:value.cached,needsHeadline:value.needsHeadline,unsupported,errorCode:value.errorCode};
+  return response;
+ }catch(error){if(error instanceof Response){outcome={ok:false,status:error.status};return error;}return json({error:'The article could not be added. Please try again.'},502);}
+ finally{if(auditAllowance)try{await finishPressAuditEntry(auditAllowance,outcome);}catch{console.warn('RR_PRESS_AUDIT_RECEIPT_UNAVAILABLE');}}
+}
+async function addRoomArticle(r:Request,c:Config,fetcher:typeof fetch,room:Awaited<ReturnType<typeof requireRoom>>,data:any,url:string,auditAllowance?:PressAuditAllowance){
   const alternate=new URL(url);alternate.hostname='www.'+alternate.hostname;
   const existing:any=await c.DB.prepare('SELECT p.id FROM rr_room_articles a JOIN education_pages p ON p.id=a.page_id WHERE a.room_id=? AND p.source_url IN (?,?) ORDER BY a.created_at DESC LIMIT 1').bind(room.id,url,alternate.href).first();
   if(existing)return json({id:existing.id,href:'/read/'+existing.id+'?room='+room.id,cached:true});
+  if(!auditAllowance){
   const shelf=await c.DB.prepare('SELECT p.id,p.title,p.source_url FROM rr_room_articles a JOIN education_pages p ON p.id=a.page_id WHERE a.room_id=? ORDER BY a.created_at DESC LIMIT 100').bind(room.id).all();
   const matches=rankSavedArticles({url},shelf.results||[]);const strong=matches.find((x:any)=>x.auto);if(strong)return json({id:strong.id,href:'/read/'+strong.id+'?room='+room.id,cached:true});
   if(matches.length&&!data.tryOriginal)return json({needsChoice:true,candidates:matches.map((x:any)=>({id:x.id,title:x.title,url:x.source_url,href:'/read/'+x.id+'?room='+room.id,basis:x.basis,ambiguous:x.ambiguous})),url});
+  }
   const forwardedHeaders=new Headers(r.headers);forwardedHeaders.delete('content-length');
-  const result=await articleAPI(new Request(new URL('/api/articles',r.url),{method:'POST',headers:forwardedHeaders,body:JSON.stringify({url,requestId:data.requestId||crypto.randomUUID(),sourceHeadline:data.sourceHeadline})}),c,fetcher);
-  const value=await result.json() as any;if(!result.ok)return json({error:value.error||'This article could not be opened.',...(value.needsHeadline?{needsHeadline:true}:{})},result.status);
+  const result=await articleAPI(new Request(new URL('/api/articles',r.url),{method:'POST',headers:forwardedHeaders,body:JSON.stringify({url,requestId:data.requestId||crypto.randomUUID(),sourceHeadline:data.sourceHeadline})}),c,fetcher,{auditAllowance});
+  const value=await result.json() as any;if(!result.ok){const classified=auditAllowance?classifyPressAuditFailure(value.error,value.needsHeadline===true):null;return json({...classified,error:classified?.error||value.error||'This article could not be opened.',...(value.needsHeadline?{needsHeadline:true}:{})},result.status);}
   let id=value.id;if(!id&&typeof value.href==='string'){const match=value.href.match(/\/(?:preview|read)\/([a-f0-9]{48})/);id=match?.[1];}
   if(!id||!await accessiblePage(r,c,id))return json({error:'The article was not added to this room.'},502);
   return json({id,href:'/read/'+id+'?room='+room.id,cached:Boolean(value.cached)});
- }catch(error){if(error instanceof Response)return error;return json({error:'The article could not be added. Please try again.'},502);}
 }
 
 const publishers:Record<string,{name:string,domains:string[]}>= {

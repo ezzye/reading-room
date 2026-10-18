@@ -11,8 +11,10 @@ import {addLibraryPreview} from './library-preview.mjs';
 import {fetchPublisherPreview} from './library-transport.mjs';
 import {roomMediaAPI} from './media-service.ts';
 import {retainRoomMediaOnSavedCapture} from './reused-media.ts';
+import {spendPressAuditStage} from './press-audit.ts';
+import type {PressAuditAllowance} from './press-audit.ts';
 const json=(data:unknown,status=200,headers={})=>Response.json(data,{status,headers:{'Cache-Control':'private, no-store','X-Content-Type-Options':'nosniff',...headers}});
-export async function articleAPI(r:Request,c:Config,fetcher:typeof fetch=fetch){
+export async function articleAPI(r:Request,c:Config,fetcher:typeof fetch=fetch,internal:{auditAllowance?:PressAuditAllowance}={}){
  if(roomId(r))c={...c,RR_ACTIVE_ROOM_ID:roomId(r)};
  if(r.method!=='POST')return json({error:'Use the article form.'},405);
  if(!sameOrigin(r))return json({error:'Use the RET article controls.'},403);
@@ -26,7 +28,8 @@ export async function articleAPI(r:Request,c:Config,fetcher:typeof fetch=fetch){
   if(!data.html&&!libraryRefresh){const lookup=await resourceLookupAPI(new Request(new URL('/api/resources/lookup',r.url),{method:'POST',headers:r.headers,body:JSON.stringify({url:p.url})}),c);if(lookup.ok){const found=await lookup.json() as any;if(found.found)return json({href:found.href,cached:true});}}
   if(!/^[0-9a-f-]{36}$/i.test(data.requestId||''))return json({error:'Reload the page and try again.'},400);
   // Reserve network fetches too, preventing anonymous URL import from becoming an unrestricted fetch service.
-  const day=new Date().toISOString().slice(0,10);const attempt=await c.DB.prepare('INSERT INTO education_counters (key,n) VALUES (?,1) ON CONFLICT(key) DO UPDATE SET n=n+1 WHERE n<? RETURNING n').bind('url-fetch:'+day,30).first();if(!attempt)return json({error:'Today’s thirty URL/import attempts have been used. Saved shared editions still open.'},429);
+  const audit=await spendPressAuditStage(internal.auditAllowance,'article',c,p.url,data.requestId,r);
+  const day=new Date().toISOString().slice(0,10);const attempt=audit||await c.DB.prepare('INSERT INTO education_counters (key,n) VALUES (?,1) ON CONFLICT(key) DO UPDATE SET n=n+1 WHERE n<? RETURNING n').bind('url-fetch:'+day,30).first();if(!attempt)return json({error:'Today’s thirty URL/import attempts have been used. Saved shared editions still open.'},429);
   let capture,publisherPreview,serverPreview;
   if(!data.html&&p.host==='telegraph.co.uk'&&c.RR_LIBRARY_AWS_FUNCTION&&await libraryServerConfigured(c)){
    try{serverPreview=await fetchPublisherPreview(c,p.url,fetcher);}
@@ -40,11 +43,11 @@ export async function articleAPI(r:Request,c:Config,fetcher:typeof fetch=fetch){
   }catch(error){
    if(data.html||!['thetimes.com','telegraph.co.uk'].includes(p.host))throw error;
    if(!await libraryServerConfigured(c))throw Error(isOwner(r,c)?'Connect Camden Library from the room menu, then try this article again.':'Ask this room’s owner to connect Camden Library, then try again.');
-   const source=await lookupNewsBankSource(p.url,c,fetcher,data.sourceHeadline,serverPreview);
+   const source=await lookupNewsBankSource(p.url,c,fetcher,data.sourceHeadline,serverPreview,{auditAllowance:internal.auditAllowance});
    capture=addLibraryPreview(buildLibraryCapture(source),publisherPreview);
   }
   const headers=new Headers(r.headers);headers.delete('content-length');const create=new Request(new URL('/api/capture',r.url),{method:'POST',headers,body:JSON.stringify({capture,requestId:data.requestId})});
-  const response=await captureAPI(create,c,fetcher);
+  const response=await captureAPI(create,c,fetcher,{auditAllowance:internal.auditAllowance});
   if(response.ok&&capture.presentation?.method==='library-text'){
    const saved=await response.clone().json() as {id?:string};
    if(saved.id&&roomId(r)){
