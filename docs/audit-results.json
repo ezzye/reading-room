@@ -29,7 +29,7 @@
     "actualNativeSharingVerifiedInPublicPackage": false,
     "privacyReview": "264 text files checked; one obvious synthetic test API-key placeholder reviewed, no private-data findings. Fictional corpus and placeholder configuration retained.",
     "fictionalCorpusAndConfiguration": "Existing fictional corpus and placeholder hosting configuration were preserved.",
-    "phoneAcceptance": "BBC readable confirmed. Times image still missing; source response is a device-verification page. France service match found, but phone intake link lost a separate title parameter; v43 bundled-link phone retest pending."
+    "phoneAcceptance": "BBC readable and France Telegraph correct headline/article opening confirmed by owner. Times Lyon and Telegraph France media still missing; newer Telegraph politics lookup not found."
   },
   "latestLibraryServiceValidation": {
     "date": "2026-10-18",
@@ -49,7 +49,8 @@
       "timesV40": "The v40 phone retest still showed no Times image; image recovery is unresolved for that article.",
       "telegraphApp": "The phone screenshot showed the new 18 October politics article not found; an ordinary authenticated library-service lookup for that same article also returned not_found.",
       "franceService": "The France-protests article returned 51 paragraphs from The Sunday Telegraph through the library service; this is not a phone import confirmation.",
-      "postV41": "Phone retest pending after the source changes; no claim that all reading or media issues are fixed."
+      "postV41": "Phone retest pending after the source changes; no claim that all reading or media issues are fixed.",
+      "francePhoneV43": "Owner confirmed correct headline and article open; no image or video, which owner says materially affects this story."
     },
     "privacy": "No article body, library card, credentials, room identifiers, participant details, cookies or provider session included."
   },
@@ -71,9 +72,10 @@
   "phoneFollowup": {
     "bbc": "Readable confirmed by owner",
     "timesMedia": "Still missing on phone; server receives zero-image public responses and provider returns Verifying Device. No bypass attempted.",
-    "telegraphFrance": "Service found51paragraphs; v42 phone link lost separate title parameter and left field empty. v43 bundled URL/title and safe auth continuation deployed; physical-phone retest pending.",
+    "telegraphFrance": "Owner confirmed correct headline and France article open on phone after v43 bundled intake repair. Owner also reports missing images and video; media issue remains unresolved.",
     "telegraphPolitics": "No unambiguous current library match in phone/service tests.",
     "v42Changes": "Successful Add opens exact resulting edition; Android shared title travels with URL; missing media message distinguishes source delivery from absence of images.",
-    "v43Changes": "Bundled URL/title intake and sign-in continuation; Daily Mail strict public adapter and publisher search."
+    "v43Changes": "Bundled URL/title intake and sign-in continuation; Daily Mail strict public adapter and publisher search.",
+    "telegraphFranceMedia": "Owner reports no images/video. Ordinary exact-article and homepage HTTP402 responses had zero public media/canonical metadata; provider and production sources also supplied no media. Unresolved, visually incomplete."
   }
 }

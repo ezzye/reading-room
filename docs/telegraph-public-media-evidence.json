@@ -1,0 +1,73 @@
+{
+  "checkedAt": "2026-10-18T12:59:22.507Z",
+  "articleURL": "https://www.telegraph.co.uk/world-news/2026/10/17/students-tear-gassed-hit-batons-france-braces-mass-protests/",
+  "requestedTitle": "Historic clock tower falls as France burns on day of violent protests",
+  "method": "One existing publicHTML call each for exact Telegraph article and homepage. Existing ReadEveryThing public User-Agent, normal redirects, no credentials/cookies, challenge solving, fingerprint variants or provider calls. Inspect only public response metadata and visible media associations, including non-2xx response bodies; no article prose retained.",
+  "pages": [
+    {
+      "url": "https://www.telegraph.co.uk/world-news/2026/10/17/students-tear-gassed-hit-batons-france-braces-mass-protests",
+      "status": 402,
+      "bodyBytes": 1030,
+      "title": "",
+      "canonical": "",
+      "ogURL": "",
+      "metadataMedia": [],
+      "visibleMedia": [],
+      "exactArticleIdentity": false,
+      "challengeDetected": false,
+      "rawImageElements": 0,
+      "rawPlayerElements": 0,
+      "exactHomepageCards": [],
+      "publicHTMLRejected": "The newspaper did not make this page available to RET (HTTP 402). Use a reviewed readable-page capture.",
+      "requests": [
+        {
+          "url": "https://telegraph.co.uk/world-news/2026/10/17/students-tear-gassed-hit-batons-france-braces-mass-protests",
+          "status": 301,
+          "contentType": null,
+          "userAgent": "ReadEveryThing/1.0 (public article reader)",
+          "cookieSent": false
+        },
+        {
+          "url": "https://www.telegraph.co.uk/world-news/2026/10/17/students-tear-gassed-hit-batons-france-braces-mass-protests",
+          "status": 402,
+          "contentType": "text/html; charset=utf-8",
+          "userAgent": "ReadEveryThing/1.0 (public article reader)",
+          "cookieSent": false
+        }
+      ]
+    },
+    {
+      "url": "https://www.telegraph.co.uk/",
+      "status": 402,
+      "bodyBytes": 1030,
+      "title": "",
+      "canonical": "",
+      "ogURL": "",
+      "metadataMedia": [],
+      "visibleMedia": [],
+      "exactArticleIdentity": false,
+      "challengeDetected": false,
+      "rawImageElements": 0,
+      "rawPlayerElements": 0,
+      "exactHomepageCards": [],
+      "publicHTMLRejected": "The newspaper did not make this page available to RET (HTTP 402). Use a reviewed readable-page capture.",
+      "requests": [
+        {
+          "url": "https://telegraph.co.uk/",
+          "status": 301,
+          "contentType": null,
+          "userAgent": "ReadEveryThing/1.0 (public article reader)",
+          "cookieSent": false
+        },
+        {
+          "url": "https://www.telegraph.co.uk/",
+          "status": 402,
+          "contentType": "text/html; charset=utf-8",
+          "userAgent": "ReadEveryThing/1.0 (public article reader)",
+          "cookieSent": false
+        }
+      ]
+    }
+  ],
+  "heads": []
+}
