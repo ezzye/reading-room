@@ -1,13 +1,13 @@
 {
-  "checkedAt": "2026-10-18T12:22:31.104Z",
-  "method": "One ordinary official homepage discovery and at most one linked article per publisher; same-domain redirects only. No credentials/cookies, AI-provider calls, browser challenge handling, hidden body/state extraction, retries after gates, or profile edits. Metadata/counts only stored. Follow-up authorized profile work added only Mirror/Sun strict visible-body adapters with synthetic regression tests; no profile added for unsupported or gated outlets.",
+  "checkedAt": "2026-10-18T12:48:41.858Z",
+  "method": "One ordinary official homepage discovery and at most one linked article per publisher; same-domain redirects only. No credentials/cookies, AI-provider calls, browser challenge handling, hidden body/state extraction, retries after gates, or profile edits. Metadata/counts only stored. Follow-up authorized profile work added only Mirror/Sun strict visible-body adapters with synthetic regression tests; no profile added for unsupported or gated outlets. Final authorized Daily Mail adapter used one ordinary fresh public request and replayed that response locally for parser verification; no additional newspapers or source-body artifacts.",
   "observerDomainEvidence": "https://observer.co.uk/advertising/digital-and-social",
   "coverage": {
     "outlets": 5,
     "actualArticleURLs": 4,
-    "unsupportedAdapters": 3,
+    "unsupportedAdapters": 2,
     "visualVerified": 0,
-    "newProfiles": 2
+    "newProfiles": 3
   },
   "rows": [
     {
@@ -20,7 +20,13 @@
       "accessStatus": "homepage HTTP unavailable; no retry",
       "renderedVisualVerified": false,
       "fullTextCompletenessVerified": false,
-      "homeHTTP": 403
+      "homeHTTP": 403,
+      "homeResponses": [
+        {
+          "url": "https://www.ft.com/",
+          "status": 403
+        }
+      ]
     },
     {
       "outlet": "Daily Mirror",
@@ -33,8 +39,22 @@
       "renderedVisualVerified": false,
       "fullTextCompletenessVerified": false,
       "homeHTTP": 200,
+      "homeResponses": [
+        {
+          "url": "https://www.mirror.co.uk/",
+          "status": 200
+        }
+      ],
+      "discoveryTitle": "Mystery off-duty GP who saved lives on Bedford train crash while barely able to move from own injuries is Pride of Britain hero",
       "discovery": "Article link observed on ordinary official homepage",
+      "articleResponses": [
+        {
+          "url": "https://www.mirror.co.uk/news/uk-news/bedford-train-crash-hero-eli-37775689",
+          "status": 200
+        }
+      ],
       "finalURL": "https://www.mirror.co.uk/news/uk-news/bedford-train-crash-hero-eli-37775689",
+      "contentBytes": 678069,
       "canonical": "https://www.mirror.co.uk/news/uk-news/bedford-train-crash-hero-eli-37775689",
       "structuredSubscription": false,
       "visibleParagraphs": 44,
@@ -42,6 +62,7 @@
       "visibleImages": 7,
       "visibleVideos": 0,
       "articleRoot": "ARTICLE.ArticleBody_article__AwrJE",
+      "adapterProposal": "Candidate for a new adapter after dedicated fixtures and browser comparison; no profile added.",
       "adapterExtraction": {
         "checkedAt": "2026-10-18T12:22:31.104Z",
         "paragraphCount": 36,
@@ -65,8 +86,22 @@
       "renderedVisualVerified": false,
       "fullTextCompletenessVerified": false,
       "homeHTTP": 200,
+      "homeResponses": [
+        {
+          "url": "https://www.thesun.co.uk/",
+          "status": 200
+        }
+      ],
+      "discoveryTitle": "STORM HELL Frantic search for mum swept away by horror floods as Storm Adam lashes Brit holiday hotspot & turns roads into rivers",
       "discovery": "Article link observed on ordinary official homepage",
+      "articleResponses": [
+        {
+          "url": "https://www.thesun.co.uk/news/40721275/spain-floods-red-alert-cars-swept-away/",
+          "status": 200
+        }
+      ],
       "finalURL": "https://www.thesun.co.uk/news/40721275/spain-floods-red-alert-cars-swept-away/",
+      "contentBytes": 615824,
       "canonical": "https://www.thesun.co.uk/news/40721275/spain-floods-red-alert-cars-swept-away/",
       "structuredSubscription": false,
       "visibleParagraphs": 39,
@@ -74,6 +109,7 @@
       "visibleImages": 12,
       "visibleVideos": 2,
       "articleRoot": "ARTICLE.single.single--article.theme-news",
+      "adapterProposal": "Candidate for a new adapter after dedicated fixtures and browser comparison; no profile added.",
       "adapterExtraction": {
         "checkedAt": "2026-10-18T12:19:30.812Z",
         "paragraphCount": 30,
@@ -88,55 +124,106 @@
       "outlet": "The Observer",
       "homeURL": "https://observer.co.uk/",
       "articleURL": "https://observer.co.uk/news/national/article/childrens-commissioner-declares-state-of-emergency-on-young-peoples-lives",
-      "title": "Children\u2019s commissioner declares \u2018state of emergency\u2019 on young people\u2019s lives",
+      "title": "Children’s commissioner declares ‘state of emergency’ on young people’s lives",
       "adapterStatus": "unsupported: no newspaper profile",
       "httpStatus": 200,
       "accessStatus": "subscription/registration gate declared; no full-body extraction",
       "renderedVisualVerified": false,
       "fullTextCompletenessVerified": false,
       "homeHTTP": 200,
+      "homeResponses": [
+        {
+          "url": "https://observer.co.uk/",
+          "status": 200
+        }
+      ],
+      "discoveryTitle": "Children’s commissioner declares ‘state of emergency’ on young people’s livesRachel SylvesterA damning new report warns of a ‘childhood lottery’, with stark regional divides in safety, mental health and education",
       "discovery": "Article link observed on ordinary official homepage",
+      "articleResponses": [
+        {
+          "url": "https://observer.co.uk/news/national/article/childrens-commissioner-declares-state-of-emergency-on-young-peoples-lives",
+          "status": 200
+        }
+      ],
       "finalURL": "https://observer.co.uk/news/national/article/childrens-commissioner-declares-state-of-emergency-on-young-peoples-lives",
+      "contentBytes": 590742,
       "canonical": "https://observer.co.uk/news/national/article/childrens-commissioner-declares-state-of-emergency-on-young-peoples-lives",
       "structuredSubscription": true,
       "visibleParagraphs": 0,
       "visibleWordCount": 0,
       "visibleImages": null,
       "visibleVideos": null,
-      "articleRoot": null
+      "articleRoot": null,
+      "adapterProposal": "No adapter proposal from this access evidence."
     },
     {
       "outlet": "Daily Mail",
       "homeURL": "https://www.dailymail.com/",
       "articleURL": "https://www.dailymail.com/news/article-16218361/Moment-French-rioters-attack-shopkeeper.html",
-      "title": "News",
-      "adapterStatus": "unsupported: no newspaper profile",
+      "title": "Moment French rioters attack shopkeeper and distraught woman begs them not to loot store as police admit they've 'lost control' of violent protests that saw 143-year-old town hall incinerated",
+      "adapterStatus": "new profile: actual public extraction passed; browser comparison pending",
       "httpStatus": 200,
       "accessStatus": "ordinary public markup received; completeness unverified",
       "renderedVisualVerified": false,
       "fullTextCompletenessVerified": false,
       "homeHTTP": 200,
+      "homeResponses": [
+        {
+          "url": "https://www.dailymail.com/",
+          "status": 301
+        },
+        {
+          "url": "https://www.dailymail.com/home/index.html",
+          "status": 200
+        }
+      ],
+      "discoveryTitle": "Moment French rioters attack shopkeeper and distraught woman begs them not to loot store as police admit they've 'lost control' of violent protests that saw 143-year-old town hall incinerated",
       "discovery": "Article link observed on ordinary official homepage",
+      "articleResponses": [
+        {
+          "url": "https://www.dailymail.com/news/article-16218361/Moment-French-rioters-attack-shopkeeper.html",
+          "status": 200
+        }
+      ],
       "finalURL": "https://www.dailymail.com/news/article-16218361/Moment-French-rioters-attack-shopkeeper.html",
+      "contentBytes": 1044828,
       "canonical": "https://www.dailymail.com/news/article-16218361/Moment-French-rioters-attack-shopkeeper.html",
       "structuredSubscription": false,
       "visibleParagraphs": 157,
       "visibleWordCount": 3249,
       "visibleImages": 65,
       "visibleVideos": 1,
-      "articleRoot": "DIV.article-text.wide.heading-tag-switch"
+      "articleRoot": "DIV.article-text.wide.heading-tag-switch",
+      "adapterProposal": "Implemented after one fresh ordinary public request; strict articleBody container, public headline metadata and source photo captions verified.",
+      "adapterExtraction": {
+        "checkedAt": "2026-10-18T12:48:41.858Z",
+        "sourceURL": "https://www.dailymail.com/news/article-16218361/Moment-French-rioters-attack-shopkeeper.html",
+        "publisher": "Daily Mail",
+        "title": "Moment French rioters attack shopkeeper and distraught woman begs them not to loot store as police admit they've 'lost control' of violent protests that saw 143-year-old town hall incinerated",
+        "paragraphCount": 88,
+        "wordCount": 2259,
+        "imageCount": 65,
+        "videoCount": 1,
+        "paywallDetected": false,
+        "completeNotCertified": true,
+        "captionCount": 64,
+        "bodyBoundary": "#js-article-text.article-text [itemprop=\"articleBody\"]",
+        "headlineBasis": "Public document title, with Daily Mail Online suffix removed; unrelated News nav h1 excluded",
+        "visualVerified": false,
+        "onePublicFetch": true
+      }
     }
   ],
   "profileVerification": {
-    "testsPassed": 20,
+    "testsPassed": 23,
     "typeCheck": "passed",
     "browserVisualVerified": false,
     "sourceBodiesStored": false,
-    "extractorSHA256": "84a618dc904f77e17763d39586676625c4ee2f0bd1f18fa9e9b1aa84a1db1938"
+    "extractorSHA256": "174974d18e44de019698a519d6b39286c8e115840bae35254434376d927713ba"
   },
   "coverageGaps": [
     "Financial Times homepage returned HTTP403; no retries and no article URL guessed.",
     "Observer article declares subscription-only access and has no profile.",
-    "Daily Mail now uses dailymail.com; one actual public article was discovered, but no adapter was added or extraction certified."
+    "Daily Mail now uses dailymail.com; its new profile passed one actual public extraction, with completeness and browser appearance uncertified."
   ]
 }

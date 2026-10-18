@@ -19,7 +19,7 @@
   "publicPackageVerification": {
     "date": "2026-10-18",
     "syntheticApplicationTests": {
-      "passed": 161,
+      "passed": 169,
       "failed": 0
     },
     "typeCheck": "passed",
@@ -27,9 +27,9 @@
     "reportHandlerChecks": "Both HTML reports parsed; row totals, self-contained asset loading, Save HTML payload, Share fallback and native-share arguments passed in synthetic DOM.",
     "actualBrowserDownloadVerifiedInPublicPackage": false,
     "actualNativeSharingVerifiedInPublicPackage": false,
-    "privacyReview": "69 pending files checked for private paths, personal names, non-example emails, private hosts, access keys and private keys; no private-data findings. No article corpus, runtime account data or library access records were copied.",
+    "privacyReview": "264 text files checked; one obvious synthetic test API-key placeholder reviewed, no private-data findings. Fictional corpus and placeholder configuration retained.",
     "fictionalCorpusAndConfiguration": "Existing fictional corpus and placeholder hosting configuration were preserved.",
-    "phoneAcceptance": "v41 retest pending. v40 phone showed no Times image; politics article not found on phone and in library service. France service retrieval is distinct from phone acceptance."
+    "phoneAcceptance": "BBC readable confirmed. Times image still missing; source response is a device-verification page. France service match found, but phone intake link lost a separate title parameter; v43 bundled-link phone retest pending."
   },
   "latestLibraryServiceValidation": {
     "date": "2026-10-18",
@@ -57,22 +57,23 @@
     "coverage": {
       "outlets": 5,
       "actualArticleURLs": 4,
-      "unsupportedAdapters": 3,
+      "unsupportedAdapters": 2,
       "visualVerified": 0,
-      "newProfiles": 2
+      "newProfiles": 3
     },
-    "checkedAt": "2026-10-18T12:22:31.104Z",
+    "checkedAt": "2026-10-18T12:48:41.858Z",
     "source": "uk-supplement-audit.json",
-    "publicExtraction": "Daily Mirror: 1417 words,36 paragraphs,7 images/7 captions. The Sun:565 words,30 paragraphs,6 image references. Completeness and rendered appearance remain unverified.",
-    "unsupported": "Financial Times homepage HTTP403; Observer selected article subscription gate; Daily Mail public article found but adapter unsupported.",
+    "publicExtraction": "Mirror1417words/36paragraphs/7images/7captions; Sun565words/30paragraphs/6images; DailyMail2259words/88paragraphs/65images/1supportedvideo/64captions. Parser output only; completeness, appearance and playback unverified.",
+    "unsupported": "Financial Times homepageHTTP403; Observer selected article subscription gate.",
     "originalAudit": "Original25-URL13-outlet matrix retained as a distinct dated run.",
     "reportControls": "Standalone HTML parsed with five metadata rows; Save HTML payload and Share fallback/native arguments passed synthetic DOM checks. Actual browser download/native sharing remain unverified."
   },
   "phoneFollowup": {
     "bbc": "Readable confirmed by owner",
     "timesMedia": "Still missing on phone; server receives zero-image public responses and provider returns Verifying Device. No bypass attempted.",
-    "telegraphFrance": "Service retrieval found51paragraphs; phone screenshot used URL words as headline and did not confirm a new edition. Correctly prefilled shared-title test pending.",
+    "telegraphFrance": "Service found51paragraphs; v42 phone link lost separate title parameter and left field empty. v43 bundled URL/title and safe auth continuation deployed; physical-phone retest pending.",
     "telegraphPolitics": "No unambiguous current library match in phone/service tests.",
-    "v42Changes": "Successful Add opens exact resulting edition; Android shared title travels with URL; missing media message distinguishes source delivery from absence of images."
+    "v42Changes": "Successful Add opens exact resulting edition; Android shared title travels with URL; missing media message distinguishes source delivery from absence of images.",
+    "v43Changes": "Bundled URL/title intake and sign-in continuation; Daily Mail strict public adapter and publisher search."
   }
 }
