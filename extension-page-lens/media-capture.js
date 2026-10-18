@@ -29,5 +29,6 @@ function extractMedia(){
   const poster=e.querySelector('.vjs-poster');if(poster&&clear(poster)){const match=getComputedStyle(poster).backgroundImage?.match(/^url\(["']?(.*?)["']?\)$/);if(match)add('figure',match[1],poster,{caption:posterCaption,credit});}
   if(e.tagName==='VIDEO'&&e.paused&&Number(e.currentTime)===0&&Number(e.readyState)===0)add('figure',e.poster||e.getAttribute('poster'),e,{caption:posterCaption,credit});
  }
+ if(document.visibilityState==='hidden')throw Error('Keep the source tab visible.');
  return {schema:'ret-media/v1',url,title:norm(heading?.innerText||heading?.textContent||document.title,600),capturedAt:new Date().toISOString(),viewport:{width:innerWidth,height:innerHeight,devicePixelRatio},media,diagnostics:{visibleOnly:true,imageCount:media.filter(x=>x.type==='figure').length,videoCount:media.filter(x=>x.type==='video').length,partialViewportMediaCount,unsupportedPlayerCount,unsupportedPlayerHosts:[...unsupportedHosts]}};
 }
