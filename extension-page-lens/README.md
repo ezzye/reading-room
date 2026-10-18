@@ -1,4 +1,4 @@
-# Reading Room Page Lens 0.2.1
+# Reading Room Page Lens 0.2.2
 
 An unpacked Manifest V3 Chrome extension for explicit rendered-page capture and a short, owner-enabled connection to a private Reading Room. This version adds permissions. Review the permission changes before loading or reloading it. No installed extension has been changed by the automated checks.
 
@@ -37,3 +37,7 @@ Local rendered-DOM tests cover visibility, partial viewport intersections, occlu
 Successful pairing checks the fixed endpoint immediately and ensures a thirty-second alarm exists. Worker startup and popup status recreate a missing alarm for an unexpired locally enabled session. **Check now** performs the same bounded check; it cannot activate or navigate the source. The popup retains only safe timestamps, fixed outcome labels and HTTP status codes after failure or expiry. It displays no bearer, source URL, query or backend error text. This repair addresses a lifecycle gap consistent with a paired connection that never polls; the exact cause of the observed live failure remains unconfirmed until the owner tests this version. Permissions are unchanged from 0.2.0.
 
 While pairing or enabled, Enable is disabled. Repeated Enable messages for the same tab preserve the current nonce or capability and do not create another connection page. Use Stop before explicitly starting again or selecting another tab. A screenshot showing “Confirm the connection” identifies pending pairing, not a completed connection; the alarm repair is not a confirmed explanation of that observed state.
+
+## Confirmed polling transport fix (0.2.2)
+
+Live server evidence showed pairing POST succeeded with Chrome’s extension Origin, immediately followed by a polling GET rejected with HTTP403 because Origin was absent. Polling now uses a fixed POST `{action:"poll"}` with the same bearer header, cookie omission, approved destination and strict server Origin policy. No Origin header is forged and permissions are unchanged. The popup shows **Build 0.2.2** so the installed version can be checked directly. Earlier alarm recovery and duplicate-Enable guards remain; they were not the confirmed cause of this failure. Actual Chrome and phone retesting is still required after the owner reloads and reconnects.

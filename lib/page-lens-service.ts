@@ -48,7 +48,7 @@ export async function pageLensAPI(request:Request,config:Config,now=Date.now()):
    }
    const session=await config.DB.prepare(live+' AND l.token_hash=? AND l.extension_origin=?').bind(iso(now),iso(now),await tokenHash(bearer!),origin).first<LensSession>();
    if(!session)return json({error:'Capture permission has expired or was revoked.'},410);
-   if(request.method==='GET'){
+   if(request.method==='GET'||(request.method==='POST'&&body.action==='poll')){
     const command=await config.DB.prepare(`UPDATE rr_page_lens_commands SET state='claimed' WHERE id=(SELECT id FROM rr_page_lens_commands WHERE session_id=? AND state='waiting' AND expires_at>? ORDER BY created_at LIMIT 1) AND state='waiting' AND EXISTS (${live.replace('SELECT l.*','SELECT 1')} AND l.id=rr_page_lens_commands.session_id) RETURNING id`).bind(session.id,iso(now),iso(now),iso(now)).first<{id:string}>();
     return json({sessionId:session.id,articleURL:session.article_url,expiresAt:session.expires_at,command:command?{id:command.id,action:'capture-visible-media'}:null});
    }

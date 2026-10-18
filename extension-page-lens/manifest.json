@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "RET Page Lens",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "description": "Review readable article captures and connect visible media to your private Reading Room.",
   "permissions": [
     "activeTab",
