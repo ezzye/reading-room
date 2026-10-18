@@ -12,7 +12,7 @@ import type {PressAuditAllowance,PressAuditErrorCode} from './press-audit.ts';
 import {publisherFor} from './newspaper-core.mjs';
 
 const headers={'Cache-Control':'private, no-store','X-Content-Type-Options':'nosniff','Referrer-Policy':'no-referrer','X-Robots-Tag':'noindex, nofollow'};
-const json=(data:unknown,status=200)=>Response.json(data,{status,headers});
+const json=(data:unknown,status=200,extraHeaders:Record<string,string>={})=>Response.json(data,{status,headers:{...headers,...extraHeaders}});
 export async function roomBody(request:Request,max=5000){
  if(Number(request.headers.get('content-length')||0)>max||!request.body)throw new Response('Invalid request',{status:400});
  const reader=request.body.getReader();let size=0,text='';const decoder=new TextDecoder();
@@ -70,7 +70,7 @@ async function addRoomArticle(r:Request,c:Config,fetcher:typeof fetch,room:Await
   }
   const forwardedHeaders=new Headers(r.headers);forwardedHeaders.delete('content-length');
   const result=await articleAPI(new Request(new URL('/api/articles',r.url),{method:'POST',headers:forwardedHeaders,body:JSON.stringify({url,requestId:data.requestId||crypto.randomUUID(),sourceHeadline:data.sourceHeadline})}),c,fetcher,{auditAllowance});
-  const value=await result.json() as any;if(!result.ok){const classified=auditAllowance?classifyPressAuditFailure(value.error,value.needsHeadline===true):null;return json({...classified,error:classified?.error||value.error||'This article could not be opened.',...(value.needsHeadline?{needsHeadline:true}:{})},result.status);}
+  const value=await result.json() as any;if(!result.ok){const classified=auditAllowance?classifyPressAuditFailure(value.error,value.needsHeadline===true):null;const usage=!auditAllowance&&value.errorCode==='daily_import_limit'?{errorCode:value.errorCode,usage:value.usage}:{};const retry=!auditAllowance&&value.errorCode==='daily_import_limit'?result.headers.get('Retry-After'):null;return json({...classified,...usage,error:classified?.error||value.error||'This article could not be opened.',...(value.needsHeadline?{needsHeadline:true}:{})},result.status,retry?{'Retry-After':retry}:{});}
   let id=value.id;if(!id&&typeof value.href==='string'){const match=value.href.match(/\/(?:preview|read)\/([a-f0-9]{48})/);id=match?.[1];}
   if(!id||!await accessiblePage(r,c,id))return json({error:'The article was not added to this room.'},502);
   return json({id,href:'/read/'+id+'?room='+room.id,cached:Boolean(value.cached)});

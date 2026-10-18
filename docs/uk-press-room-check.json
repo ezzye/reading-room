@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-18T21:21:08.792Z",
+  "generatedAt": "2026-10-18T21:33:25.783Z",
   "observedDate": "2026-10-18",
   "ledgerRecordedAt": "2026-10-18T20:54:58.904Z",
   "ledgerKind": "final",
@@ -23,7 +23,7 @@
     "This is a bounded major-press pass, not every UK newspaper. Deferred regional results are excluded from the major totals."
   ],
   "qa": {
-    "recordedAt": "2026-10-18T20:58:43.984068+00:00",
+    "recordedAt": "2026-10-18T21:25:44.877Z",
     "checks": [
       {
         "paper": "The Guardian",
@@ -40,8 +40,8 @@
       },
       {
         "paper": "The Sun",
-        "status": "User-reported phone image failure; confirmed in desktop reader",
-        "note": "Owner reports Sun images do not work. The first saved Sun edition was opened in the desktop reader: all five figure URLs were malformed article-path fragments and loaded zero pixels. A source URL parser repair is being prepared; this is not a publisher image denial.",
+        "status": "Historical: owner-reported phone image failure, confirmed before repair",
+        "note": "Historical observation before the image repair: Owner reports Sun images do not work. The first saved Sun edition was opened in the desktop reader: all five figure URLs were malformed article-path fragments and loaded zero pixels. A source URL parser repair is being prepared; this is not a publisher image denial. The repair-in-preparation wording describes that earlier check; subsequent desktop repairs and the later owner-reported phone pass are recorded separately below.",
         "desktopRendered": true,
         "imageReferences": 5,
         "loadedImages": 0,
@@ -70,7 +70,7 @@
         "paper": "The Telegraph",
         "sourceURL": "https://www.telegraph.co.uk/world-news/2026/10/17/students-tear-gassed-hit-batons-france-braces-mass-protests/",
         "status": "Verified publisher thumbnail added to saved edition",
-        "note": "Google Images preview visibly linked this exact article to a loaded Telegraph-hosted1920px video thumbnail. Version64 added that recorded reference automatically to the existing library-text edition; it loaded in the desktop reader after scrolling. This is one curated exact-story association, not a general automatic Google Images search. Original photo placement and phone thumbnail loading are unverified; the earlier source-player phone success remains separate.",
+        "note": "Google Images preview visibly linked this exact article to a loaded Telegraph-hosted1920px video thumbnail. Version64 added that recorded reference automatically to the existing library-text edition; it loaded in the desktop reader after scrolling. This is one curated exact-story association, not a general automatic Google Images search. Original photo placement was unverified, and phone thumbnail loading had not yet been confirmed at the time of this desktop check. The later owner confirmation is recorded below; the earlier source-player phone success remains separate.",
         "desktopRendered": true,
         "imageReferences": 1,
         "loadedImages": 1
@@ -79,7 +79,7 @@
         "paper": "The Sun",
         "sourceURL": "https://www.thesun.co.uk/news/40669745/dine-dash-tactics-plague-uk/",
         "status": "First saved edition repaired; desktop images load",
-        "note": "Version64 repaired five malformed image links using same-article unique-caption matches. All five original publisher images loaded after scrolling; existing paragraph order and eight closed AI controls remained. Physical-phone repair retest is pending.",
+        "note": "Version64 repaired five malformed image links using same-article unique-caption matches. All five original publisher images loaded after scrolling; existing paragraph order and eight closed AI controls remained. The physical-phone repair retest was pending at the time of this desktop check; the later owner confirmation is recorded below.",
         "desktopRendered": true,
         "imageReferences": 5,
         "loadedImages": 5
@@ -88,10 +88,24 @@
         "paper": "The Sun",
         "sourceURL": "https://www.thesun.co.uk/tv/40726742/traitors-richard-e-grant-blunder-suspects-wanted-out/",
         "status": "Second saved edition partly repaired",
-        "note": "Version65 repaired two uniquely caption-matched source photo links; both loaded in the desktop reader after scrolling. The third saved figure had only a generic image label and remains unverified/unavailable. No replacement was invented. Eight AI commentary controls remain collapsed; related-card filtering and complete source fidelity remain unverified.",
+        "note": "Version65 repaired two uniquely caption-matched source photo links; both loaded in the desktop reader after scrolling. The third saved figure had only a generic image label and remains unverified/unavailable. No replacement was invented. Eight AI commentary controls remain collapsed; related-card filtering and complete source fidelity remain unverified. Phone confirmation for this second Sun story remains unreported; its one unmatched image remains unavailable.",
         "desktopRendered": true,
         "imageReferences": 3,
         "loadedImages": 2
+      },
+      {
+        "paper": "The Sun",
+        "sourceURL": "https://www.thesun.co.uk/news/40669745/dine-dash-tactics-plague-uk/",
+        "status": "Owner-reported phone pass after repair",
+        "note": "The owner answered “Both appear” when asked about the repaired Sun dine-and-dash photos and the Telegraph clock-tower thumbnail. This confirms that the Sun photo sample appears on the owner’s phone. It does not verify all five photos individually, an independent second-device check, or any new video playback.",
+        "phoneTested": true
+      },
+      {
+        "paper": "The Telegraph",
+        "sourceURL": "https://www.telegraph.co.uk/world-news/2026/10/17/students-tear-gassed-hit-batons-france-braces-mass-protests/",
+        "status": "Owner-reported phone thumbnail pass",
+        "note": "The owner answered “Both appear” when asked about the repaired Sun dine-and-dash photos and the Telegraph clock-tower thumbnail. This confirms that the clock-tower thumbnail appears on the owner’s phone. It is not an independent second-device check, an original-layout check, or a new video-playback test.",
+        "phoneTested": true
       }
     ],
     "phoneCheckRecorded": true,

@@ -13,6 +13,7 @@ import {roomMediaAPI} from './media-service.ts';
 import {retainRoomMediaOnSavedCapture} from './reused-media.ts';
 import {spendPressAuditStage} from './press-audit.ts';
 import type {PressAuditAllowance} from './press-audit.ts';
+import {reserveURLImportAttempt,readURLImportUsage,importRetryAfter,dailyImportLimitMessage} from './import-allowance.ts';
 const json=(data:unknown,status=200,headers={})=>Response.json(data,{status,headers:{'Cache-Control':'private, no-store','X-Content-Type-Options':'nosniff',...headers}});
 export async function articleAPI(r:Request,c:Config,fetcher:typeof fetch=fetch,internal:{auditAllowance?:PressAuditAllowance}={}){
  if(roomId(r))c={...c,RR_ACTIVE_ROOM_ID:roomId(r)};
@@ -29,7 +30,7 @@ export async function articleAPI(r:Request,c:Config,fetcher:typeof fetch=fetch,i
   if(!/^[0-9a-f-]{36}$/i.test(data.requestId||''))return json({error:'Reload the page and try again.'},400);
   // Reserve network fetches too, preventing anonymous URL import from becoming an unrestricted fetch service.
   const audit=await spendPressAuditStage(internal.auditAllowance,'article',c,p.url,data.requestId,r);
-  const day=new Date().toISOString().slice(0,10);const attempt=audit||await c.DB.prepare('INSERT INTO education_counters (key,n) VALUES (?,1) ON CONFLICT(key) DO UPDATE SET n=n+1 WHERE n<? RETURNING n').bind('url-fetch:'+day,30).first();if(!attempt)return json({error:'Today’s thirty URL/import attempts have been used. Saved shared editions still open.'},429);
+  const attemptTime=Date.now(),attempt=audit||await reserveURLImportAttempt(c,attemptTime);if(!attempt){const usage=await readURLImportUsage(c,attemptTime);return json({error:dailyImportLimitMessage(usage.resetsAt),errorCode:'daily_import_limit',usage},429,{'Retry-After':importRetryAfter(attemptTime)});}
   let capture,publisherPreview,serverPreview;
   if(!data.html&&p.host==='telegraph.co.uk'&&c.RR_LIBRARY_AWS_FUNCTION&&await libraryServerConfigured(c)){
    try{serverPreview=await fetchPublisherPreview(c,p.url,fetcher);}
