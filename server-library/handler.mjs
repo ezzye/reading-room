@@ -1,4 +1,5 @@
 import {createNewsBankHTTPClient} from '../lib/newsbank-http.mjs';
+import {sanitizeMatchDiagnostic} from '../lib/newsbank-match-diagnostic.mjs';
 import {publisherPreview} from './publisher-preview.mjs';
 import {publisherRender} from './publisher-render.mjs';
 
@@ -37,12 +38,13 @@ export async function handler(event,context={}){
   if(event.action==='lookup'){
    const account=credentials(event);const publisher=event.publisher===undefined?'times':event.publisher;if(!['times','telegraph'].includes(publisher))return response({status:'error',code:'invalid_publisher'});if(typeof event.title!=='string'||!event.title.trim()||event.title.length>400)return response({status:'error',code:'invalid_title'});
    const client=createNewsBankHTTPClient({fetch:fetcher});if(event.session)client.restoreSession(event.session);
-   let result=await client.lookup({title:event.title,date:typeof event.date==='string'?event.date:'',publisher});
+   const lookup={title:event.title,date:typeof event.date==='string'?event.date:'',publisher,urlWordsHint:event.urlWordsHint===true};
+   let result=await client.lookup(lookup);
    if(result.status==='login_required'){
     const auth=await client.login(account);if(auth.status!=='authenticated')return response({status:auth.status,reason:auth.reason||'NewsBank sign-in was not confirmed.'});
-    result=await client.lookup({title:event.title,date:typeof event.date==='string'?event.date:'',publisher});
+    result=await client.lookup(lookup);
    }
-   if(result.status!=='found')return response({status:result.status,reason:result.reason||''});
+   if(result.status!=='found'){const out={status:result.status,reason:result.reason||''};if(result.status==='not_found'){const diagnostic=sanitizeMatchDiagnostic(result.diagnostic);if(diagnostic)out.diagnostic=diagnostic;}return response(out);}
    const article=articleResult(result.article),session=client.serializeSession(),out={status:'found',article,session};
    return response(out);
   }

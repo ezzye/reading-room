@@ -26,9 +26,17 @@ export async function roomReader(r:Request,c:Config){
   d.body.prepend(nav,status);
   const details=d.createElement('details');details.className='rr-source-details';const summary=d.createElement('summary');summary.textContent='Source & presentation';
   const info=d.createElement('p');info.textContent=page.document?.capture?.presentation?.method==='library-text'?'Camden library text with approximate newspaper styling. Images and video are included only when supplied by a readable source.':'Independent study edition. Source reporting and media remain credited to the publisher; AI critique is separate. Typography and layout may differ from the original.';
-  if(page.document?.capture?.diagnostics?.readerHeadlineHint)info.textContent+=' Matched using a reader-supplied headline; the web URL headline was not independently verified.';
+  if(page.document?.capture?.diagnostics?.urlWordsHint)info.textContent+=' Matched using words in the URL with a stricter headline and date check; the web headline was not independently observed.';
+  else if(page.document?.capture?.diagnostics?.readerHeadlineHint)info.textContent+=' Matched using a reader-supplied headline; the web URL headline was not independently verified.';
   const originalLink=d.createElement('a');originalLink.href=page.sourceURL;originalLink.target='_blank';originalLink.rel='noreferrer';originalLink.textContent='Open original article ↗';details.append(summary,info,originalLink);if(room.role==='owner'){const remove=d.createElement('button');remove.id='rr-remove-article';remove.textContent='Remove from room';remove.style.cssText='display:block;margin-top:18px;background:#fff;color:#9b1b27;border:1px solid #9b1b27;border-radius:5px;padding:8px 12px';details.append(remove);}d.body.append(details);
   const isLibrary=page.document?.capture?.presentation?.method==='library-text'||page.document?.capture?.diagnostics?.libraryTextEdition;
+  // NewsBank joins the headline and deck with a spaced hyphen. Keep both
+  // strings, but give an observed library deck its own reading hierarchy.
+  if(isLibrary&&!d.querySelector('.article-top .standfirst')){
+   const heading=d.querySelector('.article-top h1'),raw=page.document?.capture?.title;
+   const parts=typeof raw==='string'?raw.match(/^(.{15,}?)\s+-\s+(.{20,})$/):null;
+   if(heading&&heading.textContent===raw&&parts){heading.textContent=parts[1];const deck=d.createElement('p');deck.className='standfirst';deck.textContent=parts[2];heading.after(deck);d.title=parts[1]+' · Reading Room';}
+  }
   if(isLibrary&&page.document.mediaDiscovery?.checkedAt&&!page.document.mediaDiscovery.added)console.info('RR_MEDIA_CHECK',JSON.stringify(mediaCheckTelemetry(page.document.capture,page.document.mediaDiscovery)));
   if(isLibrary){const media=d.createElement('button');media.id='rr-check-media';media.textContent='Check images & video';media.style.cssText='display:block;margin-top:12px;padding:8px 12px';details.append(media);const checked=d.createElement('p');checked.id='rr-media-state';checked.setAttribute('role','status');checked.textContent=mediaAvailabilityMessage(page.document);details.append(checked);}
   if(room.role==='owner'){const lens=d.createElement('a');lens.href='/page-lens-connect?room='+encodeURIComponent(room.id)+'&url='+encodeURIComponent(page.sourceURL);lens.textContent='Capture from Chrome';lens.style.cssText='display:inline-block;margin-top:12px';details.append(lens);}
