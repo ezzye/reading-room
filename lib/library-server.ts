@@ -14,6 +14,7 @@ import {sanitizeMatchDiagnostic} from './newsbank-match-diagnostic.mjs';
 import {spendPressAuditStage} from './press-audit.ts';
 import type {PressAuditAllowance} from './press-audit.ts';
 import {publicationSearchQuery,sanitizePublicationSearch,sanitizePublicationSearchStatus} from './newsbank-publications.mjs';
+import {sanitizeNativeSources} from './newsbank-native-sources.mjs';
 const now=()=>new Date().toISOString();
 const json=(body:unknown,status=200)=>Response.json(body,{status,headers:{'Cache-Control':'private, no-store','X-Content-Type-Options':'nosniff','Referrer-Policy':'no-referrer'}});
 function connectionId(c:Config){const id=typeof c.RR_ACTIVE_ROOM_ID==='string'?c.RR_ACTIVE_ROOM_ID:DEFAULT_ROOM_ID;return id===DEFAULT_ROOM_ID?'camden':'camden:'+id;}
@@ -27,6 +28,35 @@ async function slot(c:Config,key:string,limit:number){return c.DB.prepare('INSER
 function accountValue(raw:any):SavedAccount{if(!raw||typeof raw.libraryName!=='string'||raw.libraryName.length>160||typeof raw.cardNumber!=='string'||!raw.cardNumber.trim()||raw.cardNumber.length>200)throw Error('The saved library connection could not be read.');return raw;}
 async function body(r:Request){if(!r.body)throw Error('Use the library connection form.');const reader=r.body.getReader();let size=0,text='';const dec=new TextDecoder();try{for(;;){const x=await reader.read();if(x.done)break;size+=x.value.length;if(size>2048)throw Error('The library connection form is too large.');text+=dec.decode(x.value,{stream:true});}return JSON.parse(text+dec.decode());}finally{await reader.cancel();}}
 export async function libraryServerConfigured(c:Config){return Boolean(c.RR_LIBRARY_VAULT_KEY&&await stored(c));}
+// Called only after the room API verifies the requesting member and query quota.
+// Credentials and session remain in the existing encrypted server connection.
+export async function searchRoomLibraryMetadata(c:Config,input:{publisher:string,query:string},fetcher:typeof fetch=fetch){
+ const row=await stored(c);if(!row||!c.RR_LIBRARY_VAULT_KEY)throw Error('Library connection unavailable.');
+ const account=accountValue(await openLibrary(c.RR_LIBRARY_VAULT_KEY,row.encrypted)),client=runtimeLibraryClient(c,fetcher,account);
+ if(account.session)client.restoreSession(account.session);
+ if(typeof client.searchLibrary!=='function')throw Error('Library search is not ready.');
+ let result=await client.searchLibrary(input);
+ if(result.status==='login_required'){
+  if(!await slot(c,'library-login:'+connectionId(c),10))throw Error('Library sign-in limit reached.');
+  const auth=await client.login(account);if(auth.status!=='authenticated')throw Error('Library connection needs attention.');
+  account.session=client.serializeSession();await save(c,account);result=await client.searchLibrary(input);
+ }
+ if(result.status==='library-search'){account.session=client.serializeSession();await save(c,account);}
+ return result;
+}
+export async function fetchRoomLibraryRecord(c:Config,input:{publisher:string,libraryURL:string,title:string,date:string,publication:string},fetcher:typeof fetch=fetch){
+ const row=await stored(c);if(!row||!c.RR_LIBRARY_VAULT_KEY)throw Error('Library connection unavailable.');
+ const account=accountValue(await openLibrary(c.RR_LIBRARY_VAULT_KEY,row.encrypted)),client=runtimeLibraryClient(c,fetcher,account);
+ if(account.session)client.restoreSession(account.session);
+ if(typeof client.fetchLibraryRecord!=='function')throw Error('Library record selection is not ready.');
+ let result=await client.fetchLibraryRecord(input);
+ if(result.status==='login_required'){
+  if(!await slot(c,'library-login:'+connectionId(c),10))throw Error('Library sign-in limit reached.');
+  const auth=await client.login(account);if(auth.status!=='authenticated')throw Error('Library connection needs attention.');
+  account.session=client.serializeSession();await save(c,account);result=await client.fetchLibraryRecord(input);
+ }
+ account.session=client.serializeSession();await save(c,account);return result;
+}
 export async function librarySettingsAPI(r:Request,c:Config,fetcher:typeof fetch=fetch){
  if(roomId(r))c={...c,RR_ACTIVE_ROOM_ID:roomId(r)};
  let stage='access';
@@ -36,6 +66,26 @@ export async function librarySettingsAPI(r:Request,c:Config,fetcher:typeof fetch
   if(r.method!=='POST')return json({error:'Use the library connection controls.'},405);
   if(!sameOrigin(r))return json({error:'Use the same-origin library connection form.'},403);
   stage='form';const data=await body(r);
+  if(data.action==='inspect-native-sources'){
+   stage='native-sources';
+   const room=await requireRoom(r,c);if(room.role!=='owner'||room.owner_id!==room.member_id)return json({error:'Only this room’s owner can inspect its library source lists.'},403);
+   if(Object.keys(data).some(key=>key!=='action'))return json({error:'Use the fixed library source inspection control. It does not accept queries or URLs.'},400);
+   const row=await stored(c);if(!row||!c.RR_LIBRARY_VAULT_KEY)return json({error:'Connect Camden in this room before inspecting source lists.'},409);
+   const account=accountValue(await openLibrary(c.RR_LIBRARY_VAULT_KEY,row.encrypted));
+   if(!account.session||!Array.isArray((account.session as any).cookies)||!(account.session as any).cookies.length)return json({error:'Reconnect Camden before inspecting source lists.'},409);
+   const client=runtimeLibraryClient(c,fetcher,account);client.restoreSession(account.session);
+   if(!await slot(c,'library-native-sources:'+connectionId(c),5))return json({error:'Today’s five library source-list inspections for this room have been used.'},429);
+   let result=await client.inspectNativeSources();
+   if(result.status==='login_required'){
+    if(!await slot(c,'library-login:'+connectionId(c),10))return json({error:'Today’s library sign-in limit has been used.',status:'login_required',stage:'session',reasonCode:'session_expired'},429);
+    const auth=await client.login(account);if(auth.status!=='authenticated')return json({status:auth.status==='needs_interaction'?'needs_interaction':'login_required',stage:'session',reasonCode:auth.status==='needs_interaction'?'entry_needs_interaction':'session_expired',reason:'The existing Camden connection needs attention. No article or publication browse page was opened.'});
+    account.session=client.serializeSession();await save(c,account);result=await client.inspectNativeSources();
+   }
+   const current=await requireRoom(r,c);if(current.role!=='owner'||current.owner_id!==current.member_id)return json({error:'Owner access to this room is required.'},403);
+   if(result.status==='native-sources'){const clean=sanitizeNativeSources(result);if(!clean)return json({error:'The native source metadata response was invalid.'},502);return json(clean);}
+   const diagnostic=sanitizeNativeSources(result);if(!diagnostic||diagnostic.status==='native-sources')return json({error:'The native source inspection status was invalid.'},502);
+   return json({...diagnostic,reason:'The ordinary NewsBank source controls need attention. No article or publication browse page was opened.'});
+  }
   if(data.action==='search-publications'){
    stage='publication-metadata';
    const room=await requireRoom(r,c);if(room.role!=='owner'||room.owner_id!==room.member_id)return json({error:'Only this room’s owner can check library publication metadata.'},403);
@@ -44,7 +94,7 @@ export async function librarySettingsAPI(r:Request,c:Config,fetcher:typeof fetch
    const account=accountValue(await openLibrary(c.RR_LIBRARY_VAULT_KEY,row.encrypted));
    if(!account.session||!Array.isArray((account.session as any).cookies)||!(account.session as any).cookies.length)return json({error:'Reconnect Camden before checking publication metadata.'},409);
    const client=runtimeLibraryClient(c,fetcher,account);client.restoreSession(account.session);
-   if(!await slot(c,'library-publication-metadata:'+connectionId(c),12))return json({error:'Today’s twelve publication metadata checks for this room have been used.'},429);
+   if(!await slot(c,'library-publication-metadata:'+connectionId(c),48))return json({error:'Today’s 48 publication metadata checks for this room have been used.'},429);
    let result=await client.searchPublications(query);
    if(result.status==='login_required'){
     if(!await slot(c,'library-login:'+connectionId(c),10))return json({error:'Today’s library sign-in limit has been used.',status:'login_required',stage:'session',reasonCode:'session_expired'},429);
@@ -76,7 +126,7 @@ export async function librarySettingsAPI(r:Request,c:Config,fetcher:typeof fetch
    }
    account.session=client.serializeSession();await save(c,account,result.status==='not_found'||result.status==='found'?'connected':'needs-attention');
    if(result.status==='found')return json({status:'found',match:{title:String(result.article.title).slice(0,400),date:String(result.article.date).slice(0,100),publication:String(result.article.publication).slice(0,200),paragraphCount:result.article.paragraphs.length}});
-   return json({status:result.status,reason:result.status==='not_found'?'No unambiguous library match was found.':'The library connection needs attention.',diagnostic:sanitizeMatchDiagnostic(result.diagnostic)});
+   return json({status:result.status,reason:result.status==='not_found'?'No unambiguous library match was found.':'The library connection needs attention.',diagnostic:sanitizeMatchDiagnostic(result.diagnostic,{bibliography:true})});
   }
   if(data.action==='disconnect'){await c.DB.prepare("DELETE FROM rr_library_connections WHERE id=?").bind(connectionId(c)).run();return json({disconnected:true});}
   if(data.action!=='connect'||data.consent!==true)return json({error:'Review and confirm where your card will be used.'},400);
@@ -164,7 +214,7 @@ export async function libraryMetadata(url:string,c:Config,fetcher:typeof fetch,h
 export async function lookupNewsBankSource(rawURL:string,c:Config,fetcher:typeof fetch=fetch,headlineHint='',publisherPreview?:unknown,internal:{auditAllowance?:PressAuditAllowance}={}){
  const publisher=libraryArticle(rawURL),originalURL=publisher.url,row=await stored(c);if(!row)throw Error('The room owner has not connected Camden for server lookup yet.');
  if(row.state==='needs-attention'&&Date.now()-Date.parse(row.checkedAt)<90000)throw Error('The library connection needs the owner’s attention. Open Library connection.');
- if(!await spendPressAuditStage(internal.auditAllowance,'library',c,originalURL)&&!await slot(c,'library-lookup:'+connectionId(c),30))throw Error('Today’s thirty library lookups have been used. Saved editions remain available.');
+ if(!await spendPressAuditStage(internal.auditAllowance,'library',c,originalURL)&&!await slot(c,'library-lookup:'+connectionId(c),90))throw Error('Today’s separate protection limit of 90 library lookup requests has been reached. Failed requests count here; your study-edition allowance counts completed saves. Saved editions remain available. Resets at midnight UTC.');
  const metadata=await libraryMetadata(originalURL,c,fetcher,headlineHint,publisherPreview),meta={...metadata,publisher:publisher.key,urlWordsHint:metadata.basis.startsWith('URL words')},account=accountValue(await openLibrary(c.RR_LIBRARY_VAULT_KEY,row.encrypted));
  const client=runtimeLibraryClient(c,fetcher,account);if(account.session)client.restoreSession(account.session);
  let result=await client.lookup(meta);

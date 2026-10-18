@@ -1,6 +1,10 @@
 import {createNewsBankHTTPClient} from '../lib/newsbank-http.mjs';
 import {sanitizeMatchDiagnostic} from '../lib/newsbank-match-diagnostic.mjs';
+import {libraryPublication} from '../lib/library-publications.mjs';
 import {publicationSearchQuery,sanitizePublicationSearch,sanitizePublicationSearchStatus} from '../lib/newsbank-publications.mjs';
+import {librarySearchQuery,sanitizeLibrarySearch} from '../lib/library-search-contract.mjs';
+import {libraryRecordRequest} from '../lib/library-record-contract.mjs';
+import {sanitizeNativeSources} from '../lib/newsbank-native-sources.mjs';
 import {publisherPreview} from './publisher-preview.mjs';
 import {publisherRender} from './publisher-render.mjs';
 
@@ -30,6 +34,27 @@ export async function handler(event,context={}){
   if(event.action==='publisher-preview')return response(await publisherPreview(event,{fetch:fetcher}));
   if(event.action==='publisher-render')return response(await publisherRender(event));
   if(event.action==='probe')return response(await createNewsBankHTTPClient({fetch:fetcher}).probe());
+  if(event.action==='inspect-native-sources'){
+   if(Object.keys(event).some(key=>!['action','session'].includes(key)))return response({status:'error',code:'invalid_native_sources'});
+   if(!event.session)return response({status:'login_required',stage:'session',reasonCode:'session_expired'});
+   const client=createNewsBankHTTPClient({fetch:fetcher});client.restoreSession(event.session);return response(sanitizeNativeSources(await client.inspectNativeSources())||{status:'error',code:'invalid_native_sources'});
+  }
+  if(event.action==='library-search'){
+   if(Object.keys(event).some(key=>!['action','publisher','query','session'].includes(key)))return response({status:'error',code:'invalid_library_search'});
+   const query=librarySearchQuery({publisher:event.publisher,query:event.query});
+   if(!event.session)return response({status:'login_required',stage:'session',reasonCode:'session_expired'});
+   const client=createNewsBankHTTPClient({fetch:fetcher});client.restoreSession(event.session);
+   const result=await client.searchLibrary(query);
+   return response(result.status==='library-search'?sanitizeLibrarySearch(result)||{status:'error',code:'invalid_library_metadata'}:sanitizePublicationSearchStatus(result)||{status:'error',code:'invalid_library_metadata'});
+  }
+  if(event.action==='library-record'){
+   if(Object.keys(event).some(key=>!['action','publisher','libraryURL','title','date','publication','session'].includes(key)))return response({status:'error',code:'invalid_library_record'});
+   const selected=libraryRecordRequest({publisher:event.publisher,libraryURL:event.libraryURL,title:event.title,date:event.date,publication:event.publication});
+   if(!event.session)return response({status:'login_required'});
+   const client=createNewsBankHTTPClient({fetch:fetcher});client.restoreSession(event.session);const result=await client.fetchLibraryRecord(selected);
+   if(result.status==='found')return response({status:'found',article:articleResult(result.article),session:client.serializeSession()});
+   return response(result.status==='not_found'?{status:'not_found',reasonCode:'record_mismatch'}:{status:result.status});
+  }
   if(event.action==='search-publications'){
    if(Object.keys(event).some(key=>!['action','publication','title','session'].includes(key)))return response({status:'error',code:'invalid_publication_query'});
    const query=publicationSearchQuery({publication:event.publication,title:event.title});
@@ -46,7 +71,7 @@ export async function handler(event,context={}){
    return response({status:'authenticated',session:client.serializeSession()});
   }
   if(event.action==='lookup'){
-   const account=credentials(event);const publisher=event.publisher===undefined?'times':event.publisher;if(!['times','telegraph','observer'].includes(publisher))return response({status:'error',code:'invalid_publisher'});if(typeof event.title!=='string'||!event.title.trim()||event.title.length>400)return response({status:'error',code:'invalid_title'});
+   const account=credentials(event);const publisher=event.publisher===undefined?'times':event.publisher;if(!libraryPublication(publisher)||libraryPublication(publisher).urlIntakeEnabled===false)return response({status:'error',code:'invalid_publisher'});if(typeof event.title!=='string'||!event.title.trim()||event.title.length>400)return response({status:'error',code:'invalid_title'});
    const client=createNewsBankHTTPClient({fetch:fetcher});if(event.session)client.restoreSession(event.session);
    const lookup={title:event.title,date:typeof event.date==='string'?event.date:'',publisher,urlWordsHint:event.urlWordsHint===true};
    let result=await client.lookup(lookup);
@@ -54,14 +79,14 @@ export async function handler(event,context={}){
     const auth=await client.login(account);if(auth.status!=='authenticated')return response({status:auth.status,reason:auth.reason||'NewsBank sign-in was not confirmed.'});
     result=await client.lookup(lookup);
    }
-   if(result.status!=='found'){const out={status:result.status,reason:result.reason||''};if(result.status==='not_found'){const diagnostic=sanitizeMatchDiagnostic(result.diagnostic);if(diagnostic)out.diagnostic=diagnostic;}return response(out);}
+   if(result.status!=='found'){const out={status:result.status,reason:result.reason||''};if(result.status==='not_found'){const diagnostic=sanitizeMatchDiagnostic(result.diagnostic,{bibliography:true});if(diagnostic)out.diagnostic=diagnostic;}return response(out);}
    const article=articleResult(result.article),session=client.serializeSession(),out={status:'found',article,session};
    return response(out);
   }
   return response({status:'error',code:'unsupported_action'});
  }catch(e){
   if(e?.code==='newsbank_http_status'&&Number.isInteger(e.httpStatus)&&e.httpStatus>=400&&e.httpStatus<=599)return response({status:'blocked',httpStatus:e.httpStatus});
-  const code=e?.message==='invalid_publication_query'?'invalid_publication_query':e?.message==='invalid_article'?'invalid_article':e?.message==='article_too_large'?'article_too_large':e?.message==='missing_credentials'?'missing_credentials':'upstream_failure';
+  const code=['invalid_library_search','invalid_library_record','invalid_publication_query','invalid_article','article_too_large','missing_credentials'].includes(e?.message)?e.message:'upstream_failure';
   return response({status:'error',code});
  }
 }

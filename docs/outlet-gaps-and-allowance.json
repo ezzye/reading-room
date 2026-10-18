@@ -1,6 +1,6 @@
 {
   "schema": "reading-room-outlet-gaps-and-allowance/v1",
-  "generatedAt": "2026-10-18T23:09:36.611Z",
+  "generatedAt": "2026-10-18T23:52:02.188Z",
   "scope": "Four UK national follow-ups, retained Scotland/Northern Ireland observations, three Republic of Ireland papers and six selected US outlets. AP/NPR are news comparators, not newspapers. This is not every newspaper or independent print edition.",
   "totals": {
     "families": 23,
@@ -11,6 +11,220 @@
     "failed": 3,
     "pending": 24
   },
+  "supplementarySummary": {
+    "urlFollowups": {
+      "records": 2,
+      "saved": 2,
+      "cached": 0,
+      "failed": 0,
+      "pending": 0
+    },
+    "selectedLibraryRecords": {
+      "records": 3,
+      "saved": 3,
+      "cached": 0,
+      "failed": 0,
+      "pending": 0
+    },
+    "note": "Supplementary outcomes do not alter the original 23-family matrix or historical audit totals."
+  },
+  "supplementaryURLFollowups": [
+    {
+      "family": "The Standard",
+      "title": "Westminster Bridge closed as police respond to 'ongoing incident'",
+      "url": "https://www.standard.co.uk/news/london/westminster-bridge-closed-met-police-respond-ongoing-incident-b1301365.html",
+      "observedAt": "2026-10-18T20:27:55.525Z",
+      "sourceProof": "Selected link in the retained 18 October front-page observation.",
+      "live": {
+        "status": "saved",
+        "label": "New edition saved",
+        "note": "A completed save is explicitly recorded.",
+        "counts": {
+          "paragraphs": 10,
+          "words": null,
+          "images": 1,
+          "videos": 0,
+          "annotations": 8,
+          "expanded": 0
+        },
+        "recordedAt": "2026-10-18T23:25:38.993681+00:00"
+      },
+      "media": {
+        "rendered": "pending",
+        "images": "verified",
+        "imageLabel": "All recorded images loaded",
+        "allImagesLoaded": true,
+        "playback": "pending",
+        "phone": "pending",
+        "loadedImageReferences": null,
+        "phoneScope": null,
+        "imageScope": null
+      },
+      "sourceCleanup": {
+        "status": "not-recorded",
+        "note": "No saved-source cleanup result supplied."
+      }
+    },
+    {
+      "family": "The Times / The Sunday Times",
+      "title": "Trump endorses Netanyahu before Israeli elections as settler attacks surge",
+      "url": "https://www.thetimes.com/world/middle-east/article/trump-endorses-netanyahu-israel-election-8gbbz275d",
+      "observedAt": "2026-10-18T20:27:54.977Z",
+      "sourceProof": "Selected link in the retained 18 October front-page observation.",
+      "live": {
+        "status": "saved",
+        "label": "New edition saved",
+        "note": "A completed save is explicitly recorded.",
+        "counts": {
+          "paragraphs": null,
+          "words": null,
+          "images": null,
+          "videos": null,
+          "annotations": null,
+          "expanded": null
+        },
+        "recordedAt": "2026-10-18T23:42:59.203430+00:00"
+      },
+      "media": {
+        "rendered": "pending",
+        "images": "pending",
+        "imageLabel": "pending",
+        "allImagesLoaded": false,
+        "playback": "pending",
+        "phone": "pending",
+        "loadedImageReferences": null,
+        "phoneScope": null,
+        "imageScope": null
+      },
+      "sourceCleanup": {
+        "status": "not-recorded",
+        "note": "No saved-source cleanup result supplied."
+      }
+    }
+  ],
+  "selectedLibraryRecords": [
+    {
+      "family": "The Herald",
+      "title": "I watched BBC Scotland for a night and all I got was this lousy sense of doom",
+      "date": "2026-10-18",
+      "recordURL": "https://infoweb.newsbank.com/apps/news/document-view?p=UKNB&docref=news%2F1AB517C54580F368",
+      "caption": "Library text edition; approximate styling.",
+      "sourceAssociation": "This selected library record is reported independently. No association with an original publisher URL is inferred.",
+      "live": {
+        "status": "saved",
+        "label": "New edition saved",
+        "note": "A completed save is explicitly recorded.",
+        "counts": {
+          "paragraphs": 28,
+          "words": null,
+          "images": 0,
+          "videos": 0,
+          "annotations": 10,
+          "expanded": 0
+        },
+        "recordedAt": "2026-10-18T23:42:59.203430+00:00"
+      },
+      "media": {
+        "rendered": "verified",
+        "images": "pending",
+        "imageLabel": "pending",
+        "allImagesLoaded": false,
+        "playback": "pending",
+        "phone": "pending",
+        "loadedImageReferences": null,
+        "phoneScope": null,
+        "imageScope": null
+      }
+    },
+    {
+      "family": "The Observer",
+      "title": "Children’s commissioner declares ‘state of emergency’ on young people’s lives",
+      "date": "2026-10-18",
+      "recordURL": "https://infoweb.newsbank.com/apps/news/document-view?p=UKNB&docref=news%2F1AB540A9361A0190",
+      "caption": "Library text edition; approximate styling.",
+      "sourceAssociation": "This selected library record is reported independently. No association with an original publisher URL is inferred.",
+      "live": {
+        "status": "saved",
+        "label": "New edition saved",
+        "note": "A completed save is explicitly recorded.",
+        "counts": {
+          "paragraphs": 31,
+          "words": null,
+          "images": 0,
+          "videos": 0,
+          "annotations": 8,
+          "expanded": 0
+        },
+        "recordedAt": "2026-10-18T23:42:59.203430+00:00"
+      },
+      "media": {
+        "rendered": "verified",
+        "images": "pending",
+        "imageLabel": "pending",
+        "allImagesLoaded": false,
+        "playback": "pending",
+        "phone": "pending",
+        "loadedImageReferences": null,
+        "phoneScope": null,
+        "imageScope": null
+      }
+    },
+    {
+      "family": "The National",
+      "title": "Deputy First Minister defends SNP bus plans after McGill’s threatens legal action",
+      "date": "2026-10-18",
+      "recordURL": "https://infoweb.newsbank.com/apps/news/document-view?p=UKNB&docref=news%2F1AB52B39B15AA0D8",
+      "caption": "Library text edition; approximate styling.",
+      "sourceAssociation": "This selected library record is reported independently. No association with an original publisher URL is inferred.",
+      "live": {
+        "status": "saved",
+        "label": "New edition saved",
+        "note": "A completed save is explicitly recorded.",
+        "counts": {
+          "paragraphs": 28,
+          "words": null,
+          "images": 0,
+          "videos": 0,
+          "annotations": 8,
+          "expanded": 0
+        },
+        "recordedAt": "2026-10-18T23:51:03.025719+00:00"
+      },
+      "media": {
+        "rendered": "verified",
+        "images": "pending",
+        "imageLabel": "pending",
+        "allImagesLoaded": false,
+        "playback": "pending",
+        "phone": "pending",
+        "loadedImageReferences": null,
+        "phoneScope": null,
+        "imageScope": null
+      }
+    }
+  ],
+  "officialResourceUpdates": [
+    {
+      "title": "Camden digital library",
+      "url": "https://www.camden.gov.uk/digital-library",
+      "note": "Camden lists NewsBank UK current/archive text and recent colour pages, PressReader and BorrowBox ePress. Libby is described as books, audiobooks and magazines; named-title entitlement is separate."
+    },
+    {
+      "title": "NewsBank UK & Ireland: current product and daily updates",
+      "url": "https://www.newsbank.com/regional/solutions/access-uk-ireland-news",
+      "note": "The product is updated daily. This does not guarantee when a selected article arrives. Full text, web-only records and PDF image editions are distinct formats."
+    },
+    {
+      "title": "NewsBank UK & Ireland: selected source coverage",
+      "url": "https://www.newsbank.com/regional/access-uk-ireland",
+      "note": "Provider-wide listings name FT, Observer/Express and several Scottish and Irish titles. They do not establish Camden account entitlement or the exact article/date/format."
+    },
+    {
+      "title": "NewsBank format guidance",
+      "url": "https://www.newsbank.com/videos/training-videos/how-use-access-world-news",
+      "note": "Some sources include video or transcripts. A text record or print replica does not prove that a publisher website video was supplied or can play."
+    }
+  ],
   "allowance": {
     "newSavedEditionsPerUTCDay": 30,
     "scope": "Shared across this Reading Room service, newspapers, rooms and members",
@@ -23,14 +237,15 @@
     "history": "Legacy attempt counters remain intact. They mix successes and failures, so they cannot be re-labelled as completed editions or attributed reliably to individual papers. Completed-edition tracking begins at its recorded migration timestamp.",
     "currentUsage": {
       "limit": 30,
-      "used": 3,
+      "used": 7,
       "pending": 0,
-      "remaining": 27,
-      "available": 27,
+      "remaining": 23,
+      "available": 23,
       "resetsAt": "2026-10-19T00:00:00Z",
       "trackingSince": null,
       "historyStatus": "earlier-completions-unavailable"
     },
+    "usageSnapshotNote": "This allowance snapshot was observed before The National selected-record save; it has not been advanced by inference.",
     "quotaProof": {
       "checkpoints": [
         {
@@ -99,7 +314,7 @@
     "profileChecks": "press-room-profile-evidence.json",
     "historicalAudit": "press-live-final.json",
     "currentLiveSupplied": true,
-    "currentLiveRecordedAt": null,
+    "currentLiveRecordedAt": "2026-10-18T23:51:03.025719+00:00",
     "librarySupplied": true,
     "libraryRecordedAt": "2026-10-18T22:39:03.906Z"
   },
@@ -150,7 +365,7 @@
               "annotations": null,
               "expanded": null
             },
-            "recordedAt": null
+            "recordedAt": "2026-10-18T22:52:31.219172+00:00"
           },
           "media": {
             "rendered": "pending",

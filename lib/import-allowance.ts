@@ -2,6 +2,7 @@ import {requireRoom,roomId,roomMemberId} from './rooms.ts';
 import {readerSession,tokenHash,authorTable} from './edition-access.ts';
 import {isOwner} from './education-service.ts';
 import {resourceURL} from './resource-service.ts';
+import {diagnosticDocumentURL} from './newsbank-match-diagnostic.mjs';
 import type {Config} from './education-service.ts';
 
 export const URL_IMPORT_LIMIT=30;
@@ -50,10 +51,13 @@ async function identity(request:Request,c:Config){
  if(isOwner(request,c))return {namespace:'legacy-owner',principal:'legacy-owner',roomId:null,memberId:null,sessionHash:'',owner:true};
  const token=readerSession(request);if(!token)throw json({error:'Sign in before preparing a study edition.'},401);const hash=await tokenHash(token);return {namespace:'reader:'+hash,principal:'reader:'+hash,roomId:null,memberId:null,sessionHash:hash,owner:false};
 }
-export async function reserveStudyImport(request:Request,c:Config,url:string,requestId:string,time=Date.now()):Promise<{reservation?:StudyImportReservation;response?:Response}>{
+export async function reserveStudyImport(request:Request,c:Config,url:string,requestId:string,time=Date.now(),internal:{validatedLibraryRecordURL?:string}={}):Promise<{reservation?:StudyImportReservation;response?:Response}>{
  if(!UUID.test(requestId))return {response:json({error:'Include a valid request identity.'},400)};
  await schema(c,time);if(!c.DB.batch)throw Error('Transactional import accounting is unavailable.');
- const who=await identity(request,c),day=new Date(time).toISOString().slice(0,10),sourceURL=resourceURL(url),id=crypto.randomUUID(),timestamp=new Date(time).toISOString(),expires=Math.min(time+STUDY_RESERVATION_MS,Date.parse(nextUTCImportReset(time)));
+ const recordURL=internal.validatedLibraryRecordURL;
+ const validatedRecord=Boolean(recordURL&&recordURL===url&&diagnosticDocumentURL(recordURL)===recordURL);
+ if(recordURL&&!validatedRecord)return {response:json({error:'The selected library source identity is invalid.'},400)};
+ const who=await identity(request,c),day=new Date(time).toISOString().slice(0,10),sourceURL=validatedRecord?recordURL!:resourceURL(url),id=crypto.randomUUID(),timestamp=new Date(time).toISOString(),expires=Math.min(time+STUDY_RESERVATION_MS,Date.parse(nextUTCImportReset(time)));
  await c.DB.batch([
   c.DB.prepare("UPDATE rr_study_imports_v1 SET state='expired',finished_at=? WHERE state='reserved' AND expires_at<=?").bind(timestamp,time),
   c.DB.prepare("INSERT OR IGNORE INTO rr_study_imports_v1(id,day,namespace,principal,request_id,source_url,state,reserved_at,expires_at) SELECT ?,?,?,?,?,?,'reserved',?,? WHERE (SELECT COUNT(*) FROM rr_study_imports_v1 WHERE day=? AND (state='completed' OR (state='reserved' AND expires_at>?)))<?").bind(id,day,who.namespace,who.principal,requestId,sourceURL,timestamp,expires,day,time,URL_IMPORT_LIMIT)

@@ -1,4 +1,4 @@
-import {publicHTML,publisherFor,extractNewspaper} from './newspaper-core.mjs';
+import {publicHTML,extractNewspaper} from './newspaper-core.mjs';
 import {discoverArticleMedia,articleIdentity,mediaSourceSummary} from './article-media.mjs';
 import {providerCall,loadPage} from './education-service.ts';
 import type {Config} from './education-service.ts';
@@ -10,13 +10,14 @@ import {mediaURL,videoEmbed} from './capture-core.mjs';
 import {SUN_IMAGE_REVISION,needsSunImageRepair,isBrokenSunImageURL,validSunPublisherImage} from './sun-media.mjs';
 import {parseHTML} from 'linkedom/worker';
 import {verifiedPublicMedia,VERIFIED_PUBLIC_MEDIA_REVISION} from './verified-public-media.mjs';
+import {publicMediaDescriptor,collectLibraryPublicMedia} from './library-public-media.mjs';
 const json=(data:unknown,status=200)=>Response.json(data,{status,headers:{'Cache-Control':'private, no-store','X-Content-Type-Options':'nosniff'}});
 export const MEDIA_DISCOVERY_REVISION=3;
 export function mediaDiscoveryCached(previous:{checkedAt?:string,added?:number,extractorRevision?:number}|undefined,now=Date.now()){const age=now-Date.parse(previous?.checkedAt||'');return age>=0&&age<86400000&&(Number(previous?.added||0)>0||previous?.extractorRevision===MEDIA_DISCOVERY_REVISION);}
 export function mediaCheckTelemetry(capture:{url:string},result:{added?:number,extractorRevision?:number,attempts?:unknown[]}){
  const count=(n:unknown)=>typeof n==='number'&&Number.isFinite(n)?Math.max(0,Math.min(4_000_000,Math.round(n))):null;
- const types=new Set(['public-html','supplied-public-html','provider-fetch','publisher-preview','verified-public-index']),states=new Set(['checked','unavailable','index-checked','index-unavailable','content-unavailable','identity-mismatch','blocked']);
- return {publisher:publisherFor(capture.url).host,revision:count(result.extractorRevision),added:count(result.added),checks:(Array.isArray(result.attempts)?result.attempts:[]).slice(0,8).map(raw=>{const a=raw&&typeof raw==='object'?raw as Record<string,unknown>:{};return {type:types.has(String(a.sourceType))?a.sourceType:'index',state:states.has(String(a.state))?a.state:'unknown',characters:count(a.contentCharacters),images:count(a.imageReferences),videos:count(a.videoReferences)};})};
+ const types=new Set(['public-html','supplied-public-html','provider-fetch','publisher-preview','verified-public-index','library-public-metadata']),states=new Set(['checked','unavailable','index-checked','index-unavailable','content-unavailable','identity-mismatch','blocked']);
+ return {publisher:publicMediaDescriptor(capture.url).host,revision:count(result.extractorRevision),added:count(result.added),checks:(Array.isArray(result.attempts)?result.attempts:[]).slice(0,8).map(raw=>{const a=raw&&typeof raw==='object'?raw as Record<string,unknown>:{};return {type:types.has(String(a.sourceType))?a.sourceType:'index',state:states.has(String(a.state))?a.state:'unknown',characters:count(a.contentCharacters),images:count(a.imageReferences),videos:count(a.videoReferences)};})};
 }
 export function mediaAvailabilityMessage(document:any){
  const blocks=Array.isArray(document?.capture?.blocks)?document.capture.blocks:[],images=blocks.some((b:any)=>b.type==='figure'&&b.url),videos=blocks.some((b:any)=>b.type==='video'&&b.url),check=document?.mediaDiscovery;
@@ -64,7 +65,8 @@ async function repairSunImages(page:any,room:any,c:Config,fetcher:typeof fetch){
 // The library supplies prose. These independent public checks supply only media;
 // no search snippet, hidden body or unrelated footage becomes article text.
 export async function collectArticleMedia(capture:any,c:Config,fetcher:typeof fetch=fetch,initial?:{url:string,html:string},publisherPreview?:unknown){
- const p=publisherFor(capture.url),home='https://www.'+p.host+'/',sources:any[]=[],attempts:any[]=[];
+ const p=publicMediaDescriptor(capture.url),home='https://www.'+p.host+'/',sources:any[]=[],attempts:any[]=[];
+ if(p.mode==='library-public-metadata')return collectLibraryPublicMedia(capture,fetcher,initial);
  const verified=verifiedPublicMedia(capture);
  if(verified.matched)return {...verified,attempts:[{sourceURL:capture.url,state:'checked',sourceType:'verified-public-index',imageReferences:1,videoReferences:0,catalogueRevision:VERIFIED_PUBLIC_MEDIA_REVISION}],checkedAt:new Date().toISOString()};
  if(p.host==='telegraph.co.uk'&&(c.RR_LIBRARY_AWS_FUNCTION||publisherPreview)){
@@ -112,6 +114,7 @@ export async function roomMediaAPI(r:Request,c:Config,fetcher:typeof fetch=fetch
   if(!r.body)return json({error:'Invalid request.'},400);const reader=r.body.getReader(),chunks:Uint8Array[]=[];let bytes=0;try{for(;;){const part=await reader.read();if(part.done)break;bytes+=part.value.byteLength;if(bytes>3000)return json({error:'Invalid request.'},413);chunks.push(part.value);}}finally{await reader.cancel();}const raw=new Uint8Array(bytes);let offset=0;for(const chunk of chunks){raw.set(chunk,offset);offset+=chunk.length;}let input;try{input=JSON.parse(new TextDecoder().decode(raw));}catch{return json({error:'Invalid request.'},400);}
   if(!/^[a-f0-9]{48}$/.test(input.id||'')||!await accessiblePage(r,c,input.id))return json({error:'Article not found in this room.'},404);
   const page=await loadPage(c.DB,input.id);if(!page)return json({error:'Article not found.'},404);const capture=page.document?.capture;
+  if(library(capture)&&publicMediaDescriptor(capture.url).mode==='library-public-metadata'&&articleIdentity(page.sourceURL)!==articleIdentity(capture.url))return json({added:0,message:'The saved source identity does not match this library edition. Saved text and media were kept.'});
   const verified=verifiedPublicMedia(capture,page.sourceURL),verifiedMissing=verified.blocks.length>0;
   if(verifiedPublicMedia(capture).matched&&!verified.matched)return json({added:0,message:'The saved source identity does not match this verified public image.'});
   const sunRepair=needsSunImageRepair(capture);
@@ -125,7 +128,7 @@ export async function roomMediaAPI(r:Request,c:Config,fetcher:typeof fetch=fetch
   if(sunRepair)return repairSunImages(page,room,c,fetcher);
   const before=JSON.stringify(page.document),result=await collectArticleMedia(capture,c,fetcher,undefined,options?.publisherPreview);
   console.info('RR_MEDIA_CHECK',JSON.stringify(mediaCheckTelemetry(capture,{...result,added:result.blocks.length,extractorRevision:MEDIA_DISCOVERY_REVISION})));
-  const blocks=result.blocks.map((block:any)=>block.basis==='exact-article-public-index-thumbnail'?block:({...block,credit:[block.credit||capture.publisher,block.basis==='exact-article-front-page-card'?'Publisher front-page image':'Public source media','Original position not verified'].filter(Boolean).join(' · ')}));
+  const blocks=result.blocks.map((block:any)=>['exact-article-public-index-thumbnail','exact-article-public-preview-thumbnail','exact-article-public-player-metadata'].includes(block.basis)?block:({...block,credit:[block.credit||capture.publisher,block.basis==='exact-article-front-page-card'?'Publisher front-page image':'Public source media','Original position not verified'].filter(Boolean).join(' · ')}));
   const previousReceipts=verified.matched&&Array.isArray(previous?.receipts)?previous.receipts:[],previousAttempts=verified.matched&&Array.isArray(previous?.attempts)?previous.attempts:[];
   const heading=verified.matched&&capture.blocks.some((block:any)=>block.id==='discovered-media-heading')?[]:[{id:'discovered-media-heading',type:'heading',level:2,text:'Images & video',style:{},rect:{width:660,height:60}}];
   const document={...page.document,capture:{...capture,diagnostics:{...capture.diagnostics,imageCount:capture.blocks.filter((b:any)=>b.type==='figure').length+blocks.filter((b:any)=>b.type==='figure').length,videoCount:capture.blocks.filter((b:any)=>b.type==='video').length+blocks.filter((b:any)=>b.type==='video').length},blocks:[...capture.blocks,...(blocks.length?[...heading,...blocks]:[])]},mediaDiscovery:{checkedAt:result.checkedAt,extractorRevision:MEDIA_DISCOVERY_REVISION,added:blocks.length,...(verified.matched?{catalogueRevision:VERIFIED_PUBLIC_MEDIA_REVISION}:{}),receipts:[...previousReceipts,...result.receipts],attempts:[...previousAttempts,...result.attempts]}};

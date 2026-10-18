@@ -19,7 +19,7 @@ function writeAllowed(r:Request){return r.headers.get('X-Reading-Room')==='1'&&r
 async function readBody(r:Request){const declared=Number(r.headers.get('content-length')||0);if(declared>MAX_BODY)throw Object.assign(Error('Request exceeds the 1 MB limit.'),{status:413});if(!r.body)throw Object.assign(Error('Request body is empty.'),{status:400});const rd=r.body.getReader(),chunks:Uint8Array[]=[];let n=0;try{for(;;){const v=await rd.read();if(v.done)break;n+=v.value.byteLength;if(n>MAX_BODY){await rd.cancel();throw Object.assign(Error('Request exceeds the 1 MB limit.'),{status:413});}chunks.push(v.value);}}finally{rd.releaseLock();}const b=new Uint8Array(n);let off=0;for(const c of chunks){b.set(c,off);off+=c.length;}try{return JSON.parse(new TextDecoder().decode(b));}catch{throw Object.assign(Error('Request must contain valid JSON.'),{status:400});}}
 const keyFor=(c:Config)=>{const k=c.DEEPSEEK_API_KEY||c['DEEPSEEK-API-KEY'];return typeof k==='string'?k.trim():'';};
 
-export async function captureAPI(r:Request,c:Config,fetcher:typeof fetch=fetch,internal:{auditAllowance?:PressAuditAllowance;studyReservation?:StudyImportReservation}={}){
+export async function captureAPI(r:Request,c:Config,fetcher:typeof fetch=fetch,internal:{auditAllowance?:PressAuditAllowance;studyReservation?:StudyImportReservation;validatedLibraryRecordURL?:string}={}){
  if(!isOwner(r,c)&&!readerSession(r)&&!roomMemberId(r))return json({error:'Reload RET to start your reader session.'},401);
  if(r.method==='GET'){
   if(roomId(r)){const pages=await c.DB.prepare('SELECT p.id,p.title,p.source_url AS sourceURL,p.created_at AS createdAt FROM education_pages p JOIN rr_room_articles a ON a.page_id=p.id WHERE a.room_id=? ORDER BY a.created_at DESC LIMIT 100').bind(roomId(r)).all();return json({owner:isOwner(r,c),reader:true,ready:Boolean(keyFor(c)),capturePages:pages.results});}
@@ -30,7 +30,7 @@ export async function captureAPI(r:Request,c:Config,fetcher:typeof fetch=fetch,i
  if(!writeAllowed(r))return json({error:'Use the same-origin Read EveryThing controls to submit a capture.'},403);
  let input:any;try{input=await readBody(r);}catch(e){const x=e as any;return json({error:x?.message||'Invalid request.'},x?.status||400);}
  if(!input||typeof input.requestId!=='string'||!/^[0-9a-f]{8}-[0-9a-f]{4}-[1-8][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i.test(input.requestId)||!input.capture)return json({error:'Include a valid requestId and reviewed capture.'},400);
- let capture:any;try{capture=normalizeCapture(input.capture);}catch(e){return json({error:e instanceof Error?e.message:'Capture could not be normalized.'},400);}
+ let capture:any;try{capture=normalizeCapture(input.capture,{validatedLibraryRecordURL:internal.validatedLibraryRecordURL});}catch(e){return json({error:e instanceof Error?e.message:'Capture could not be normalized.'},400);}
  try{
   const sourceHash='capture:'+await hash((roomId(r)||'')+JSON.stringify(capture));
   const existing:any=await c.DB.prepare('SELECT id FROM education_pages WHERE source_hash=?').bind(sourceHash).first();if(existing){await grantEdition(r,c,existing.id);return json({id:existing.id,cached:true});}
