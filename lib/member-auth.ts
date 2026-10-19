@@ -1,8 +1,10 @@
 import { ensureRooms, memberRoom, roomCookie, clearRoomCookie, DEFAULT_ROOM_ID, type ActiveRoom } from './rooms.ts';
+import { membershipRequestAPI } from './membership-requests.ts';
 export const MEMBER_SESSION_COOKIE = "__Host-rr_session";
 export const MEMBER_SESSION_DAYS = 90;
 export const MEMBER_INVITE_DAYS = 7;
 export const MEMBER_RECOVERY_DAYS = 90;
+export const DEVICE_LINK_MINUTES = 10;
 
 type D1Result<T = unknown> = { results?: T[]; success?: boolean; meta?: { changes?: number } };
 type D1Statement = {
@@ -173,12 +175,18 @@ async function purgeExpiredOwnerArtifacts(env: MemberAuthEnv, now: number): Prom
   await env.DB.prepare("DELETE FROM rr_recovery_codes WHERE used_at IS NOT NULL OR expires_at<=?").bind(stamp).run();
 }
 
-async function requireOwner(request: Request, env: MemberAuthEnv, now=Date.now()): Promise<{ member: SessionMember|null; room: ActiveRoom|null; response: Response|null }> {
+async function requireRoomMember(request: Request, env: MemberAuthEnv, now=Date.now()): Promise<{ member: SessionMember|null; room: ActiveRoom|null; response: Response|null }> {
   const identity = await sessionMember(request, env, now);
   if (!identity) return { member:null,room:null,response:denied(401,"Sign in to manage this room.") };
   const room=await memberRoom(request,env,identity.id);
-  if (!room||room.role!=='owner') return {member:null,room:null,response:denied(403,"Owner access to this room is required.")};
+  if (!room) return {member:null,room:null,response:denied(403,"Active membership of this room is required.")};
   return {member:{...identity,role:room.role},room,response:null};
+}
+async function requireOwner(request: Request, env: MemberAuthEnv, now=Date.now()): Promise<{ member: SessionMember|null; room: ActiveRoom|null; response: Response|null }> {
+  const auth=await requireRoomMember(request,env,now);
+  if(auth.response)return auth;
+  if(auth.room?.role!=='owner')return {member:null,room:null,response:denied(403,"Owner access to this room is required.")};
+  return auth;
 }
 
 /** Public member-auth API. Identities are global; all room authority comes from membership. */
@@ -186,7 +194,7 @@ export async function memberAuthAPI(request: Request, env: MemberAuthEnv, now = 
   const url = new URL(request.url);
   const action = url.searchParams.get("action") ?? "session";
   if (request.method === "OPTIONS") return new Response(null, { status: 204, headers: { "Cache-Control": "no-store", Allow: "GET, POST, OPTIONS" } });
-  if (request.method !== (action === "session" || action === "admin" ? "GET" : "POST")) return denied(405, "Method not allowed.");
+  if (request.method !== (["session", "admin", "devices", "invitation-requests"].includes(action) ? "GET" : "POST")) return denied(405, "Method not allowed.");
   if (request.method === "POST") {
     const csrf = sameOriginWrite(request);
     if (csrf) return csrf;
@@ -194,6 +202,7 @@ export async function memberAuthAPI(request: Request, env: MemberAuthEnv, now = 
 
   try {
     await ensureRooms(env);
+    if (["request-invitation", "invitation-requests", "review-invitation-request"].includes(action)) return await membershipRequestAPI(request, env, now);
     if (action === "session") {
       const member = await sessionMember(request, env, now);
       if (!member) return denied(401, "This room is private. Use an invitation link or the owner's first sign-in.");
@@ -223,18 +232,21 @@ export async function memberAuthAPI(request: Request, env: MemberAuthEnv, now = 
       const pending=await env.DB.prepare(`SELECT member_id,created_by,purpose,room_id,article_id FROM rr_invites
         WHERE token_hash=? AND used_at IS NULL AND expires_at>?`).bind(inviteHash,nowIso(now)).first<Invite>();
       if(!pending) return denied(410,'This invitation has expired or has already been used.');
-      const invitingOwner=await env.DB.prepare(`SELECT r.id FROM rr_rooms r JOIN rr_room_members rm ON rm.room_id=r.id JOIN rr_members m ON m.id=rm.member_id
-        WHERE r.id=? AND rm.member_id=? AND rm.role='owner' AND rm.revoked_at IS NULL AND m.revoked_at IS NULL`).bind(pending.room_id,pending.created_by).first();
-      if(!invitingOwner) return denied(410,'This room invitation is no longer valid.');
+      // A device link can only reconnect its creator's existing identity. Member invitations
+      // remain owner-issued; neither a client-supplied role nor a device name grants membership.
+      if(pending.purpose==='device'&&pending.member_id!==pending.created_by)return denied(410,'This device connection is no longer valid.');
+      const invitingMember=await env.DB.prepare(`SELECT r.id FROM rr_rooms r JOIN rr_room_members rm ON rm.room_id=r.id JOIN rr_members m ON m.id=rm.member_id
+        WHERE r.id=? AND rm.member_id=? AND (?='device' OR rm.role='owner') AND rm.revoked_at IS NULL AND m.revoked_at IS NULL`).bind(pending.room_id,pending.created_by,pending.purpose).first();
+      if(!invitingMember) return denied(410,'This room invitation is no longer valid.');
       if(pending.article_id&&!await env.DB.prepare('SELECT 1 AS found FROM rr_room_articles WHERE room_id=? AND page_id=?').bind(pending.room_id,pending.article_id).first())return denied(410,'This article invitation is no longer valid.');
       const signedIn=await sessionMember(request,env,now);
       if((pending.purpose==='device'&&!deviceLabel)||(pending.purpose==='member'&&!signedIn&&!displayName))return denied(400,pending.purpose==='device'?'A name for this device is required.':'A display name is required.');
       let member: RoomMember;
       if(pending.purpose==='device') {
         const existing=await env.DB.prepare(`SELECT m.id,m.display_name,rm.role,m.created_at,m.revoked_at FROM rr_members m
-          JOIN rr_room_members rm ON rm.member_id=m.id WHERE m.id=? AND rm.room_id=? AND rm.role='owner' AND rm.revoked_at IS NULL AND m.revoked_at IS NULL`)
+          JOIN rr_room_members rm ON rm.member_id=m.id WHERE m.id=? AND rm.room_id=? AND rm.revoked_at IS NULL AND m.revoked_at IS NULL`)
           .bind(pending.member_id,pending.room_id).first<RoomMember>();
-        if(!existing)return denied(410,'This owner-device invitation is no longer valid.');
+        if(!existing)return denied(410,'This device connection is no longer valid.');
         member=existing;
       } else member=signedIn?{...signedIn,role:'member'}:{id:pending.member_id,display_name:displayName,role:'member',created_at:nowIso(now),revoked_at:null};
       // Only a successful atomic consume may create membership or a session. Existing signed-in
@@ -261,7 +273,7 @@ export async function memberAuthAPI(request: Request, env: MemberAuthEnv, now = 
       const deviceLabel = typeof body.deviceLabel === "string" ? body.deviceLabel.trim().slice(0, 48) : "";
       if (!TOKEN_RE.test(token) || !deviceLabel) return denied(400, "A valid recovery link and device name are required.");
       const member = await env.DB.prepare(`UPDATE rr_recovery_codes SET used_at=? WHERE token_hash=? AND used_at IS NULL AND expires_at>?
-        AND member_id IN (SELECT m.id FROM rr_members m JOIN rr_room_members rm ON rm.member_id=m.id WHERE rm.role='owner' AND rm.revoked_at IS NULL AND m.revoked_at IS NULL) RETURNING member_id`)
+        AND member_id IN (SELECT m.id FROM rr_members m JOIN rr_room_members rm ON rm.member_id=m.id WHERE rm.revoked_at IS NULL AND m.revoked_at IS NULL) RETURNING member_id`)
         .bind(nowIso(now), await tokenHash(token), nowIso(now)).first<{ member_id: string }>();
       if (!member) return denied(410, "This recovery link has expired or has already been used.");
       await env.DB.prepare("UPDATE rr_sessions SET revoked_at=? WHERE member_id=? AND revoked_at IS NULL")
@@ -280,7 +292,7 @@ export async function memberAuthAPI(request: Request, env: MemberAuthEnv, now = 
     }
 
     if (action === "recovery-create") {
-      const auth = await requireOwner(request, env, now);
+      const auth = await requireRoomMember(request, env, now);
       if (auth.response || !auth.member) return auth.response ?? denied(401, "Sign in required.");
       await purgeExpiredOwnerArtifacts(env, now);
       const token = randomToken(), createdAt = nowIso(now), expiresAt = plusDays(MEMBER_RECOVERY_DAYS, now);
@@ -291,6 +303,30 @@ export async function memberAuthAPI(request: Request, env: MemberAuthEnv, now = 
       const recoveryUrl = new URL("/room", request.url);
       recoveryUrl.hash = `recover=${token}`;
       return json({ url: recoveryUrl.toString(), expiresAt }, 201);
+    }
+
+    if(action==='device-invite') {
+      const auth=await requireRoomMember(request,env,now);
+      if(auth.response||!auth.member||!auth.room)return auth.response??denied(401,'Sign in required.');
+      const body=await readJson(request);if(!body)return denied(400,'Invalid request.');
+      await purgeExpiredOwnerArtifacts(env,now);
+      const token=randomToken(),createdAt=nowIso(now),expiresAt=new Date(now+DEVICE_LINK_MINUTES*60_000).toISOString();
+      const inserted=await env.DB.prepare(`INSERT INTO rr_invites(token_hash,member_id,created_by,purpose,created_at,expires_at,room_id,article_id)
+        SELECT ?,?,?,'device',?,?,?,NULL WHERE
+        (SELECT COUNT(*) FROM rr_invites WHERE member_id=? AND purpose='device' AND used_at IS NULL AND expires_at>?)<5
+        AND (SELECT COUNT(*) FROM rr_invites WHERE room_id=? AND used_at IS NULL AND expires_at>?)<100`)
+        .bind(await tokenHash(token),auth.member.id,auth.member.id,createdAt,expiresAt,auth.room.id,auth.member.id,createdAt,auth.room.id,createdAt).run();
+      if((inserted.meta?.changes??0)!==1)return denied(429,'Several connection links are already waiting. Use an existing link or try after it expires.');
+      const link=new URL('/room?next=/study',request.url);link.hash=`invite=${token}&purpose=device`;
+      return json({url:link.toString(),expiresAt,purpose:'device',role:auth.room.role},201);
+    }
+
+    if(action==='devices') {
+      const auth=await requireRoomMember(request,env,now);
+      if(auth.response||!auth.member)return auth.response??denied(401,'Sign in required.');
+      const current=cookieValue(request,MEMBER_SESSION_COOKIE),currentHash=current?await tokenHash(current):'';
+      const rows=await env.DB.prepare(`SELECT token_hash,device_label,created_at,expires_at,revoked_at FROM rr_sessions WHERE member_id=? ORDER BY created_at DESC LIMIT 100`).bind(auth.member.id).all<Record<string,unknown>>();
+      return json({devices:(rows.results??[]).map(({token_hash,...row})=>({...row,sessionId:token_hash,current:token_hash===currentHash}))});
     }
 
     if (action === "logout") {
@@ -345,8 +381,8 @@ export async function memberAuthAPI(request: Request, env: MemberAuthEnv, now = 
       return json({url:joinUrl.toString(),expiresAt,role:purpose==='device'?'owner':'member',purpose},201);
     }
 
-    if (action === "revoke-session") {
-      const auth = await requireOwner(request, env, now);
+    if (action === "revoke-session" || action === 'revoke-device') {
+      const auth = action==='revoke-device'?await requireRoomMember(request,env,now):await requireOwner(request, env, now);
       if (auth.response || !auth.member) return auth.response ?? denied(401, "Sign in required.");
       await purgeExpiredOwnerArtifacts(env, now);
       const body = await readJson(request);
@@ -380,7 +416,7 @@ export async function memberAuthAPI(request: Request, env: MemberAuthEnv, now = 
 
 /** Public shell routes; the outer Sites Worker should allow these through its member gate. */
 export function isPublicMemberAuthPath(pathname: string): boolean {
-  return pathname === "/" || pathname === "/room" || pathname === "/api/member-auth" || ["/favicon.svg","/reading-room-logo.svg","/icon-192.png","/icon-512.png","/manifest.webmanifest","/sw.js"].includes(pathname);
+  return pathname === "/" || pathname === "/room" || pathname === "/api/member-auth" || ["/favicon.svg","/reading-room-logo.svg","/icon-192.png","/icon-512.png","/manifest.webmanifest","/sw.js","/reading-room-guide.mp4","/reading-room-guide.jpg"].includes(pathname);
 }
 
 /**

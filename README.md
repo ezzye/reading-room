@@ -71,6 +71,22 @@ The [dated front-page table](docs/frontpage-tests-20261018.html) records 12 publ
 
 The separate [UK press checklist](docs/frontpage-today-press-coverage.json) lists 48 publication/edition rows across 35 website families, with BBC marked separately as a comparator. It distinguishes title listing, homepage headline observation, article retrieval and implemented support. A follow-up added strict Daily Star and Daily Record public HTML profiles; Express remained unimported after a premium marker was observed. This is not a claim that all listed papers are supported or available through Camden.
 
+## Your phone, laptop and account
+
+Owners and invited readers can use the same account on a phone and a laptop. Start on the device where the room already opens:
+
+1. Open **Your account → Connect another device**.
+2. Create and copy the private connection link. It works once and expires after ten minutes.
+3. Send that link privately to yourself and open it on the other device.
+4. Give the new device a name and connect. The same rooms, articles and discussions appear with your existing role.
+
+The steps work in either direction: phone to laptop or laptop to phone. A connection link is for your own account; use a member invitation to invite another person. **Manage your account → Your devices** lists your own signed-in devices and lets you sign out another device. A new browser profile or a change of website address may need its own connection because browser sign-in is stored separately for each site.
+
+Use **Your account → Keep Reading Room on this device** to find installation and bookmark guidance. On a Mac, bookmark the room with **Command+D**; on Windows use **Ctrl+D**. On phones, install the PWA or add it to the home screen using the browser commands above. Bookmark the deployed `/study` address, or remember the deployment's home address. A bookmark or installed PWA is a shortcut, not a recovery credential.
+
+If you have only one device, open **Manage your account → Your devices → Recover access and prepare for another device** and save a private recovery link somewhere secure away from that device. It works once, expires after 90 days and should be renewed before expiry. Creating a new recovery link replaces the previous one. Using it restores the same identity and signs out that person's previous sessions. Keep device and recovery links private: anyone holding a valid link can use it. This release does not provide password or email sign-in. If every session and recovery link is lost, an invited reader needs a fresh invitation from the room owner; an owner needs operator assistance rather than an automatic ownership reset.
+
+
 ## Private configuration
 
 Before the first owner signs in, set `READER_OWNER_EMAIL` and explicitly set `RR_TRUST_SITES_BOOTSTRAP=1` in the server environment. The initial request must carry a matching, trusted platform identity. The app accepts that bootstrap only while no owner exists. Remove or disable the bootstrap flag once the first owner has a session; later access uses the room session or a one-use invite/recovery link. Review the host's authenticated-header contract before exposing the app to the internet; local mock sign-in is not production authentication.
