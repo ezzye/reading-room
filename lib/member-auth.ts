@@ -1,3 +1,4 @@
+import {ARTICLE_ICON_PATHS} from './article-icons.mjs';
 import { ensureRooms, memberRoom, roomCookie, clearRoomCookie, DEFAULT_ROOM_ID, type ActiveRoom } from './rooms.ts';
 import { membershipRequestAPI } from './membership-requests.ts';
 import { canonicalOrigin } from './app-origin.mjs';
@@ -417,7 +418,7 @@ export async function memberAuthAPI(request: Request, env: MemberAuthEnv, now = 
 
 /** Public shell routes; the outer Sites Worker should allow these through its member gate. */
 export function isPublicMemberAuthPath(pathname: string): boolean {
-  return pathname === "/" || pathname === "/room" || pathname === "/api/member-auth" || ["/favicon.svg","/reading-room-logo.svg","/icon-192.png","/icon-512.png","/manifest.webmanifest","/sw.js","/reading-room-guide.mp4","/reading-room-guide.jpg"].includes(pathname);
+  return ARTICLE_ICON_PATHS.has(pathname) || pathname === "/" || pathname === "/room" || pathname === "/api/member-auth" || ["/favicon.svg","/reading-room-logo.svg","/icon-192.png","/icon-512.png","/manifest.webmanifest","/sw.js","/reading-room-guide.mp4","/reading-room-guide.jpg"].includes(pathname);
 }
 
 /**

@@ -23,6 +23,10 @@ npm run dev
 
 Open the loopback address printed by the development server. The portable local profile provides simulated sign-in for development only. Database bindings use the template in `.openai/hosting.json`; the local runtime keeps its database and logs in ignored directories. Apply the SQL files in `drizzle/` in numeric order to a new D1 database before running the room features. Check a clean copy with `npm test`, `npx tsc --noEmit --incremental false`, and `npm run build`. The production host must supply its own authenticated identity layer, D1 database, HTTPS, and private secret storage. This package does not deploy a service.
 
+## Article tab icons
+
+Article tabs use a bundled, coloured letter badge for the recognised newspaper. These are Reading Room navigation cues, not official publisher logos. The shelf and installed app retain the Reading Room book icon, and unknown sources use that icon too. The badges load from the app itself, without contacting a publisher or an external favicon service. Camden record editions use their recognised publication label.
+
 ## Using the room
 
 An owner creates or selects a room and invites people individually. On an article, Invite creates a one-use invitation that opens that article after joining; Share copies the private article link for existing members. Any signed-in member can create a separate room from the room selector. New rooms start empty and need their own library connection. Invitations are one use. An article invitation also opens its article after the recipient joins; an existing member can use a normal room article link after selecting that room. A new person joins with a display name and signs in on that device. Invited readers do not need a ChatGPT account. From the menu, a room owner can open Camden Library to connect their own card. The owner can remove access, rename the room, and choose whether new comments appear immediately or wait for approval. A member may also create and own a separate room. Membership, articles, comments, and any connected library card are scoped to each room. The article list is not a public catalogue.
