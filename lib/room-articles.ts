@@ -13,6 +13,7 @@ import {publisherFor} from './newspaper-core.mjs';
 import {roomLibraryAlias} from './library-page-index.ts';
 import {libraryArticle} from './library-article-url.mjs';
 import {selectedLibraryURL} from './library-url-selection.mjs';
+import {readRoomShelf,updateRoomArticleArchive} from './room-shelf.ts';
 
 const headers={'Cache-Control':'private, no-store','X-Content-Type-Options':'nosniff','Referrer-Policy':'no-referrer','X-Robots-Tag':'noindex, nofollow'};
 const json=(data:unknown,status=200,extraHeaders:Record<string,string>={})=>Response.json(data,{status,headers:{...headers,...extraHeaders}});
@@ -35,16 +36,11 @@ export async function roomArticlesAPI(r:Request,c:Config,fetcher:typeof fetch=fe
  let outcome:{ok:boolean;status:number;id?:string;cached?:boolean;needsHeadline?:boolean;unsupported?:boolean;errorCode?:PressAuditErrorCode}={ok:false,status:502};
  try{
   const room=await requireRoom(r,c);
-  if(r.method==='GET'){
-   const rows=await c.DB.prepare(`SELECT p.id,p.title,p.source_url,p.document,a.created_at AS addedAt,
-    (SELECT COUNT(*) FROM rr_room_comments m WHERE m.room_id=a.room_id AND m.page_id=p.id AND (m.status='approved' OR m.member_id=? OR ?='owner')) AS commentCount
-    FROM rr_room_articles a JOIN education_pages p ON p.id=a.page_id WHERE a.room_id=? ORDER BY a.created_at DESC,p.id LIMIT 100`).bind(room.member_id,room.role,room.id).all();
-   const seen=new Set<string>();const articles=(rows.results||[]).map(shelfMetadata).filter(article=>{let key=article.sourceURL;try{key=resourceURL(key);}catch{}if(seen.has(key))return false;seen.add(key);return true;});
-   return json({articles,room:{id:room.id,name:room.name,role:room.role}});
-  }
+  if(r.method==='GET')return json(await readRoomShelf(r,c,room,shelfMetadata));
   if(r.method!=='POST')return json({error:'Method not allowed.'},405);
   if(!sameOrigin(r))return json({error:'Use Reading Room to add an article.'},403);
   const data=await roomBody(r);
+  if(data.action==='archive'||data.action==='restore')return json(await updateRoomArticleArchive(c,room,data.action,data.id));
   if(data.action==='remove'){
    if(room.role!=='owner')return json({error:'Only the room owner can remove articles.'},403);
    if(!await accessiblePage(r,c,data.id))return json({error:'Article not found.'},404);

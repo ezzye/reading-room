@@ -73,6 +73,12 @@ The separate [UK press checklist](docs/frontpage-today-press-coverage.json) list
 
 New invitations, private article shares, device connections and recovery links use **https://dayofflondon.com**, including when created from the earlier hosted address. Existing tokens and room membership stay valid. Browser sign-in is still separate for each website address. Forks should configure their own production origins in `lib/app-origin.mjs` and the client address helpers; local and unrelated hosts keep their own origin.
 
+## Archive and older articles
+
+The shared shelf has **Shelf** and **Archived** tabs. Only the room owner can archive or restore; invited readers can open either view and continue the discussion. Tap **Archive** on a shelf card, or **Restore** in Archived. A visible **Undo** reverses the most recent action. Archiving changes only that room's shelf state: the edition, images/video references, critique, threaded replies, invitations and private article links stay intact. Restore returns the article to its original place by the date it was added. Archive and restore do not reimport the article or use the new-edition allowance.
+
+Articles load in pages of 50. **Show more articles** appends older pages until every saved edition is available; the previous newest-100 display cutoff is removed. The counter shows how many are loaded out of the view's total. The newspaper filter applies to the loaded articles, so load more to include older ones. Separately saved editions retain their own entries and discussions, even when they have the same source URL. **Remove from room** remains a separate owner action; it unlinks the article and invalidates its short link, so use Archive when you want to keep the room's article and discussion accessible.
+
 ## Your phone, laptop and account
 
 Owners and invited readers can use the same account on a phone and a laptop. Start on the device where the room already opens:
