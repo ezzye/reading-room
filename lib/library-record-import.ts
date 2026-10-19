@@ -1,3 +1,4 @@
+import {isLibraryServiceBusyError,libraryServiceBusyResponse} from './library-service-busy.mjs';
 import {requireRoom,accessiblePage} from './rooms.ts';
 import {sameOrigin} from './edition-access.ts';
 import {librarySearchChoice} from './library-search.ts';
@@ -40,6 +41,6 @@ export async function libraryRecordImportAPI(r:Request,c:Config,fetcher:typeof f
   if(!response.ok)return response;
   const saved=await response.json() as {id?:string,cached?:boolean};if(!saved.id||!await accessiblePage(r,c,saved.id))return json({error:'The library edition was not added to this room.'},502);
   return json({id:saved.id,href:'/read/'+saved.id+'?room='+room.id,cached:Boolean(saved.cached)});
- }catch(error){if(error instanceof Response)return error;return json({error:'The library edition could not be prepared. No article was substituted.'},502);}
+ }catch(error){if(isLibraryServiceBusyError(error))return libraryServiceBusyResponse();if(error instanceof Response)return error;return json({error:'The library edition could not be prepared. No article was substituted.'},502);}
  finally{if(libraryClaim)try{await releaseRoomLibraryRecord(libraryClaim);}catch{console.warn('RR_LIBRARY_IDENTITY_RELEASE_UNAVAILABLE');}if(reservation)try{await releaseStudyImport(reservation);}catch{console.warn('RR_LIBRARY_IMPORT_RELEASE_UNAVAILABLE');}}
 }

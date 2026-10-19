@@ -1,3 +1,4 @@
+import {isLibraryServiceBusyError,libraryServiceBusyResponse} from './library-service-busy.mjs';
 import {requireRoom} from './rooms.ts';
 import {sameOrigin} from './edition-access.ts';
 import {libraryPublication} from './library-publications.mjs';
@@ -43,5 +44,5 @@ export async function librarySearchAPI(r:Request,c:Config,fetcher:typeof fetch=f
    choices.push({choiceId:id,title:row.title,date:row.date,publication:row.publication,publisher:input.publisher,source:'Camden',expiresAt});
   }
   return json({source:'camden',publisher:input.publisher,publisherName:libraryPublication(input.publisher)!.name,results:choices,inspectedCount:result.inspectedCount,truncated:result.truncated,fullTextVerified:false,articleAccepted:false});
- }catch(error){if(error instanceof Response)return error;return json({error:'Camden search is unavailable. Try again or ask this room’s owner to check the library connection.'},502);}
+ }catch(error){if(isLibraryServiceBusyError(error))return libraryServiceBusyResponse();if(error instanceof Response)return error;return json({error:'Camden search is unavailable. Try again or ask this room’s owner to check the library connection.'},502);}
 }

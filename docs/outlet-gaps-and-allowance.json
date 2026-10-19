@@ -1,10 +1,10 @@
 {
   "schema": "reading-room-outlet-gaps-and-allowance/v1",
-  "generatedAt": "2026-10-19T00:18:47.982Z",
+  "generatedAt": "2026-10-19T00:31:01.331Z",
   "deployment": {
-    "coreRelease": 83,
-    "liveEvidenceRelease": 82,
-    "note": "Core release 83 is deployed. The included live outcome evidence remains release 82; Observer public media and Irish Times full-text checks await later live verification."
+    "coreRelease": 84,
+    "liveEvidenceRelease": 84,
+    "note": "Core release 84 is deployed. Dated live follow-ups verify one Irish Times selected-record save and one Observer public-preview thumbnail/reuse. These do not certify publication-wide coverage or new phone acceptance."
   },
   "scope": "Four UK national follow-ups, retained Scotland/Northern Ireland observations, three Republic of Ireland papers and six selected US outlets. AP/NPR are news comparators, not newspapers. This is not every newspaper or independent print edition.",
   "totals": {
@@ -25,8 +25,8 @@
       "pending": 0
     },
     "selectedLibraryRecords": {
-      "records": 3,
-      "saved": 3,
+      "records": 4,
+      "saved": 4,
       "cached": 0,
       "failed": 0,
       "pending": 0
@@ -216,6 +216,41 @@
         "phoneScope": null,
         "imageScope": null
       }
+    },
+    {
+      "family": "The Irish Times",
+      "title": "Taoiseach rejects Michael O'Leary's view that he would 'buckle' to public sector unions",
+      "date": "2026-10-18",
+      "recordURL": "https://infoweb.newsbank.com/apps/news/document-view?p=UKNB&docref=news%2F1AB54B805137CA88",
+      "caption": "Library text edition; approximate styling.",
+      "sourceAssociation": "This selected library record is reported independently. No association with an original publisher URL is inferred.",
+      "live": {
+        "status": "saved",
+        "label": "New edition saved",
+        "note": "A completed save is explicitly recorded.",
+        "counts": {
+          "paragraphs": 14,
+          "words": null,
+          "images": 0,
+          "videos": 0,
+          "annotations": 7,
+          "expanded": 0
+        },
+        "recordedAt": "2026-10-19T00:28:17.892207+00:00",
+        "countsRecordedAt": null,
+        "countsNote": null
+      },
+      "media": {
+        "rendered": "verified",
+        "images": "pending",
+        "imageLabel": "pending",
+        "allImagesLoaded": false,
+        "playback": "pending",
+        "phone": "pending",
+        "loadedImageReferences": null,
+        "phoneScope": null,
+        "imageScope": null
+      }
     }
   ],
   "officialResourceUpdates": [
@@ -271,7 +306,7 @@
       "status": "metadata-only",
       "fullTextVerified": false,
       "articleAccepted": false,
-      "note": "This exact qualified label is observed search metadata. Full-text access, save, media and entitlement checks remain pending."
+      "note": "This exact qualified label is observed search metadata. At this metadata observation, full-text access, save, media and entitlement were unverified; later dated results appear separately."
     },
     "observerReuse": {
       "recordedAt": "2026-10-19T00:12:00.612Z",
@@ -297,6 +332,73 @@
       "note": "The first saved NPR edition was cleaned in place. Both actual article photos loaded, related cards were removed and two source captions and credits were moved to their photos. The observed DOM paragraph total includes commentary. No new phone check or video playback is claimed."
     }
   },
+  "checkpoint84": {
+    "release": 84,
+    "expressSourceMetadata": {
+      "recordedAt": "2026-10-19T00:18:33.797Z",
+      "qualifiedLabel": "Express, The/The Express on Sunday: Web Edition Articles (London, England)",
+      "fullTextVerified": false,
+      "note": "A later diagnostic retained the exact qualified Express / Express on Sunday web-edition label. This is source metadata; no Express library-record save or full-text entitlement is certified."
+    },
+    "native84": {
+      "recordedAt": null,
+      "scripts": 67,
+      "safeAccepted": 21,
+      "retainedURLs": 21,
+      "apiEndpointVerified": false,
+      "note": "The v84 source-list check retained all 21 eligible static references among 67 scripts. These were generic jQuery/React dependencies; no catalogue application bundle or API endpoint was established. Thirty-nine query-bearing references stayed omitted, and their purpose is unverified."
+    },
+    "observedUTCDay": "2026-10-19",
+    "irishTimesSave": {
+      "recordedAt": "2026-10-19T00:21:22.647Z",
+      "title": "Taoiseach rejects Michael O’Leary’s view that he would buckle to public sector unions",
+      "sourceParagraphs": 14,
+      "collapsedAI": 7,
+      "firstAIExpanded": true,
+      "discussionFormVisible": true,
+      "images": 0,
+      "videos": 0,
+      "publisherURLAssociationVerified": false,
+      "phoneVerified": false,
+      "note": "A selected Irish Times library record was saved with 14 source paragraphs and seven initially collapsed AI notes. The first AI note expanded and the discussion form appeared. No publisher-URL association, supplied media or new phone acceptance is claimed."
+    },
+    "observerMedia": {
+      "recordedAt": "2026-10-19T00:26:39.866Z",
+      "sameExistingEdition": true,
+      "sourceParagraphs": 31,
+      "collapsedAI": 8,
+      "publicPreviewThumbnails": 1,
+      "loadedImages": 1,
+      "width": 2100,
+      "height": 1400,
+      "videos": 0,
+      "originalPositionVerified": false,
+      "phoneVerified": false,
+      "note": "A normal Observer URL lookup with its exact headline reused the existing library edition and added one public-preview thumbnail. It loaded at 2100 × 1400. The 31 source paragraphs and eight collapsed AI notes remained; original image placement and phone acceptance are unverified."
+    },
+    "observerURLOnly": {
+      "recordedAt": "2026-10-19T00:27:46.459Z",
+      "headlineSupplied": false,
+      "sameExpectedEdition": true,
+      "sourceCallsDirectlyMeasured": false,
+      "note": "A later URL-only open, without a headline, reached the same saved edition. Source-call counts were not directly measured. The allowance snapshot above was taken before this reopen; no later balance is inferred."
+    },
+    "nprReporting": {
+      "recordedAt": null,
+      "sourceParagraphs": 29,
+      "scope": "Visible source-reporting paragraph elements only",
+      "note": "A later desktop count found 29 reporting paragraphs. The earlier total of 44 DOM paragraphs included commentary; it was not a source-reporting count. The exact count timestamp was not retained."
+    },
+    "native83": {
+      "recordedAt": null,
+      "scripts": 67,
+      "safeAccepted": 21,
+      "retainedURLs": 12,
+      "truncated": true,
+      "apiEndpointVerified": false,
+      "note": "The v83 diagnostic observed 67 script references: 21 eligible same-origin static URLs, with only the first 12 retained. Those retained references were generic dependencies. The retention cap is now 24; the next live catalogue observation remains pending. No application asset or API endpoint is inferred."
+    }
+  },
   "allowance": {
     "newSavedEditionsPerUTCDay": 30,
     "scope": "Shared across this Reading Room service, newspapers, rooms and members",
@@ -309,15 +411,15 @@
     "history": "Legacy attempt counters remain intact. They mix successes and failures, so they cannot be re-labelled as completed editions or attributed reliably to individual papers. Completed-edition tracking begins at its recorded migration timestamp.",
     "currentUsage": {
       "limit": 30,
-      "used": 0,
+      "used": 1,
       "pending": 0,
-      "remaining": 30,
-      "available": 30,
+      "remaining": 29,
+      "available": 29,
       "resetsAt": "2026-10-20T00:00:00Z",
       "trackingSince": null,
       "historyStatus": "not-supplied"
     },
-    "usageSnapshotNote": "Direct Add article UI observation after the UTC day changed to 19 October: 30 of 30 remained after reusing the existing Observer edition. This was the daily rollover; no manual reset or refund was applied.",
+    "usageSnapshotNote": "The Add article UI directly recorded 29 of 30 remaining after the Irish Times save, before the later URL-only Observer reopen. No post-reopen balance is inferred. The earlier 19 October UTC rollover snapshot was 30 of 30 without a manual reset or refund.",
     "quotaProof": {
       "traceUTCDay": "2026-10-18",
       "checkpoints": [
@@ -359,7 +461,7 @@
       ],
       "completeSequence": true,
       "successfulSaveAccountingConfirmed": true,
-      "latestRecordedRemaining": 30,
+      "latestRecordedRemaining": 29,
       "currentSnapshotUTCDay": "2026-10-19",
       "rollover": {
         "recordedAt": "2026-10-19T00:12:18.901808+00:00",
@@ -395,7 +497,7 @@
     "profileChecks": "press-room-profile-evidence.json",
     "historicalAudit": "press-live-final.json",
     "currentLiveSupplied": true,
-    "currentLiveRecordedAt": "2026-10-19T00:12:18.901808+00:00",
+    "currentLiveRecordedAt": "2026-10-19T00:28:17.892207+00:00",
     "librarySupplied": true,
     "libraryRecordedAt": "2026-10-18T22:39:03.906Z"
   },
@@ -2443,7 +2545,7 @@
           "sourceAccess": {
             "status": "public-body",
             "label": "Public extraction recorded",
-            "note": "Bounded source paragraphs and media references were extracted; completeness, loading and playback remain separate. These counts describe the 18 October source observation before related-card and caption cleanup; the later saved-edition counts are separate.",
+            "note": "Bounded source paragraphs and media references were extracted; completeness, loading and playback remain separate.",
             "counts": {
               "paragraphs": 31,
               "words": 932,
@@ -2464,7 +2566,7 @@
             "label": "New edition saved",
             "note": "A completed save is explicitly recorded.",
             "counts": {
-              "paragraphs": null,
+              "paragraphs": 29,
               "words": null,
               "images": 2,
               "videos": 0,
@@ -2472,8 +2574,8 @@
               "expanded": 0
             },
             "recordedAt": "2026-10-18T22:05:44.616Z",
-            "countsRecordedAt": "2026-10-19T00:10:30.023Z",
-            "countsNote": "The later DOM paragraph count includes commentary and is not a refreshed source-reporting count."
+            "countsRecordedAt": null,
+            "countsNote": "A later desktop count recorded 29 source-reporting paragraphs; its exact time was not retained. The earlier 44 DOM paragraphs include commentary."
           },
           "media": {
             "rendered": "verified",

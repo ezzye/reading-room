@@ -157,3 +157,16 @@ The Irish Times is now available in the strict library-search selector using its
 The source-list diagnostic observes bounded page structure and safe same-origin static-script references without reading script contents or embedded state. Its v82 response contained an empty React browse container; client rendering remains an inference, with no catalogue asset or API endpoint established in that report. The later diagnostic counts why script references were omitted. The [standalone report](docs/outlet-gaps-and-allowance.html) keeps v82 live outcomes separate from this deployed core version and the historical 46-story audit. The directly observed allowance returned to 30 of 30 at the 19 October UTC rollover and stayed there after Observer reuse; no manual reset or refund was applied.
 
 Verification passed **620 public tests**, TypeScript and the production build for this frozen source snapshot. Native file-sharing completion, new phone acceptance, Observer preview media and Irish Times full-text success are not certified by these checks.
+
+
+## Verified follow-ups and source checkpoint 84
+
+A selected Irish Times record saved with **14 source paragraphs and seven initially collapsed AI notes**. The first AI note expanded and the discussion form appeared in desktop QA. The library text supplied no images/video, and no original publisher-URL association or new phone acceptance was established.
+
+An Observer publisher URL with the exact headline reused its existing library edition and added **one public-preview thumbnail**, loaded at **2100 × 1400**. Its 31 source paragraphs and eight collapsed AI notes remained. The thumbnail is labelled as public-preview media; original placement is unverified and no video was supplied. A later URL-only open reached the same edition without a headline. Source-call counts were not directly measured. The directly observed allowance was **29 of 30 remaining after the Irish Times save, before that later reopen**; no subsequent balance is inferred.
+
+A later first-NPR check counted **29 source-reporting paragraphs**, separately from the earlier DOM paragraph total that included commentary. Its two actual photos loaded, related cards were removed, source captions/credits were relocated and seven AI notes remained collapsed. No new phone or video check is claimed.
+
+The source-list diagnostic retained all21 eligible static references among67 scripts; these were generic jQuery/React dependencies. It has not established a catalogue application bundle or provider API endpoint. The exact observed Express/Express on Sunday qualified label is available for strict selected-record search, but no successful Express library full-text save is certified. Zero-result searches remain bounded outcomes, not publication-absence findings.
+
+This public sync uses the frozen checkpoint84 source, excluding later backend URL-slug work and private deployment artifacts. Verification passed **634 public tests**, TypeScript and the production build. The [standalone report](docs/outlet-gaps-and-allowance.html) preserves the historical46-story audit, original selected-record saves and later exact-edition outcomes separately. Native sharing completion, broader coverage, original layout fidelity and new phone acceptance remain unverified.

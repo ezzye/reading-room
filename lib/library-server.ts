@@ -1,3 +1,4 @@
+import {isLibraryServiceBusyError,libraryServiceBusyResponse} from './library-service-busy.mjs';
 import {roomId,DEFAULT_ROOM_ID,requireRoom} from './rooms.ts';
 import {parseHTML} from 'linkedom';
 import {runtimeLibraryClient,validatePublisherPreview} from './library-transport.mjs';
@@ -138,6 +139,7 @@ export async function librarySettingsAPI(r:Request,c:Config,fetcher:typeof fetch
   if(result.status!=='authenticated')return json({error:result.reason||'NewsBank did not accept this sign-in. No new connection was saved.',state:result.status},422);
   stage='encrypted-storage';account.session=client.serializeSession();await save(c,account);return json({connected:true,desktopRequired:false});
  }catch(e){
+  if(isLibraryServiceBusyError(e))return libraryServiceBusyResponse();
   if(e instanceof Response)return e;
   const message=e instanceof Error?e.message:'';
   // Provider/client errors are fixed local messages, never response bodies,

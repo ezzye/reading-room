@@ -19,6 +19,7 @@ import {createLibraryPageProof} from './library-page-proof.mjs';
 import {assertRoomLibraryProof,bindRoomLibraryProof,claimRoomLibraryRecord,releaseRoomLibraryRecord,reuseVerifiedLibraryPage,verifiedLibraryPublisherLocator} from './library-page-index.ts';
 import type {StudyImportReservation} from './import-allowance.ts';
 import {attachObserverLibraryMedia} from './library-public-locator.ts';
+import {isLibraryServiceBusyError,libraryServiceBusyResponse} from './library-service-busy.mjs';
 const json=(data:unknown,status=200,headers={})=>Response.json(data,{status,headers:{'Cache-Control':'private, no-store','X-Content-Type-Options':'nosniff',...headers}});
 export async function articleAPI(r:Request,c:Config,fetcher:typeof fetch=fetch,internal:{auditAllowance?:PressAuditAllowance}={}){
  let studyReservation:StudyImportReservation|undefined,libraryClaim:object|undefined,libraryProof:object|undefined,verifiedPublisherURL:string|undefined;
@@ -45,7 +46,7 @@ export async function articleAPI(r:Request,c:Config,fetcher:typeof fetch=fetch,i
   let capture,publisherPreview,serverPreview;
   if(!data.html&&p.host==='telegraph.co.uk'&&c.RR_LIBRARY_AWS_FUNCTION&&await libraryServerConfigured(c)){
    try{serverPreview=await fetchPublisherPreview(c,p.url,fetcher);}
-   catch{serverPreview={status:'publisher-preview',state:'unavailable',sourceURL:p.url,title:'',date:'',checkedAt:new Date().toISOString(),blocks:[],receipts:[],httpStatus:null,reasonCode:'request_failed'};}
+   catch(error){if(isLibraryServiceBusyError(error))throw error;serverPreview={status:'publisher-preview',state:'unavailable',sourceURL:p.url,title:'',date:'',checkedAt:new Date().toISOString(),blocks:[],receipts:[],httpStatus:null,reasonCode:'request_failed'};}
   }
   try{
    if(libraryOnly||libraryRefresh||serverPreview)throw Error('Use the matched library edition.');
@@ -86,6 +87,6 @@ export async function articleAPI(r:Request,c:Config,fetcher:typeof fetch=fetch,i
    }
   }
   return response;
- }catch(e){if(e instanceof Response)return e;const needsHeadline=Boolean(e&&typeof e==='object'&&'needsHeadline' in e&&e.needsHeadline===true);return json({error:e instanceof Error?e.message:'The source page could not be prepared.',needsCapture:!needsHeadline,...(needsHeadline?{needsHeadline:true}:{})},422);}
+ }catch(e){if(e instanceof Response)return e;if(isLibraryServiceBusyError(e))return libraryServiceBusyResponse();const needsHeadline=Boolean(e&&typeof e==='object'&&'needsHeadline' in e&&e.needsHeadline===true);return json({error:e instanceof Error?e.message:'The source page could not be prepared.',needsCapture:!needsHeadline,...(needsHeadline?{needsHeadline:true}:{})},422);}
  finally{if(libraryClaim)try{await releaseRoomLibraryRecord(libraryClaim);}catch{console.warn('RR_LIBRARY_IDENTITY_RELEASE_UNAVAILABLE');}if(studyReservation)try{await releaseStudyImport(studyReservation);}catch{console.warn('RR_STUDY_RESERVATION_RELEASE_UNAVAILABLE');}}
 }
