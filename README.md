@@ -71,6 +71,8 @@ The [dated front-page table](docs/frontpage-tests-20261018.html) records 12 publ
 
 The separate [UK press checklist](docs/frontpage-today-press-coverage.json) lists 48 publication/edition rows across 35 website families, with BBC marked separately as a comparator. It distinguishes title listing, homepage headline observation, article retrieval and implemented support. A follow-up added strict Daily Star and Daily Record public HTML profiles; Express remained unimported after a premium marker was observed. This is not a claim that all listed papers are supported or available through Camden.
 
+New invitations, private article shares, device connections and recovery links use **https://dayofflondon.com**, including when created from the earlier hosted address. Existing tokens and room membership stay valid. Browser sign-in is still separate for each website address. Forks should configure their own production origins in `lib/app-origin.mjs` and the client address helpers; local and unrelated hosts keep their own origin.
+
 ## Your phone, laptop and account
 
 Owners and invited readers can use the same account on a phone and a laptop. Start on the device where the room already opens:

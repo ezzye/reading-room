@@ -1,4 +1,5 @@
 import { sessionMember, type MemberAuthEnv } from './member-auth.ts';
+import { canonicalOrigin } from './app-origin.mjs';
 
 const CODE = /^[A-Za-z0-9_-]{16}$/;
 const PAGE = /^[a-f0-9]{48}$/;
@@ -65,7 +66,7 @@ export async function roomLinksAPI(request: Request, env: MemberAuthEnv, now = D
         WHERE a.room_id=? AND a.page_id=? AND rm.member_id=? AND rm.revoked_at IS NULL AND m.revoked_at IS NULL
         ON CONFLICT DO NOTHING`).bind(randomCode(), new Date(now).toISOString(), room, id, member.id).run();
       const link = await env.DB.prepare(authorizedLink + ' AND l.room_id=? AND l.page_id=?').bind(member.id, room, id).first<ArticleLink>();
-      if (link) return json({ path: '/r/' + link.code });
+      if (link) {const path='/r/'+link.code;return json({path,url:new URL(path,canonicalOrigin(request.url)).href});}
     }
     return json({ error: 'Article link is temporarily unavailable.' }, 503);
   } catch { return json({ error: 'Article link is temporarily unavailable.' }, 503); }

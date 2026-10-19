@@ -27,7 +27,7 @@ function nextAfterAuth(value){const target=safeNext(value);return target==='/cap
 function connectionDestination(value){
  const text=String(value||'').trim();if(!text||text.length>4096)throw Error('Paste your private invitation, device or recovery link.');
  let link;try{link=new URL(text,location.origin)}catch{throw Error('That connection link is not recognised.')}
- const origins=new Set([location.origin,'https://dayofflondon.com','https://www.dayofflondon.com','https://reader.example.org']);
+ const origins=new Set([location.origin,'https://dayofflondon.com','https://www.dayofflondon.com','https://legacy.reader.example.org']);
  if(link.protocol!=='https:'||!origins.has(link.origin)||link.username||link.password||link.pathname!=='/room')throw Error('Use a private Reading Room connection link.');
  const values=new URLSearchParams(link.hash.slice(1)),invites=values.getAll('invite'),recoveries=values.getAll('recover');
  if(invites.length+recoveries.length!==1)throw Error('That connection link is incomplete.');

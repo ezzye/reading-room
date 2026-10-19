@@ -1,5 +1,6 @@
 import { ensureRooms, memberRoom, roomCookie, clearRoomCookie, DEFAULT_ROOM_ID, type ActiveRoom } from './rooms.ts';
 import { membershipRequestAPI } from './membership-requests.ts';
+import { canonicalOrigin } from './app-origin.mjs';
 export const MEMBER_SESSION_COOKIE = "__Host-rr_session";
 export const MEMBER_SESSION_DAYS = 90;
 export const MEMBER_INVITE_DAYS = 7;
@@ -300,7 +301,7 @@ export async function memberAuthAPI(request: Request, env: MemberAuthEnv, now = 
         .bind(createdAt, auth.member.id).run();
       await env.DB.prepare("INSERT INTO rr_recovery_codes(token_hash,member_id,created_at,expires_at) VALUES(?,?,?,?)")
         .bind(await tokenHash(token), auth.member.id, createdAt, expiresAt).run();
-      const recoveryUrl = new URL("/room", request.url);
+      const recoveryUrl = new URL("/room", canonicalOrigin(request.url));
       recoveryUrl.hash = `recover=${token}`;
       return json({ url: recoveryUrl.toString(), expiresAt }, 201);
     }
@@ -317,7 +318,7 @@ export async function memberAuthAPI(request: Request, env: MemberAuthEnv, now = 
         AND (SELECT COUNT(*) FROM rr_invites WHERE room_id=? AND used_at IS NULL AND expires_at>?)<100`)
         .bind(await tokenHash(token),auth.member.id,auth.member.id,createdAt,expiresAt,auth.room.id,auth.member.id,createdAt,auth.room.id,createdAt).run();
       if((inserted.meta?.changes??0)!==1)return denied(429,'Several connection links are already waiting. Use an existing link or try after it expires.');
-      const link=new URL('/room?next=/study',request.url);link.hash=`invite=${token}&purpose=device`;
+      const link=new URL('/room?next=/study',canonicalOrigin(request.url));link.hash=`invite=${token}&purpose=device`;
       return json({url:link.toString(),expiresAt,purpose:'device',role:auth.room.role},201);
     }
 
@@ -375,7 +376,7 @@ export async function memberAuthAPI(request: Request, env: MemberAuthEnv, now = 
         if(articleId){const daily=await env.DB.prepare('SELECT COUNT(*) AS n FROM rr_invites WHERE room_id=? AND article_id=? AND substr(created_at,1,10)=?').bind(auth.room!.id,articleId,createdAt.slice(0,10)).first<{n:number}>();if(Number(daily?.n||0)>=15)return denied(429,'This article has reached 15 new invitation links today (UTC). Share its existing private article link or try tomorrow.');}
         return denied(429,'There are already 100 active invitations in this room. Let some expire before creating another.');
       }
-      const joinUrl=new URL('/room',request.url);
+      const joinUrl=new URL('/room',canonicalOrigin(request.url));
       if(articleId)joinUrl.searchParams.set('next',`/read/${encodeURIComponent(articleId)}?room=${encodeURIComponent(auth.room!.id)}`);
       joinUrl.hash=`invite=${token}&purpose=${purpose}`;
       return json({url:joinUrl.toString(),expiresAt,role:purpose==='device'?'owner':'member',purpose},201);
