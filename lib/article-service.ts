@@ -20,6 +20,7 @@ import {assertRoomLibraryProof,bindRoomLibraryProof,claimRoomLibraryRecord,relea
 import type {StudyImportReservation} from './import-allowance.ts';
 import {attachObserverLibraryMedia} from './library-public-locator.ts';
 import {isLibraryServiceBusyError,libraryServiceBusyResponse} from './library-service-busy.mjs';
+import {selectedLibraryURL} from './library-url-selection.mjs';
 const json=(data:unknown,status=200,headers={})=>Response.json(data,{status,headers:{'Cache-Control':'private, no-store','X-Content-Type-Options':'nosniff',...headers}});
 export async function articleAPI(r:Request,c:Config,fetcher:typeof fetch=fetch,internal:{auditAllowance?:PressAuditAllowance}={}){
  let studyReservation:StudyImportReservation|undefined,libraryClaim:object|undefined,libraryProof:object|undefined,verifiedPublisherURL:string|undefined;
@@ -29,9 +30,14 @@ export async function articleAPI(r:Request,c:Config,fetcher:typeof fetch=fetch,i
  let data:any;try{if(Number(r.headers.get('content-length'))>3_000_000)return json({error:'Use an HTML file smaller than 3 MB, or Page Lens.'},413);const rd=r.body?.getReader();if(!rd)return json({error:'Paste an article URL.'},400);let size=0,raw='';const decoder=new TextDecoder();try{for(;;){const x=await rd.read();if(x.done)break;size+=x.value.byteLength;if(size>3_000_000)return json({error:'Use an HTML file smaller than 3 MB, or Page Lens.'},413);raw+=decoder.decode(x.value,{stream:true});}raw+=decoder.decode();}finally{await rd.cancel();}data=JSON.parse(raw);}catch{return json({error:'The article request could not be read.'},400);}
  if(data.action==='session'){const existing=readerSession(r),token=existing||randomToken();return json({ready:Boolean(c.DEEPSEEK_API_KEY||c['DEEPSEEK-API-KEY']),reader:true},200,existing?{}:{'Set-Cookie':'ret_reader='+token+'; Path=/; HttpOnly; Secure; SameSite=Strict; Max-Age=2592000'});}
  if(!readerSession(r)&&!isOwner(r,c)&&!roomMemberId(r))return json({error:'Reload RET to start your private reader session. Allow cookies for this site.'},401);
+ async function selectedLibraryRecovery(){
+  if(data.html!==undefined||data.action||!roomId(r)||!/^[0-9a-f-]{36}$/i.test(data.requestId||''))return null;
+  const publisher=selectedLibraryURL(data.url);if(!publisher||!await libraryServerConfigured(c))return null;
+  return json({error:'Choose the matching Camden Library article.',needsLibrarySearch:true,libraryPublisher:publisher},422);
+ }
  try{
   let p,libraryOnly=false;
-  try{p=publisherFor(data.url);}catch(error){let source;try{source=libraryArticle(data.url);}catch{throw error;}if(source.key!=='observer')throw error;p=source;libraryOnly=true;}
+  try{p=publisherFor(data.url);}catch(error){const recovery=await selectedLibraryRecovery();if(recovery)return recovery;let source;try{source=libraryArticle(data.url);}catch{throw error;}if(source.key!=='observer')throw error;p=source;libraryOnly=true;}
   if(libraryOnly&&data.html)return json({error:'This newspaper is available here through a matched Camden Library text edition. Paste its article link.'},422);
   const libraryRefresh=data.action==='library-refresh';
   if(libraryRefresh&&!isOwner(r,c))return json({error:'Only the room owner can refresh a library edition.'},403);
@@ -54,6 +60,7 @@ export async function articleAPI(r:Request,c:Config,fetcher:typeof fetch=fetch,i
    if(!data.html)publisherPreview=source;
    capture=extractNewspaper(source.html,source.url,{method:data.html?'saved-html':'public-url'});
   }catch(error){
+   const recovery=await selectedLibraryRecovery();if(recovery)return recovery;
    if(data.html||!['thetimes.com','telegraph.co.uk','observer.co.uk'].includes(p.host))throw error;
    if(!await libraryServerConfigured(c))throw Error(isOwner(r,c)?'Connect Camden Library from the room menu, then try this article again.':'Ask this room’s owner to connect Camden Library, then try again.');
    const source=await lookupNewsBankSource(p.url,c,fetcher,data.sourceHeadline,serverPreview,{auditAllowance:internal.auditAllowance});

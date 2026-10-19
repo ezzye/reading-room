@@ -2,6 +2,14 @@
 
 Source for a private, room-based reading and discussion app. Members can save articles they are authorised to read, open a source-first edition with separately labelled commentary, and discuss an article inside their room. This public package includes a fictional demonstration article. It contains no newspaper corpus, library account, live room data, or deployment credentials.
 
+## Current coverage
+
+Start with the [current coverage table](docs/current-coverage.html) for the latest verified text saves, source access, images/video and phone evidence. It covers website-family examples, with explicit gaps; shared daily/Sunday sites do not establish separate print editions. The [detailed dated audit](docs/outlet-gaps-and-allowance.html) remains an appendix.
+
+The reviewed source is release 94. The public checkout passed 823 full tests, type checking and production build at release 93, then 26 focused public tests for the four-file release 94 change. The private release 94 passed 912 tests, types and build; these scopes are kept separate. Homepage observations are dated 18 October 2026, with later US and library follow-ups on 19 October. These observations do not guarantee future publisher access or a fresh capture for every mutable URL. In particular, the Times France URL had an observed Macron headline while its earlier saved edition identifies Lyon coverage. Historical checkpoint sections below retain their earlier results; use the current table for later outcomes. Press and Journal and News Letter library samples are separately selected dated records, not verified front-page matches.
+
+[Camden’s official digital library](https://www.camden.gov.uk/digital-library) lists PressReader and BorrowBox ePress. Their title/edition coverage, this account’s entitlement, retrieval and Reading Room import remain unverified. Check the requested title through the official service links and keep provider reading external until an independently verified import route exists. Remaining gaps mean no verified automatic route, not lack of entitlement.
+
 ## Run locally
 
 Requires Node.js 22.13+ and npm. From this directory:

@@ -5,6 +5,7 @@ import {publicationSearchQuery,sanitizePublicationSearch,sanitizePublicationSear
 import {librarySearchQuery,sanitizeLibrarySearch} from '../lib/library-search-contract.mjs';
 import {libraryRecordRequest} from '../lib/library-record-contract.mjs';
 import {sanitizeNativeSources} from '../lib/newsbank-native-sources.mjs';
+import {sanitizeSourceSearchInspection} from '../lib/newsbank-source-search.mjs';
 import {publisherPreview} from './publisher-preview.mjs';
 import {publisherRender} from './publisher-render.mjs';
 
@@ -38,6 +39,10 @@ export async function handler(event,context={}){
    if(Object.keys(event).some(key=>!['action','session'].includes(key)))return response({status:'error',code:'invalid_native_sources'});
    if(!event.session)return response({status:'login_required',stage:'session',reasonCode:'session_expired'});
    const client=createNewsBankHTTPClient({fetch:fetcher});client.restoreSession(event.session);return response(sanitizeNativeSources(await client.inspectNativeSources())||{status:'error',code:'invalid_native_sources'});
+  }
+  if(event.action==='inspect-source-search'){
+   if(Object.keys(event).some(key=>!['action','session'].includes(key)))return response({status:'error',code:'invalid_source_search'});
+   const client=createNewsBankHTTPClient({fetch:fetcher});if(event.session)client.restoreSession(event.session);return response(sanitizeSourceSearchInspection(await client.inspectSourceSearch())||{status:'error',code:'invalid_source_search'});
   }
   if(event.action==='library-search'){
    if(Object.keys(event).some(key=>!['action','publisher','query','session'].includes(key)))return response({status:'error',code:'invalid_library_search'});

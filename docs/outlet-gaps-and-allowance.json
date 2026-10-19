@@ -1,12 +1,13 @@
 {
   "schema": "reading-room-outlet-gaps-and-allowance/v1",
-  "generatedAt": "2026-10-19T01:31:07.028Z",
+  "generatedAt": "2026-10-19T02:22:08.097Z",
   "deployment": {
-    "coreRelease": 88,
-    "liveEvidenceRelease": 88,
+    "coreRelease": 91,
+    "liveEvidenceRelease": 91,
     "nativeCatalogueLiveVerification": "observed-metadata-only",
-    "nextCatalogueDiagnosticLiveVerification": "observed-metadata-only",
-    "note": "Core release 88 is deployed. Its live catalogue diagnostic observed literal source variants and safe template structure only. The live catalogue metadata observation is separate from article entitlement, selected-record saves and public-preview loading. Dated live follow-ups verify Irish Times and Express selected-record saves and one Observer public-preview thumbnail/reuse. These do not certify publication-wide coverage or new phone acceptance."
+    "nextCatalogueDiagnosticLiveVerification": "source-browse-metadata-observed",
+    "sourceSearchLiveVerification": "scotsman-query-blocked-before-submission",
+    "note": "Core release 91 is deployed. The live Herald URL recovery reached an explicit dated choice and reused the saved edition; the Scotsman scoped query remains blocked before submission. The live catalogue metadata observation is separate from article entitlement, selected-record saves and public-preview loading. Dated live follow-ups verify Irish Times and Express selected-record saves and one Observer public-preview thumbnail/reuse. These do not certify publication-wide coverage or new phone acceptance."
   },
   "scope": "Four UK national follow-ups, retained Scotland/Northern Ireland observations, three Republic of Ireland papers and six selected US outlets. AP/NPR are news comparators, not newspapers. This is not every newspaper or independent print edition.",
   "totals": {
@@ -1337,6 +1338,96 @@
     "entitlementVerified": false,
     "note": "The next live check retained 12 literal source-name variants, separately from the 33 recognized descriptors. The catalogue lists current Scotsman / Scotland on Sunday text and Image formats, Press & Journal text, Daily Record / Sunday Mail text and composite Telegraph text/Image entries with the date ranges below. These are exact catalogue names, not newly registered aliases or article-access proof. FT Adviser is a distinct title; its current entry does not establish Financial Times newspaper access. The recognized FT Blogs entry remains dated 2015–2019, and whitelist omissions still do not prove absence. The observed browse template uses query key names p, t and action with one row-source-reference placeholder; at checkpoint 88 it remains unapproved for navigation. No query values, raw template or hidden row reference are published."
   },
+  "followup89": {
+    "release": 89,
+    "observedUTCDay": "2026-10-19",
+    "recordedAt": null,
+    "status": "needs_interaction",
+    "stage": "source-list",
+    "reasonCode": "source_link_unavailable",
+    "sourceListOpened": true,
+    "sourceBrowseOpened": false,
+    "articleOpened": false,
+    "searchSubmitted": false,
+    "followedNext": false,
+    "articleRegistryChanged": false,
+    "scotsmanArticleVerified": false,
+    "note": "The live owner source-search inspection opened the fresh A–Z list, then stopped with source_link_unavailable before any source browse request. No query, article or Next page was opened, and no search was submitted. The catalogue still supplies source metadata only; a functional Scotsman search or article import has not been established. A link-validation investigation is pending. This failure does not prove the publication absent from Camden."
+  },
+  "followup90": {
+    "release": 90,
+    "observedUTCDay": "2026-10-19",
+    "recordedAt": null,
+    "status": "source-search-inspection",
+    "sourceName": "Scotsman, The/Scotland on Sunday (Scotland)",
+    "dates": "1998 - Current",
+    "location": "Scotland - Edinburgh",
+    "format": "Text",
+    "sourceHeading": "observed",
+    "matchingSourceBindings": 2,
+    "conflictingSourceBindings": 0,
+    "forms": [
+      {
+        "method": "POST",
+        "actionPath": "/apps/news/browse-pub",
+        "controlCount": 9
+      },
+      {
+        "method": "POST",
+        "actionPath": "/apps/news/browse-pub",
+        "controlCount": 2
+      },
+      {
+        "method": "POST",
+        "actionPath": "/apps/news/browse-pub",
+        "controlCount": 5
+      }
+    ],
+    "sourceListOpened": true,
+    "sourceBrowseOpened": true,
+    "articleOpened": false,
+    "searchSubmitted": false,
+    "followedNext": false,
+    "articleRegistryChanged": false,
+    "scotsmanArticleVerified": false,
+    "entitlementVerified": false,
+    "note": "The later live metadata inspection successfully opened the freshly listed Scotsman / Scotland on Sunday text-source browse page. Its exact source heading was observed with two matching source bindings and zero conflicts. Three POST forms were observed. No search was submitted, no article or Next page was opened, and no new article registry entry was enabled. This resolves the earlier source-link diagnostic failure only; Scotsman search, article retrieval and entitlement remain unverified pending a separately scoped check."
+  },
+  "followup91": {
+    "release": 91,
+    "heraldURLRecovery": {
+      "choicesObservedAt": "2026-10-19T02:17:44.702Z",
+      "readerObservedAt": "2026-10-19T02:19:07.879Z",
+      "sourceURL": "https://www.heraldscotland.com/news/26644107.watched-bbc-scotland-night-got-sense-doom/",
+      "title": "I watched BBC Scotland for a night and all I got was this lousy sense of doom",
+      "choiceDate": "2026-10-18",
+      "choicePublication": "Herald, The: Web Edition Articles (Glasgow, Scotland)",
+      "choiceCount": 1,
+      "autoImported": false,
+      "explicitChoiceVerified": true,
+      "samePreviouslySavedEdition": true,
+      "sourceParagraphs": 28,
+      "collapsedAI": 10,
+      "discussionVisible": true,
+      "images": 0,
+      "videos": 0,
+      "allowanceBeforeChoice": 21,
+      "allowanceAfterChoice": null,
+      "publisherURLAliasVerified": false,
+      "phoneAccepted": false,
+      "note": "Pasting the actual Herald URL automatically offered the correct 18 October library choice. Explicit selection opened the same previously saved edition, with 28 source paragraphs, ten collapsed AI notes, a discussion form and no media. A duplicate edition was not created. This verifies the URL-to-choices-to-explicit-selection workflow; it does not establish an automatic publisher-URL alias or import without selection. The allowance showed 21 remaining before selection; the post-choice balance has not been read."
+    },
+    "scotsmanQuery": {
+      "observedAt": "2026-10-19T02:16:32.175Z",
+      "stage": "form",
+      "reasonCode": "destination_changed",
+      "searchSubmitted": false,
+      "articleOpened": false,
+      "articleAccepted": false,
+      "scotsmanArticleVerified": false,
+      "note": "The first scoped Scotsman query stopped at form / destination_changed before search submission. No article was opened or accepted. A later metadata-only diagnostic check reported the same failure while its bounded predicate investigation remained pending. The successful source-browse inspection in release 90 remains a separate milestone; functional Scotsman search and article retrieval are unverified."
+    }
+  },
   "allowance": {
     "newSavedEditionsPerUTCDay": 30,
     "scope": "Shared across this Reading Room service, newspapers, rooms and members",
@@ -1357,7 +1448,7 @@
       "trackingSince": null,
       "historyStatus": "not-supplied"
     },
-    "usageSnapshotNote": "The owner-operated Add article UI directly showed 21 of 30 remaining on 19 October. The check was recorded at 19 Oct 2026, 02:26 UK time; other counter fields were not retained. Those fields are not computed from saved editions. No reset or refund was applied. The later live Observer no-match check saved no edition and preserved the URL/headline fallback; 21 remaining was observed unchanged. The earlier 22-place snapshot preceded the successful Telegraph save.",
+    "usageSnapshotNote": "The owner-operated Add article UI directly showed 21 of 30 remaining on 19 October. The check was recorded at 19 Oct 2026, 03:17 UK time; other counter fields were not retained. Those fields are not computed from saved editions. No reset or refund was applied. This is the baseline before the explicit Herald choice. No post-choice balance has been observed; none is inferred.",
     "quotaProof": {
       "traceUTCDay": "2026-10-18",
       "checkpoints": [

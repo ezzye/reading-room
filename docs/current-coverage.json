@@ -1,0 +1,1526 @@
+{
+  "schema": "reading-room-current-coverage/v1",
+  "generatedAt": "2026-10-19T03:42:33.080185Z",
+  "scope": "Website-family examples across UK nationals, Scotland, Wales, Northern Ireland, Republic of Ireland and selected US outlets. AP and NPR are comparators. This is not all UK newspapers or proof of separate Sunday editions.",
+  "sourceDates": {
+    "originalHomepageObservations": "2026-10-18",
+    "laterUSHomepageAndFollowups": "2026-10-19"
+  },
+  "historicalAudit": {
+    "selectedURLs": 46,
+    "newSaves": 26,
+    "cached": 1,
+    "failed": 19,
+    "keptSeparate": true
+  },
+  "allowance": {
+    "lastDirectlyObservedRemaining": 14,
+    "limit": 30,
+    "observedAt": "2026-10-19T03:42Z",
+    "context": "Final direct desktop observation after all seven new library editions; Record reuse charge was not isolated",
+    "manualReset": false
+  },
+  "publicationHeld": true,
+  "externalOptions": {
+    "sourceURL": "https://www.camden.gov.uk/digital-library",
+    "services": [
+      "PressReader",
+      "BorrowBox ePress"
+    ],
+    "scope": "Official service listings only; title and edition coverage, account entitlement, retrieval and Reading Room import are unverified."
+  },
+  "gapMeaning": "No verified automatic route; not an entitlement determination.",
+  "verification": {
+    "privateRelease": 94,
+    "privateTestsPassed": 912,
+    "privateTypesBuild": "pass",
+    "publicFullSuiteRelease": 93,
+    "publicFullTestsPassed": 823,
+    "publicTypesBuildRelease": 93,
+    "publicTypesBuild": "pass",
+    "publicDeltaRelease": 94,
+    "publicDeltaTestsPassed": 26,
+    "noFullPublicSuiteRepeatForFourJSFiles": true
+  },
+  "families": [
+    {
+      "family": "The Times / The Sunday Times",
+      "region": "UK national",
+      "stories": [
+        {
+          "title": "Macron vows rioters will pay for seeking ‘to bring down the Republic’",
+          "url": "https://www.thetimes.com/world/europe/article/france-protests-paris-students-cost-of-living-latest-news-dbdlgf98v",
+          "observedAt": "2026-10-18",
+          "basis": "Homepage linked · 18 Oct"
+        },
+        {
+          "title": "Trump endorses Netanyahu before Israeli elections as settler attacks surge",
+          "url": "https://www.thetimes.com/world/middle-east/article/trump-endorses-netanyahu-israel-election-8gbbz275d",
+          "observedAt": "2026-10-18",
+          "basis": "Homepage linked · 18 Oct"
+        }
+      ],
+      "publicAccess": "Publisher article body restricted; library text with a public preview image.",
+      "libraryAccess": "Historical France-URL cached edition plus a later verified Trump edition (38p / 8 AI); normal URL intake works for that tested follow-up.",
+      "captures": [
+        {
+          "basis": "Library text",
+          "paragraphs": 33,
+          "imageReferences": 0,
+          "videoReferences": 0,
+          "aiNotes": 8,
+          "observedAt": "2026-10-18T20:54:58.904Z",
+          "title": "Macron vows rioters will pay for seeking ‘to bring down the Republic’",
+          "allImagesLoaded": false
+        },
+        {
+          "basis": "Library text + public preview",
+          "paragraphs": 38,
+          "imageReferences": 1,
+          "videoReferences": 0,
+          "aiNotes": 8,
+          "observedAt": "2026-10-19",
+          "title": "",
+          "allImagesLoaded": true
+        }
+      ],
+      "media": "Second example: 1 preview photo loaded (1200px). Original image placement unverified; 0 video refs.",
+      "phone": "Not verified for these two examples.",
+      "notes": [
+        "Mutable France URL: the 18 Oct audit observed the Macron headline and a cached 33p edition. The current shelf identifies earlier Lyon coverage dated 17 Oct. Saved and latest web headlines may differ; no fresh France capture is claimed. The Trump example was separately verified on 19 Oct."
+      ],
+      "state": "saved"
+    },
+    {
+      "family": "The Telegraph / The Sunday Telegraph",
+      "region": "UK national",
+      "stories": [
+        {
+          "title": "Israel has no automatic right to exist, Polanski suggests",
+          "url": "https://www.telegraph.co.uk/politics/2026/10/18/israel-polanski-no-automatic-right-exist/",
+          "observedAt": "",
+          "basis": "Direct URL follow-up · homepage not verified"
+        }
+      ],
+      "publicAccess": "Homepage HTTP 402; no retry. Public article body not used.",
+      "libraryAccess": "Polanski URL follow-up saved: 20 source paragraphs / 8 AI notes.",
+      "captures": [
+        {
+          "basis": "URL follow-up",
+          "paragraphs": 20,
+          "imageReferences": 0,
+          "videoReferences": 0,
+          "aiNotes": 8,
+          "observedAt": "2026-10-19T01:21:18.880Z",
+          "title": "Israel has no automatic right to exist, Polanski suggests",
+          "allImagesLoaded": false
+        }
+      ],
+      "media": "Polanski follow-up: 0 image and 0 video refs.",
+      "phone": "Earlier separate clock-tower thumbnail passed on owner phone; this follow-up is unverified.",
+      "notes": [],
+      "state": "saved"
+    },
+    {
+      "family": "The Guardian",
+      "region": "UK national",
+      "stories": [
+        {
+          "title": "‘We are suffocating’: protests spread to Lisbon and Milan as housing and living cost tensions intensify",
+          "url": "https://www.theguardian.com/world/2026/oct/18/lisbon-milan-protests-housing-living-costs",
+          "observedAt": "2026-10-18",
+          "basis": "Homepage linked · 18 Oct"
+        },
+        {
+          "title": "Why are people protesting across Europe?",
+          "url": "https://www.theguardian.com/world/2026/oct/18/europe-protests-france-spain-portugal-2026-explainer",
+          "observedAt": "2026-10-18",
+          "basis": "Homepage linked · 18 Oct"
+        }
+      ],
+      "publicAccess": "Public source save verified on 18 Oct.",
+      "libraryAccess": "No article-level library save verified for these examples.",
+      "captures": [
+        {
+          "basis": "Public source",
+          "paragraphs": 25,
+          "imageReferences": 7,
+          "videoReferences": 0,
+          "aiNotes": 8,
+          "observedAt": "2026-10-18T20:54:58.904Z",
+          "title": "‘We are suffocating’: protests spread to Lisbon and Milan as housing and living cost tensions intensify",
+          "allImagesLoaded": false
+        },
+        {
+          "basis": "Public source",
+          "paragraphs": 27,
+          "imageReferences": 1,
+          "videoReferences": 0,
+          "aiNotes": 8,
+          "observedAt": "2026-10-18T20:54:58.904Z",
+          "title": "Why are people protesting across Europe?",
+          "allImagesLoaded": false
+        }
+      ],
+      "media": "Image refs: 7, 1; video refs: 0, 0. Loading/playback unverified.",
+      "phone": "Not verified for these examples.",
+      "notes": [],
+      "state": "saved"
+    },
+    {
+      "family": "The Observer",
+      "region": "UK national",
+      "stories": [
+        {
+          "title": "Children’s commissioner declares ‘state of emergency’ on young people’s lives",
+          "url": "https://observer.co.uk/news/national/article/childrens-commissioner-declares-state-of-emergency-on-young-peoples-lives",
+          "observedAt": "2026-10-18",
+          "basis": "Homepage linked · 18 Oct"
+        },
+        {
+          "title": "The childhood lottery: see how your postcode fares",
+          "url": "https://observer.co.uk/news/national/article/the-childhood-lottery-see-how-your-postcode-fares",
+          "observedAt": "2026-10-18",
+          "basis": "Homepage linked · 18 Oct"
+        }
+      ],
+      "publicAccess": "Subscription metadata; public body not used.",
+      "libraryAccess": "First report saved (31p / 8 AI), later URL reuse verified. Separately selected related report saved (24p / 8 AI); it is not the requested interactive.",
+      "captures": [
+        {
+          "basis": "Library text",
+          "paragraphs": 31,
+          "imageReferences": 0,
+          "videoReferences": 0,
+          "aiNotes": 8,
+          "observedAt": "2026-10-18T23:42:59.203430+00:00",
+          "title": "Children’s commissioner declares ‘state of emergency’ on young people’s lives",
+          "allImagesLoaded": false
+        },
+        {
+          "basis": "Library text",
+          "paragraphs": 24,
+          "imageReferences": 0,
+          "videoReferences": 0,
+          "aiNotes": 8,
+          "observedAt": "2026-10-19T01:00:13.690Z",
+          "title": "The ‘childhood lottery’: report reveals how postcodes shape young people’s lives",
+          "allImagesLoaded": false
+        }
+      ],
+      "media": "First report: 1 public preview thumbnail loaded (2100×1400); placement unverified. Related report: 0 media.",
+      "phone": "Not verified for these examples.",
+      "notes": [
+        "The second homepage item is an interactive. A separately titled related library report does not establish an exact match."
+      ],
+      "state": "saved"
+    },
+    {
+      "family": "The Independent",
+      "region": "UK national",
+      "stories": [
+        {
+          "title": "Macron says 'we all feel anger and shame' after 'unprecedented violence' across France",
+          "url": "https://www.independent.co.uk/news/world/europe/france-protests-paris-live-riots-police-arrests-students-b3068758.html",
+          "observedAt": "2026-10-18",
+          "basis": "Homepage linked · 18 Oct"
+        },
+        {
+          "title": "Polanski says he won’t overturn Green Party's ‘Zionism is racism’ motion",
+          "url": "https://www.independent.co.uk/news/uk/politics/green-party-zionism-motion-racism-zack-polanski-b3068717.html",
+          "observedAt": "2026-10-18",
+          "basis": "Homepage linked · 18 Oct"
+        }
+      ],
+      "publicAccess": "Public source save verified on 18 Oct.",
+      "libraryAccess": "No article-level library save verified for these examples.",
+      "captures": [
+        {
+          "basis": "Public source",
+          "paragraphs": 46,
+          "imageReferences": 10,
+          "videoReferences": 1,
+          "aiNotes": 8,
+          "observedAt": "2026-10-18T20:54:58.904Z",
+          "title": "Macron says 'we all feel anger and shame' after 'unprecedented violence' across France",
+          "allImagesLoaded": false
+        },
+        {
+          "basis": "Public source",
+          "paragraphs": 18,
+          "imageReferences": 3,
+          "videoReferences": 1,
+          "aiNotes": 8,
+          "observedAt": "2026-10-18T20:54:58.904Z",
+          "title": "Polanski says he won’t overturn Green Party's ‘Zionism is racism’ motion",
+          "allImagesLoaded": false
+        }
+      ],
+      "media": "Image refs: 10, 3; video refs: 1, 1. Loading/playback unverified.",
+      "phone": "Not verified for these examples.",
+      "notes": [],
+      "state": "saved"
+    },
+    {
+      "family": "Daily Mail / The Mail on Sunday",
+      "region": "UK national",
+      "stories": [
+        {
+          "title": "Macron pledges crackdown following 'apocalyptic' violence as Donald Trump blames 'immigrants with hatred in their hearts' for French riots amid fears country is 'ungovernable'",
+          "url": "https://www.dailymail.com/news/article-16218361/Moment-French-rioters-attack-shopkeeper.html",
+          "observedAt": "2026-10-18",
+          "basis": "Homepage linked · 18 Oct"
+        },
+        {
+          "title": "Cindy Crawford and Rande Gerber break silence on son Presley's tragic death at 27: 'We are beyond heartbroken'",
+          "url": "https://www.dailymail.com/tvshowbiz/article-16218985/Cindy-Crawford-Rande-Gerber-break-silence-son-Presleys-tragic-death-27-heartbroken.html",
+          "observedAt": "2026-10-18",
+          "basis": "Homepage linked · 18 Oct"
+        }
+      ],
+      "publicAccess": "Public source save verified on 18 Oct.",
+      "libraryAccess": "No article-level library save verified for these examples.",
+      "captures": [
+        {
+          "basis": "Public source",
+          "paragraphs": 115,
+          "imageReferences": 70,
+          "videoReferences": 4,
+          "aiNotes": 8,
+          "observedAt": "2026-10-18T20:54:58.904Z",
+          "title": "Macron pledges crackdown following 'apocalyptic' violence as Donald Trump blames 'immigrants with hatred in their hearts' for French riots amid fears country is 'ungovernable'",
+          "allImagesLoaded": false
+        },
+        {
+          "basis": "Public source",
+          "paragraphs": 28,
+          "imageReferences": 6,
+          "videoReferences": 0,
+          "aiNotes": 8,
+          "observedAt": "2026-10-18T20:54:58.904Z",
+          "title": "Cindy Crawford and Rande Gerber break silence on son Presley's tragic death at 27: 'We are beyond heartbroken'",
+          "allImagesLoaded": false
+        }
+      ],
+      "media": "Image refs: 70, 6; video refs: 4, 0. Loading/playback unverified.",
+      "phone": "Not verified for these examples.",
+      "notes": [],
+      "state": "saved"
+    },
+    {
+      "family": "Daily Mirror / Sunday Mirror / Sunday People",
+      "region": "UK national",
+      "stories": [
+        {
+          "title": "Hardest places in England for kids to grow up named -'state of emergency'",
+          "url": "https://www.mirror.co.uk/news/uk-news/hardest-place-grow-up-england-37785206",
+          "observedAt": "2026-10-18",
+          "basis": "Homepage linked · 18 Oct"
+        },
+        {
+          "title": "St Petersburg on fire as Zelensky defies Trump again",
+          "url": "https://www.mirror.co.uk/news/world-news/st-petersburg-fire-zelensky-defies-37783952",
+          "observedAt": "2026-10-18",
+          "basis": "Homepage linked · 18 Oct"
+        }
+      ],
+      "publicAccess": "Public source save verified on 18 Oct.",
+      "libraryAccess": "No article-level library save verified for these examples.",
+      "captures": [
+        {
+          "basis": "Public source",
+          "paragraphs": 30,
+          "imageReferences": 2,
+          "videoReferences": 0,
+          "aiNotes": 8,
+          "observedAt": "2026-10-18T20:54:58.904Z",
+          "title": "Hardest places in England for kids to grow up named -'state of emergency'",
+          "allImagesLoaded": false
+        },
+        {
+          "basis": "Public source",
+          "paragraphs": 24,
+          "imageReferences": 5,
+          "videoReferences": 0,
+          "aiNotes": 8,
+          "observedAt": "2026-10-18T20:54:58.904Z",
+          "title": "St Petersburg on fire as Zelensky defies Trump again",
+          "allImagesLoaded": false
+        }
+      ],
+      "media": "Image refs: 2, 5; video refs: 0, 0. Loading/playback unverified.",
+      "phone": "Not verified for these examples.",
+      "notes": [],
+      "state": "saved"
+    },
+    {
+      "family": "The Sun / The Sun on Sunday",
+      "region": "UK national",
+      "stories": [
+        {
+          "title": "Waiter attacks, shock tactics & even stealing with KIDS… Britain's dine & dash plague driving restaurants to brink",
+          "url": "https://www.thesun.co.uk/news/40669745/dine-dash-tactics-plague-uk/",
+          "observedAt": "2026-10-18",
+          "basis": "Homepage linked · 18 Oct"
+        },
+        {
+          "title": "Traitors mole says Richard E Grant may have FAKED show clanger for 2 reasons",
+          "url": "https://www.thesun.co.uk/tv/40726742/traitors-richard-e-grant-blunder-suspects-wanted-out/",
+          "observedAt": "2026-10-18",
+          "basis": "Homepage linked · 18 Oct"
+        }
+      ],
+      "publicAccess": "Public source save verified on 18 Oct.",
+      "libraryAccess": "No article-level library save verified for these examples.",
+      "captures": [
+        {
+          "basis": "Public source",
+          "paragraphs": 47,
+          "imageReferences": 5,
+          "videoReferences": 0,
+          "aiNotes": 8,
+          "observedAt": "2026-10-18T20:54:58.904Z",
+          "title": "Waiter attacks, shock tactics & even stealing with KIDS… Britain's dine & dash plague driving restaurants to brink",
+          "allImagesLoaded": false
+        },
+        {
+          "basis": "Public source",
+          "paragraphs": 26,
+          "imageReferences": 3,
+          "videoReferences": 0,
+          "aiNotes": 8,
+          "observedAt": "2026-10-18T20:54:58.904Z",
+          "title": "Traitors mole says Richard E Grant may have FAKED show clanger for 2 reasons",
+          "allImagesLoaded": false
+        }
+      ],
+      "media": "Image refs: 5, 3; video refs: 0, 0. Loading/playback unverified.",
+      "phone": "Owner phone verified dine-and-dash photos earlier. Other article and video playback unverified.",
+      "notes": [],
+      "state": "saved"
+    },
+    {
+      "family": "Daily Express / Sunday Express",
+      "region": "UK national",
+      "stories": [
+        {
+          "title": "Strictly star forced to leave BBC show immediately as they issue emotional statement",
+          "url": "https://www.express.co.uk/showbiz/tv-radio/2258269/strictly-star-forced-leave-bbc-show-immediately",
+          "observedAt": "2026-10-18",
+          "basis": "Homepage linked · 18 Oct"
+        },
+        {
+          "title": "Britain can do this one thing to stop asylum seekers breaking the law",
+          "url": "https://www.express.co.uk/news/politics/2257606/britain-asylum-seekers-crime-rape",
+          "observedAt": "2026-10-18",
+          "basis": "Homepage linked · 18 Oct"
+        }
+      ],
+      "publicAccess": "Mixed: tested public Strictly story saved; other selected URL declared subscription-only.",
+      "libraryAccess": "A separately selected Express text record saved (28p / 8 AI); publisher-URL association unverified.",
+      "captures": [
+        {
+          "basis": "Library text",
+          "paragraphs": 28,
+          "imageReferences": 0,
+          "videoReferences": 0,
+          "aiNotes": 8,
+          "observedAt": "2026-10-19T00:34:57.294Z",
+          "title": "Britain can do this one thing to stop asylum seekers breaking the law",
+          "allImagesLoaded": false
+        },
+        {
+          "basis": "Public source",
+          "paragraphs": 14,
+          "imageReferences": 2,
+          "videoReferences": 0,
+          "aiNotes": 7,
+          "observedAt": "2026-10-18T22:04:18.093Z",
+          "title": "Strictly star forced to leave BBC show immediately as they issue emotional statement",
+          "allImagesLoaded": true
+        }
+      ],
+      "media": "Public story: 2/2 photos loaded, 0 video refs. Library edition: 0 media. Newsletter boilerplate removed.",
+      "phone": "Not verified for these examples.",
+      "notes": [],
+      "state": "saved"
+    },
+    {
+      "family": "Daily Star / Daily Star Sunday",
+      "region": "UK national",
+      "stories": [
+        {
+          "title": "'IT'S MY WIFE': Russell Brand's 'mystery woman' breaks silence as she talks about 'hurricane outside court'",
+          "url": "https://www.dailystar.co.uk/news/latest-news/russell-brands-mystery-woman-breaks-37785186",
+          "observedAt": "2026-10-18",
+          "basis": "Homepage linked · 18 Oct"
+        },
+        {
+          "title": "Priest killed during service after massive cross falls on him in front of worshippers",
+          "url": "https://www.dailystar.co.uk/news/world-news/priest-killed-during-service-after-37784872",
+          "observedAt": "2026-10-18",
+          "basis": "Homepage linked · 18 Oct"
+        }
+      ],
+      "publicAccess": "Public source save verified on 18 Oct.",
+      "libraryAccess": "No article-level library save verified for these examples.",
+      "captures": [
+        {
+          "basis": "Public source",
+          "paragraphs": 15,
+          "imageReferences": 4,
+          "videoReferences": 0,
+          "aiNotes": 8,
+          "observedAt": "2026-10-18T20:54:58.904Z",
+          "title": "'IT'S MY WIFE': Russell Brand's 'mystery woman' breaks silence as she talks about 'hurricane outside court'",
+          "allImagesLoaded": false
+        },
+        {
+          "basis": "Public source",
+          "paragraphs": 10,
+          "imageReferences": 3,
+          "videoReferences": 0,
+          "aiNotes": 8,
+          "observedAt": "2026-10-18T20:54:58.904Z",
+          "title": "Priest killed during service after massive cross falls on him in front of worshippers",
+          "allImagesLoaded": false
+        }
+      ],
+      "media": "Image refs: 4, 3; video refs: 0, 0. Loading/playback unverified.",
+      "phone": "Not verified for these examples.",
+      "notes": [],
+      "state": "saved"
+    },
+    {
+      "family": "i paper",
+      "region": "UK national",
+      "stories": [
+        {
+          "title": "Blunkett leads Labour backlash against Burnham's voting reform",
+          "url": "https://inews.co.uk/news/politics/blunkett-labour-backlash-against-burnham-voting-reform-4826328",
+          "observedAt": "2026-10-18",
+          "basis": "Homepage linked · 18 Oct"
+        },
+        {
+          "title": "Trump is wearing his authoritarian mask with increasing confidence",
+          "url": "https://inews.co.uk/news/world/trump-wearing-authoritarian-mask-increasing-confidence-4834769",
+          "observedAt": "2026-10-18",
+          "basis": "Homepage linked · 18 Oct"
+        }
+      ],
+      "publicAccess": "Public source save verified on 18 Oct.",
+      "libraryAccess": "No article-level library save verified for these examples.",
+      "captures": [
+        {
+          "basis": "Public source",
+          "paragraphs": 35,
+          "imageReferences": 2,
+          "videoReferences": 0,
+          "aiNotes": 8,
+          "observedAt": "2026-10-18T20:54:58.904Z",
+          "title": "Blunkett leads Labour backlash against Burnham's voting reform",
+          "allImagesLoaded": false
+        },
+        {
+          "basis": "Public source",
+          "paragraphs": 17,
+          "imageReferences": 2,
+          "videoReferences": 0,
+          "aiNotes": 8,
+          "observedAt": "2026-10-18T20:54:58.904Z",
+          "title": "Trump is wearing his authoritarian mask with increasing confidence",
+          "allImagesLoaded": false
+        }
+      ],
+      "media": "Image refs: 2, 2; video refs: 0, 0. Loading/playback unverified.",
+      "phone": "Not verified for these examples.",
+      "notes": [],
+      "state": "saved"
+    },
+    {
+      "family": "Financial Times / FT Weekend",
+      "region": "UK national",
+      "stories": [],
+      "publicAccess": "Homepage HTTP 403; no fresh article pair.",
+      "libraryAccess": "No FT newspaper save. Catalogue showed historical FT Blogs (2015–2019); current FTAdviser is a different publication. This does not prove FT newspaper absence.",
+      "captures": [],
+      "media": "Loading and playback unverified.",
+      "phone": "Not verified for these examples.",
+      "notes": [
+        "Irish Times syndication credited to FT is not an FT newspaper edition.",
+        "No two verified source-linked story titles available in this bounded evidence."
+      ],
+      "state": "gap"
+    },
+    {
+      "family": "Morning Star",
+      "region": "UK national",
+      "stories": [
+        {
+          "title": "Lessons on the French rebellion must not be lost on the British labour movement",
+          "url": "https://morningstaronline.co.uk/article/lessons-french-rebellion-must-not-be-lost-british-labour-movement",
+          "observedAt": "2026-10-18",
+          "basis": "Homepage linked · 18 Oct"
+        },
+        {
+          "title": "Polanski to amend ‘zionism is racism’ policy",
+          "url": "https://morningstaronline.co.uk/article/polanski-amend-zionism-racism-policy",
+          "observedAt": "2026-10-18",
+          "basis": "Homepage linked · 18 Oct"
+        }
+      ],
+      "publicAccess": "19 Oct browser showed a five-free-articles monthly meter and subscription prompt.",
+      "libraryAccess": "No verified matching library article; bounded zero result is not absence proof.",
+      "captures": [],
+      "media": "Loading and playback unverified.",
+      "phone": "Not verified for these examples.",
+      "notes": [
+        "Meter-respecting server retrieval is unimplemented; neither always-paid nor unlimited-free access is established."
+      ],
+      "state": "gap"
+    },
+    {
+      "family": "Metro",
+      "region": "UK national",
+      "stories": [
+        {
+          "title": "Parisian protester dies after collapsing during French riots, police say",
+          "url": "https://metro.co.uk/2026/10/18/parisian-protestor-dies-collapsing-french-riots-police-say-29718496/",
+          "observedAt": "2026-10-18",
+          "basis": "Homepage linked · 18 Oct"
+        },
+        {
+          "title": "Four servicemen killed in inferno during training at Canadian military base",
+          "url": "https://metro.co.uk/2026/10/18/least-seven-killed-explosion-canadian-forces-base-wainwright-29718150/",
+          "observedAt": "2026-10-18",
+          "basis": "Homepage linked · 18 Oct"
+        }
+      ],
+      "publicAccess": "Public source save verified on 18 Oct.",
+      "libraryAccess": "No article-level library save verified for these examples.",
+      "captures": [
+        {
+          "basis": "Public source",
+          "paragraphs": 36,
+          "imageReferences": 7,
+          "videoReferences": 2,
+          "aiNotes": 8,
+          "observedAt": "2026-10-18T20:54:58.904Z",
+          "title": "Parisian protester dies after collapsing during French riots, police say",
+          "allImagesLoaded": false
+        },
+        {
+          "basis": "Public source",
+          "paragraphs": 26,
+          "imageReferences": 3,
+          "videoReferences": 0,
+          "aiNotes": 8,
+          "observedAt": "2026-10-18T20:54:58.904Z",
+          "title": "Four servicemen killed in inferno during training at Canadian military base",
+          "allImagesLoaded": false
+        }
+      ],
+      "media": "Image refs: 7, 3; video refs: 2, 0. Loading/playback unverified.",
+      "phone": "Not verified for these examples.",
+      "notes": [],
+      "state": "saved"
+    },
+    {
+      "family": "The Standard",
+      "region": "UK national",
+      "stories": [
+        {
+          "title": "Forecasters predict major London weather change: 'A storm is coming'",
+          "url": "https://www.standard.co.uk/news/london/storm-weather-forecast-met-office-latest-b1301235.html",
+          "observedAt": "2026-10-18",
+          "basis": "Homepage linked · 18 Oct"
+        },
+        {
+          "title": "Westminster Bridge closed as police respond to 'ongoing incident'",
+          "url": "https://www.standard.co.uk/news/london/westminster-bridge-closed-met-police-respond-ongoing-incident-b1301365.html",
+          "observedAt": "2026-10-18",
+          "basis": "Homepage linked · 18 Oct"
+        }
+      ],
+      "publicAccess": "Public source save verified on 18 Oct.",
+      "libraryAccess": "No article-level library save verified for these examples.",
+      "captures": [
+        {
+          "basis": "Public source",
+          "paragraphs": 20,
+          "imageReferences": 2,
+          "videoReferences": 1,
+          "aiNotes": 8,
+          "observedAt": "2026-10-18T20:54:58.904Z",
+          "title": "Forecasters predict major London weather change: 'A storm is coming'",
+          "allImagesLoaded": false
+        },
+        {
+          "basis": "URL follow-up",
+          "paragraphs": 10,
+          "imageReferences": 1,
+          "videoReferences": 0,
+          "aiNotes": 8,
+          "observedAt": "2026-10-18T23:25:38.993681+00:00",
+          "title": "Westminster Bridge closed as police respond to 'ongoing incident'",
+          "allImagesLoaded": true
+        }
+      ],
+      "media": "Bridge follow-up: 1/1 photo loaded. Earlier example: 2 image and 1 video refs; loading/playback unverified.",
+      "phone": "Not verified for these examples.",
+      "notes": [],
+      "state": "saved"
+    },
+    {
+      "family": "City A.M.",
+      "region": "UK national",
+      "stories": [
+        {
+          "title": "MPs press competition watchdog to probe live music industry’s ‘dominant’ firms",
+          "url": "https://www.cityam.com/mps-press-competition-watchdog-to-probe-live-music-industrys-dominant-firms/",
+          "observedAt": "2026-10-18",
+          "basis": "Homepage linked · 18 Oct"
+        },
+        {
+          "title": "What drinking alcohol at football could tell us about sporting fandom",
+          "url": "https://www.cityam.com/what-drinking-alcohol-at-football-could-tell-us-about-sporting-fandom/",
+          "observedAt": "2026-10-18",
+          "basis": "Homepage linked · 18 Oct"
+        }
+      ],
+      "publicAccess": "Public source save verified on 18 Oct.",
+      "libraryAccess": "No article-level library save verified for these examples.",
+      "captures": [
+        {
+          "basis": "Public source",
+          "paragraphs": 21,
+          "imageReferences": 2,
+          "videoReferences": 0,
+          "aiNotes": 8,
+          "observedAt": "2026-10-18T20:54:58.904Z",
+          "title": "MPs press competition watchdog to probe live music industry’s ‘dominant’ firms",
+          "allImagesLoaded": false
+        },
+        {
+          "basis": "Public source",
+          "paragraphs": 28,
+          "imageReferences": 2,
+          "videoReferences": 0,
+          "aiNotes": 8,
+          "observedAt": "2026-10-18T20:54:58.904Z",
+          "title": "What drinking alcohol at football could tell us about sporting fandom",
+          "allImagesLoaded": false
+        }
+      ],
+      "media": "Image refs: 2, 2; video refs: 0, 0. Loading/playback unverified.",
+      "phone": "Not verified for these examples.",
+      "notes": [],
+      "state": "saved"
+    },
+    {
+      "family": "Daily Record",
+      "region": "Scotland",
+      "stories": [
+        {
+          "title": "Flight school pays tribute to instructor and teen student killed in plane crash near Drymen",
+          "url": "https://www.dailyrecord.co.uk/news/scottish-news/flight-school-pays-tribute-instructor-37785138",
+          "observedAt": "2026-10-18",
+          "basis": "Homepage linked · 18 Oct"
+        },
+        {
+          "title": "Notorious gangster molls behind Scotland's top cons from pole dancer to celebrity makeup artist",
+          "url": "https://www.dailyrecord.co.uk/news/scottish-news/notorious-gangster-molls-behind-scotlands-37775755",
+          "observedAt": "2026-10-18",
+          "basis": "Homepage linked · 18 Oct"
+        }
+      ],
+      "publicAccess": "First homepage story saved publicly (16p / 3 image refs / 10 AI). Second public URL declared subscription-only.",
+      "libraryAccess": "Pasted URL with no typed headline returned one exact 18 Oct choice; explicit selection reopened the same saved 51p / 8-AI edition.",
+      "captures": [
+        {
+          "basis": "Public source",
+          "paragraphs": 16,
+          "imageReferences": 3,
+          "videoReferences": 0,
+          "aiNotes": 10,
+          "observedAt": "2026-10-18T20:54:58.904Z",
+          "title": "Flight school pays tribute to instructor and teen student killed in plane crash near Drymen",
+          "allImagesLoaded": false
+        },
+        {
+          "basis": "Library text · explicit headline choice",
+          "paragraphs": 51,
+          "imageReferences": 0,
+          "videoReferences": 0,
+          "aiNotes": 8,
+          "observedAt": "2026-10-19T03:29:43.385Z",
+          "title": "",
+          "allImagesLoaded": false
+        }
+      ],
+      "media": "Public first story: 3 image refs, loading unverified. Library second story: 0 image/video refs.",
+      "phone": "Not verified for these examples.",
+      "notes": [
+        "The URL-choice workflow reused the existing edition; it did not create a second capture. No automatic import or publisher alias is inferred. Its 8 AI notes were collapsed and discussion was present."
+      ],
+      "state": "saved"
+    },
+    {
+      "family": "The Scotsman",
+      "region": "Scotland",
+      "stories": [
+        {
+          "title": "McGill's defends comparing John Swinney to dictator over bus plan",
+          "url": "",
+          "observedAt": "2026-10-19",
+          "basis": "Library result title, shortened · not homepage proof"
+        },
+        {
+          "title": "Swinney pledge to bring buses under public control condemned as 'theft'",
+          "url": "",
+          "observedAt": "2026-10-19",
+          "basis": "Library result title, shortened · not homepage proof"
+        }
+      ],
+      "publicAccess": "Homepage HTTP 403; no public homepage pair verified.",
+      "libraryAccess": "Two library text samples saved on 19 Oct: Scotland on Sunday 24p / 8 AI; Scotsman 41p / 8 AI. These are selected records, not homepage matches.",
+      "captures": [
+        {
+          "basis": "Library text · Scotland on Sunday",
+          "paragraphs": 24,
+          "imageReferences": 0,
+          "videoReferences": 0,
+          "aiNotes": 8,
+          "observedAt": "2026-10-19",
+          "title": "",
+          "allImagesLoaded": false
+        },
+        {
+          "basis": "Library text · Scotsman",
+          "paragraphs": 41,
+          "imageReferences": 0,
+          "videoReferences": 0,
+          "aiNotes": 8,
+          "observedAt": "2026-10-19T03:29:05.968Z",
+          "title": "",
+          "allImagesLoaded": false
+        }
+      ],
+      "media": "Both selected text samples: 0 image and 0 video refs.",
+      "phone": "No physical-phone acceptance recorded for these samples.",
+      "notes": [
+        "Library samples are separate from public homepage coverage. All AI notes were initially collapsed and discussion was present; Sunday sample first AI expansion verified."
+      ],
+      "state": "saved"
+    },
+    {
+      "family": "The Herald",
+      "region": "Scotland",
+      "stories": [
+        {
+          "title": "I watched BBC Scotland for a night and all I got was this lousy sense of doom",
+          "url": "https://www.heraldscotland.com/news/26644107.watched-bbc-scotland-night-got-sense-doom/",
+          "observedAt": "2026-10-18",
+          "basis": "Homepage linked · 18 Oct"
+        },
+        {
+          "title": "John Swinney compared to dictator as bus plans branded ‘business confiscation’",
+          "url": "https://www.heraldscotland.com/news/26647133.swinney-compared-dictators-bus-public-control-plan/",
+          "observedAt": "2026-10-18",
+          "basis": "Homepage linked · 18 Oct"
+        }
+      ],
+      "publicAccess": "Public body eligibility not established; use the verified library text route.",
+      "libraryAccess": "Two explicitly selected library text editions saved. Styling is approximate; publisher-URL association is not inferred.",
+      "captures": [
+        {
+          "basis": "Library text",
+          "paragraphs": 28,
+          "imageReferences": 0,
+          "videoReferences": 0,
+          "aiNotes": 10,
+          "observedAt": "2026-10-18T23:42:59.203430+00:00",
+          "title": "I watched BBC Scotland for a night and all I got was this lousy sense of doom",
+          "allImagesLoaded": false
+        },
+        {
+          "basis": "Library text",
+          "paragraphs": 38,
+          "imageReferences": 0,
+          "videoReferences": 0,
+          "aiNotes": 7,
+          "observedAt": "2026-10-19T00:58:23.234Z",
+          "title": "John Swinney compared to dictator as bus plans branded ‘business confiscation’",
+          "allImagesLoaded": false
+        }
+      ],
+      "media": "Both selected editions: 0 supplied image/video refs.",
+      "phone": "Not verified for these examples.",
+      "notes": [
+        "Website family homepage only. Shared daily/Sunday print-edition identity is not independently established by these links.",
+        "19 Oct Herald URL offered a dated choice; explicit selection reopened the existing 28p / 10-AI edition without a duplicate. Later balance not observed."
+      ],
+      "state": "saved"
+    },
+    {
+      "family": "The National",
+      "region": "Scotland",
+      "stories": [
+        {
+          "title": "Deputy First Minister defends SNP bus plans after McGill’s threatens legal action",
+          "url": "https://www.thenational.scot/news/26647064.jenny-gilruth-pledges-work-bus-companies-mcgills/",
+          "observedAt": "2026-10-18",
+          "basis": "Homepage linked · 18 Oct"
+        },
+        {
+          "title": "Scotland's buses to be brought back into public control, John Swinney announces",
+          "url": "https://www.thenational.scot/news/26646270.scotlands-buses-brought-back-public-control/",
+          "observedAt": "2026-10-18",
+          "basis": "Homepage linked · 18 Oct"
+        }
+      ],
+      "publicAccess": "Public body eligibility not established; use the verified library text route.",
+      "libraryAccess": "Two explicitly selected library text editions saved. Styling is approximate; publisher-URL association is not inferred.",
+      "captures": [
+        {
+          "basis": "Library text",
+          "paragraphs": 28,
+          "imageReferences": 0,
+          "videoReferences": 0,
+          "aiNotes": 8,
+          "observedAt": "2026-10-18T23:51:03.025719+00:00",
+          "title": "Deputy First Minister defends SNP bus plans after McGill’s threatens legal action",
+          "allImagesLoaded": false
+        },
+        {
+          "basis": "Library text",
+          "paragraphs": 16,
+          "imageReferences": 0,
+          "videoReferences": 0,
+          "aiNotes": 7,
+          "observedAt": "2026-10-19T00:59:47.708Z",
+          "title": "Scotland's buses to be brought back into public control, John Swinney announces",
+          "allImagesLoaded": false
+        }
+      ],
+      "media": "Both selected editions: 0 supplied image/video refs.",
+      "phone": "Not verified for these examples.",
+      "notes": [
+        "Website family homepage only. Shared daily/Sunday print-edition identity is not independently established by these links.",
+        "Second selected record is dated 17 Oct; its headline was observed on the homepage on 18 Oct."
+      ],
+      "state": "saved"
+    },
+    {
+      "family": "Press and Journal",
+      "region": "Scotland",
+      "stories": [
+        {
+          "title": "Aberdeen businessman who throttled partner jailed for three years",
+          "url": "https://www.pressandjournal.co.uk/fp/news/crime-courts/7132942/aberdeen-businessman-who-throttled-partner-jailed-for-three-years/",
+          "observedAt": "2026-10-18",
+          "basis": "Homepage linked · 18 Oct"
+        },
+        {
+          "title": "Weekend court roll – a rapist policeman and an TikTok feud",
+          "url": "https://www.pressandjournal.co.uk/fp/news/7132411/weekend-court-roll-a-rapist-policeman-and-an-tiktok-feud/",
+          "observedAt": "2026-10-18",
+          "basis": "Homepage linked · 18 Oct"
+        }
+      ],
+      "publicAccess": "Both observed homepage stories identify subscription-only access; no public body save claimed.",
+      "libraryAccess": "Two selected historical library samples saved: 29 Sep 24p / 7 AI; 4 Jul 13p / 8 AI. Neither matches the 18 Oct homepage pair.",
+      "captures": [
+        {
+          "basis": "Library sample · 29 Sep, not headline pair",
+          "paragraphs": 24,
+          "imageReferences": 0,
+          "videoReferences": 0,
+          "aiNotes": 7,
+          "observedAt": "2026-10-19T03:31:24.889Z",
+          "title": "",
+          "allImagesLoaded": false
+        },
+        {
+          "basis": "Library sample · 4 Jul, not headline pair",
+          "paragraphs": 13,
+          "imageReferences": 0,
+          "videoReferences": 0,
+          "aiNotes": 8,
+          "observedAt": "2026-10-19T03:37:59.268Z",
+          "title": "",
+          "allImagesLoaded": false
+        }
+      ],
+      "media": "Both selected text samples: 0 image and 0 video refs.",
+      "phone": "No physical-phone acceptance recorded for this sample.",
+      "notes": [
+        "The first metadata query returned 18 older records, latest 29 Sep; a targeted second-headline query returned zero. No exact match or absence is inferred. Both saved samples are separate from the homepage pair, with collapsed AI notes and discussion."
+      ],
+      "state": "saved"
+    },
+    {
+      "family": "The Courier",
+      "region": "Scotland",
+      "stories": [
+        {
+          "title": "Drivers face delays on A9 near Dunblane after crash",
+          "url": "https://www.thecourier.co.uk/fp/news/5600635/delays-a9-dunblane-crash/",
+          "observedAt": "2026-10-18",
+          "basis": "Homepage linked · 18 Oct"
+        },
+        {
+          "title": "Perthshire A9 safety fears as video shows cars parked on verge of Scotland’s most dangerous road",
+          "url": "https://www.thecourier.co.uk/fp/news/5600584/a9-the-hermitage-dunkeld-parking-safety/",
+          "observedAt": "2026-10-18",
+          "basis": "Homepage linked · 18 Oct"
+        }
+      ],
+      "publicAccess": "Subscription-only metadata; No eligible body result.",
+      "libraryAccess": "No article-level library save verified for these examples.",
+      "captures": [],
+      "media": "Loading and playback unverified.",
+      "phone": "Not verified for these examples.",
+      "notes": [
+        "Website family homepage only. Shared daily/Sunday print-edition identity is not independently established by these links."
+      ],
+      "state": "gap"
+    },
+    {
+      "family": "Sunday Post",
+      "region": "Scotland",
+      "stories": [
+        {
+          "title": "Pledge for all rogue police officers to face independent panel secretly axed",
+          "url": "https://www.sundaypost.com/fp/police-quietly-shelve-plan-for-independent-review-of-all-rogue-officers/",
+          "observedAt": "2026-10-18",
+          "basis": "Homepage linked · 18 Oct"
+        },
+        {
+          "title": "Through the looking glasses: Advances in smart specs see 88% of Scots back crackdown",
+          "url": "https://www.sundaypost.com/fp/scots-back-crackdown-on-camera-enabled-smart-glasses/",
+          "observedAt": "2026-10-18",
+          "basis": "Homepage linked · 18 Oct"
+        }
+      ],
+      "publicAccess": "Public source save verified on 18 Oct.",
+      "libraryAccess": "5 source-scoped metadata results observed 19 Oct; full-text save not yet verified.",
+      "captures": [
+        {
+          "basis": "Public source",
+          "paragraphs": 40,
+          "imageReferences": 7,
+          "videoReferences": 0,
+          "aiNotes": 8,
+          "observedAt": "2026-10-18T20:54:58.904Z",
+          "title": "Pledge for all rogue police officers to face independent panel secretly axed",
+          "allImagesLoaded": false
+        },
+        {
+          "basis": "Public source",
+          "paragraphs": 31,
+          "imageReferences": 4,
+          "videoReferences": 0,
+          "aiNotes": 8,
+          "observedAt": "2026-10-18T20:54:58.904Z",
+          "title": "Through the looking glasses: Advances in smart specs see 88% of Scots back crackdown",
+          "allImagesLoaded": false
+        }
+      ],
+      "media": "Image refs: 7, 4; video refs: 0, 0. Loading/playback unverified.",
+      "phone": "Not verified for these examples.",
+      "notes": [
+        "Observed homepage title identifies The Sunday Post. The selected links were on its website homepage; print-edition placement was not established.",
+        "Both public homepage stories were already saved: 40p and 31p. New metadata evidence is separate."
+      ],
+      "state": "saved"
+    },
+    {
+      "family": "WalesOnline / Western Mail",
+      "region": "Wales",
+      "stories": [
+        {
+          "title": "Fuel continues to leak into River Taff as experts hunt source",
+          "url": "https://www.walesonline.co.uk/news/wales-news/fuel-continues-leak-river-taff-34782920",
+          "observedAt": "2026-10-18",
+          "basis": "Homepage linked · 18 Oct"
+        },
+        {
+          "title": "Poundland staff shut out of store after locks were changed",
+          "url": "https://www.walesonline.co.uk/news/wales-news/poundland-staff-shut-out-aberystwyth-34781912",
+          "observedAt": "2026-10-18",
+          "basis": "Homepage linked · 18 Oct"
+        }
+      ],
+      "publicAccess": "Public source save verified on 18 Oct.",
+      "libraryAccess": "No article-level library save verified for these examples.",
+      "captures": [
+        {
+          "basis": "Public source",
+          "paragraphs": 18,
+          "imageReferences": 4,
+          "videoReferences": 0,
+          "aiNotes": 8,
+          "observedAt": "2026-10-18T20:54:58.904Z",
+          "title": "Fuel continues to leak into River Taff as experts hunt source",
+          "allImagesLoaded": false
+        },
+        {
+          "basis": "Public source",
+          "paragraphs": 18,
+          "imageReferences": 1,
+          "videoReferences": 0,
+          "aiNotes": 8,
+          "observedAt": "2026-10-18T20:54:58.904Z",
+          "title": "Poundland staff shut out of store after locks were changed",
+          "allImagesLoaded": false
+        }
+      ],
+      "media": "Image refs: 4, 1; video refs: 0, 0. Loading/playback unverified.",
+      "phone": "Not verified for these examples.",
+      "notes": [],
+      "state": "saved"
+    },
+    {
+      "family": "Daily Post / North Wales Live",
+      "region": "Wales",
+      "stories": [
+        {
+          "title": "What happened after The Grand in Llandudno received multi-million pound revamp",
+          "url": "https://www.dailypost.co.uk/whats-on/whats-on-news/what-happened-after-grand-llandudno-34780818",
+          "observedAt": "2026-10-18",
+          "basis": "Homepage linked · 18 Oct"
+        },
+        {
+          "title": "Heineken pub group backs £600K revamp to reopen North Wales venue",
+          "url": "https://www.dailypost.co.uk/news/north-wales-news/heineken-pub-group-backs-600k-34782803",
+          "observedAt": "2026-10-18",
+          "basis": "Homepage linked · 18 Oct"
+        }
+      ],
+      "publicAccess": "Public source save verified on 18 Oct.",
+      "libraryAccess": "No article-level library save verified for these examples.",
+      "captures": [
+        {
+          "basis": "Public source",
+          "paragraphs": 34,
+          "imageReferences": 3,
+          "videoReferences": 0,
+          "aiNotes": 8,
+          "observedAt": "2026-10-18T20:54:58.904Z",
+          "title": "What happened after The Grand in Llandudno received multi-million pound revamp",
+          "allImagesLoaded": false
+        },
+        {
+          "basis": "Public source",
+          "paragraphs": 16,
+          "imageReferences": 2,
+          "videoReferences": 0,
+          "aiNotes": 8,
+          "observedAt": "2026-10-18T20:54:58.904Z",
+          "title": "Heineken pub group backs £600K revamp to reopen North Wales venue",
+          "allImagesLoaded": false
+        }
+      ],
+      "media": "Image refs: 3, 2; video refs: 0, 0. Loading/playback unverified.",
+      "phone": "Not verified for these examples.",
+      "notes": [],
+      "state": "saved"
+    },
+    {
+      "family": "Belfast Telegraph",
+      "region": "Northern Ireland",
+      "stories": [],
+      "publicAccess": "Homepage HTTP 403; stopped.",
+      "libraryAccess": "No article-level library save verified for these examples.",
+      "captures": [],
+      "media": "Loading and playback unverified.",
+      "phone": "Not verified for these examples.",
+      "notes": [
+        "HTTP 403 prevented homepage link discovery. Neither Belfast Telegraph nor Sunday Life story/edition identity was established in this pass.",
+        "No two verified source-linked story titles available in this bounded evidence."
+      ],
+      "state": "gap"
+    },
+    {
+      "family": "Irish News",
+      "region": "Northern Ireland",
+      "stories": [
+        {
+          "title": "Stormont budget stand-off sees nearly 8,000 college places axed",
+          "url": "https://www.irishnews.com/news/northern-ireland/stormont-budget-stand-off-sees-nearly-8000-college-places-axed-CECOAKICDFC4FAGNOZU6L7JJI4/",
+          "observedAt": "2026-10-18",
+          "basis": "Homepage linked · 18 Oct"
+        },
+        {
+          "title": "Drumcree legal challenge returning to High Court",
+          "url": "https://www.irishnews.com/news/northern-ireland/drumcree-legal-challenge-returning-to-high-court-JNHJJX7I2BHRJLDQVKJYD53I7E/",
+          "observedAt": "2026-10-18",
+          "basis": "Homepage linked · 18 Oct"
+        }
+      ],
+      "publicAccess": "Subscription-only metadata; No eligible body result.",
+      "libraryAccess": "No article-level library save verified for these examples.",
+      "captures": [],
+      "media": "Loading and playback unverified.",
+      "phone": "Not verified for these examples.",
+      "notes": [
+        "Website family homepage only. Shared daily/Sunday print-edition identity is not independently established by these links."
+      ],
+      "state": "gap"
+    },
+    {
+      "family": "News Letter",
+      "region": "Northern Ireland",
+      "stories": [
+        {
+          "title": "Stormont minister says proposed Translink cuts show UK Treasury must 'get real'",
+          "url": "",
+          "observedAt": "2026-10-19",
+          "basis": "Library result title, shortened · not homepage proof"
+        },
+        {
+          "title": "Matthew O'Toole on the future for Stormont: Even reasonable people ask me - what difference would it make if it did go?",
+          "url": "",
+          "observedAt": "2026-10-19",
+          "basis": "Library result title, shortened · not homepage proof"
+        }
+      ],
+      "publicAccess": "Homepage HTTP 403; no public homepage story pair verified.",
+      "libraryAccess": "Two selected library text samples saved: 13 Oct 20p / 8 AI; 12 Oct 26p / 8 AI. These are not verified 18 Oct front-page matches.",
+      "captures": [
+        {
+          "basis": "Library sample · 13 Oct, not homepage proof",
+          "paragraphs": 20,
+          "imageReferences": 0,
+          "videoReferences": 0,
+          "aiNotes": 8,
+          "observedAt": "2026-10-19T03:35:31.815Z",
+          "title": "",
+          "allImagesLoaded": false
+        },
+        {
+          "basis": "Library sample · 12 Oct, not homepage proof",
+          "paragraphs": 26,
+          "imageReferences": 0,
+          "videoReferences": 0,
+          "aiNotes": 8,
+          "observedAt": "2026-10-19T03:40:53.798Z",
+          "title": "",
+          "allImagesLoaded": false
+        }
+      ],
+      "media": "Both selected text samples: 0 image and 0 video refs.",
+      "phone": "No physical-phone acceptance recorded for this sample.",
+      "notes": [
+        "Known titles in this row came from library-result metadata, not a public homepage. Both saved samples have 8 initially collapsed AI notes and discussion; publisher-URL association and phone acceptance are unverified."
+      ],
+      "state": "saved"
+    },
+    {
+      "family": "The Irish Times",
+      "region": "Republic of Ireland",
+      "stories": [
+        {
+          "title": "Ukraine defies Trump by launching its largest-ever drone attack on St Petersburg",
+          "url": "https://www.irishtimes.com/world/europe/2026/10/19/ukraine-defies-trump-by-launching-its-largest-ever-drone-attack-on-st-petersburg/",
+          "observedAt": "2026-10-18T21:47:15.907Z",
+          "basis": "Homepage linked · 18 Oct"
+        },
+        {
+          "title": "Taoiseach rejects Michael O’Leary’s view he would ‘buckle’ to public sector unions",
+          "url": "https://www.irishtimes.com/politics/2026/10/18/taoiseach-rejects-michael-olearys-view-that-he-would-buckle-to-public-sector-unions/",
+          "observedAt": "2026-10-18T21:47:15.907Z",
+          "basis": "Homepage linked · 18 Oct"
+        }
+      ],
+      "publicAccess": "Public body eligibility not established; use the verified library text route.",
+      "libraryAccess": "Two explicitly selected library text editions saved. Styling is approximate; publisher-URL association is not inferred.",
+      "captures": [
+        {
+          "basis": "Library text",
+          "paragraphs": 14,
+          "imageReferences": 0,
+          "videoReferences": 0,
+          "aiNotes": 7,
+          "observedAt": "2026-10-19T00:28:17.892207+00:00",
+          "title": "Taoiseach rejects Michael O'Leary's view that he would 'buckle' to public sector unions",
+          "allImagesLoaded": false
+        },
+        {
+          "basis": "Library text",
+          "paragraphs": 20,
+          "imageReferences": 0,
+          "videoReferences": 0,
+          "aiNotes": 8,
+          "observedAt": "2026-10-19T01:06:24.798Z",
+          "title": "Ukraine defies Trump by launching its largest-ever drone attack on St Petersburg",
+          "allImagesLoaded": false
+        }
+      ],
+      "media": "Both selected editions: 0 supplied image/video refs.",
+      "phone": "Not verified for these examples.",
+      "notes": [
+        "First selected article URL carries 2026-10-19, but its link was actually observed on the homepage on 2026-10-18. No publish-date or print-edition identity is inferred from the current front page.",
+        "Second selected record is dated 19 Oct; its headline was on the 18 Oct homepage. FT syndication credit does not establish an FT edition."
+      ],
+      "state": "saved"
+    },
+    {
+      "family": "Irish Independent",
+      "region": "Republic of Ireland",
+      "stories": [
+        {
+          "title": "Three members of suspected car theft and burglary gang arrested after M50 chase",
+          "url": "https://www.independent.ie/irish-news/three-members-of-suspected-car-theft-and-burglary-gang-arrested-after-m50-chase/a/163257630.html",
+          "observedAt": "2026-10-18T21:47:23.474Z",
+          "basis": "Homepage linked · 18 Oct"
+        },
+        {
+          "title": "Man (38) who died in fatal assault at Blackhorse Avenue, Dublin, ‘may have been target of revenge attack’",
+          "url": "https://www.independent.ie/county/dublin/man-38-who-died-in-fatal-assault-at-blackhorse-avenue-dublin-may-have-been-target-of-revenge-attack/a/163232505.html",
+          "observedAt": "2026-10-18T21:47:23.474Z",
+          "basis": "Homepage linked · 18 Oct"
+        }
+      ],
+      "publicAccess": "Selected public story failed eligibility; no completed save verified.",
+      "libraryAccess": "Bounded library lookup returned zero usable results; this does not establish absence.",
+      "captures": [],
+      "media": "Loading and playback unverified.",
+      "phone": "Not verified for these examples.",
+      "notes": [],
+      "state": "gap"
+    },
+    {
+      "family": "Irish Examiner",
+      "region": "Republic of Ireland",
+      "stories": [
+        {
+          "title": "Man murdered in Mallow may have been killed in professional 'execution' hit",
+          "url": "https://www.irishexaminer.com/news/arid-41925776.html",
+          "observedAt": "2026-10-18T21:47:30.172Z",
+          "basis": "Homepage linked · 18 Oct"
+        },
+        {
+          "title": "Glen Rovers boss Tomás Mulcahy: No disrespect but beating the Barrs makes it sweeter",
+          "url": "https://www.irishexaminer.com/sport/gaa/arid-41925779.html",
+          "observedAt": "2026-10-18T21:47:30.172Z",
+          "basis": "Homepage linked · 18 Oct"
+        }
+      ],
+      "publicAccess": "Subscription-only metadata.",
+      "libraryAccess": "No verified article save; existing public profile and library metadata checks remain separate.",
+      "captures": [],
+      "media": "Loading and playback unverified.",
+      "phone": "Not verified for these examples.",
+      "notes": [],
+      "state": "gap"
+    },
+    {
+      "family": "The New York Times",
+      "region": "United States",
+      "stories": [],
+      "publicAccess": "Homepage HTTP 403; stopped.",
+      "libraryAccess": "No article-level library save verified for these examples.",
+      "captures": [],
+      "media": "Loading and playback unverified.",
+      "phone": "Not verified for these examples.",
+      "notes": [
+        "No two verified source-linked story titles available in this bounded evidence."
+      ],
+      "state": "gap"
+    },
+    {
+      "family": "The Washington Post",
+      "region": "United States",
+      "stories": [
+        {
+          "title": "Trump approval hits record low, handing Democrats a clear midterm edge",
+          "url": "https://www.washingtonpost.com/politics/2026/10/18/trump-approval-hits-record-low-handing-democrats-clear-midterm-edge/",
+          "observedAt": "2026-10-18T21:41:57.722Z",
+          "basis": "Homepage linked · 18 Oct"
+        },
+        {
+          "title": "Takeaways from JD Vance’s town hall forum in Michigan",
+          "url": "https://www.washingtonpost.com/politics/2026/10/18/takeaways-jd-vances-town-hall-forum-michigan/",
+          "observedAt": "2026-10-18T21:41:57.722Z",
+          "basis": "Homepage linked · 18 Oct"
+        }
+      ],
+      "publicAccess": "Subscription-only metadata.",
+      "libraryAccess": "Bounded metadata lookup returned zero usable results; no verified article save.",
+      "captures": [],
+      "media": "Loading and playback unverified.",
+      "phone": "Not verified for these examples.",
+      "notes": [],
+      "state": "gap"
+    },
+    {
+      "family": "The Wall Street Journal",
+      "region": "United States",
+      "stories": [],
+      "publicAccess": "Homepage HTTP 401; stopped.",
+      "libraryAccess": "No article-level library save verified for these examples.",
+      "captures": [],
+      "media": "Loading and playback unverified.",
+      "phone": "Not verified for these examples.",
+      "notes": [
+        "No two verified source-linked story titles available in this bounded evidence."
+      ],
+      "state": "gap"
+    },
+    {
+      "family": "USA Today",
+      "region": "United States",
+      "stories": [],
+      "publicAccess": "Homepage HTTP 402; stopped.",
+      "libraryAccess": "No article-level library save verified for these examples.",
+      "captures": [],
+      "media": "Loading and playback unverified.",
+      "phone": "Not verified for these examples.",
+      "notes": [
+        "No two verified source-linked story titles available in this bounded evidence."
+      ],
+      "state": "gap"
+    },
+    {
+      "family": "AP News",
+      "region": "United States",
+      "stories": [],
+      "publicAccess": "Homepage HTTP 403; stopped.",
+      "libraryAccess": "No article-level library save verified for these examples.",
+      "captures": [],
+      "media": "Loading and playback unverified.",
+      "phone": "Not verified for these examples.",
+      "notes": [
+        "No two verified source-linked story titles available in this bounded evidence."
+      ],
+      "state": "gap"
+    },
+    {
+      "family": "NPR",
+      "region": "United States",
+      "stories": [
+        {
+          "title": "With an ad aimed at Trump, this Republican exposed GOP angst about Latino voters",
+          "url": "https://www.npr.org/2026/10/18/nx-s1-5978762/maria-elvira-salazar-immigration-trump",
+          "observedAt": "2026-10-18T21:41:58.921Z",
+          "basis": "Homepage linked · 18 Oct"
+        },
+        {
+          "title": "After losing ground with Latino voters, Democrats are turning to influencers for help",
+          "url": "https://www.npr.org/2026/10/10/nx-s1-5991897/democrats-latino-voters-influencers-bold-pac",
+          "observedAt": "2026-10-18T21:41:58.921Z",
+          "basis": "Homepage linked · 18 Oct"
+        }
+      ],
+      "publicAccess": "Two tested public articles saved; source cleanups verified.",
+      "libraryAccess": "Public route; library not required for these examples.",
+      "captures": [
+        {
+          "basis": "Public source, cleaned",
+          "paragraphs": 29,
+          "imageReferences": 2,
+          "videoReferences": 0,
+          "aiNotes": 7,
+          "observedAt": "2026-10-19",
+          "title": "",
+          "allImagesLoaded": true
+        },
+        {
+          "basis": "Public source, cleaned",
+          "paragraphs": 27,
+          "imageReferences": 2,
+          "videoReferences": 0,
+          "aiNotes": 7,
+          "observedAt": "2026-10-19",
+          "title": "",
+          "allImagesLoaded": true
+        }
+      ],
+      "media": "Both editions: 2/2 actual photos loaded; captions/credits relocated, related cards removed; 0 video refs.",
+      "phone": "Owner accepted a photo and AI on the first NPR article. Both-photo and second-article phone acceptance unverified.",
+      "notes": [],
+      "state": "saved"
+    },
+    {
+      "family": "New York Post",
+      "region": "United States",
+      "stories": [
+        {
+          "title": "Kansas mom who crashed truck into youth soccer field, killing 2, released without charges — or explanation",
+          "url": "https://nypost.com/2026/10/18/us-news/kansas-mom-who-mowed-down-2-on-youth-soccer-field-released-without-charges/",
+          "observedAt": "2026-10-19T00:29:34.532Z",
+          "basis": "Homepage linked · 19 Oct"
+        },
+        {
+          "title": "NY AG hopeful Komatireddy within just 6 points of Dem incumbent Tish James after debate: bombshell poll",
+          "url": "https://nypost.com/2026/10/18/us-news/ny-ag-hopeful-komatireddy-pulls-within-just-6-points-of-dem-incumbent-tish-james-after-debate-poll/",
+          "observedAt": "2026-10-19T00:29:34.532Z",
+          "basis": "Homepage linked · 19 Oct"
+        }
+      ],
+      "publicAccess": "Two actual 19 Oct homepage-linked URLs saved via public article route.",
+      "libraryAccess": "Public route; library not required for these examples.",
+      "captures": [
+        {
+          "basis": "Public source",
+          "paragraphs": 14,
+          "imageReferences": 3,
+          "videoReferences": 0,
+          "aiNotes": 8,
+          "observedAt": "2026-10-19",
+          "title": "",
+          "allImagesLoaded": true
+        },
+        {
+          "basis": "Public source",
+          "paragraphs": 32,
+          "imageReferences": 2,
+          "videoReferences": 0,
+          "aiNotes": 8,
+          "observedAt": "2026-10-19",
+          "title": "",
+          "allImagesLoaded": true
+        }
+      ],
+      "media": "First: 3/3 photos loaded; second: 2/2 loaded. Both 0 video refs; second AI expansion verified.",
+      "phone": "Not verified for these examples.",
+      "notes": [],
+      "state": "saved"
+    },
+    {
+      "family": "Los Angeles Times",
+      "region": "United States",
+      "stories": [
+        {
+          "title": "Over $1 billion spent, few miles driven: How California’s flagship clean transit initiative was hit by accusations of fraud and waste",
+          "url": "https://www.latimes.com/environment/story/2026-10-18/accusations-of-fraud-waste-roil-california-ev-truck-bus-subsidy-program",
+          "observedAt": "2026-10-19T00:29:34.580Z",
+          "basis": "Homepage linked · 19 Oct"
+        },
+        {
+          "title": "Scores of women, teen workers were groped, grabbed at this restaurant chain, feds say",
+          "url": "https://www.latimes.com/california/story/2026-10-18/italian-restaurant-chain-il-fornaio-to-pay-3-million-to-settle-sexual-harassment-lawsuit",
+          "observedAt": "2026-10-19T00:29:34.580Z",
+          "basis": "Homepage linked · 19 Oct"
+        }
+      ],
+      "publicAccess": "19 Oct homepage/head metadata observed. Subscriber badge and paywall node leave public body eligibility unresolved.",
+      "libraryAccess": "No library article save verified.",
+      "captures": [],
+      "media": "Head references only; loading, body access and playback unverified.",
+      "phone": "Not verified for these examples.",
+      "notes": [
+        "Official World & Nation RSS feed returned HTTP 200 / 96 entries. Metadata only; no linked article requests in that feed check."
+      ],
+      "state": "gap"
+    }
+  ],
+  "shelfSnapshot": {
+    "articles": 61,
+    "publisherLabels": 29,
+    "observedAt": "2026-10-19T03:41:35Z",
+    "scope": "Desktop stored-shelf snapshot; separate from website-family coverage."
+  }
+}

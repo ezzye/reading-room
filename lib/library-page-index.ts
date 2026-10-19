@@ -1,5 +1,5 @@
 import {requireRoom,roomId} from './rooms.ts';
-import {libraryPublicationForURL} from './library-publications.mjs';
+import {libraryPublicationForURL,libraryDocumentPublicationMatchesSelection} from './library-publications.mjs';
 import {sameOrigin} from './edition-access.ts';
 import {mediaURL,videoEmbed} from './capture-core.mjs';
 import {publicLibraryLocatorMetadata,publicLibraryLocatorMedia} from './library-public-media.mjs';
@@ -37,7 +37,7 @@ export async function roomLibraryAlias(request:Request,c:Config,rawURL:string){
 export async function roomVerifiedLibraryRecord(request:Request,c:Config,libraryURL:string,selected?:{publisher:string;title:string;date:string;publication:string}){
  const room=await requireRoom(request,c);if(diagnosticDocumentURL(libraryURL)!==libraryURL)return null;
  const row:any=await c.DB.prepare('SELECT p.id,p.title,p.document,p.created_at,v.* FROM rr_verified_library_pages v JOIN rr_room_articles a ON a.room_id=v.room_id AND a.page_id=v.page_id JOIN education_pages p ON p.id=a.page_id WHERE v.room_id=? AND v.library_url=?').bind(room.id,libraryURL).first();
- if(!row||!await savedLibraryReceiptMatches(parsed(row.document),metadata(row))||selected&&(row.publisher_key!==selected.publisher||row.source_date!==selected.date||row.publication!==selected.publication||selectedLibraryTitle(row.source_title)!==selectedLibraryTitle(selected.title)))return null;await requireRoom(request,c);return {id:row.id,title:row.title,created_at:row.created_at};
+ if(!row||!await savedLibraryReceiptMatches(parsed(row.document),metadata(row))||selected&&(row.publisher_key!==selected.publisher||row.source_date!==selected.date||!libraryDocumentPublicationMatchesSelection(row.publication,selected.publication,selected.publisher)||selectedLibraryTitle(row.source_title)!==selectedLibraryTitle(selected.title)))return null;await requireRoom(request,c);return {id:row.id,title:row.title,created_at:row.created_at};
 }
 // This claim covers normal, selected and finite-audit imports without changing counters.
 export async function claimRoomLibraryRecord(request:Request,c:Config,proof:object,time=Date.now()){

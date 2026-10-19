@@ -12,6 +12,7 @@ import type {PressAuditAllowance,PressAuditErrorCode} from './press-audit.ts';
 import {publisherFor} from './newspaper-core.mjs';
 import {roomLibraryAlias} from './library-page-index.ts';
 import {libraryArticle} from './library-article-url.mjs';
+import {selectedLibraryURL} from './library-url-selection.mjs';
 
 const headers={'Cache-Control':'private, no-store','X-Content-Type-Options':'nosniff','Referrer-Policy':'no-referrer','X-Robots-Tag':'noindex, nofollow'};
 const json=(data:unknown,status=200,extraHeaders:Record<string,string>={})=>Response.json(data,{status,headers:{...headers,...extraHeaders}});
@@ -73,7 +74,7 @@ async function addRoomArticle(r:Request,c:Config,fetcher:typeof fetch,room:Await
   }
   const forwardedHeaders=new Headers(r.headers);forwardedHeaders.delete('content-length');
   const result=await articleAPI(new Request(new URL('/api/articles',r.url),{method:'POST',headers:forwardedHeaders,body:JSON.stringify({url,requestId:data.requestId||crypto.randomUUID(),sourceHeadline:data.sourceHeadline})}),c,fetcher,{auditAllowance});
-  const value=await result.json() as any;if(!result.ok){const classified=auditAllowance?classifyPressAuditFailure(value.error,value.needsHeadline===true):null;const guard=!auditAllowance&&['daily_import_limit','imports_pending','import_in_progress','import_reservation_expired','source_request_guard','daily_commentary_cost_guard','library_service_busy'].includes(value.errorCode);const usage=guard?{errorCode:value.errorCode,...(value.usage?{usage:value.usage}:{}),...(value.costGuard?{costGuard:value.costGuard}:{}),...(value.errorCode==='library_service_busy'?{retryAfterSeconds:10}:{})}:{};const retry=guard?result.headers.get('Retry-After'):null;return json({...classified,...usage,error:classified?.error||value.error||'This article could not be opened.',...(value.needsHeadline?{needsHeadline:true}:{})},result.status,retry?{'Retry-After':retry}:{});}
+  const value=await result.json() as any;if(!result.ok){const classified=auditAllowance?classifyPressAuditFailure(value.error,value.needsHeadline===true):null;const guard=!auditAllowance&&['daily_import_limit','imports_pending','import_in_progress','import_reservation_expired','source_request_guard','daily_commentary_cost_guard','library_service_busy'].includes(value.errorCode);const usage=guard?{errorCode:value.errorCode,...(value.usage?{usage:value.usage}:{}),...(value.costGuard?{costGuard:value.costGuard}:{}),...(value.errorCode==='library_service_busy'?{retryAfterSeconds:10}:{})}:{};const retry=guard?result.headers.get('Retry-After'):null;const selectedPublisher=selectedLibraryURL(url),selection=value.needsLibrarySearch===true&&selectedPublisher&&selectedPublisher===value.libraryPublisher?{needsLibrarySearch:true,libraryPublisher:value.libraryPublisher}:{};return json({...classified,...usage,...selection,error:classified?.error||value.error||'This article could not be opened.',...(value.needsHeadline?{needsHeadline:true}:{})},result.status,retry?{'Retry-After':retry}:{});}
   let id=value.id;if(!id&&typeof value.href==='string'){const match=value.href.match(/\/(?:preview|read)\/([a-f0-9]{48})/);id=match?.[1];}
   if(!id||!await accessiblePage(r,c,id))return json({error:'The article was not added to this room.'},502);
   return json({id,href:'/read/'+id+'?room='+room.id,cached:Boolean(value.cached)});

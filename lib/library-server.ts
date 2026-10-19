@@ -16,6 +16,7 @@ import {spendPressAuditStage} from './press-audit.ts';
 import type {PressAuditAllowance} from './press-audit.ts';
 import {publicationSearchQuery,sanitizePublicationSearch,sanitizePublicationSearchStatus} from './newsbank-publications.mjs';
 import {sanitizeNativeSources} from './newsbank-native-sources.mjs';
+import {sanitizeSourceSearchInspection} from './newsbank-source-search.mjs';
 import {observerURLHeadlineMatches} from './observer-url-headline.mjs';
 const now=()=>new Date().toISOString();
 const json=(body:unknown,status=200)=>Response.json(body,{status,headers:{'Cache-Control':'private, no-store','X-Content-Type-Options':'nosniff','Referrer-Policy':'no-referrer'}});
@@ -68,8 +69,8 @@ export async function librarySettingsAPI(r:Request,c:Config,fetcher:typeof fetch
   if(r.method!=='POST')return json({error:'Use the library connection controls.'},405);
   if(!sameOrigin(r))return json({error:'Use the same-origin library connection form.'},403);
   stage='form';const data=await body(r);
-  if(data.action==='inspect-native-sources'){
-   stage='native-sources';
+  if(data.action==='inspect-native-sources'||data.action==='inspect-source-search'){
+   const sourceSearch=data.action==='inspect-source-search';stage=sourceSearch?'source-search-form':'native-sources';
    const room=await requireRoom(r,c);if(room.role!=='owner'||room.owner_id!==room.member_id)return json({error:'Only this room’s owner can inspect its library source lists.'},403);
    if(Object.keys(data).some(key=>key!=='action'))return json({error:'Use the fixed library source inspection control. It does not accept queries or URLs.'},400);
    const row=await stored(c);if(!row||!c.RR_LIBRARY_VAULT_KEY)return json({error:'Connect Camden in this room before inspecting source lists.'},409);
@@ -77,13 +78,15 @@ export async function librarySettingsAPI(r:Request,c:Config,fetcher:typeof fetch
    if(!account.session||!Array.isArray((account.session as any).cookies)||!(account.session as any).cookies.length)return json({error:'Reconnect Camden before inspecting source lists.'},409);
    const client=runtimeLibraryClient(c,fetcher,account);client.restoreSession(account.session);
    if(!await slot(c,'library-native-sources:'+connectionId(c),12))return json({error:'Today’s twelve Reading Room source-list checks for this room have been used. Earlier checks still count.'},429);
-   let result=await client.inspectNativeSources();
+   const inspect=()=>sourceSearch?client.inspectSourceSearch():client.inspectNativeSources();
+   let result=await inspect();
    if(result.status==='login_required'){
     if(!await slot(c,'library-login:'+connectionId(c),10))return json({error:'Today’s library sign-in limit has been used.',status:'login_required',stage:'session',reasonCode:'session_expired'},429);
     const auth=await client.login(account);if(auth.status!=='authenticated')return json({status:auth.status==='needs_interaction'?'needs_interaction':'login_required',stage:'session',reasonCode:auth.status==='needs_interaction'?'entry_needs_interaction':'session_expired',reason:'The existing Camden connection needs attention. No article or publication browse page was opened.'});
-    account.session=client.serializeSession();await save(c,account);result=await client.inspectNativeSources();
+    account.session=client.serializeSession();await save(c,account);result=await inspect();
    }
    const current=await requireRoom(r,c);if(current.role!=='owner'||current.owner_id!==current.member_id)return json({error:'Owner access to this room is required.'},403);
+   if(sourceSearch){const clean=sanitizeSourceSearchInspection(result);if(!clean)return json({error:'The source search-form metadata response was invalid.'},502);return json(clean);}
    if(result.status==='native-sources'){const clean=sanitizeNativeSources(result);if(!clean)return json({error:'The native source metadata response was invalid.'},502);return json(clean);}
    const diagnostic=sanitizeNativeSources(result);if(!diagnostic||diagnostic.status==='native-sources')return json({error:'The native source inspection status was invalid.'},502);
    return json({...diagnostic,reason:'The ordinary NewsBank source controls need attention. No article or publication browse page was opened.'});
