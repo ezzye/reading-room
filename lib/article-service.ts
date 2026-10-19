@@ -14,11 +14,14 @@ import {roomMediaAPI} from './media-service.ts';
 import {retainRoomMediaOnSavedCapture} from './reused-media.ts';
 import {spendPressAuditStage} from './press-audit.ts';
 import type {PressAuditAllowance} from './press-audit.ts';
-import {reserveURLImportAttempt,reserveStudyImport,releaseStudyImport,sourceRequestGuardResponse} from './import-allowance.ts';
+import {reserveURLImportAttempt,reserveStudyImport,releaseStudyImport,rebindStudyImport,sourceRequestGuardResponse} from './import-allowance.ts';
+import {createLibraryPageProof} from './library-page-proof.mjs';
+import {assertRoomLibraryProof,bindRoomLibraryProof,claimRoomLibraryRecord,releaseRoomLibraryRecord,reuseVerifiedLibraryPage,verifiedLibraryPublisherLocator} from './library-page-index.ts';
 import type {StudyImportReservation} from './import-allowance.ts';
+import {attachObserverLibraryMedia} from './library-public-locator.ts';
 const json=(data:unknown,status=200,headers={})=>Response.json(data,{status,headers:{'Cache-Control':'private, no-store','X-Content-Type-Options':'nosniff',...headers}});
 export async function articleAPI(r:Request,c:Config,fetcher:typeof fetch=fetch,internal:{auditAllowance?:PressAuditAllowance}={}){
- let studyReservation:StudyImportReservation|undefined;
+ let studyReservation:StudyImportReservation|undefined,libraryClaim:object|undefined,libraryProof:object|undefined,verifiedPublisherURL:string|undefined;
  if(roomId(r))c={...c,RR_ACTIVE_ROOM_ID:roomId(r)};
  if(r.method!=='POST')return json({error:'Use the article form.'},405);
  if(!sameOrigin(r))return json({error:'Use the RET article controls.'},403);
@@ -53,10 +56,25 @@ export async function articleAPI(r:Request,c:Config,fetcher:typeof fetch=fetch,i
    if(data.html||!['thetimes.com','telegraph.co.uk','observer.co.uk'].includes(p.host))throw error;
    if(!await libraryServerConfigured(c))throw Error(isOwner(r,c)?'Connect Camden Library from the room menu, then try this article again.':'Ask this room’s owner to connect Camden Library, then try again.');
    const source=await lookupNewsBankSource(p.url,c,fetcher,data.sourceHeadline,serverPreview,{auditAllowance:internal.auditAllowance});
+   if(roomId(r)&&!libraryRefresh){
+    verifiedPublisherURL=verifiedLibraryPublisherLocator(source);
+    // No metadata-only match can mint this proof: the complete verified document is required.
+    try{libraryProof=await bindRoomLibraryProof(r,c,await createLibraryPageProof({publisher:libraryArticle(source.originalURL).key,article:{title:source.title,byline:source.byline,date:source.date,publication:source.publication,libraryURL:source.libraryURL,paragraphs:source.paragraphs}}),data.requestId,verifiedPublisherURL,source.originalURL);}catch(error){if(error instanceof Response)throw error;}
+    if(libraryProof){
+     if(studyReservation)await rebindStudyImport(studyReservation,r,c,data.requestId,(await assertRoomLibraryProof(r,c,libraryProof,data.requestId)).libraryURL);
+     libraryClaim=await claimRoomLibraryRecord(r,c,libraryProof);
+     const existing=await reuseVerifiedLibraryPage(r,c,libraryProof,verifiedPublisherURL);if(existing){
+      // Only this branch deliberately skipped public prose retrieval before
+      // fetching. A denied Times/Telegraph route never gets another attempt.
+      if(libraryOnly&&p.key==='observer')try{await attachObserverLibraryMedia(r,c,{boundLibraryProof:libraryProof,requestId:data.requestId,pageId:existing.id,publicURL:p.url},fetcher);}catch(error){if(error instanceof Response&&(error.status===401||error.status===403))throw error;console.warn('RR_LIBRARY_PUBLIC_LOCATOR_UNAVAILABLE');}
+      return json({id:existing.id,href:'/read/'+existing.id+'?room='+roomId(r),cached:true});
+     }
+    }
+   }
    capture=addLibraryPreview(buildLibraryCapture(source),publisherPreview);
   }
   const headers=new Headers(r.headers);headers.delete('content-length');const create=new Request(new URL('/api/capture',r.url),{method:'POST',headers,body:JSON.stringify({capture,requestId:data.requestId})});
-  const response=await captureAPI(create,c,fetcher,{auditAllowance:internal.auditAllowance,studyReservation});
+  const response=await captureAPI(create,c,fetcher,{auditAllowance:internal.auditAllowance,studyReservation,libraryProof,publisherURL:libraryProof?verifiedPublisherURL:undefined});
   if(response.ok&&capture.presentation?.method==='library-text'){
    const saved=await response.clone().json() as {id?:string};
    if(saved.id&&roomId(r)){
@@ -69,5 +87,5 @@ export async function articleAPI(r:Request,c:Config,fetcher:typeof fetch=fetch,i
   }
   return response;
  }catch(e){if(e instanceof Response)return e;const needsHeadline=Boolean(e&&typeof e==='object'&&'needsHeadline' in e&&e.needsHeadline===true);return json({error:e instanceof Error?e.message:'The source page could not be prepared.',needsCapture:!needsHeadline,...(needsHeadline?{needsHeadline:true}:{})},422);}
- finally{if(studyReservation)try{await releaseStudyImport(studyReservation);}catch{console.warn('RR_STUDY_RESERVATION_RELEASE_UNAVAILABLE');}}
+ finally{if(libraryClaim)try{await releaseRoomLibraryRecord(libraryClaim);}catch{console.warn('RR_LIBRARY_IDENTITY_RELEASE_UNAVAILABLE');}if(studyReservation)try{await releaseStudyImport(studyReservation);}catch{console.warn('RR_STUDY_RESERVATION_RELEASE_UNAVAILABLE');}}
 }

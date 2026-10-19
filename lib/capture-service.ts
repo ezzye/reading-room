@@ -8,6 +8,7 @@ import {ensureCriticalPage,CRITICAL_ID,CRITICAL_URL} from './critical-core.mjs';
 import {spendPressAuditStage} from './press-audit.ts';
 import type {PressAuditAllowance} from './press-audit.ts';
 import {saveStudyImport,assertStudyImport,nextUTCImportReset,importRetryAfter} from './import-allowance.ts';
+import {assertRoomLibraryProof,saveUncountedLibraryPage} from './library-page-index.ts';
 import type {StudyImportReservation} from './import-allowance.ts';
 
 export const CAPTURE_PROVIDER_LIMIT=90;
@@ -19,7 +20,7 @@ function writeAllowed(r:Request){return r.headers.get('X-Reading-Room')==='1'&&r
 async function readBody(r:Request){const declared=Number(r.headers.get('content-length')||0);if(declared>MAX_BODY)throw Object.assign(Error('Request exceeds the 1 MB limit.'),{status:413});if(!r.body)throw Object.assign(Error('Request body is empty.'),{status:400});const rd=r.body.getReader(),chunks:Uint8Array[]=[];let n=0;try{for(;;){const v=await rd.read();if(v.done)break;n+=v.value.byteLength;if(n>MAX_BODY){await rd.cancel();throw Object.assign(Error('Request exceeds the 1 MB limit.'),{status:413});}chunks.push(v.value);}}finally{rd.releaseLock();}const b=new Uint8Array(n);let off=0;for(const c of chunks){b.set(c,off);off+=c.length;}try{return JSON.parse(new TextDecoder().decode(b));}catch{throw Object.assign(Error('Request must contain valid JSON.'),{status:400});}}
 const keyFor=(c:Config)=>{const k=c.DEEPSEEK_API_KEY||c['DEEPSEEK-API-KEY'];return typeof k==='string'?k.trim():'';};
 
-export async function captureAPI(r:Request,c:Config,fetcher:typeof fetch=fetch,internal:{auditAllowance?:PressAuditAllowance;studyReservation?:StudyImportReservation;validatedLibraryRecordURL?:string}={}){
+export async function captureAPI(r:Request,c:Config,fetcher:typeof fetch=fetch,internal:{auditAllowance?:PressAuditAllowance;studyReservation?:StudyImportReservation;validatedLibraryRecordURL?:string;libraryProof?:object;publisherURL?:string}={}){
  if(!isOwner(r,c)&&!readerSession(r)&&!roomMemberId(r))return json({error:'Reload RET to start your reader session.'},401);
  if(r.method==='GET'){
   if(roomId(r)){const pages=await c.DB.prepare('SELECT p.id,p.title,p.source_url AS sourceURL,p.created_at AS createdAt FROM education_pages p JOIN rr_room_articles a ON a.page_id=p.id WHERE a.room_id=? ORDER BY a.created_at DESC LIMIT 100').bind(roomId(r)).all();return json({owner:isOwner(r,c),reader:true,ready:Boolean(keyFor(c)),capturePages:pages.results});}
@@ -32,6 +33,7 @@ export async function captureAPI(r:Request,c:Config,fetcher:typeof fetch=fetch,i
  if(!input||typeof input.requestId!=='string'||!/^[0-9a-f]{8}-[0-9a-f]{4}-[1-8][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i.test(input.requestId)||!input.capture)return json({error:'Include a valid requestId and reviewed capture.'},400);
  let capture:any;try{capture=normalizeCapture(input.capture,{validatedLibraryRecordURL:internal.validatedLibraryRecordURL});}catch(e){return json({error:e instanceof Error?e.message:'Capture could not be normalized.'},400);}
  try{
+  if(internal.libraryProof)await assertRoomLibraryProof(r,c,internal.libraryProof,input.requestId);
   const sourceHash='capture:'+await hash((roomId(r)||'')+JSON.stringify(capture));
   const existing:any=await c.DB.prepare('SELECT id FROM education_pages WHERE source_hash=?').bind(sourceHash).first();if(existing){await grantEdition(r,c,existing.id);return json({id:existing.id,cached:true});}
   if(internal.studyReservation)await assertStudyImport(internal.studyReservation,r,c,input.requestId);
@@ -45,7 +47,8 @@ export async function captureAPI(r:Request,c:Config,fetcher:typeof fetch=fetch,i
   let annotations:any;try{annotations=validateAnnotations(JSON.parse(result.choices[0].message.content),capture);}catch{return json({error:'DeepSeek returned incomplete or invalid commentary. The capture was not saved.'},503);}
   const generatedAt=new Date().toISOString(),doc={kind:CAPTURE_KIND,capture,annotations,model:String(result.model||'deepseek-flash').slice(0,100),generatedAt,usage:result.usage?{prompt_tokens:result.usage.prompt_tokens,completion_tokens:result.usage.completion_tokens}:null};
   const id=random();
-  if(internal.studyReservation){const saved=await saveStudyImport(internal.studyReservation,r,c,{id,sourceHash,sourceURL:capture.url,title:capture.title,document:JSON.stringify(doc),createdAt:generatedAt},input.requestId);if(saved.cached)await grantEdition(r,c,saved.id);return json(saved);}
+  if(internal.studyReservation){const saved=await saveStudyImport(internal.studyReservation,r,c,{id,sourceHash,sourceURL:capture.url,title:capture.title,document:JSON.stringify(doc),createdAt:generatedAt},input.requestId,Date.now(),{libraryProof:internal.libraryProof,publisherURL:internal.publisherURL});if(saved.cached)await grantEdition(r,c,saved.id);return json(saved);}
+  if(internal.libraryProof&&roomId(r))return json(await saveUncountedLibraryPage(r,c,{id,sourceHash,sourceURL:capture.url,title:capture.title,document:JSON.stringify(doc),createdAt:generatedAt},internal.libraryProof,internal.publisherURL));
   await c.DB.prepare('INSERT INTO education_pages (id,source_hash,source_url,title,document,created_at) VALUES (?,?,?,?,?,?) ON CONFLICT(source_hash) DO NOTHING').bind(id,sourceHash,capture.url,capture.title,JSON.stringify(doc),generatedAt).run();
   const saved:any=await c.DB.prepare('SELECT id FROM education_pages WHERE source_hash=?').bind(sourceHash).first();if(!saved)return json({error:'Capture could not be saved.'},503);await grantEdition(r,c,saved.id);return json({id:saved.id,cached:saved.id!==id});
  }catch(e){if(e instanceof Response)return e;const status=(e as any)?.fatal?503:502;return json({error:status===503?'DeepSeek commentary is unavailable. The capture was not saved.':'The capture could not be prepared. No source text or credentials were exposed.'},status);}

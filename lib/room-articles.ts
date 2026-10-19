@@ -10,6 +10,7 @@ import {cleanPublisherHeadline} from './publisher-headline.mjs';
 import {claimPressAuditEntry,finishPressAuditEntry,classifyPressAuditFailure} from './press-audit.ts';
 import type {PressAuditAllowance,PressAuditErrorCode} from './press-audit.ts';
 import {publisherFor} from './newspaper-core.mjs';
+import {roomLibraryAlias} from './library-page-index.ts';
 import {libraryArticle} from './library-article-url.mjs';
 
 const headers={'Cache-Control':'private, no-store','X-Content-Type-Options':'nosniff','Referrer-Policy':'no-referrer','X-Robots-Tag':'noindex, nofollow'};
@@ -61,11 +62,12 @@ export async function roomArticlesAPI(r:Request,c:Config,fetcher:typeof fetch=fe
  finally{if(auditAllowance)try{await finishPressAuditEntry(auditAllowance,outcome);}catch{console.warn('RR_PRESS_AUDIT_RECEIPT_UNAVAILABLE');}}
 }
 async function addRoomArticle(r:Request,c:Config,fetcher:typeof fetch,room:Awaited<ReturnType<typeof requireRoom>>,data:any,url:string,auditAllowance?:PressAuditAllowance){
+  const alias=await roomLibraryAlias(r,c,url);if(alias)return json({id:alias.id,href:'/read/'+alias.id+'?room='+room.id,cached:true});
   const alternate=new URL(url);alternate.hostname='www.'+alternate.hostname;
   const existing:any=await c.DB.prepare('SELECT p.id FROM rr_room_articles a JOIN education_pages p ON p.id=a.page_id WHERE a.room_id=? AND p.source_url IN (?,?) ORDER BY a.created_at DESC LIMIT 1').bind(room.id,url,alternate.href).first();
   if(existing)return json({id:existing.id,href:'/read/'+existing.id+'?room='+room.id,cached:true});
   if(!auditAllowance){
-  const shelf=await c.DB.prepare('SELECT p.id,p.title,p.source_url FROM rr_room_articles a JOIN education_pages p ON p.id=a.page_id WHERE a.room_id=? ORDER BY a.created_at DESC LIMIT 100').bind(room.id).all();
+  const shelf=await c.DB.prepare("SELECT p.id,p.title,p.source_url FROM rr_room_articles a JOIN education_pages p ON p.id=a.page_id WHERE a.room_id=? AND p.source_url NOT LIKE 'https://infoweb.newsbank.com/%' ORDER BY a.created_at DESC LIMIT 100").bind(room.id).all();
   const matches=rankSavedArticles({url},shelf.results||[]);const strong=matches.find((x:any)=>x.auto);if(strong)return json({id:strong.id,href:'/read/'+strong.id+'?room='+room.id,cached:true});
   if(matches.length&&!data.tryOriginal)return json({needsChoice:true,candidates:matches.map((x:any)=>({id:x.id,title:x.title,url:x.source_url,href:'/read/'+x.id+'?room='+room.id,basis:x.basis,ambiguous:x.ambiguous})),url});
   }

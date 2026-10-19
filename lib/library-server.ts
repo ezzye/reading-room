@@ -234,5 +234,5 @@ export async function lookupNewsBankSource(rawURL:string,c:Config,fetcher:typeof
   if(!normalizeNewsBankDate(result.article.date)||score<0.85){await save(c,account);throw Object.assign(Error('The URL words did not closely match the returned library headline and date. Paste the original newspaper headline to check it. No article was substituted.'),{code:'headline_unverified',needsHeadline:true});}
  }
  await save(c,account);
- return {...result.article,originalURL,originalTitle:meta.title,readerHeadlineHint:metadata.basis.startsWith('reader-supplied headline'),urlWordsHint};
+ return {...result.article,originalURL,originalTitle:meta.title,metadataBasis:metadata.basis,readerHeadlineHint:metadata.basis.startsWith('reader-supplied headline'),urlWordsHint};
 }

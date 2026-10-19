@@ -3,6 +3,7 @@ import {readerSession,tokenHash,authorTable} from './edition-access.ts';
 import {isOwner} from './education-service.ts';
 import {resourceURL} from './resource-service.ts';
 import {diagnosticDocumentURL} from './newsbank-match-diagnostic.mjs';
+import {libraryReceiptStatements} from './library-page-index.ts';
 import type {Config} from './education-service.ts';
 
 export const URL_IMPORT_LIMIT=30;
@@ -80,7 +81,14 @@ export async function assertStudyImport(reservation:StudyImportReservation,reque
  if(!await c.DB.prepare("SELECT 1 AS active FROM rr_study_imports_v1 WHERE id=? AND state='reserved' AND expires_at>?").bind(state.id,time).first())throw json({error:'The pending reservation expired before saving. No study-edition allowance was charged. Try again.',errorCode:'import_reservation_expired',usage:await readURLImportUsage(c,time)},409);
  return state;
 }
-export async function saveStudyImport(reservation:StudyImportReservation,request:Request,c:Config,page:{id:string;sourceHash:string;sourceURL:string;title:string;document:string;createdAt:string},requestId:string,time=Date.now()){
+// Rebinding uses the existing active-source uniqueness gate; counters are unchanged.
+export async function rebindStudyImport(reservation:StudyImportReservation,request:Request,c:Config,requestId:string,libraryURL:string,time=Date.now()){
+ const state=await assertStudyImport(reservation,request,c,requestId,time);if(diagnosticDocumentURL(libraryURL)!==libraryURL)throw json({error:'The library source identity is invalid.'},409);
+ try{await c.DB.prepare("UPDATE rr_study_imports_v1 SET source_url=? WHERE id=? AND state='reserved' AND expires_at>?").bind(libraryURL,state.id,time).run();}catch{throw json({error:'This library record is already being prepared. Reload shortly to open the saved edition.',errorCode:'import_in_progress'},409,{'Retry-After':'15'});}
+ if(!await c.DB.prepare("SELECT 1 AS active FROM rr_study_imports_v1 WHERE id=? AND source_url=? AND state='reserved' AND expires_at>?").bind(state.id,libraryURL,time).first())throw json({error:'The pending reservation expired before saving. No study-edition allowance was charged. Try again.',errorCode:'import_reservation_expired'},409);
+ state.sourceURL=libraryURL;
+}
+export async function saveStudyImport(reservation:StudyImportReservation,request:Request,c:Config,page:{id:string;sourceHash:string;sourceURL:string;title:string;document:string;createdAt:string},requestId:string,time=Date.now(),internal:{libraryProof?:object;publisherURL?:string}={}){
  const state=await assertStudyImport(reservation,request,c,requestId,time);state.used=true;
  if(!c.DB.batch)throw Error('Transactional import accounting is unavailable.');if(state.sessionHash)await authorTable(c);
  const gate="EXISTS (SELECT 1 FROM rr_study_imports_v1 q WHERE q.id=? AND q.state='reserved' AND q.expires_at>? AND q.day=?)",gateArgs=[state.id,time,state.day];
@@ -88,6 +96,7 @@ export async function saveStudyImport(reservation:StudyImportReservation,request
  const statements=[c.DB.prepare(`INSERT INTO education_pages(id,source_hash,source_url,title,document,created_at) SELECT ?,?,?,?,?,? WHERE ${gate}${memberGate} ON CONFLICT(source_hash) DO NOTHING`).bind(page.id,page.sourceHash,page.sourceURL,page.title,page.document,page.createdAt,...gateArgs,...memberArgs)];
  if(state.roomId)statements.push(c.DB.prepare(`INSERT OR IGNORE INTO rr_room_articles(room_id,page_id,added_by,created_at) SELECT ?,?,?,? WHERE EXISTS (SELECT 1 FROM education_pages WHERE id=?) AND ${gate}${memberGate}`).bind(state.roomId,page.id,state.memberId,page.createdAt,page.id,...gateArgs,...memberArgs));
  else if(state.sessionHash)statements.push(c.DB.prepare(`INSERT OR IGNORE INTO ret_edition_authors(page_id,session_hash,created_at) SELECT ?,?,? WHERE EXISTS (SELECT 1 FROM education_pages WHERE id=?) AND ${gate}`).bind(page.id,state.sessionHash,page.createdAt,page.id,...gateArgs));
+ if(internal.libraryProof)statements.push(...await libraryReceiptStatements(request,c,page,internal.libraryProof,internal.publisherURL));
  statements.push(c.DB.prepare(`UPDATE rr_study_imports_v1 SET state='completed',finished_at=?,page_id=? WHERE id=? AND state='reserved' AND expires_at>? AND EXISTS (SELECT 1 FROM education_pages WHERE id=?)`).bind(new Date(time).toISOString(),page.id,state.id,time,page.id));
  statements.push(c.DB.prepare("UPDATE rr_study_imports_v1 SET state='released',finished_at=? WHERE id=? AND state='reserved'").bind(new Date(time).toISOString(),state.id));
  await c.DB.batch(statements);

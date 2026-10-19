@@ -1,6 +1,11 @@
 {
   "schema": "reading-room-outlet-gaps-and-allowance/v1",
-  "generatedAt": "2026-10-18T23:52:02.188Z",
+  "generatedAt": "2026-10-19T00:18:47.982Z",
+  "deployment": {
+    "coreRelease": 83,
+    "liveEvidenceRelease": 82,
+    "note": "Core release 83 is deployed. The included live outcome evidence remains release 82; Observer public media and Irish Times full-text checks await later live verification."
+  },
   "scope": "Four UK national follow-ups, retained Scotland/Northern Ireland observations, three Republic of Ireland papers and six selected US outlets. AP/NPR are news comparators, not newspapers. This is not every newspaper or independent print edition.",
   "totals": {
     "families": 23,
@@ -47,7 +52,9 @@
           "annotations": 8,
           "expanded": 0
         },
-        "recordedAt": "2026-10-18T23:25:38.993681+00:00"
+        "recordedAt": "2026-10-18T23:25:38.993681+00:00",
+        "countsRecordedAt": null,
+        "countsNote": null
       },
       "media": {
         "rendered": "pending",
@@ -83,7 +90,9 @@
           "annotations": null,
           "expanded": null
         },
-        "recordedAt": "2026-10-18T23:42:59.203430+00:00"
+        "recordedAt": "2026-10-18T23:42:59.203430+00:00",
+        "countsRecordedAt": null,
+        "countsNote": null
       },
       "media": {
         "rendered": "pending",
@@ -122,7 +131,9 @@
           "annotations": 10,
           "expanded": 0
         },
-        "recordedAt": "2026-10-18T23:42:59.203430+00:00"
+        "recordedAt": "2026-10-18T23:42:59.203430+00:00",
+        "countsRecordedAt": null,
+        "countsNote": null
       },
       "media": {
         "rendered": "verified",
@@ -155,7 +166,9 @@
           "annotations": 8,
           "expanded": 0
         },
-        "recordedAt": "2026-10-18T23:42:59.203430+00:00"
+        "recordedAt": "2026-10-18T23:42:59.203430+00:00",
+        "countsRecordedAt": null,
+        "countsNote": null
       },
       "media": {
         "rendered": "verified",
@@ -188,7 +201,9 @@
           "annotations": 8,
           "expanded": 0
         },
-        "recordedAt": "2026-10-18T23:51:03.025719+00:00"
+        "recordedAt": "2026-10-18T23:51:03.025719+00:00",
+        "countsRecordedAt": null,
+        "countsNote": null
       },
       "media": {
         "rendered": "verified",
@@ -225,6 +240,63 @@
       "note": "Some sources include video or transcripts. A text record or print replica does not prove that a publisher website video was supplied or can play."
     }
   ],
+  "checkpoint82": {
+    "release": 82,
+    "frontPageObservationDate": "2026-10-18",
+    "laterObservationUTCDay": "2026-10-19",
+    "nativeCatalogue": {
+      "recordedAt": null,
+      "tables": 0,
+      "containers": 14,
+      "controls": 0,
+      "acceptedScriptURLs": 0,
+      "endpoints": 0,
+      "emptyReactBrowseContainer": true,
+      "note": "An empty React browse container was observed. Client rendering is an inference; no asset URL or provider API endpoint has been verified. The individual native observation timestamp was not retained."
+    },
+    "expressMetadata": {
+      "recordedAt": "2026-10-19T00:09:01.894Z",
+      "date": "2026-10-18",
+      "listItems": 4,
+      "metadataItems": 0,
+      "qualifiedSourceVerified": false,
+      "fullTextVerified": false,
+      "note": "The v82 result retained four visible list items but no metadataItems. The later hit-boundary parser fix is tested locally; a corrected live source qualification remains pending."
+    },
+    "irishTimesMetadata": {
+      "recordedAt": "2026-10-19T00:12:22.097Z",
+      "title": "Taoiseach rejects Michael O'Leary's view that he would 'buckle' to public sector unions - Micheál Martin insists productivity would have to be part of any new pay agreement",
+      "date": "2026-10-18",
+      "qualifiedLabel": "Irish Times: Web Edition Articles (Dublin, Ireland)",
+      "status": "metadata-only",
+      "fullTextVerified": false,
+      "articleAccepted": false,
+      "note": "This exact qualified label is observed search metadata. Full-text access, save, media and entitlement checks remain pending."
+    },
+    "observerReuse": {
+      "recordedAt": "2026-10-19T00:12:00.612Z",
+      "publisherURL": "https://observer.co.uk/news/national/article/childrens-commissioner-declares-state-of-emergency-on-young-peoples-lives",
+      "sameSelectedEdition": true,
+      "exactHeadlineSupplied": true,
+      "publisherAliasVerified": false,
+      "images": 0,
+      "videos": 0,
+      "collapsedAI": 8,
+      "status": "existing-edition-reused",
+      "note": "The publisher URL plus exact headline reused the already selected library edition. No publisher alias or new media result is certified; the earlier failed URL attempt remains historical."
+    },
+    "nprCleanup": {
+      "recordedAt": "2026-10-19T00:10:30.023Z",
+      "actualArticlePhotos": 2,
+      "loadedImages": 2,
+      "collapsedAI": 7,
+      "relatedCardsRemoved": true,
+      "captionRelocations": 2,
+      "photoAttributionsUpdated": 2,
+      "sourceReportingParagraphs": null,
+      "note": "The first saved NPR edition was cleaned in place. Both actual article photos loaded, related cards were removed and two source captions and credits were moved to their photos. The observed DOM paragraph total includes commentary. No new phone check or video playback is claimed."
+    }
+  },
   "allowance": {
     "newSavedEditionsPerUTCDay": 30,
     "scope": "Shared across this Reading Room service, newspapers, rooms and members",
@@ -237,16 +309,17 @@
     "history": "Legacy attempt counters remain intact. They mix successes and failures, so they cannot be re-labelled as completed editions or attributed reliably to individual papers. Completed-edition tracking begins at its recorded migration timestamp.",
     "currentUsage": {
       "limit": 30,
-      "used": 7,
+      "used": 0,
       "pending": 0,
-      "remaining": 23,
-      "available": 23,
-      "resetsAt": "2026-10-19T00:00:00Z",
+      "remaining": 30,
+      "available": 30,
+      "resetsAt": "2026-10-20T00:00:00Z",
       "trackingSince": null,
-      "historyStatus": "earlier-completions-unavailable"
+      "historyStatus": "not-supplied"
     },
-    "usageSnapshotNote": "This allowance snapshot was observed before The National selected-record save; it has not been advanced by inference.",
+    "usageSnapshotNote": "Direct Add article UI observation after the UTC day changed to 19 October: 30 of 30 remained after reusing the existing Observer edition. This was the daily rollover; no manual reset or refund was applied.",
     "quotaProof": {
+      "traceUTCDay": "2026-10-18",
       "checkpoints": [
         {
           "stage": "initial",
@@ -286,7 +359,15 @@
       ],
       "completeSequence": true,
       "successfulSaveAccountingConfirmed": true,
-      "latestRecordedRemaining": 27,
+      "latestRecordedRemaining": 30,
+      "currentSnapshotUTCDay": "2026-10-19",
+      "rollover": {
+        "recordedAt": "2026-10-19T00:12:18.901808+00:00",
+        "before": 30,
+        "after": 30,
+        "manualReset": false,
+        "reuseCharge": 0
+      },
       "note": "Recorded checkpoints distinguish new successful saves from refusals, failures and reuse."
     }
   },
@@ -304,7 +385,7 @@
   },
   "followupPhoneAcceptance": {
     "nprFirstEditionPhotoAndAI": true,
-    "scope": "Owner confirmation for the first NPR edition covers one photo and AI comments only. All-photo completeness and video playback remain unverified."
+    "scope": "Earlier owner phone confirmation for the first NPR edition covers one photo and AI comments. The later two-photo loading and cleanup check was separate; no new phone recheck or video playback is claimed."
   },
   "evidence": {
     "uk": "press-gap-uk-20261018.json",
@@ -314,7 +395,7 @@
     "profileChecks": "press-room-profile-evidence.json",
     "historicalAudit": "press-live-final.json",
     "currentLiveSupplied": true,
-    "currentLiveRecordedAt": "2026-10-18T23:51:03.025719+00:00",
+    "currentLiveRecordedAt": "2026-10-19T00:12:18.901808+00:00",
     "librarySupplied": true,
     "libraryRecordedAt": "2026-10-18T22:39:03.906Z"
   },
@@ -365,7 +446,9 @@
               "annotations": null,
               "expanded": null
             },
-            "recordedAt": "2026-10-18T22:52:31.219172+00:00"
+            "recordedAt": "2026-10-18T22:52:31.219172+00:00",
+            "countsRecordedAt": null,
+            "countsNote": null
           },
           "media": {
             "rendered": "pending",
@@ -426,7 +509,9 @@
               "annotations": null,
               "expanded": null
             },
-            "recordedAt": null
+            "recordedAt": null,
+            "countsRecordedAt": null,
+            "countsNote": null
           },
           "media": {
             "rendered": "pending",
@@ -499,7 +584,9 @@
               "annotations": 7,
               "expanded": 0
             },
-            "recordedAt": "2026-10-18T22:04:18.093Z"
+            "recordedAt": "2026-10-18T22:04:18.093Z",
+            "countsRecordedAt": null,
+            "countsNote": null
           },
           "media": {
             "rendered": "verified",
@@ -514,6 +601,7 @@
           },
           "sourceCleanup": {
             "status": "cleaned",
+            "recordedAt": null,
             "removedNewsletterParagraphs": 1,
             "removedAttachedAI": 1,
             "reportingPreserved": true,
@@ -564,7 +652,9 @@
               "annotations": null,
               "expanded": null
             },
-            "recordedAt": "2026-10-18T22:01:21.462Z"
+            "recordedAt": "2026-10-18T22:01:21.462Z",
+            "countsRecordedAt": null,
+            "countsNote": null
           },
           "media": {
             "rendered": "pending",
@@ -648,7 +738,9 @@
               "annotations": null,
               "expanded": null
             },
-            "recordedAt": null
+            "recordedAt": null,
+            "countsRecordedAt": null,
+            "countsNote": null
           },
           "media": {
             "rendered": "pending",
@@ -709,7 +801,9 @@
               "annotations": null,
               "expanded": null
             },
-            "recordedAt": null
+            "recordedAt": null,
+            "countsRecordedAt": null,
+            "countsNote": null
           },
           "media": {
             "rendered": "pending",
@@ -782,7 +876,9 @@
               "annotations": null,
               "expanded": null
             },
-            "recordedAt": null
+            "recordedAt": null,
+            "countsRecordedAt": null,
+            "countsNote": null
           },
           "media": {
             "rendered": "pending",
@@ -843,7 +939,9 @@
               "annotations": null,
               "expanded": null
             },
-            "recordedAt": null
+            "recordedAt": null,
+            "countsRecordedAt": null,
+            "countsNote": null
           },
           "media": {
             "rendered": "pending",
@@ -927,7 +1025,9 @@
               "annotations": null,
               "expanded": null
             },
-            "recordedAt": null
+            "recordedAt": null,
+            "countsRecordedAt": null,
+            "countsNote": null
           },
           "media": {
             "rendered": "pending",
@@ -988,7 +1088,9 @@
               "annotations": null,
               "expanded": null
             },
-            "recordedAt": null
+            "recordedAt": null,
+            "countsRecordedAt": null,
+            "countsNote": null
           },
           "media": {
             "rendered": "pending",
@@ -1061,7 +1163,9 @@
               "annotations": null,
               "expanded": null
             },
-            "recordedAt": null
+            "recordedAt": null,
+            "countsRecordedAt": null,
+            "countsNote": null
           },
           "media": {
             "rendered": "pending",
@@ -1122,7 +1226,9 @@
               "annotations": null,
               "expanded": null
             },
-            "recordedAt": null
+            "recordedAt": null,
+            "countsRecordedAt": null,
+            "countsNote": null
           },
           "media": {
             "rendered": "pending",
@@ -1195,7 +1301,9 @@
               "annotations": null,
               "expanded": null
             },
-            "recordedAt": null
+            "recordedAt": null,
+            "countsRecordedAt": null,
+            "countsNote": null
           },
           "media": {
             "rendered": "pending",
@@ -1256,7 +1364,9 @@
               "annotations": null,
               "expanded": null
             },
-            "recordedAt": null
+            "recordedAt": null,
+            "countsRecordedAt": null,
+            "countsNote": null
           },
           "media": {
             "rendered": "pending",
@@ -1329,7 +1439,9 @@
               "annotations": null,
               "expanded": null
             },
-            "recordedAt": null
+            "recordedAt": null,
+            "countsRecordedAt": null,
+            "countsNote": null
           },
           "media": {
             "rendered": "pending",
@@ -1390,7 +1502,9 @@
               "annotations": null,
               "expanded": null
             },
-            "recordedAt": null
+            "recordedAt": null,
+            "countsRecordedAt": null,
+            "countsNote": null
           },
           "media": {
             "rendered": "pending",
@@ -1463,7 +1577,9 @@
               "annotations": null,
               "expanded": null
             },
-            "recordedAt": null
+            "recordedAt": null,
+            "countsRecordedAt": null,
+            "countsNote": null
           },
           "media": {
             "rendered": "pending",
@@ -1524,7 +1640,9 @@
               "annotations": null,
               "expanded": null
             },
-            "recordedAt": null
+            "recordedAt": null,
+            "countsRecordedAt": null,
+            "countsNote": null
           },
           "media": {
             "rendered": "pending",
@@ -1608,7 +1726,9 @@
               "annotations": null,
               "expanded": null
             },
-            "recordedAt": null
+            "recordedAt": null,
+            "countsRecordedAt": null,
+            "countsNote": null
           },
           "media": {
             "rendered": "pending",
@@ -1669,7 +1789,9 @@
               "annotations": null,
               "expanded": null
             },
-            "recordedAt": null
+            "recordedAt": null,
+            "countsRecordedAt": null,
+            "countsNote": null
           },
           "media": {
             "rendered": "pending",
@@ -1753,7 +1875,9 @@
               "annotations": null,
               "expanded": null
             },
-            "recordedAt": null
+            "recordedAt": null,
+            "countsRecordedAt": null,
+            "countsNote": null
           },
           "media": {
             "rendered": "pending",
@@ -1814,7 +1938,9 @@
               "annotations": null,
               "expanded": null
             },
-            "recordedAt": null
+            "recordedAt": null,
+            "countsRecordedAt": null,
+            "countsNote": null
           },
           "media": {
             "rendered": "pending",
@@ -1887,7 +2013,9 @@
               "annotations": null,
               "expanded": null
             },
-            "recordedAt": "2026-10-18T22:07:30.957Z"
+            "recordedAt": "2026-10-18T22:07:30.957Z",
+            "countsRecordedAt": null,
+            "countsNote": null
           },
           "media": {
             "rendered": "pending",
@@ -1948,7 +2076,9 @@
               "annotations": null,
               "expanded": null
             },
-            "recordedAt": null
+            "recordedAt": null,
+            "countsRecordedAt": null,
+            "countsNote": null
           },
           "media": {
             "rendered": "pending",
@@ -2021,7 +2151,9 @@
               "annotations": null,
               "expanded": null
             },
-            "recordedAt": null
+            "recordedAt": null,
+            "countsRecordedAt": null,
+            "countsNote": null
           },
           "media": {
             "rendered": "pending",
@@ -2082,7 +2214,9 @@
               "annotations": null,
               "expanded": null
             },
-            "recordedAt": null
+            "recordedAt": null,
+            "countsRecordedAt": null,
+            "countsNote": null
           },
           "media": {
             "rendered": "pending",
@@ -2166,7 +2300,9 @@
               "annotations": null,
               "expanded": null
             },
-            "recordedAt": null
+            "recordedAt": null,
+            "countsRecordedAt": null,
+            "countsNote": null
           },
           "media": {
             "rendered": "pending",
@@ -2227,7 +2363,9 @@
               "annotations": null,
               "expanded": null
             },
-            "recordedAt": null
+            "recordedAt": null,
+            "countsRecordedAt": null,
+            "countsNote": null
           },
           "media": {
             "rendered": "pending",
@@ -2305,7 +2443,7 @@
           "sourceAccess": {
             "status": "public-body",
             "label": "Public extraction recorded",
-            "note": "Bounded source paragraphs and media references were extracted; completeness, loading and playback remain separate.",
+            "note": "Bounded source paragraphs and media references were extracted; completeness, loading and playback remain separate. These counts describe the 18 October source observation before related-card and caption cleanup; the later saved-edition counts are separate.",
             "counts": {
               "paragraphs": 31,
               "words": 932,
@@ -2326,33 +2464,37 @@
             "label": "New edition saved",
             "note": "A completed save is explicitly recorded.",
             "counts": {
-              "paragraphs": 31,
+              "paragraphs": null,
               "words": null,
-              "images": 5,
+              "images": 2,
               "videos": 0,
-              "annotations": 8,
+              "annotations": 7,
               "expanded": 0
             },
-            "recordedAt": "2026-10-18T22:05:44.616Z"
+            "recordedAt": "2026-10-18T22:05:44.616Z",
+            "countsRecordedAt": "2026-10-19T00:10:30.023Z",
+            "countsNote": "The later DOM paragraph count includes commentary and is not a refreshed source-reporting count."
           },
           "media": {
             "rendered": "verified",
             "images": "verified",
-            "imageLabel": "At least one photo loaded",
-            "allImagesLoaded": false,
+            "imageLabel": "All recorded images loaded",
+            "allImagesLoaded": true,
             "playback": "pending",
             "phone": "verified",
             "loadedImageReferences": 2,
             "phoneScope": "Owner confirmed one photo and AI comments on the first NPR edition. This does not verify all photos or video playback.",
-            "imageScope": "This check does not establish all-photo completeness or video playback."
+            "imageScope": null
           },
           "sourceCleanup": {
-            "status": "not-applied",
+            "status": "cleaned",
+            "recordedAt": "2026-10-19T00:10:30.023Z",
             "actualArticlePhotos": 2,
-            "relatedCardImagesKnown": 3,
-            "dailyCleanupChecksUsed": 2,
+            "captionRelocations": 2,
+            "photoAttributionsUpdated": 2,
+            "relatedCardsExcluded": true,
             "sourcePreserved": true,
-            "note": "Saved edition still includes 3 known related-card image references alongside 2 actual article photos. Cleanup has not been applied; complete source fidelity is not claimed."
+            "note": "Saved-source cleanup completed. Related cards were excluded. 2 captions relocated to their photos. 2 photo credits updated."
           },
           "library": {
             "status": "unverified",
@@ -2398,7 +2540,9 @@
               "annotations": 7,
               "expanded": 0
             },
-            "recordedAt": "2026-10-18T22:11:17.937Z"
+            "recordedAt": "2026-10-18T22:11:17.937Z",
+            "countsRecordedAt": null,
+            "countsNote": null
           },
           "media": {
             "rendered": "verified",
@@ -2413,6 +2557,7 @@
           },
           "sourceCleanup": {
             "status": "cleaned",
+            "recordedAt": null,
             "captionRelocations": 2,
             "photoAttributionsUpdated": 2,
             "relatedCardsExcluded": true,
