@@ -1,6 +1,6 @@
 {
   "schema": "reading-room-current-coverage/v1",
-  "generatedAt": "2026-10-19T03:42:33.080185Z",
+  "generatedAt": "2026-10-19T03:43:56.112382Z",
   "scope": "Website-family examples across UK nationals, Scotland, Wales, Northern Ireland, Republic of Ireland and selected US outlets. AP and NPR are comparators. This is not all UK newspapers or proof of separate Sunday editions.",
   "sourceDates": {
     "originalHomepageObservations": "2026-10-18",
@@ -20,7 +20,11 @@
     "context": "Final direct desktop observation after all seven new library editions; Record reuse charge was not isolated",
     "manualReset": false
   },
-  "publicationHeld": true,
+  "publicationHeld": false,
+  "sourcePublication": {
+    "verifiedPublicSourceCommit": "fa39379d30e7ca23c1c8100b142357e49f6a36c9",
+    "verifiedAfterPush": true
+  },
   "externalOptions": {
     "sourceURL": "https://www.camden.gov.uk/digital-library",
     "services": [
