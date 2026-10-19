@@ -1,6 +1,6 @@
 {
   "schema": "reading-room-current-coverage/v1",
-  "generatedAt": "2026-10-19T03:43:56.112382Z",
+  "generatedAt": "2026-10-19T07:35:11.324159Z",
   "scope": "Website-family examples across UK nationals, Scotland, Wales, Northern Ireland, Republic of Ireland and selected US outlets. AP and NPR are comparators. This is not all UK newspapers or proof of separate Sunday editions.",
   "sourceDates": {
     "originalHomepageObservations": "2026-10-18",
@@ -811,7 +811,7 @@
         }
       ],
       "media": "Both selected text samples: 0 image and 0 video refs.",
-      "phone": "No physical-phone acceptance recorded for these samples.",
+      "phone": "Owner phone accepted the McGill’s Scotland on Sunday sample: article readable and AI commentary expands (19 Oct). The separate daily sample and media remain unverified on phone.",
       "notes": [
         "Library samples are separate from public homepage coverage. All AI notes were initially collapsed and discussion was present; Sunday sample first AI expansion verified."
       ],
@@ -859,7 +859,7 @@
         }
       ],
       "media": "Both selected editions: 0 supplied image/video refs.",
-      "phone": "Not verified for these examples.",
+      "phone": "Owner phone accepted the BBC Scotland / sense of doom article found through Search: article and AI commentary work (19 Oct). Other sample and images remain unverified on phone.",
       "notes": [
         "Website family homepage only. Shared daily/Sunday print-edition identity is not independently established by these links.",
         "19 Oct Herald URL offered a dated choice; explicit selection reopened the existing 28p / 10-AI edition without a duplicate. Later balance not observed."
@@ -1489,7 +1489,7 @@
         }
       ],
       "media": "First: 3/3 photos loaded; second: 2/2 loaded. Both 0 video refs; second AI expansion verified.",
-      "phone": "Not verified for these examples.",
+      "phone": "Owner phone accepted the Komatireddy story: both photos appear and AI commentary expands (19 Oct). The other story and video playback remain unverified on phone.",
       "notes": [],
       "state": "saved"
     },
