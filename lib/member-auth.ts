@@ -380,7 +380,7 @@ export async function memberAuthAPI(request: Request, env: MemberAuthEnv, now = 
 
 /** Public shell routes; the outer Sites Worker should allow these through its member gate. */
 export function isPublicMemberAuthPath(pathname: string): boolean {
-  return pathname === "/room" || pathname === "/api/member-auth" || ["/favicon.svg","/reading-room-logo.svg","/icon-192.png","/icon-512.png","/manifest.webmanifest","/sw.js"].includes(pathname);
+  return pathname === "/" || pathname === "/room" || pathname === "/api/member-auth" || ["/favicon.svg","/reading-room-logo.svg","/icon-192.png","/icon-512.png","/manifest.webmanifest","/sw.js"].includes(pathname);
 }
 
 /**
