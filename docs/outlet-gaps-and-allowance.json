@@ -1,11 +1,12 @@
 {
   "schema": "reading-room-outlet-gaps-and-allowance/v1",
-  "generatedAt": "2026-10-19T01:07:19.160Z",
+  "generatedAt": "2026-10-19T01:31:07.028Z",
   "deployment": {
-    "coreRelease": 86,
-    "liveEvidenceRelease": 85,
-    "nativeCatalogueLiveVerification": "pending",
-    "note": "Core release 86 is deployed; the new catalogue metadata inspection is pending. Dated live edition evidence remains at release 85. Dated live follow-ups verify Irish Times and Express selected-record saves and one Observer public-preview thumbnail/reuse. These do not certify publication-wide coverage or new phone acceptance."
+    "coreRelease": 88,
+    "liveEvidenceRelease": 88,
+    "nativeCatalogueLiveVerification": "observed-metadata-only",
+    "nextCatalogueDiagnosticLiveVerification": "observed-metadata-only",
+    "note": "Core release 88 is deployed. Its live catalogue diagnostic observed literal source variants and safe template structure only. The live catalogue metadata observation is separate from article entitlement, selected-record saves and public-preview loading. Dated live follow-ups verify Irish Times and Express selected-record saves and one Observer public-preview thumbnail/reuse. These do not certify publication-wide coverage or new phone acceptance."
   },
   "scope": "Four UK national follow-ups, retained Scotland/Northern Ireland observations, three Republic of Ireland papers and six selected US outlets. AP/NPR are news comparators, not newspapers. This is not every newspaper or independent print edition.",
   "totals": {
@@ -19,15 +20,15 @@
   },
   "supplementarySummary": {
     "urlFollowups": {
-      "records": 2,
-      "saved": 2,
+      "records": 3,
+      "saved": 3,
       "cached": 0,
       "failed": 0,
       "pending": 0
     },
     "selectedLibraryRecords": {
-      "records": 8,
-      "saved": 8,
+      "records": 9,
+      "saved": 9,
       "cached": 0,
       "failed": 0,
       "pending": 0
@@ -97,6 +98,44 @@
       },
       "media": {
         "rendered": "pending",
+        "images": "pending",
+        "imageLabel": "pending",
+        "allImagesLoaded": false,
+        "playback": "pending",
+        "phone": "pending",
+        "loadedImageReferences": null,
+        "phoneScope": null,
+        "imageScope": null
+      },
+      "sourceCleanup": {
+        "status": "not-recorded",
+        "note": "No saved-source cleanup result supplied."
+      }
+    },
+    {
+      "family": "The Telegraph",
+      "title": "Israel has no automatic right to exist, Polanski suggests",
+      "url": "https://www.telegraph.co.uk/politics/2026/10/18/israel-polanski-no-automatic-right-exist/",
+      "observedAt": null,
+      "sourceProof": "No retained front-page association supplied for this URL.",
+      "live": {
+        "status": "saved",
+        "label": "New edition saved",
+        "note": "A completed save is explicitly recorded.",
+        "counts": {
+          "paragraphs": 20,
+          "words": null,
+          "images": 0,
+          "videos": 0,
+          "annotations": 8,
+          "expanded": 0
+        },
+        "recordedAt": "2026-10-19T01:21:18.880Z",
+        "countsRecordedAt": null,
+        "countsNote": null
+      },
+      "media": {
+        "rendered": "verified",
         "images": "pending",
         "imageLabel": "pending",
         "allImagesLoaded": false,
@@ -402,6 +441,44 @@
           "expanded": 0
         },
         "recordedAt": "2026-10-19T01:00:13.690Z",
+        "countsRecordedAt": null,
+        "countsNote": null
+      },
+      "media": {
+        "rendered": "verified",
+        "images": "pending",
+        "imageLabel": "pending",
+        "allImagesLoaded": false,
+        "playback": "pending",
+        "phone": "pending",
+        "loadedImageReferences": null,
+        "phoneScope": null,
+        "imageScope": null
+      }
+    },
+    {
+      "family": "The Irish Times",
+      "title": "Ukraine defies Trump by launching its largest-ever drone attack on St Petersburg",
+      "date": "2026-10-19",
+      "recordURL": "",
+      "caption": "Library text edition; approximate styling.",
+      "recordKind": "selected-library-record",
+      "exactFrontPageInteractiveMatch": null,
+      "selectionNote": "This Irish Times record is dated 19 October; its headline was observed on the front page on 18 October. A Financial Times syndication credit is retained; this is not a separately verified Financial Times edition. Publisher-URL association and phone acceptance remain unverified.",
+      "sourceAssociation": "This selected library record is reported independently. No association with an original publisher URL is inferred.",
+      "live": {
+        "status": "saved",
+        "label": "New edition saved",
+        "note": "A completed save is explicitly recorded.",
+        "counts": {
+          "paragraphs": 20,
+          "words": null,
+          "images": 0,
+          "videos": 0,
+          "annotations": 8,
+          "expanded": 0
+        },
+        "recordedAt": "2026-10-19T01:06:24.798Z",
         "countsRecordedAt": null,
         "countsNote": null
       },
@@ -776,6 +853,490 @@
       "note": "Fresh Add article UI observation: 25 of 30 remaining. Exact observation time and other counters were not retained; no balance is derived from edition counts."
     }
   },
+  "followup87": {
+    "release": 87,
+    "catalogue": {
+      "observedUTCDay": "2026-10-19",
+      "recordedAt": null,
+      "rowsInspected": 1012,
+      "recognizedDescriptors": 33,
+      "sources": [
+        {
+          "name": "Financial Times: Blogs (London, England)",
+          "dates": "2015 - 2019",
+          "location": "England - London",
+          "type": "Blog",
+          "format": "Text",
+          "language": "English",
+          "context": "unverified-catalogue-source"
+        },
+        {
+          "name": "Express, The/The Express on Sunday: Web Edition Articles (London, England)",
+          "dates": "2018 - Current",
+          "location": "England - London",
+          "type": "Web-Only Source",
+          "format": "Text",
+          "language": "English",
+          "context": "unverified-catalogue-source"
+        },
+        {
+          "name": "Express, The/The Express on Sunday (London, England)",
+          "dates": "1998 - Current",
+          "location": "England - London",
+          "type": "Newspaper",
+          "format": "Text",
+          "language": "English",
+          "context": "unverified-catalogue-source"
+        },
+        {
+          "name": "Express, The/The Express on Sunday (London, England)",
+          "dates": "2020 - Current",
+          "location": "England - London",
+          "type": "Newspaper",
+          "format": "Image",
+          "language": "English",
+          "context": "unverified-catalogue-source"
+        },
+        {
+          "name": "Herald, The: Web Edition Articles (Glasgow, Scotland)",
+          "dates": "2019 - Current",
+          "location": "Scotland - Glasgow",
+          "type": "Web-Only Source",
+          "format": "Text",
+          "language": "English",
+          "context": "unverified-catalogue-source"
+        },
+        {
+          "name": "Herald, The: Web Edition Articles (Plymouth, England)",
+          "dates": "2008 - Current",
+          "location": "England - Plymouth",
+          "type": "Web-Only Source",
+          "format": "Text",
+          "language": "English",
+          "context": "unverified-catalogue-source"
+        },
+        {
+          "name": "Herald, The (Plymouth, England)",
+          "dates": "2008 - Current",
+          "location": "England - Plymouth",
+          "type": "Newspaper",
+          "format": "Text",
+          "language": "English",
+          "context": "unverified-catalogue-source"
+        },
+        {
+          "name": "Irish Times: Web Edition Articles (Dublin, Ireland)",
+          "dates": "2016 - Current",
+          "location": "Ireland - Dublin",
+          "type": "Web-Only Source",
+          "format": "Text",
+          "language": "English, Gaelic",
+          "context": "unverified-catalogue-source"
+        },
+        {
+          "name": "Irish Times (Dublin, Ireland)",
+          "dates": "1996 - Current",
+          "location": "Ireland - Dublin",
+          "type": "Newspaper",
+          "format": "Text",
+          "language": "English, Gaelic",
+          "context": "unverified-catalogue-source"
+        },
+        {
+          "name": "Irish Times (Dublin, Ireland)",
+          "dates": "2020 - Current",
+          "location": "Ireland - Dublin",
+          "type": "Newspaper",
+          "format": "Image",
+          "language": "English, Gaelic",
+          "context": "unverified-catalogue-source"
+        },
+        {
+          "name": "National, The (Scotland)",
+          "dates": "2015 - Current",
+          "location": "Scotland",
+          "type": "Newspaper",
+          "format": "Text",
+          "language": "English",
+          "context": "unverified-catalogue-source"
+        },
+        {
+          "name": "News Letter (Belfast, Northern Ireland)",
+          "dates": "2002 - Current",
+          "location": "Northern Ireland - Belfast",
+          "type": "Newspaper",
+          "format": "Text",
+          "language": "English",
+          "context": "unverified-catalogue-source"
+        },
+        {
+          "name": "Sunday Post, The (Dundee, Scotland)",
+          "dates": "2018 - Current",
+          "location": "Scotland - Dundee",
+          "type": "Newspaper",
+          "format": "Text",
+          "language": "English",
+          "context": "unverified-catalogue-source"
+        },
+        {
+          "name": "Daily Mail (London, England)",
+          "dates": "1990 - Current",
+          "location": "England - London",
+          "type": "Newspaper",
+          "format": "Text",
+          "language": "English",
+          "context": "unverified-catalogue-source"
+        },
+        {
+          "name": "Daily Mirror, The: Web Edition Articles (London, England)",
+          "dates": "2014 - Current",
+          "location": "England - London",
+          "type": "Web-Only Source",
+          "format": "Text",
+          "language": "English",
+          "context": "unverified-catalogue-source"
+        },
+        {
+          "name": "Daily Star: Web Edition Articles (England)",
+          "dates": "2018 - Current",
+          "location": "England - London",
+          "type": "Web-Only Source",
+          "format": "Text",
+          "language": "English",
+          "context": "unverified-catalogue-source"
+        },
+        {
+          "name": "Daily Star (England)",
+          "dates": "2005 - Current",
+          "location": "England - London",
+          "type": "Newspaper",
+          "format": "Text",
+          "language": "English",
+          "context": "unverified-catalogue-source"
+        },
+        {
+          "name": "Guardian, The: Web Edition Articles (London, England)",
+          "dates": "2005 - Current",
+          "location": "England - London",
+          "type": "Web-Only Source",
+          "format": "Text",
+          "language": "English",
+          "context": "unverified-catalogue-source"
+        },
+        {
+          "name": "Guardian, The (London, England)",
+          "dates": "1998 - Current",
+          "location": "England - London",
+          "type": "Newspaper",
+          "format": "Text",
+          "language": "English",
+          "context": "unverified-catalogue-source"
+        },
+        {
+          "name": "Guardian, The (London, England)",
+          "dates": "2019 - Current",
+          "location": "England - London",
+          "type": "Newspaper",
+          "format": "Image",
+          "language": "English",
+          "context": "unverified-catalogue-source"
+        },
+        {
+          "name": "Independent, The (London, England)",
+          "dates": "2020 - Current",
+          "location": "England - London",
+          "type": "Newspaper",
+          "format": "Image",
+          "language": "English",
+          "context": "unverified-catalogue-source"
+        },
+        {
+          "name": "i Paper, The (London, England)",
+          "dates": "2010 - Current",
+          "location": "England - London",
+          "type": "Newspaper",
+          "format": "Text",
+          "language": "English",
+          "context": "unverified-catalogue-source"
+        },
+        {
+          "name": "Mail on Sunday, The (London, England)",
+          "dates": "1990 - Current",
+          "location": "England - London",
+          "type": "Newspaper",
+          "format": "Text",
+          "language": "English",
+          "context": "unverified-catalogue-source"
+        },
+        {
+          "name": "Metro (UK)",
+          "dates": "2019 - Current",
+          "location": "UK Sources",
+          "type": "Newspaper",
+          "format": "Text",
+          "language": "English",
+          "context": "unverified-catalogue-source"
+        },
+        {
+          "name": "Observer, The: Archive (London, England)",
+          "dates": "1998 - 2025",
+          "location": "England - London",
+          "type": "Newspaper",
+          "format": "Text",
+          "language": "English",
+          "context": "unverified-catalogue-source"
+        },
+        {
+          "name": "Observer, The: Archive (London, England)",
+          "dates": "2019 - 2025",
+          "location": "England - London",
+          "type": "Newspaper",
+          "format": "Image",
+          "language": "English",
+          "context": "unverified-catalogue-source"
+        },
+        {
+          "name": "Observer, The: Web Edition Articles: Archive (London, England)",
+          "dates": "2014 - 2019",
+          "location": "England - London",
+          "type": "Web-Only Source",
+          "format": "Text",
+          "language": "English",
+          "context": "unverified-catalogue-source"
+        },
+        {
+          "name": "Observer, The: Web Edition Articles (London, England)",
+          "dates": "2025 - Current",
+          "location": "England - London",
+          "type": "Web-Only Source",
+          "format": "Text",
+          "language": "English",
+          "context": "unverified-catalogue-source"
+        },
+        {
+          "name": "Observer, The (London, England)",
+          "dates": "2025 - Current",
+          "location": "England - London",
+          "type": "Newspaper",
+          "format": "Text",
+          "language": "English",
+          "context": "unverified-catalogue-source"
+        },
+        {
+          "name": "Observer, The (London, England)",
+          "dates": "2025 - Current",
+          "location": "England - London",
+          "type": "Newspaper",
+          "format": "Image",
+          "language": "English",
+          "context": "unverified-catalogue-source"
+        },
+        {
+          "name": "Sun, The: Web Edition Articles (London, England)",
+          "dates": "2019 - Current",
+          "location": "England - London",
+          "type": "Web-Only Source",
+          "format": "Text",
+          "language": "English",
+          "context": "unverified-catalogue-source"
+        },
+        {
+          "name": "Sunday Times, The (London, England)",
+          "dates": "1985 - Current",
+          "location": "England - London",
+          "type": "Newspaper",
+          "format": "Text",
+          "language": "English",
+          "context": "unverified-catalogue-source"
+        },
+        {
+          "name": "Times, The (London, England)",
+          "dates": "1985 - Current",
+          "location": "England - London",
+          "type": "Newspaper",
+          "format": "Text",
+          "language": "English",
+          "context": "unverified-catalogue-source"
+        }
+      ],
+      "templateReason": "template_query_unapproved",
+      "entitlementVerified": false,
+      "fullTextVerified": false,
+      "currentDailyFinancialTimesVerified": false,
+      "note": "The live catalogue check recognized 33 target source descriptors among 1,012 rows. The only recognized Financial Times entry was Blogs, dated 2015–2019. A current daily Financial Times source is unestablished; whitelist omissions do not prove other titles absent. News Letter is listed as current text from 2002. Express, Irish Times and Observer have current Image entries, which are catalogue format descriptions rather than retrieved photos, exact-article access or entitlement. The source-link template query was unapproved; no browse route was opened or guessed."
+    },
+    "irishTimesSecond": {
+      "recordedAt": "2026-10-19T01:06:24.798Z",
+      "title": "Ukraine defies Trump by launching its largest-ever drone attack on St Petersburg",
+      "publicationDate": "2026-10-19",
+      "frontPageObserved": "2026-10-18",
+      "sourceParagraphs": 20,
+      "collapsedAI": 8,
+      "images": 0,
+      "videos": 0,
+      "publisherURLAssociationVerified": false,
+      "phoneAccepted": false,
+      "note": "The second Irish Times selected record saved 20 source paragraphs and eight initially collapsed AI notes, with a discussion form and no supplied media. Its publication date is 19 October; the headline was observed on the front page on 18 October. The retained Financial Times syndication credit does not make this a separately verified Financial Times edition. Publisher-URL association and phone acceptance remain unverified."
+    },
+    "timesNormalURLPreview": {
+      "recordedAt": "2026-10-19T01:12:12.244Z",
+      "title": "Trump endorses Netanyahu before Israeli elections as settler attacks surge",
+      "publicationDate": "2026-10-18",
+      "frontPageObserved": "2026-10-18",
+      "sourceParagraphs": 38,
+      "collapsedAI": 8,
+      "publicPreviewThumbnails": 1,
+      "loadedImages": 1,
+      "width": 1200,
+      "videos": 0,
+      "originalImagePlacementVerified": false,
+      "phoneAccepted": false,
+      "note": "A later check of the saved normal-URL Times edition verified 38 source paragraphs, eight collapsed AI notes, a discussion form and one loaded public-preview photograph, 1200 pixels wide. No video was supplied. Original image placement and phone acceptance remain unverified; the earlier failed audit row is preserved."
+    },
+    "telegraphNormalURL": {
+      "recordedAt": "2026-10-19T01:21:18.880Z",
+      "url": "https://www.telegraph.co.uk/politics/2026/10/18/israel-polanski-no-automatic-right-exist/",
+      "title": "Israel has no automatic right to exist, Polanski suggests",
+      "publicationDate": "2026-10-18",
+      "sourceParagraphs": 20,
+      "collapsedAI": 8,
+      "images": 0,
+      "videos": 0,
+      "phoneAccepted": false,
+      "manualHeadlineSupplied": false,
+      "recoveryChoicesObserved": false,
+      "note": "The previously failed Telegraph URL later saved through normal URL intake without a manually supplied headline: 20 source paragraphs, eight collapsed AI notes, a discussion form and no supplied media. An initial attempt while catalogue inspection occupied the library service returned busy without a saved-edition charge; retry after inspection completed succeeded. Existing matching found the record directly, so automatic recovery choices were not observed. The earlier failure is preserved; phone acceptance remains unverified."
+    },
+    "urlRecoveryNoMatch": {
+      "recordedAt": "2026-10-19T01:26:20.983Z",
+      "url": "https://observer.co.uk/news/national/article/the-childhood-lottery-see-how-your-postcode-fares",
+      "family": "The Observer",
+      "choices": 0,
+      "automaticSlugQueryObserved": true,
+      "originalURLFallbackPreserved": true,
+      "headlineEntryVisible": true,
+      "editionSaved": false,
+      "aliasCreated": false,
+      "allowanceRemaining": 21,
+      "positiveChoiceAcceptanceLiveVerified": false,
+      "note": "The live Observer interactive URL triggered one automatic slug-word library query and returned zero choices. The original URL and headline-entry fallback remained available. No edition was imported and no publisher alias was created; 21 of 30 places remained. A positive-choice recovery path is covered by synthetic tests only, not a live acceptance check."
+    }
+  },
+  "followup88": {
+    "release": 88,
+    "observedUTCDay": "2026-10-19",
+    "recordedAt": null,
+    "rowsInspected": 1012,
+    "recognizedDescriptors": 33,
+    "variants": [
+      {
+        "name": "FT Adviser (England)",
+        "dates": "2009 - Current",
+        "location": "England - London",
+        "format": "Text",
+        "context": "unverified-catalogue-variant"
+      },
+      {
+        "name": "Daily Record, The / Sunday Mail: Web Edition Articles (Scotland)",
+        "dates": "2014 - Current",
+        "location": "Scotland - Glasgow",
+        "format": "Text",
+        "context": "unverified-catalogue-variant"
+      },
+      {
+        "name": "Daily Record, The / Sunday Mail (Glasgow, Scotland)",
+        "dates": "1994 - Current",
+        "location": "Scotland - Glasgow",
+        "format": "Text",
+        "context": "unverified-catalogue-variant"
+      },
+      {
+        "name": "Press & Journal, The (Aberdeen, Scotland)",
+        "dates": "2015 - Current",
+        "location": "Scotland - Aberdeen",
+        "format": "Text",
+        "context": "unverified-catalogue-variant"
+      },
+      {
+        "name": "Scotsman, The/Scotland on Sunday (Scotland)",
+        "dates": "1998 - Current",
+        "location": "Scotland - Edinburgh",
+        "format": "Text",
+        "context": "unverified-catalogue-variant"
+      },
+      {
+        "name": "Scotsman, The/Scotland on Sunday (Scotland)",
+        "dates": "2020 - Current",
+        "location": "Scotland - Edinburgh",
+        "format": "Image",
+        "context": "unverified-catalogue-variant"
+      },
+      {
+        "name": "Daily Telegraph, The/The Sunday Telegraph: Blogs (London, England)",
+        "dates": "2006 - 2015",
+        "location": "England - London",
+        "format": "Text",
+        "context": "unverified-catalogue-variant"
+      },
+      {
+        "name": "Daily Telegraph, The/The Sunday Telegraph: Web Edition Articles (London, England)",
+        "dates": "2012 - Current",
+        "location": "England - London",
+        "format": "Text",
+        "context": "unverified-catalogue-variant"
+      },
+      {
+        "name": "Daily Telegraph, The/The Sunday Telegraph (London, England)",
+        "dates": "2000 - Current",
+        "location": "England - London",
+        "format": "Text",
+        "context": "unverified-catalogue-variant"
+      },
+      {
+        "name": "Daily Telegraph, The/The Sunday Telegraph (London, England)",
+        "dates": "2020 - Current",
+        "location": "England - London",
+        "format": "Image",
+        "context": "unverified-catalogue-variant"
+      },
+      {
+        "name": "Record PM (Edinburgh, Glasgow, Scotland)",
+        "dates": "2009 - 2009",
+        "location": "Scotland - Edinburgh, Glasgow",
+        "format": "Text",
+        "context": "unverified-catalogue-variant"
+      },
+      {
+        "name": "Telegraph Magazine (England)",
+        "dates": "2009 - Current",
+        "location": "England - London",
+        "format": "Text",
+        "context": "unverified-catalogue-variant"
+      }
+    ],
+    "variantsTruncated": false,
+    "template": {
+      "status": "observed",
+      "reasonCode": "template_query_unapproved",
+      "path": "/apps/news/browse-pub",
+      "queryKeys": [
+        "p",
+        "t",
+        "action"
+      ],
+      "placeholderIndices": [
+        1
+      ],
+      "tShape": "row-source-reference",
+      "hasLiteralPublicationPrefix": false,
+      "hasLiteralNameSeparator": false,
+      "browseEnabled": false
+    },
+    "currentDailyFinancialTimesVerified": false,
+    "ftAdviserIsSeparateTitle": true,
+    "entitlementVerified": false,
+    "note": "The next live check retained 12 literal source-name variants, separately from the 33 recognized descriptors. The catalogue lists current Scotsman / Scotland on Sunday text and Image formats, Press & Journal text, Daily Record / Sunday Mail text and composite Telegraph text/Image entries with the date ranges below. These are exact catalogue names, not newly registered aliases or article-access proof. FT Adviser is a distinct title; its current entry does not establish Financial Times newspaper access. The recognized FT Blogs entry remains dated 2015–2019, and whitelist omissions still do not prove absence. The observed browse template uses query key names p, t and action with one row-source-reference placeholder; at checkpoint 88 it remains unapproved for navigation. No query values, raw template or hidden row reference are published."
+  },
   "allowance": {
     "newSavedEditionsPerUTCDay": 30,
     "scope": "Shared across this Reading Room service, newspapers, rooms and members",
@@ -790,13 +1351,13 @@
       "limit": 30,
       "used": null,
       "pending": null,
-      "remaining": 25,
+      "remaining": 21,
       "available": null,
       "resetsAt": null,
       "trackingSince": null,
       "historyStatus": "not-supplied"
     },
-    "usageSnapshotNote": "The owner-operated Add article UI directly showed 25 of 30 remaining on 19 October. Its exact observation time and other counter fields were not retained. Those fields are not computed from saved editions. No reset or refund was applied.",
+    "usageSnapshotNote": "The owner-operated Add article UI directly showed 21 of 30 remaining on 19 October. The check was recorded at 19 Oct 2026, 02:26 UK time; other counter fields were not retained. Those fields are not computed from saved editions. No reset or refund was applied. The later live Observer no-match check saved no edition and preserved the URL/headline fallback; 21 remaining was observed unchanged. The earlier 22-place snapshot preceded the successful Telegraph save.",
     "quotaProof": {
       "traceUTCDay": "2026-10-18",
       "checkpoints": [
@@ -838,7 +1399,7 @@
       ],
       "completeSequence": true,
       "successfulSaveAccountingConfirmed": true,
-      "latestRecordedRemaining": 25,
+      "latestRecordedRemaining": 21,
       "currentSnapshotUTCDay": "2026-10-19",
       "rollover": {
         "recordedAt": "2026-10-19T00:12:18.901808+00:00",

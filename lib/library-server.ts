@@ -76,7 +76,7 @@ export async function librarySettingsAPI(r:Request,c:Config,fetcher:typeof fetch
    const account=accountValue(await openLibrary(c.RR_LIBRARY_VAULT_KEY,row.encrypted));
    if(!account.session||!Array.isArray((account.session as any).cookies)||!(account.session as any).cookies.length)return json({error:'Reconnect Camden before inspecting source lists.'},409);
    const client=runtimeLibraryClient(c,fetcher,account);client.restoreSession(account.session);
-   if(!await slot(c,'library-native-sources:'+connectionId(c),5))return json({error:'Today’s five library source-list inspections for this room have been used.'},429);
+   if(!await slot(c,'library-native-sources:'+connectionId(c),12))return json({error:'Today’s twelve Reading Room source-list checks for this room have been used. Earlier checks still count.'},429);
    let result=await client.inspectNativeSources();
    if(result.status==='login_required'){
     if(!await slot(c,'library-login:'+connectionId(c),10))return json({error:'Today’s library sign-in limit has been used.',status:'login_required',stage:'session',reasonCode:'session_expired'},429);
