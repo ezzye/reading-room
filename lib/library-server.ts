@@ -16,6 +16,7 @@ import {spendPressAuditStage} from './press-audit.ts';
 import type {PressAuditAllowance} from './press-audit.ts';
 import {publicationSearchQuery,sanitizePublicationSearch,sanitizePublicationSearchStatus} from './newsbank-publications.mjs';
 import {sanitizeNativeSources} from './newsbank-native-sources.mjs';
+import {observerURLHeadlineMatches} from './observer-url-headline.mjs';
 const now=()=>new Date().toISOString();
 const json=(body:unknown,status=200)=>Response.json(body,{status,headers:{'Cache-Control':'private, no-store','X-Content-Type-Options':'nosniff','Referrer-Policy':'no-referrer'}});
 function connectionId(c:Config){const id=typeof c.RR_ACTIVE_ROOM_ID==='string'?c.RR_ACTIVE_ROOM_ID:DEFAULT_ROOM_ID;return id===DEFAULT_ROOM_ID?'camden':'camden:'+id;}
@@ -119,7 +120,7 @@ export async function librarySettingsAPI(r:Request,c:Config,fetcher:typeof fetch
    if(account.session)client.restoreSession(account.session);
    const date=publisher.key==='telegraph'?normalizeNewsBankDate(new URL(publisher.url).pathname.match(/\/(\d{4}\/\d{2}\/\d{2})\//)?.[1]||''):'';
    const urlWords=new URL(publisher.url).pathname.split('/').filter(Boolean).at(-1)!.replaceAll('-',' ');
-   const metadata={title,date,publisher:publisher.key,urlWordsHint:publisher.key==='telegraph'&&title.toLowerCase()===urlWords&&terms(urlWords).length>=5};let result=await client.lookup(metadata);
+   const metadata={title,date,publisher:publisher.key,urlWordsHint:['telegraph','observer'].includes(publisher.key)&&title.toLowerCase()===urlWords&&terms(urlWords).length>=5};let result=await client.lookup(metadata);
    if(result.status==='login_required'){
     if(!await slot(c,'library-login:'+connectionId(c),10))return json({error:'Today’s library sign-in limit has been used.'},429);
     const auth=await client.login(account);if(auth.status!=='authenticated')return json({error:'Reconnect Camden to check this article.'},409);
@@ -233,7 +234,7 @@ export async function lookupNewsBankSource(rawURL:string,c:Config,fetcher:typeof
   // Compare that punctuation loss without lowering the stricter score threshold.
   const urlText=(value:string)=>value.replace(/[’']/g,'');
   const score=rankMatches(urlText(meta.title),[{title:urlText(result.article.title),date:normalizeNewsBankDate(result.article.date)}],meta.date,{allowNextDayPublication:publisher.key==='telegraph'})[0]?.score||0;
-  if(!normalizeNewsBankDate(result.article.date)||score<0.85){await save(c,account);throw Object.assign(Error('The URL words did not closely match the returned library headline and date. Paste the original newspaper headline to check it. No article was substituted.'),{code:'headline_unverified',needsHeadline:true});}
+  if(!normalizeNewsBankDate(result.article.date)||score<0.85||publisher.key==='observer'&&!observerURLHeadlineMatches(meta.title,result.article.title)){await save(c,account);throw Object.assign(Error('The URL words did not closely match the returned library headline and date. Paste the original newspaper headline to check it. No article was substituted.'),{code:'headline_unverified',needsHeadline:true});}
  }
  await save(c,account);
  return {...result.article,originalURL,originalTitle:meta.title,metadataBasis:metadata.basis,readerHeadlineHint:metadata.basis.startsWith('reader-supplied headline'),urlWordsHint};

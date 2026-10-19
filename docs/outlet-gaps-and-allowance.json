@@ -1,10 +1,11 @@
 {
   "schema": "reading-room-outlet-gaps-and-allowance/v1",
-  "generatedAt": "2026-10-19T00:31:01.331Z",
+  "generatedAt": "2026-10-19T01:07:19.160Z",
   "deployment": {
-    "coreRelease": 84,
-    "liveEvidenceRelease": 84,
-    "note": "Core release 84 is deployed. Dated live follow-ups verify one Irish Times selected-record save and one Observer public-preview thumbnail/reuse. These do not certify publication-wide coverage or new phone acceptance."
+    "coreRelease": 86,
+    "liveEvidenceRelease": 85,
+    "nativeCatalogueLiveVerification": "pending",
+    "note": "Core release 86 is deployed; the new catalogue metadata inspection is pending. Dated live edition evidence remains at release 85. Dated live follow-ups verify Irish Times and Express selected-record saves and one Observer public-preview thumbnail/reuse. These do not certify publication-wide coverage or new phone acceptance."
   },
   "scope": "Four UK national follow-ups, retained Scotland/Northern Ireland observations, three Republic of Ireland papers and six selected US outlets. AP/NPR are news comparators, not newspapers. This is not every newspaper or independent print edition.",
   "totals": {
@@ -25,8 +26,8 @@
       "pending": 0
     },
     "selectedLibraryRecords": {
-      "records": 4,
-      "saved": 4,
+      "records": 8,
+      "saved": 8,
       "cached": 0,
       "failed": 0,
       "pending": 0
@@ -118,6 +119,9 @@
       "date": "2026-10-18",
       "recordURL": "https://infoweb.newsbank.com/apps/news/document-view?p=UKNB&docref=news%2F1AB517C54580F368",
       "caption": "Library text edition; approximate styling.",
+      "recordKind": "selected-library-record",
+      "exactFrontPageInteractiveMatch": null,
+      "selectionNote": null,
       "sourceAssociation": "This selected library record is reported independently. No association with an original publisher URL is inferred.",
       "live": {
         "status": "saved",
@@ -153,6 +157,9 @@
       "date": "2026-10-18",
       "recordURL": "https://infoweb.newsbank.com/apps/news/document-view?p=UKNB&docref=news%2F1AB540A9361A0190",
       "caption": "Library text edition; approximate styling.",
+      "recordKind": "selected-library-record",
+      "exactFrontPageInteractiveMatch": null,
+      "selectionNote": null,
       "sourceAssociation": "This selected library record is reported independently. No association with an original publisher URL is inferred.",
       "live": {
         "status": "saved",
@@ -188,6 +195,9 @@
       "date": "2026-10-18",
       "recordURL": "https://infoweb.newsbank.com/apps/news/document-view?p=UKNB&docref=news%2F1AB52B39B15AA0D8",
       "caption": "Library text edition; approximate styling.",
+      "recordKind": "selected-library-record",
+      "exactFrontPageInteractiveMatch": null,
+      "selectionNote": null,
       "sourceAssociation": "This selected library record is reported independently. No association with an original publisher URL is inferred.",
       "live": {
         "status": "saved",
@@ -223,6 +233,9 @@
       "date": "2026-10-18",
       "recordURL": "https://infoweb.newsbank.com/apps/news/document-view?p=UKNB&docref=news%2F1AB54B805137CA88",
       "caption": "Library text edition; approximate styling.",
+      "recordKind": "selected-library-record",
+      "exactFrontPageInteractiveMatch": null,
+      "selectionNote": null,
       "sourceAssociation": "This selected library record is reported independently. No association with an original publisher URL is inferred.",
       "live": {
         "status": "saved",
@@ -237,6 +250,158 @@
           "expanded": 0
         },
         "recordedAt": "2026-10-19T00:28:17.892207+00:00",
+        "countsRecordedAt": null,
+        "countsNote": null
+      },
+      "media": {
+        "rendered": "verified",
+        "images": "pending",
+        "imageLabel": "pending",
+        "allImagesLoaded": false,
+        "playback": "pending",
+        "phone": "pending",
+        "loadedImageReferences": null,
+        "phoneScope": null,
+        "imageScope": null
+      }
+    },
+    {
+      "family": "Express / Express on Sunday",
+      "title": "Britain can do this one thing to stop asylum seekers breaking the law",
+      "date": "2026-10-18",
+      "recordURL": "https://infoweb.newsbank.com/apps/news/document-view?p=UKNB&docref=news%2F1AB54035DA838D48",
+      "caption": "Library text edition; approximate styling.",
+      "recordKind": "selected-library-record",
+      "exactFrontPageInteractiveMatch": null,
+      "selectionNote": null,
+      "sourceAssociation": "This selected library record is reported independently. No association with an original publisher URL is inferred.",
+      "live": {
+        "status": "saved",
+        "label": "New edition saved",
+        "note": "A completed save is explicitly recorded.",
+        "counts": {
+          "paragraphs": 28,
+          "words": null,
+          "images": 0,
+          "videos": 0,
+          "annotations": 8,
+          "expanded": 0
+        },
+        "recordedAt": "2026-10-19T00:34:57.294Z",
+        "countsRecordedAt": null,
+        "countsNote": null
+      },
+      "media": {
+        "rendered": "verified",
+        "images": "pending",
+        "imageLabel": "pending",
+        "allImagesLoaded": false,
+        "playback": "pending",
+        "phone": "pending",
+        "loadedImageReferences": null,
+        "phoneScope": null,
+        "imageScope": null
+      }
+    },
+    {
+      "family": "The Herald",
+      "title": "John Swinney compared to dictator as bus plans branded ‘business confiscation’",
+      "date": "2026-10-18",
+      "recordURL": "",
+      "caption": "Library text edition; approximate styling.",
+      "recordKind": "selected-library-record",
+      "exactFrontPageInteractiveMatch": null,
+      "selectionNote": "Publisher-URL association and phone acceptance remain unverified.",
+      "sourceAssociation": "This selected library record is reported independently. No association with an original publisher URL is inferred.",
+      "live": {
+        "status": "saved",
+        "label": "New edition saved",
+        "note": "A completed save is explicitly recorded.",
+        "counts": {
+          "paragraphs": 38,
+          "words": null,
+          "images": 0,
+          "videos": 0,
+          "annotations": 7,
+          "expanded": 0
+        },
+        "recordedAt": "2026-10-19T00:58:23.234Z",
+        "countsRecordedAt": null,
+        "countsNote": null
+      },
+      "media": {
+        "rendered": "verified",
+        "images": "pending",
+        "imageLabel": "pending",
+        "allImagesLoaded": false,
+        "playback": "pending",
+        "phone": "pending",
+        "loadedImageReferences": null,
+        "phoneScope": null,
+        "imageScope": null
+      }
+    },
+    {
+      "family": "The National",
+      "title": "Scotland's buses to be brought back into public control, John Swinney announces",
+      "date": "2026-10-17",
+      "recordURL": "",
+      "caption": "Library text edition; approximate styling.",
+      "recordKind": "selected-library-record",
+      "exactFrontPageInteractiveMatch": null,
+      "selectionNote": "This record is dated 17 October; its headline was observed on the front page on 18 October. Publisher-URL association remains unverified.",
+      "sourceAssociation": "This selected library record is reported independently. No association with an original publisher URL is inferred.",
+      "live": {
+        "status": "saved",
+        "label": "New edition saved",
+        "note": "A completed save is explicitly recorded.",
+        "counts": {
+          "paragraphs": 16,
+          "words": null,
+          "images": 0,
+          "videos": 0,
+          "annotations": 7,
+          "expanded": 0
+        },
+        "recordedAt": "2026-10-19T00:59:47.708Z",
+        "countsRecordedAt": null,
+        "countsNote": null
+      },
+      "media": {
+        "rendered": "verified",
+        "images": "pending",
+        "imageLabel": "pending",
+        "allImagesLoaded": false,
+        "playback": "pending",
+        "phone": "pending",
+        "loadedImageReferences": null,
+        "phoneScope": null,
+        "imageScope": null
+      }
+    },
+    {
+      "family": "The Observer",
+      "title": "The ‘childhood lottery’: report reveals how postcodes shape young people’s lives",
+      "date": "2026-10-18",
+      "recordURL": "",
+      "caption": "Related library report; approximate styling.",
+      "recordKind": "related-library-report",
+      "exactFrontPageInteractiveMatch": false,
+      "selectionNote": "Separately titled related report selected explicitly; no exact match to the requested front-page interactive.",
+      "sourceAssociation": "This selected library record is reported independently. No association with an original publisher URL is inferred.",
+      "live": {
+        "status": "saved",
+        "label": "New edition saved",
+        "note": "A completed save is explicitly recorded.",
+        "counts": {
+          "paragraphs": 24,
+          "words": null,
+          "images": 0,
+          "videos": 0,
+          "annotations": 8,
+          "expanded": 0
+        },
+        "recordedAt": "2026-10-19T01:00:13.690Z",
         "countsRecordedAt": null,
         "countsNote": null
       },
@@ -338,7 +503,7 @@
       "recordedAt": "2026-10-19T00:18:33.797Z",
       "qualifiedLabel": "Express, The/The Express on Sunday: Web Edition Articles (London, England)",
       "fullTextVerified": false,
-      "note": "A later diagnostic retained the exact qualified Express / Express on Sunday web-edition label. This is source metadata; no Express library-record save or full-text entitlement is certified."
+      "note": "A later diagnostic retained the exact qualified Express / Express on Sunday web-edition label. This diagnostic was source metadata only; no Express library-record save had been verified at that observation. A later selected-record save appears separately below."
     },
     "native84": {
       "recordedAt": null,
@@ -399,6 +564,218 @@
       "note": "The v83 diagnostic observed 67 script references: 21 eligible same-origin static URLs, with only the first 12 retained. Those retained references were generic dependencies. The retention cap is now 24; the next live catalogue observation remains pending. No application asset or API endpoint is inferred."
     }
   },
+  "access19": {
+    "observedUTCDay": "2026-10-19",
+    "additionalUSSummary": {
+      "families": 2,
+      "linkedStories": 4,
+      "note": "Newly observed on 19 October; separate from the 18 October matrix and its totals. Publication dates retain their own metadata."
+    },
+    "additionalUS": [
+      {
+        "family": "New York Post",
+        "homepage": "https://nypost.com/",
+        "observedAt": "2026-10-19T00:29:34.532Z",
+        "httpStatus": 200,
+        "stories": [
+          {
+            "title": "Kansas mom who crashed truck into youth soccer field, killing 2, released without charges — or explanation",
+            "url": "https://nypost.com/2026/10/18/us-news/kansas-mom-who-mowed-down-2-on-youth-soccer-field-released-without-charges/",
+            "homepageObservedAt": "2026-10-19T00:29:34.532Z",
+            "headObservedAt": "2026-10-19T00:30:40.126Z",
+            "headHTTPStatus": 200,
+            "publishedDate": "2026-10-18",
+            "headImageReferences": 2,
+            "headVideoReferences": 0,
+            "paywallMarkerCount": 0,
+            "bodyExtracted": false,
+            "bodyEligibility": "unverified",
+            "liveAddition": "pending",
+            "mediaLoading": "unverified",
+            "note": "Ordinary homepage/head metadata only. Marker counts and media references do not establish an unlocked body, loaded photos or playback."
+          },
+          {
+            "title": "NY AG hopeful Komatireddy within just 6 points of Dem incumbent Tish James after debate: bombshell poll",
+            "url": "https://nypost.com/2026/10/18/us-news/ny-ag-hopeful-komatireddy-pulls-within-just-6-points-of-dem-incumbent-tish-james-after-debate-poll/",
+            "homepageObservedAt": "2026-10-19T00:29:34.532Z",
+            "headObservedAt": "2026-10-19T00:30:40.167Z",
+            "headHTTPStatus": 200,
+            "publishedDate": "2026-10-18",
+            "headImageReferences": 2,
+            "headVideoReferences": 0,
+            "paywallMarkerCount": 0,
+            "bodyExtracted": false,
+            "bodyEligibility": "unverified",
+            "liveAddition": "pending",
+            "mediaLoading": "unverified",
+            "note": "Ordinary homepage/head metadata only. Marker counts and media references do not establish an unlocked body, loaded photos or playback."
+          }
+        ]
+      },
+      {
+        "family": "Los Angeles Times",
+        "homepage": "https://www.latimes.com/",
+        "observedAt": "2026-10-19T00:29:34.580Z",
+        "httpStatus": 200,
+        "stories": [
+          {
+            "title": "Over $1 billion spent, few miles driven: How California’s flagship clean transit initiative was hit by accusations of fraud and waste",
+            "url": "https://www.latimes.com/environment/story/2026-10-18/accusations-of-fraud-waste-roil-california-ev-truck-bus-subsidy-program",
+            "homepageObservedAt": "2026-10-19T00:29:34.580Z",
+            "headObservedAt": "2026-10-19T00:30:40.262Z",
+            "headHTTPStatus": 200,
+            "publishedDate": "2026-10-18",
+            "headImageReferences": 2,
+            "headVideoReferences": 0,
+            "paywallMarkerCount": 1,
+            "bodyExtracted": false,
+            "bodyEligibility": "unverified",
+            "liveAddition": "pending",
+            "mediaLoading": "unverified",
+            "note": "Ordinary homepage/head metadata only. Marker counts and media references do not establish an unlocked body, loaded photos or playback."
+          },
+          {
+            "title": "Scores of women, teen workers were groped, grabbed at this restaurant chain, feds say",
+            "url": "https://www.latimes.com/california/story/2026-10-18/italian-restaurant-chain-il-fornaio-to-pay-3-million-to-settle-sexual-harassment-lawsuit",
+            "homepageObservedAt": "2026-10-19T00:29:34.580Z",
+            "headObservedAt": "2026-10-19T00:30:40.263Z",
+            "headHTTPStatus": 200,
+            "publishedDate": "2026-10-18",
+            "headImageReferences": 2,
+            "headVideoReferences": 0,
+            "paywallMarkerCount": 1,
+            "bodyExtracted": false,
+            "bodyEligibility": "unverified",
+            "liveAddition": "pending",
+            "mediaLoading": "unverified",
+            "note": "Ordinary homepage/head metadata only. Marker counts and media references do not establish an unlocked body, loaded photos or playback."
+          }
+        ]
+      }
+    ],
+    "morningStar": {
+      "recordedAt": "2026-10-19T00:36:39.196Z",
+      "url": "https://morningstaronline.co.uk/article/lessons-french-rebellion-must-not-be-lost-british-labour-movement",
+      "status": "metered-visible-prompt",
+      "statedFreeArticlesPerMonth": 5,
+      "closeControlRendered": true,
+      "gateInteractedWith": false,
+      "bodyCaptured": false,
+      "meterRespectingServerRetrievalImplemented": false,
+      "note": "The browser showed a visible subscription/sign-in overlay stating five free articles per month, with a close control. No interaction or body capture was performed. This is metered access; always-paid and unlimited-free classifications are not established. Meter-respecting server retrieval remains unimplemented."
+    },
+    "laTimes": {
+      "recordedAt": "2026-10-19T00:32:57.292Z",
+      "url": "https://www.latimes.com/environment/story/2026-10-18/accusations-of-fraud-waste-roil-california-ev-truck-bus-subsidy-program",
+      "status": "eligibility-unresolved",
+      "subscriberBadge": true,
+      "visiblePaywallNode": true,
+      "ordinaryServerEligibilityAssessed": false,
+      "bodyCaptured": false,
+      "gateInteractedWith": false,
+      "note": "Chrome accessibility text appeared alongside a FOR subscribers badge and a visible paywall node. This browser context is ambiguous; ordinary server-side public eligibility has not been established. No full-text capture or gate interaction was performed."
+    },
+    "expressSelectedSave": {
+      "recordedAt": "2026-10-19T00:34:57.294Z",
+      "title": "Britain can do this one thing to stop asylum seekers breaking the law",
+      "date": "2026-10-18",
+      "sourceParagraphs": 28,
+      "collapsedAI": 8,
+      "firstAIExpanded": true,
+      "discussionFormVisible": true,
+      "images": 0,
+      "videos": 0,
+      "phoneVerified": false,
+      "publisherURLAssociationVerified": false,
+      "note": "The selected Express library record saved with 28 source paragraphs, eight initially collapsed AI notes, a successful first-note expansion and a visible discussion form. No images or video were supplied, and no publisher-URL association or phone acceptance was verified. The earlier paid public-URL refusal remains historical."
+    }
+  },
+  "followup85": {
+    "release": 85,
+    "nyPostURLSaves": [
+      {
+        "family": "New York Post",
+        "title": "Kansas mom who crashed truck into youth soccer field, killing 2, released without charges — or explanation",
+        "url": "https://nypost.com/2026/10/18/us-news/kansas-mom-who-mowed-down-2-on-youth-soccer-field-released-without-charges/",
+        "homepageObservedAt": "2026-10-19T00:29:34.532Z",
+        "recordedAt": "2026-10-19T00:46:31.128Z",
+        "status": "saved",
+        "counts": {
+          "paragraphs": 14,
+          "images": 3,
+          "loadedImages": 3,
+          "annotations": 8,
+          "expanded": 0,
+          "videos": 0
+        },
+        "allImagesLoaded": true,
+        "discussionFormVisible": true,
+        "firstAIExpanded": false,
+        "phoneVerified": false,
+        "exactFontFileVerified": false,
+        "note": "Normal URL addition saved this exact 19 October homepage-linked story. All recorded photos loaded, AI notes began collapsed and the discussion form appeared. No new phone acceptance, exact publisher font-file fidelity or video playback is claimed."
+      },
+      {
+        "family": "New York Post",
+        "title": "NY AG hopeful Komatireddy within just 6 points of Dem incumbent Tish James after debate: bombshell poll",
+        "url": "https://nypost.com/2026/10/18/us-news/ny-ag-hopeful-komatireddy-pulls-within-just-6-points-of-dem-incumbent-tish-james-after-debate-poll/",
+        "homepageObservedAt": "2026-10-19T00:29:34.532Z",
+        "recordedAt": "2026-10-19T00:47:25.774Z",
+        "status": "saved",
+        "counts": {
+          "paragraphs": 32,
+          "images": 2,
+          "loadedImages": 2,
+          "annotations": 8,
+          "expanded": 0,
+          "videos": 0
+        },
+        "allImagesLoaded": true,
+        "discussionFormVisible": true,
+        "firstAIExpanded": true,
+        "phoneVerified": false,
+        "exactFontFileVerified": false,
+        "note": "Normal URL addition saved this exact 19 October homepage-linked story. All recorded photos loaded, AI notes began collapsed and the discussion form appeared. No new phone acceptance, exact publisher font-file fidelity or video playback is claimed."
+      }
+    ],
+    "observerSlugDiagnostic": {
+      "recordedAt": "2026-10-19T00:53:14.030Z",
+      "publisherURL": "https://observer.co.uk/news/national/article/childrens-commissioner-declares-state-of-emergency-on-young-peoples-lives",
+      "publication": "Observer, The: Web Edition Articles (London, England)",
+      "date": "2026-10-18",
+      "sourceParagraphs": 31,
+      "editionMutation": false,
+      "note": "The owner slug/headline-match diagnostic returned the exact qualified Observer document with 31 source paragraphs. This diagnostic did not mutate the edition; earlier URL reuse and preview-thumbnail checks remain separate."
+    },
+    "heraldAdditionalEdition": {
+      "family": "The Herald",
+      "ordinal": 2,
+      "status": "saved",
+      "recordedAt": "2026-10-19T00:58:23.234Z",
+      "countsStatus": "verified",
+      "title": "John Swinney compared to dictator as bus plans branded ‘business confiscation’",
+      "sourceURL": null,
+      "counts": {
+        "paragraphs": 38,
+        "images": 0,
+        "videos": 0,
+        "annotations": 7
+      },
+      "publisherURLAssociationVerified": false,
+      "phoneVerified": false,
+      "note": "The second Herald selected record is now verified with 38 source paragraphs, seven collapsed AI notes and no supplied images/video. Publisher-URL association and phone acceptance remain unverified."
+    },
+    "usageObservation": {
+      "reportedAt": "2026-10-19T01:00:26.426934+00:00",
+      "observedAt": null,
+      "remaining": 25,
+      "limit": 30,
+      "manualReset": false,
+      "refund": false,
+      "otherCounterFieldsReported": false,
+      "note": "Fresh Add article UI observation: 25 of 30 remaining. Exact observation time and other counters were not retained; no balance is derived from edition counts."
+    }
+  },
   "allowance": {
     "newSavedEditionsPerUTCDay": 30,
     "scope": "Shared across this Reading Room service, newspapers, rooms and members",
@@ -411,15 +788,15 @@
     "history": "Legacy attempt counters remain intact. They mix successes and failures, so they cannot be re-labelled as completed editions or attributed reliably to individual papers. Completed-edition tracking begins at its recorded migration timestamp.",
     "currentUsage": {
       "limit": 30,
-      "used": 1,
-      "pending": 0,
-      "remaining": 29,
-      "available": 29,
-      "resetsAt": "2026-10-20T00:00:00Z",
+      "used": null,
+      "pending": null,
+      "remaining": 25,
+      "available": null,
+      "resetsAt": null,
       "trackingSince": null,
       "historyStatus": "not-supplied"
     },
-    "usageSnapshotNote": "The Add article UI directly recorded 29 of 30 remaining after the Irish Times save, before the later URL-only Observer reopen. No post-reopen balance is inferred. The earlier 19 October UTC rollover snapshot was 30 of 30 without a manual reset or refund.",
+    "usageSnapshotNote": "The owner-operated Add article UI directly showed 25 of 30 remaining on 19 October. Its exact observation time and other counter fields were not retained. Those fields are not computed from saved editions. No reset or refund was applied.",
     "quotaProof": {
       "traceUTCDay": "2026-10-18",
       "checkpoints": [
@@ -461,7 +838,7 @@
       ],
       "completeSequence": true,
       "successfulSaveAccountingConfirmed": true,
-      "latestRecordedRemaining": 29,
+      "latestRecordedRemaining": 25,
       "currentSnapshotUTCDay": "2026-10-19",
       "rollover": {
         "recordedAt": "2026-10-19T00:12:18.901808+00:00",
@@ -811,8 +1188,8 @@
           "observedAt": "2026-10-18T21:41:11.991Z",
           "sourceAccess": {
             "status": "access-gate",
-            "label": "Access gate observed",
-            "note": "A visible gate or subscription prompt was recorded; no public body import is claimed.",
+            "label": "Restricted server metadata · 18 Oct",
+            "note": "A visible gate or subscription prompt was recorded; no public body import is claimed. A later 19 October browser observation explicitly showed a five-free-articles monthly meter and a visible prompt. Always-paid or unlimited-free access is not established; meter-respecting server retrieval remains unimplemented.",
             "counts": {
               "paragraphs": null,
               "words": null,
