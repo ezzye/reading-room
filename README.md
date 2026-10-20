@@ -27,7 +27,7 @@ Open the loopback address printed by the development server. The portable local 
 
 The optional headline-versus-article check stays closed until a reader opens it. It compares the retained headline and source passages; it is not an independent fact check. Validated passage links accompany each observation. A phrase that is not in the headline gets at most one regeneration, within the same request and a shared 70-second provider deadline; unsupported evidence is still rejected. Fixed diagnostic codes help identify failures without logging article text or account data.
 
-If a Telegraph URL cannot be matched, Reading Room uses three literal distinctive words from its slug to find Camden candidates. A supplied headline can refine that search. The reader must choose a result; discovery never certifies URL identity or automatically substitutes an article.
+If a Telegraph URL cannot be matched, Reading Room makes at most two bounded keyword searches from its literal slug words to find Camden candidates. The second runs only after a successful empty first result, never after a service failure or a reader-supplied headline. A supplied headline can refine that search. The reader must choose a result; discovery never certifies URL identity or automatically substitutes an article.
 
 ## Article tab icons
 
