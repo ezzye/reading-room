@@ -23,6 +23,12 @@ npm run dev
 
 Open the loopback address printed by the development server. The portable local profile provides simulated sign-in for development only. Database bindings use the template in `.openai/hosting.json`; the local runtime keeps its database and logs in ignored directories. Apply the SQL files in `drizzle/` in numeric order to a new D1 database before running the room features. Check a clean copy with `npm test`, `npx tsc --noEmit --incremental false`, and `npm run build`. The production host must supply its own authenticated identity layer, D1 database, HTTPS, and private secret storage. This package does not deploy a service.
 
+## Headline comparison and Telegraph discovery
+
+The optional headline-versus-article check stays closed until a reader opens it. It compares the retained headline and source passages; it is not an independent fact check. Validated passage links accompany each observation. A phrase that is not in the headline gets at most one regeneration, within the same request and a shared 70-second provider deadline; unsupported evidence is still rejected. Fixed diagnostic codes help identify failures without logging article text or account data.
+
+If a Telegraph URL cannot be matched, Reading Room uses three literal distinctive words from its slug to find Camden candidates. A supplied headline can refine that search. The reader must choose a result; discovery never certifies URL identity or automatically substitutes an article.
+
 ## Article tab icons
 
 Article tabs use a bundled, coloured letter badge for the recognised newspaper. These are Reading Room navigation cues, not official publisher logos. The shelf and installed app retain the Reading Room book icon, and unknown sources use that icon too. The badges load from the app itself, without contacting a publisher or an external favicon service. Camden record editions use their recognised publication label.
