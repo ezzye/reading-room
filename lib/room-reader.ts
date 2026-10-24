@@ -1,4 +1,5 @@
 import {parseHTML} from 'linkedom';
+import {REFERENCE_KIND} from './camden-resources.mjs';
 import {canonicalOrigin} from './app-origin.mjs';
 import {pageResponse} from './page-renderer.ts';
 import {withRoomDiscussion} from './room-discussion-view.mjs';
@@ -44,7 +45,8 @@ export async function roomReader(r:Request,c:Config){
    if(heading&&heading.textContent===raw&&parts){heading.textContent=parts[1];const deck=d.createElement('p');deck.className='standfirst';deck.textContent=parts[2];heading.after(deck);d.title=parts[1]+' · Reading Room';}
   }
   if(page.document?.kind==='saved-times-critical-v1')addHeadlinePassageAnchors(d,criticalEvidence.blocks);
-  appendHeadlineCheck(d,{roomId:room.id,pageId:id});
+  if(page.document?.kind===REFERENCE_KIND){info.textContent='Reading link. The text stays with its library provider; your discussion is private here.';originalLink.textContent='Open reading ↗';}
+  else appendHeadlineCheck(d,{roomId:room.id,pageId:id});
   if(isLibrary&&page.document.mediaDiscovery?.checkedAt&&!page.document.mediaDiscovery.added)console.info('RR_MEDIA_CHECK',JSON.stringify(mediaCheckTelemetry(page.document.capture,page.document.mediaDiscovery)));
   const canRepairSun=needsSunImageRepair(page.document?.capture);
   if(isLibrary&&!libraryRecord||canRepairSun){const media=d.createElement('button');media.id='rr-check-media';media.textContent=canRepairSun?'Repair source images':'Check images & video';media.style.cssText='display:block;margin-top:12px;padding:8px 12px';details.append(media);const checked=d.createElement('p');checked.id='rr-media-state';checked.setAttribute('role','status');checked.textContent=canRepairSun?(page.document.sunImageRepair?.checkedAt?sunImageRepairMessage(page.document.sunImageRepair.status,page.document.sunImageRepair.replaced,page.document.sunImageRepair.unresolvedCount):'Some saved image links need repair. Check the public original to restore them.'):mediaAvailabilityMessage(page.document);details.append(checked);}

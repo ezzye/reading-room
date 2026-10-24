@@ -1,4 +1,5 @@
 import {requireRoom,accessiblePage} from './rooms.ts';
+import {REFERENCE_KIND,camdenResource,CAMDEN_RESOURCES,referenceURL} from './camden-resources.mjs';
 import {articleAPI} from './article-service.ts';
 import {loadPage,providerCall} from './education-service.ts';
 import type {Config} from './education-service.ts';
@@ -25,7 +26,7 @@ export async function roomBody(request:Request,max=5000){
 export function shelfMetadata(row:any){
  let doc:any={};try{doc=typeof row.document==='string'?JSON.parse(row.document):row.document||{};}catch{}
  const capture=doc.capture;const image=mediaURL(capture?.blocks?.find((b:any)=>b.type==='figure')?.url||capture?.blocks?.find((b:any)=>b.type==='video')?.poster||'');
- let publisher=capture?.publisher||'';try{publisher||=new URL(row.source_url||row.sourceURL).hostname.replace(/^www\./,'');}catch{}
+ let publisher=(doc.kind===REFERENCE_KIND?camdenResource(doc.resourceId)?.name:'')||capture?.publisher||'';try{publisher||=new URL(row.source_url||row.sourceURL).hostname.replace(/^www\./,'');}catch{}
  publisher=publisher.replace(/\s*(?:\([^)]*Camden[^)]*\)|·\s*Camden.*)/gi,'').trim();if(publisher==='thetimes.com')publisher='The Times';
  const library=capture?.presentation?.method==='library-text'||capture?.diagnostics?.libraryTextEdition;
  const title=library?String(row.title).split(/\s+-\s+/)[0]:row.title;
@@ -47,6 +48,10 @@ export async function roomArticlesAPI(r:Request,c:Config,fetcher:typeof fetch=fe
    await c.DB.prepare('DELETE FROM rr_room_articles WHERE room_id=? AND page_id=?').bind(room.id,data.id).run();return json({removed:true});
   }
   let url:string;try{url=resourceURL(data.url);}catch{return json({error:'Paste an article link.'},400);}
+  if(data.auditRunId===undefined&&data.auditEntryId===undefined){
+   const resource=CAMDEN_RESOURCES.find((entry:any)=>!['newsbank','times-collection'].includes(entry.id)&&entry.hosts.includes(new URL(url).hostname));
+   if(resource){let reading:string;try{reading=referenceURL(url,resource.id);}catch{return json({error:'Use a permanent reading link, rather than a sign-in or account link.'},400);}const destination=new URL('/library',r.url);destination.searchParams.set('room',room.id);destination.searchParams.set('resource',resource.id);destination.searchParams.set('url',reading);if(typeof data.sourceHeadline==='string')destination.searchParams.set('title',data.sourceHeadline.slice(0,200));return json({needsReference:true,href:destination.pathname+destination.search});}
+  }
   if(data.auditRunId!==undefined||data.auditEntryId!==undefined){
    const claimed=await claimPressAuditEntry(r,c,{runId:data.auditRunId,entryId:data.auditEntryId,url,requestId:data.requestId});auditAllowance=claimed.allowance;data.sourceHeadline=claimed.sourceHeadline;
   }

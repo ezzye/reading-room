@@ -251,3 +251,7 @@ Vox and Narratively are available in URL intake and publication-scoped headline 
 On 24 October 2026, the supplied Vox self-help essay initially appeared in full HTML, but its normal browser page removed the text after loading and it declared subscription-only access. That response was not imported. Vox credits Michelle Goodman’s original essay, [Confessions of a Failed Self-Help Guru](https://www.narratively.com/p/confessions-of-a-failed-self-help-guru), which was available as an ordinary public Narratively article. The original is labelled Narratively with its own title, date and illustrations; no Vox URL alias or silent substitution is created. Support for a publisher does not promise that every paid article is available.
 
 Narratively uses its complete image src addresses because its CDN URLs contain commas; comma-separated image-candidate parsing would corrupt them. Meaningful short source paragraphs remain intact. This changes only the new Narratively profile.
+
+### Camden resource readers
+
+The Library page groups Camden’s digital resources and opens each provider for full catalogue access and reading. Optional search uses public index metadata only; it does not search a provider’s signed-in catalogue or retrieve protected text. Check availability and entitlement with the provider. Saving a permanent provider link creates a link-only item in the selected private room, where members can discuss it. These links do not use the saved study-edition allowance; provider sign-in and reading remain with the provider.
