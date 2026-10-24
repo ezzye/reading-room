@@ -1,5 +1,6 @@
 import {roomId,roomMemberId,DEFAULT_ROOM_ID} from './rooms.ts';
 import {publicHTML,extractNewspaper,publisherFor} from './newspaper-core.mjs';
+import {fetchVoxFeedCapture} from './vox-public-feed.mjs';
 import {readerSession,randomToken,sameOrigin,grantEdition} from './edition-access.ts';
 import {captureAPI} from './capture-service.ts';
 import {isOwner} from './education-service.ts';
@@ -50,15 +51,18 @@ export async function articleAPI(r:Request,c:Config,fetcher:typeof fetch=fetch,i
    if(typeof data.html!=='string'&&!await reserveURLImportAttempt(c)){await releaseStudyImport(studyReservation);studyReservation=undefined;return sourceRequestGuardResponse(c);}
   }
   let capture,publisherPreview,serverPreview;
+  if(!data.html&&p.host==='vox.com')capture=await fetchVoxFeedCapture(p.url,fetcher);
   if(!data.html&&p.host==='telegraph.co.uk'&&c.RR_LIBRARY_AWS_FUNCTION&&await libraryServerConfigured(c)){
    try{serverPreview=await fetchPublisherPreview(c,p.url,fetcher);}
    catch(error){if(isLibraryServiceBusyError(error))throw error;serverPreview={status:'publisher-preview',state:'unavailable',sourceURL:p.url,title:'',date:'',checkedAt:new Date().toISOString(),blocks:[],receipts:[],httpStatus:null,reasonCode:'request_failed'};}
   }
   try{
+   if(!capture){
    if(libraryOnly||libraryRefresh||serverPreview)throw Error('Use the matched library edition.');
    let source;if(typeof data.html==='string'){if(data.html.length>2_800_000)return json({error:'Use an HTML file smaller than 2.8 MB.'},413);source={html:data.html,url:p.url};}else source=await publicHTML(p.url,fetcher);
    if(!data.html)publisherPreview=source;
    capture=extractNewspaper(source.html,source.url,{method:data.html?'saved-html':'public-url'});
+   }
   }catch(error){
    const recovery=await selectedLibraryRecovery();if(recovery)return recovery;
    if(data.html||!['thetimes.com','telegraph.co.uk','observer.co.uk'].includes(p.host))throw error;
@@ -94,6 +98,6 @@ export async function articleAPI(r:Request,c:Config,fetcher:typeof fetch=fetch,i
    }
   }
   return response;
- }catch(e){if(e instanceof Response)return e;if(isLibraryServiceBusyError(e))return libraryServiceBusyResponse();const needsHeadline=Boolean(e&&typeof e==='object'&&'needsHeadline' in e&&e.needsHeadline===true);return json({error:e instanceof Error?e.message:'The source page could not be prepared.',needsCapture:!needsHeadline,...(needsHeadline?{needsHeadline:true}:{})},422);}
+ }catch(e){if(e instanceof Response)return e;if(isLibraryServiceBusyError(e))return libraryServiceBusyResponse();const needsHeadline=Boolean(e&&typeof e==='object'&&'needsHeadline' in e&&e.needsHeadline===true);const message=e instanceof Error?e.message:'The source page could not be prepared.';const unavailableVox=!data.html&&typeof data.url==='string'&&/^https:\/\/(?:www\.)?vox\.com\//i.test(data.url)&&/marked as subscription-only/.test(message);return json({error:unavailableVox?'This Vox link has no readable public edition available here. Recent stories published in Vox’s public RSS feed can be imported; older or restricted web editions may be unavailable.':message,needsCapture:!needsHeadline,...(needsHeadline?{needsHeadline:true}:{})},422);}
  finally{if(libraryClaim)try{await releaseRoomLibraryRecord(libraryClaim);}catch{console.warn('RR_LIBRARY_IDENTITY_RELEASE_UNAVAILABLE');}if(studyReservation)try{await releaseStudyImport(studyReservation);}catch{console.warn('RR_STUDY_RESERVATION_RELEASE_UNAVAILABLE');}}
 }

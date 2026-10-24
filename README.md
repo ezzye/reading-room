@@ -252,6 +252,8 @@ On 24 October 2026, the supplied Vox self-help essay initially appeared in full 
 
 Narratively uses its complete image src addresses because its CDN URLs contain commas; comma-separated image-candidate parsing would corrupt them. Meaningful short source paragraphs remain intact. This changes only the new Narratively profile.
 
+Vox article links can also use Vox's public RSS feed when it contains an exact matching article URL. The feed exposes only its latest ten articles, so this route is limited to those current feed entries; it does not make every Vox story available. Reading Room saves the matching feed edition privately, including images supplied by that entry where available. Optional AI critique stays separate and collapsed, and the private edition can be opened on a phone. When no exact feed entry is available, normal web-page import rules still apply: subscription metadata, paywall prompts and restricted or incomplete HTML remain refused.
+
 ### Camden resource readers
 
 The Library page groups Camden’s digital resources and opens each provider for full catalogue access and reading. Optional search uses public index metadata only; it does not search a provider’s signed-in catalogue or retrieve protected text. Check availability and entitlement with the provider. Saving a permanent provider link creates a link-only item in the selected private room, where members can discuss it. These links do not use the saved study-edition allowance; provider sign-in and reading remain with the provider.
